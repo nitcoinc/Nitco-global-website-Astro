@@ -188,9 +188,17 @@
 
 /* ====== THREE CORE PROGRAMS ====== */
 .programs {
-  background: linear-gradient(180deg, #15124a 0%, #0e0a3a 100%);
+  background: #0d0a4a;
   color: #fff;
   position: relative;
+}
+.programsEyebrow {
+  color: #5ac7dd;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
 }
 .programsScroll {
   /* Total height = N cards * one viewport so each card has its own scroll moment */
@@ -207,19 +215,19 @@
 }
 .programsGrid {
   display: grid;
-  grid-template-columns: 1fr 1.15fr;
-  gap: 80px;
+  grid-template-columns: 1fr 24px 1.4fr;
+  gap: 60px;
   align-items: center;
   width: 100%;
 }
 .programsHead {
   display: flex;
   flex-direction: column;
-  gap: 20px;
 }
 .programsHead .h2 {
   color: #fff;
-  font-size: 34px;
+  font-size: 32px;
+  font-weight: 800;
   max-width: 440px;
   line-height: 1.25;
   margin: 0;
@@ -227,36 +235,35 @@
 .progressBar {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-top: 24px;
-  width: 4px;
+  gap: 18px;
+  align-items: center;
+  justify-content: center;
 }
 .progressDot {
-  width: 4px;
-  height: 36px;
-  background: rgba(255, 255, 255, 0.18);
-  border-radius: 2px;
-  transition: background 0.35s ease;
+  width: 3px;
+  height: 70px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 3px;
+  transition: background 0.35s ease, height 0.35s ease;
 }
 .progressDotActive {
-  background: #ed1651;
+  background: #ffffff;
 }
 .programsList {
   position: relative;
-  height: 280px;
+  height: 290px;
   width: 100%;
-  max-width: 560px;
-  justify-self: end;
+  justify-self: stretch;
 }
 .programCard {
   position: absolute;
   inset: 0;
-  background: #fff;
-  color: #1a1655;
-  border-radius: 14px;
+  background: linear-gradient(135deg, #1a2b4a 0%, #142035 100%);
+  color: #fff;
+  border-radius: 16px;
   overflow: hidden;
   display: grid;
-  grid-template-columns: 200px 1fr;
+  grid-template-columns: 1fr 1fr;
   box-shadow: 0 22px 60px rgba(0, 0, 0, 0.45);
   opacity: 0;
   transform: translateY(40px) scale(0.98);
@@ -270,53 +277,51 @@
   z-index: 2;
 }
 .programImg {
-  background:
-    radial-gradient(circle at 35% 45%, rgba(237, 22, 81, 0.55) 0%, rgba(120, 30, 90, 0.35) 35%, transparent 65%),
-    linear-gradient(135deg, #1f1a55 0%, #0b0930 100%);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   position: relative;
 }
 .programImg::after {
   content: "";
   position: absolute;
   inset: 0;
-  background-image:
-    radial-gradient(1.5px 1.5px at 25% 30%, #ffffff55, transparent 60%),
-    radial-gradient(1px 1px at 60% 70%, #ffffff44, transparent 60%),
-    radial-gradient(1px 1px at 80% 40%, #ffffff44, transparent 60%);
+  background: linear-gradient(90deg, rgba(13,10,74,0) 60%, rgba(13,10,74,0.55) 100%);
 }
 .programBody {
-  padding: 28px 30px;
+  padding: 32px 36px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  background: transparent;
 }
 .programTitle {
-  font-size: 18px;
-  font-weight: 700;
-  margin: 0 0 12px;
-  line-height: 1.3;
-  color: #1a1655;
+  font-size: 22px;
+  font-weight: 800;
+  margin: 0 0 14px;
+  line-height: 1.25;
+  color: #ffffff;
 }
 .programDesc {
   font-size: 14px;
-  color: #5a5f82;
-  margin: 0 0 18px;
-  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.78);
+  margin: 0 0 22px;
+  line-height: 1.6;
 }
 .programBtn {
   display: inline-block;
   align-self: flex-start;
-  background: transparent;
-  border: 1.5px solid #1a1655;
+  background: #e9ecf3;
+  border: none;
   color: #1a1655;
   font-size: 13px;
   font-weight: 600;
-  padding: 9px 22px;
-  border-radius: 24px;
+  padding: 9px 18px;
+  border-radius: 8px;
   text-decoration: none;
-  transition: all 0.15s ease;
+  transition: background 0.15s ease;
 }
-.programBtn:hover { background: #1a1655; color: #fff; }
+.programBtn:hover { background: #ffffff; }
 
 /* ====== WHY NITCO ====== */
 .why {
@@ -507,7 +512,7 @@
   /* Disable scroll pinning on tablet/mobile — show all cards stacked */
   .programsScroll { height: auto; padding: 70px 0; }
   .programsSticky { position: static; height: auto; padding: 0; overflow: visible; }
-  .programsGrid { grid-template-columns: 1fr; gap: 40px; }
+  .programsGrid { grid-template-columns: 1fr; gap: 32px; }
   .programsList { position: static; height: auto; max-width: none; display: flex; flex-direction: column; gap: 20px; }
   .programCard { position: static; opacity: 1; transform: none; pointer-events: auto; grid-template-columns: 180px 1fr; }
   .programImg { min-height: 160px; }

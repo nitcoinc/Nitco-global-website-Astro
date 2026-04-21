@@ -29,16 +29,19 @@ const NewHome = () => {
 
   const programs = [
     {
+      img: "/images/HomePage/AIBanner02.webp",
       title: "Working Capital & Spend Integrity Program",
       body:
         "Improve working capital, increase billing and payment accuracy, and strengthen financial execution.",
     },
     {
+      img: "/images/HomePage/automationHomePlatform.webp",
       title: "Manual Work & Workflow Automation Program",
       body:
         "Reduce manual work, streamline approvals, and automate document-driven processes.",
     },
     {
+      img: "/images/HomePage/Discover_AI.webp",
       title: "Data & Decision Acceleration Program",
       body:
         "Turn scattered data into trusted metrics and faster, evidence-based decisions across teams.",
@@ -151,21 +154,23 @@ const NewHome = () => {
             <div className={styles.container}>
               <div className={styles.programsGrid}>
                 <div className={styles.programsHead}>
-                  <div className={styles.eyebrow}>Three Core Programs</div>
-                  <h2 className={`${styles.h2} ${styles.h2Light}`}>
+                  <div className={styles.programsEyebrow}>
+                    Three Core Programs
+                  </div>
+                  <h2 className={styles.h2}>
                     Drive better performance across finance, operations, and
                     data with these targeted programs.
                   </h2>
-                  <div className={styles.progressBar} aria-hidden="true">
-                    {programs.map((_, i) => (
-                      <span
-                        key={i}
-                        className={`${styles.progressDot} ${
-                          i === activeProgram ? styles.progressDotActive : ""
-                        }`}
-                      />
-                    ))}
-                  </div>
+                </div>
+                <div className={styles.progressBar} aria-hidden="true">
+                  {programs.map((_, i) => (
+                    <span
+                      key={i}
+                      className={`${styles.progressDot} ${
+                        i === activeProgram ? styles.progressDotActive : ""
+                      }`}
+                    />
+                  ))}
                 </div>
                 <div className={styles.programsList}>
                   {programs.map((p, i) => (
@@ -175,7 +180,11 @@ const NewHome = () => {
                         i === activeProgram ? styles.programCardActive : ""
                       }`}
                     >
-                      <div className={styles.programImg} aria-hidden="true" />
+                      <div
+                        className={styles.programImg}
+                        style={{ backgroundImage: `url(${p.img})` }}
+                        aria-hidden="true"
+                      />
                       <div className={styles.programBody}>
                         <h3 className={styles.programTitle}>{p.title}</h3>
                         <p className={styles.programDesc}>{p.body}</p>
