@@ -1,0 +1,737 @@
+/* FIRST BLOCK BACKGROUND + ALIGNMENT */
+
+.pagebannerContainer {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  overflow: hidden;
+  margin-top: 80px;
+}
+
+.pageBannerImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bannerOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8%;
+  color: white;
+}
+
+.bannerLeft {
+  max-width: 520px;
+  z-index: 2;
+}
+
+.agentpagebannerdescription {
+  margin: 0;
+  font-size: 2.2rem;
+  line-height: 1.3;
+}
+
+.bannerSubText {
+  margin: 20px 0;
+  font-size: 1rem;
+  opacity: 0.9;
+}
+
+.exploreBtn {
+  position: relative;
+  padding: 12px 40px 12px 24px;
+  background: transparent;
+  border: 1px solid #fff;
+  color: #fff;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.exploreBtn::after {
+  content: ">";
+  position: absolute;
+  right: 18px;
+  top: 53%;
+  transform: translateY(-50%);
+  font-size: 1.3rem;
+}
+
+.exploreBtn:hover {
+  background: #fff;
+  color: #0b2a7a;
+}
+
+
+
+/* SECOND BLOCK BACKGROUND + ALIGNMENT */
+.secondBlock {
+  width: 100%;
+  background: linear-gradient(0deg,
+      #f1e9ff 0%,
+      #e8dcff 40%,
+      #e2d2ff 100%);
+
+  padding: 80px 0;
+}
+
+.secondBlock>* {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+
+.highDemandTitle {
+  font-size: 2.0rem;
+  font-weight: 600;
+  color: #1b1f3b;
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.highDemandTitle span {
+  color: #ff5a6e;
+}
+
+.featureGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+  margin-bottom: 70px;
+}
+
+.featureCard {
+  background: #262d7f;
+  color: #ffffff;
+  padding: 36px 40px;
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 220px;
+}
+
+.cardTitle {
+  margin: 0;
+  font-size: 1.6rem;
+  line-height: 1.3;
+}
+
+.cardTitle span {
+  color: #ff5a6e;
+  font-weight: 600;
+}
+
+.featureCard p {
+  margin: 18px 0 24px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  min-height: 60px;
+}
+
+
+/* EXPLORE BUTTON – PREMIUM SAAS STYLE */
+.knowMoreBtn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: #ffffff;
+  border: 1px solid #ffffff;
+  border-radius: 999px;
+  padding: 10px 40px 10px 18px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.knowMoreBtn::after {
+  content: "→";
+  position: absolute;
+  right: 18px;
+  font-size: 1rem;
+  transition: transform 0.25s ease;
+}
+
+.knowMoreBtn:hover {
+  background: #ffffff;
+  color: #2D2F7F;
+}
+
+.knowMoreBtn:hover::after {
+  transform: translateX(4px);
+}
+
+.knowMoreBtn:active {
+  transform: translateY(0);
+}
+
+.knowMoreBtn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(38, 45, 127, 0.25);
+}
+
+
+.howItWorks {
+  margin-top: 10px;
+}
+
+.howTitle {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #1b1f3b;
+}
+
+.howTitle span {
+  color: #ff5a6e;
+}
+
+.howSubText {
+  font-size: 0.9rem;
+  color: #6b6f9c;
+  margin: 8px 0 40px;
+}
+
+.stepsWrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+
+.stepRow {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.iconCircle {
+  width: 40px;
+  height: 40px;
+  background: #262d7f;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.stepContent h4 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #000000;
+}
+
+.stepSubTitle {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #000000;
+}
+
+.stepContent p {
+  margin-top: 8px;
+  font-size: 0.9rem;
+  color: #000000;
+  line-height: 1.5;
+}
+
+.primaryCta {
+  background: #262d7f;
+  color: #ffffff;
+  padding: 10px 26px;
+  border: none;
+  cursor: pointer;
+  width: fit-content;
+}
+
+.ctaRow {
+  display: flex;
+  justify-content: flex-start;
+  /* change to center if needed */
+  margin-top: 10px;
+}
+
+/* ===========================
+   EXPLORE AGENTS – THIRD BLOCK
+=========================== */
+
+.exploreAgents {
+  background: #ffffff;
+  padding: 90px 0;
+}
+
+.exploreAgents>* {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+.exploreTitle {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #1b1f3b;
+}
+
+.exploreTitle span {
+  color: #ff5a6e;
+}
+
+.exploreSubText {
+  margin-top: 6px;
+  margin-bottom: 12px;
+  font-size: 0.95rem;
+  color: #6b6f9c;
+}
+
+.tabs {
+  display: flex;
+  gap: 24px;
+  margin-top: 12px;
+}
+
+.tabBtn {
+  background: transparent;
+  border: 1px solid transparent;
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  color: #1b1f3b;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.tabBtn:hover {
+  background: #262d7f;
+  color: #ffffff;
+}
+
+.tabBtn.active {
+  background: #262d7f;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.tabBtn.active::after {
+  display: none;
+}
+
+.tabsWrapper {
+  margin-top: 12px;
+}
+
+.tabsDivider {
+  width: 100%;
+  height: 3px;
+  background: #e5e7f2;
+  margin-top: 10px;
+}
+
+
+.agentGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+  margin-top: 40px;
+}
+
+.agentCard {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 170px;
+}
+
+.agentCard:hover {
+  background: #2b0a78;
+  transform: translateY(-6px);
+}
+
+.agentCard:hover h4,
+.agentCard:hover p {
+  color: #ffffff;
+}
+
+.agentCard h4 {
+  margin: 0;
+  font-size: 1.05rem;
+  color: #1b1f3b;
+}
+
+.agentCard p {
+  margin: 14px 0 20px;
+  font-size: 0.9rem;
+  color: #6b6f9c;
+  line-height: 1.5;
+  min-height: 50px;
+}
+
+.exploreBtnSmall {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #262d7f;
+  color: #ffffff;
+  border: 1px solid #262d7f;
+  border-radius: 10px;
+  padding: 10px 42px 10px 18px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  width: fit-content;
+  margin-top: auto;
+}
+
+.watchVideoBtnDark {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #262d7f;
+  color: #ffffff;
+  border: 1px solid #262d7f;
+  border-radius: 10px;
+  padding: 10px 42px 10px 18px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  width: fit-content;
+  margin-top: auto;
+}
+
+.watchVideoBtnDark:hover {
+  background: #ffffff;
+  color: #262d7f;
+}
+
+.talkExpertBtnDark {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #262d7f;
+  color: #ffffff;
+  border: 1px solid #262d7f;
+  border-radius: 10px;
+  padding: 10px 42px 10px 18px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  width: fit-content;
+  margin-top: auto;
+}
+
+.talkExpertBtnDark:hover {
+  background: #ffffff;
+  color: #262d7f;
+}
+
+.exploreBtnSmall::after {
+  content: "→";
+  position: absolute;
+  right: 18px;
+  font-size: 1rem;
+  transition: transform 0.25s ease;
+}
+
+.exploreBtnSmall:hover  {
+  background: #1f2566;
+  transform: translateY(-1px);
+}
+
+.exploreBtnSmall:hover::after {
+  transform: translateX(4px);
+}
+
+.exploreBtnSmall:active {
+  transform: translateY(0);
+}
+
+.exploreBtnSmall:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(38, 45, 127, 0.35);
+}
+
+
+.agentCard:hover .exploreBtnSmall {
+  background: #ffffff;
+  color: #262d7f;
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 12px;
+  margin-top: auto;
+  flex-wrap: wrap;
+}
+
+.talkExpertBtn {
+  background: transparent;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  padding: 10px 18px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.talkExpertBtn:hover {
+  background: #ffffff;
+  color: #2D2F7F;
+}
+
+.watchVideoBtn {
+  background: transparent;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  padding: 10px 18px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.watchVideoBtn:hover {
+  background: #ffffff;
+  color: #2D2F7F;
+}
+
+/* ===========================
+   AGENT POPUP MODAL
+=========================== */
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100000; /* 🔥 higher than navbar */
+}
+
+.agentModalContent {
+  width: 98%;
+  height: 98%;
+  background: #ffffff;
+  border-radius: 14px;
+  position: relative;
+  overflow: hidden;
+}
+
+.videoModalContent {
+  height: min(97vh, 900px);
+  aspect-ratio: 16 / 9;
+  background: #000;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 🔥 THIS FIXES CLICK ISSUE */
+.iframeWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.agentIframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* 🔥 THIS FIXES X BUTTON */
+.closeModal {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  z-index: 999999; /* above iframe */
+  font-size: 22px;
+  background: #ffffff;
+  border: none;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+
+
+@media (max-width: 768px) {
+  .videoModalContent {
+    width: 95vw;
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
+}
+
+.agentIframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.closeModal {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  font-size: 22px;
+  background: #ffffff;
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+
+
+@media (max-width: 768px) {
+
+  /* Banner */
+  .agentpagebannerdescription {
+    font-size: 1.7rem;
+  }
+
+  .bannerOverlay {
+    padding: 0 20px;
+    text-align: center;
+    justify-content: center;
+  }
+
+
+  .bannerLeft {
+    max-width: 100%;
+  }
+
+
+  /* Featured cards stack */
+  .featureGrid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .featureCard {
+    padding: 28px 24px;
+    min-height: auto;
+  }
+
+  .cardTitle {
+    font-size: 1.4rem;
+  }
+
+  .featureCard p {
+    min-height: auto;
+    margin-bottom: 20px;
+  }
+
+  .buttonGroup {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .knowMoreBtn,
+  .talkExpertBtn {
+    width: fit-content;
+  }
+
+
+  /* Steps */
+  .stepsWrapper {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .ctaRow {
+    margin-top: 20px;
+  }
+
+
+  /* Agent grid */
+  .agentGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .agentCard {
+    min-height: auto;
+  }
+
+  .agentCard p {
+    min-height: auto;
+  }
+
+
+  /* Explore section padding */
+  .exploreAgents>* {
+    padding: 0 20px;
+  }
+
+  .secondBlock>* {
+    padding: 0 20px;
+  }
+
+
+  /* Tabs */
+  .tabs {
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+}
+
+.buttonGroupDark {
+  display: flex;
+  gap: 14px; /* 🔥 increase spacing */
+  flex-wrap: wrap;
+  margin-top: auto;
+}
+
+/* Default: card hover → Explore white */
+.agentCard:hover .exploreBtnSmall {
+  background: #ffffff;
+  color: #262d7f;
+}
+
+/* If ANY other button is hovered → reset Explore */
+.agentCard:has(.watchVideoBtnDark:hover) .exploreBtnSmall,
+.agentCard:has(.talkExpertBtnDark:hover) .exploreBtnSmall {
+  background: #262d7f;
+  color: #ffffff;
+}
+
+/* Individual button hover */
+.watchVideoBtnDark:hover,
+.talkExpertBtnDark:hover {
+  background: #ffffff;
+  color: #262d7f;
+}
+
+/* When card is hovered */
+.agentCard:hover .exploreBtnSmall,
+.agentCard:hover .watchVideoBtnDark,
+.agentCard:hover .talkExpertBtnDark {
+  border: 1px solid #ffffff; /* 🔥 THIS is what you need */
+}

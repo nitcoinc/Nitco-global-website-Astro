@@ -1,0 +1,96 @@
+.footer-area {
+  padding-top: 80px;
+  position: relative;
+  z-index: 1;
+}
+
+.footer-area .map {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  text-align: center;
+  z-index: -1;
+  bottom: 0;
+  opacity: 0.7;
+}
+
+.single-footer-widget h3 {
+  font-size: 18px;
+}
+
+.single-footer-widget ul {
+  padding: 0;
+  list-style-type: none;
+}
+
+.single-footer-widget ul.list li:last-child {
+  margin-bottom: 0;
+}
+
+.partnerEmail:hover {
+  color: red;
+}
+.partnerEmail {
+  color: #fff;
+  font-size: 20px;
+}
+.copyrightArea {
+  background-color: #ed1651;
+}
+
+.displayMobile {
+  display: none;
+}
+
+.CountryHead {
+  color: #fff;
+  margin-top: 25px;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+}
+.headUnderLine {
+  border-top: 1px solid #fff;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.footerArea {
+  padding-top: 80px;
+  position: relative;
+  z-index: 1;
+}
+
+.socialIcons {
+  width: auto;
+  height: 20px;
+  margin-right: 5px;
+}
+
+.copyRight {
+  background-color: #ed1651;
+  padding: 10px;
+  width: 100%;
+}
+@media (max-width: 1000px) {
+  .displayMobile {
+    display: block;
+  }
+}
+@media (max-width: 450px) {
+  .CountryHead {
+    height: 40px;
+  }
+}
+.footerAreaNew {
+  padding-top: 60px;
+  position: relative;
+  z-index: 1;
+}
+.copyRightNew {
+  background-color: #ed1651;
+  padding: 10px;
+  width: 100%;
+}
+.CountryHeadNew {
+  padding-right: 5px;
+}

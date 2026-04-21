@@ -1,0 +1,4 @@
+User submits a query through the Boomi Agent.
+Boomi Integration converts it to vector embeddings and searches Pinecone.
+Top-matching results are retrieved and converted into readable format.
+Boomi Agent displays the answer to the user.

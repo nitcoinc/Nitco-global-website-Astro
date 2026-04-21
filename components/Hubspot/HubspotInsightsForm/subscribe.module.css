@@ -1,0 +1,32 @@
+.Main{
+    background-color: #25247b;
+    padding:30px 10px 30px 30px;
+    color:#fff;
+    border-radius: 10px;
+      max-height: calc(100vh - 100px);
+        overflow-y: auto;
+
+}
+.labels{
+    color:#fff;
+    margin-top: 10px !important;
+    margin-bottom: 10px;
+}
+.courses{
+      color:#fff;
+      margin-top: -5px;
+}
+.inputfield{
+    width:80%;
+    border-radius: 8px;
+    border: #fff;
+    height: 30px;
+}
+.btn{
+padding:4px 30px ;
+font-size: 18px;
+background-color: #ed1651;
+color:#fff;
+border: 2px solid #ed1651;
+border-radius: 10px;
+}

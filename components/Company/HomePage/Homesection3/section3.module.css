@@ -1,0 +1,76 @@
+.backgroundImg {
+  background-image: url("../../../../images/HomePage/partnerBackground.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+}
+.knowMoreArw {
+  font-size: 24px;
+}
+.paragraph {
+  width: 70%;
+  font-size: 16px;
+}
+.main {
+  color: #fff;
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+.heading {
+  color: #fff;
+  font-size: 28px !important;
+}
+.button {
+  background-color: transparent;
+  color: #fff;
+  border: 1px solid #fff;
+  padding: 7px 20px;
+  font-size: 14px;
+  border-radius: 8px;
+  margin-top: 50px;
+}
+.sliderMain {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
+  margin: 50px auto 20px auto;
+}
+.slideItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.logoWrapper {
+  position: relative;
+  width: 80px;   /* controls width */
+  height: 32px;   /* controls height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  object-fit: contain;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.jitter {
+  transform: scale(1.8);
+}
+
+@media (max-width: 769px) {
+  .slideItem {
+    gap: 20px;
+  }
+  .paragraph {
+    width: 95%;
+    font-size: 18px;
+    padding-bottom: 25px;
+  }
+   .logoWrapper {
+    width: 90px;
+    height: 30px;
+  }
+}

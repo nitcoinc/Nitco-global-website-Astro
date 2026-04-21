@@ -1,0 +1,239 @@
+.main {
+  margin-top: 80px;
+  /* margin-bottom: 80px; */
+}
+.pagebannerContainer {
+   position: relative;
+  text-align: center;
+  width: 100%;
+  overflow: hidden;
+}
+.pageBannerImg {
+   width: 100%;
+  height: 500px;
+  object-fit: cover;
+  display: block;
+}
+.pagebannerText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  border-radius: 10px;
+}
+
+.pagebannerdescription{
+  margin: 0;
+  font-size: 2.5rem;
+  color: #fff;
+}
+
+.contactSection {
+  background: linear-gradient(145deg, #e3d9ff 90%, #ffffff);
+  padding: 60px;
+}
+.contactWrapper {
+   display: flex;
+  flex-wrap: wrap;
+  gap: 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 2em;
+}
+.formContainer {
+  flex: 1 1 400px;
+}
+.formBox {
+  background: #25247b;
+  padding: 30px;
+  border-radius: 10px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.heading{
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.subText {
+  color: black;
+max-width: 1200px;
+ margin: 0 auto;
+}
+
+.formBox label {
+  font-weight: 500;
+  color: #fff;
+}
+.formBox input,
+.formBox textarea {
+  border-radius: 6px;
+  border: none;
+  padding: 12px;
+  outline: none;
+}
+.formBox textarea {
+  resize: none;
+}
+
+.checkboxGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 20px;
+}
+.checkboxItem {
+  display: flex;
+  align-items: center;
+}
+.customCheckbox {
+  width: 16px;
+  height: 16px;
+  accent-color: #e20045;
+  margin-right: 8px;
+}
+.required {
+  color: red;
+}
+
+.submitBtn {
+  background: #e20045;
+  color: #fff;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 30px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.submitBtn:hover {
+  background: #c51142;
+}
+.captcha {
+  margin: 15px 0;
+}
+
+.officeContainer {
+  flex: 1 1 400px;
+  padding-left: 8em;
+}
+.officeBox {
+  margin-bottom: 40px;
+}
+.officeBox h4 {
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #1e1a47;
+}
+.officeImage {
+  max-width: 100%;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+.officeBox p {
+  margin: 4px 0;
+  font-size: 15px;
+}
+.officeBox hr {
+  margin: 12px 0;
+  border: 0;
+  border-top: 1px solid #999;
+}
+
+@media (max-width: 768px) {
+  .contactSection {
+    background: #e3d9ff;
+    padding: 30px 15px;
+  }
+
+  .heading,
+  .subText {
+    text-align: center; 
+    padding-left: 0; 
+    margin-bottom: 10px;
+  }
+
+  .contactWrapper {
+    flex-direction: column; 
+    gap: 30px;
+  }
+
+  .formContainer,
+  .officeContainer {
+    width: 100%;  
+    padding-left: 0;
+  }
+
+  .formBox {
+    padding: 20px;
+    border-radius: 10px;
+  }
+
+  .checkboxGrid {
+    grid-template-columns: 1fr;  
+    gap: 8px;
+  }
+
+  .checkboxItem label {
+    font-size: 14px;
+  }
+
+  .submitBtn {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .officeBox {
+    margin-bottom: 25px;
+    text-align: center; /* keep neat */
+  }
+
+  .officeBox h4 {
+    margin-top: 15px;
+    font-size: 18px;
+  }
+
+  .officeImage {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+    border-radius: 8px;
+  }
+
+  .officeBox p {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .heading {
+    font-size: 20px;
+  }
+  .subText {
+    font-size: 14px;
+  }
+  .formBox {
+    padding: 15px;
+  }
+  .officeBox p {
+    font-size: 13px;
+  }
+  .pageBannerImg {
+   width: 100%;
+  height: 40vh;
+  object-fit: cover;
+  display: block;
+}
+  .pagebannerText {
+    padding: 0.5rem 1rem;
+    width: 80%;
+  }
+  .pagebannerdescription {
+    font-size: 1.6em;
+  }
+}

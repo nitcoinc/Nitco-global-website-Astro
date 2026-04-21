@@ -1,0 +1,48 @@
+.contactMain {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  background-color: #e20045;
+  color: #ffffff;
+  padding-top: 60px;
+  padding-bottom: 50px;
+  font-family: "Montserrat", sans-serif;
+  line-height: 30px;
+  box-sizing: border-box;
+  background-image: url("../../../images/contactus/Collab.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.contBtn {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+.contactButton {
+  color: #25247b;
+  padding: 0px 25px;
+  border: none;
+  border-radius: 6px;
+  height: 40px;
+  font-size: 14px;
+  font-weight: 600;
+}
+@media (max-width: 768px) {
+  .contactMain {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2.5rem;
+  }
+  .contactMain {
+    background-image: url("../../../images/contactus/ContactMobile.webp");
+  }
+  .contactSection {
+    max-width: 100%;
+  }
+}

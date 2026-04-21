@@ -1,0 +1,61 @@
+.insightButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Make button same size as text */
+.filterbtn {
+  background: #fff;
+  border: 1px solid #2A2070;
+  border-radius: 2px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: #2A2070;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  line-height: 1;         /* tight vertical spacing */
+  padding: 8px 14px;             /* no padding */
+  margin: 0;
+  display: inline-block;  /* fit exactly to text */
+  height: auto;
+}
+
+/* subtle hover */
+.filterbtn:hover {
+  background: #2A2070;
+  border-color: #2A2070;
+  color: #fff;
+}
+
+/* active state */
+.active {
+  background: #2A2070;
+  border-color: #2A2070;
+  color: #fff;
+  font-weight: 600;
+}
+
+/* Responsive layout */
+@media (max-width: 768px) {
+  .insightButtons {
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .filterbtn {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  /* .insightButtons {
+    flex-direction: column;
+    align-items: center;
+  } */
+
+  .filterbtn {
+    text-align: center;
+  }
+}

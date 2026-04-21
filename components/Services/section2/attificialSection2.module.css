@@ -1,0 +1,150 @@
+.gallerywrapper {
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+}
+.headErSec2 {
+  font-size: 28px;
+  color: #fff;
+}
+.backGroundSec2 {
+  background-color: #25247b;
+}
+.textOnIt {
+  width: 50%;
+}
+.knowMoreBtn {
+  background-color: transparent;
+  color: #fff;
+  border: 2px solid #fff;
+  padding: 3px 15px;
+  border-radius: 8px;
+  margin-top: 30px;
+}
+.arrowBtn {
+  color: white;
+  height: 35px;
+  width: 35px;
+}
+.arrowBtn:hover {cursor: pointer;}
+.slide {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  transition: opacity 0.8s ease-in-out;
+  overflow: hidden;
+}
+.namebuttons {
+  text-align: left;
+  color: #fff;
+  flex-wrap: wrap;
+  font-weight: 600;
+}
+.namebuttons a {
+  margin: 0 12px;
+  padding: 15px 15px 15px 0;
+  color: #fff;
+  font-weight: 600;
+}
+.namebuttons .selected {
+  font-weight: 600;
+  color: #ed1651;
+  transition: opacity 0.8s ease-in-out;
+}
+.selected:hover{
+  cursor: pointer;
+}
+.headHover:hover{
+  cursor: pointer;
+}
+.mainimage {
+  width: 100%;
+  height: 600px;
+  object-fit: cover;
+  transition: all 0.3s ease-in-out;
+  display: block;
+}
+.textOverlay {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  transform: translateY(-50%);
+  color: white;
+  padding: 0 20px;
+  text-align: left;
+}
+.buttonOverlay {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  display: flex;
+  gap: 10px;
+}
+.buttonOverlay button {
+  padding: 6px 12px;
+  font-size: 16px;
+  cursor: pointer;
+}
+@media (max-width: 1024px) {
+  .mainimage {
+    height: 450px;
+  }
+  .textOverlay {
+    width: 90%;
+    left: 15px;
+  }
+  .textOnIt {
+    width: 80%;
+  }
+}
+@media (max-width: 768px) {
+  .mainimage {
+    height: 420px;
+  }
+  .textOnIt {
+    width: 95%;
+  }
+  .textOverlay {
+    width: 95%;
+    left: 10px;
+    padding: 0;
+  }
+  .namebuttons {
+    text-align: center;
+    padding: 10px 0;
+    font-weight: 600;
+  }
+  .namebuttons a {
+    display: inline-block;
+    margin: 6px;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .description {
+    font-size: 14px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+  }
+  .buttonOverlay {
+    right: 10px;
+    bottom: 8px;
+  }
+  .buttonOverlay button {
+    padding: 5px 10px;
+    font-size: 14px;
+  }
+}
+@media (max-width: 480px) {
+  .mainimage {
+    height: 420px;
+  }
+  .textOnIt {
+    width: 100%;
+  }
+  .textOverlay {
+    width: 100%;
+    padding: 0 0px;
+  }
+}

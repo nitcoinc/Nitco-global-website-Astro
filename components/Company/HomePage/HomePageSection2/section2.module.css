@@ -1,0 +1,134 @@
+.sectionStart {
+  padding-top: 80px;
+  padding-bottom: 80px;
+  background: radial-gradient(circle at 10% 50%, #cccbe2 0%, transparent 80%),
+    radial-gradient(circle at 10% 70%, #d8d7fe 0%, transparent 90%),
+    radial-gradient(circle at 20% 70%, #d8d7fe 0%, transparent 60%),
+    radial-gradient(circle at 30% 70%, #d8d7fe 0%, transparent 60%),
+    radial-gradient(circle at 40% 60%, #d8d7fe 0%, transparent 60%),
+    radial-gradient(circle at 60% 70%, #d8d7fe 0%, transparent 60%),
+    radial-gradient(circle at 70% 80%, #d8d7fe 0%, transparent 50%),
+    radial-gradient(circle at 100% 0%, #d8d7fe 0%, transparent 50%);
+  background-color: #0012e6;
+}
+.textTitle {
+  display: flex;
+  justify-content: center;
+  font-size: 14px;
+}
+.button {
+  background-color: #2a2070;
+  border: #2a2070;
+  border-radius: 5px;
+  color: #fff;
+  padding: 10px 20px;
+  margin: 45px 0;
+}
+.imageClass {
+  height: 100px;
+  width: 100px;
+}
+.serviceImages {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  justify-items: center;
+}
+.para {
+  font-size: 16px;
+  color: #000;
+}
+.main {
+  width: 60%;
+  margin: 0px auto;
+}
+
+.colorChange {
+  color: #ed1651;
+}
+.sectionSecond {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  margin-top: 60px;
+  width: 100%;
+}
+.leftImage,
+.leftSec,
+.rightside {
+  width: 49%;
+}
+
+.iconsSec {
+  text-align: center;
+}
+.imageSty {
+  width: 100%;
+  height: 100%;
+}
+.knowMoreArw {
+  font-size: 22px;
+}
+/* ===== Responsive Styles ===== */
+@media (max-width: 992px) {
+  .iconsSec {
+    width: 48%;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 900px) {
+  .main {
+    width: 100%;
+  }
+}
+
+@media (max-width: 840px) {
+  .main {
+    width: 100%;
+    margin: 50px auto;
+  }
+
+  .sectionSecond {
+    display: block;
+    margin-top: 100px;
+    width: 100%;
+  }
+
+  .leftImage {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .leftSec,
+  .rightside {
+    width: 100%;
+  }
+
+  .rightside {
+    padding-top: 50px;
+  }
+
+  .imageSty {
+    width: 100%;
+    height: 100%;
+  }
+  .sectionStart {
+    padding-top: 50px;
+    padding-bottom: 80px;
+  }
+}
+
+@media (max-width: 768px) {
+  .serviceImages {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .serviceImages {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
