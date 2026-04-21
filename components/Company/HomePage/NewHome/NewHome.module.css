@@ -194,17 +194,16 @@
   background: #0d0a4a;
   color: #fff;
   position: relative;
-  /* 3 cards × ~520px of scroll each */
-  height: 1560px;
+  /* Tall section so each card gets a viewport-worth of scroll */
+  height: 300vh;
 }
 .programsSticky {
   position: sticky;
   top: 0;
-  height: 520px;
+  height: 100vh;
   display: flex;
   align-items: center;
   overflow: hidden;
-  padding: 40px 0;
 }
 .programsEyebrow {
   color: #5ac7dd;
