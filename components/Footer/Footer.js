@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Logo from "../../images/nitco-images/LogoWhite.svg";
-import { GoArrowUpRight } from "react-icons/go";
 import USA from "../../images/FooterDesignChange/USA.png";
 import Indian from "../../images/FooterDesignChange/Indian.png";
 import fb from "../../images/FooterDesignChange/fb.svg";
@@ -10,241 +9,235 @@ import linkdin from "../../images/FooterDesignChange/linkdin.svg";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+
+  const headingStyle = {
+    color: "#fff",
+    fontSize: "16px",
+    fontWeight: 700,
+    marginBottom: "18px",
+  };
+  const linkStyle = {
+    color: "#fff",
+    fontSize: "14px",
+    textDecoration: "none",
+    display: "block",
+    marginBottom: "10px",
+    opacity: 0.95,
+  };
+  const socialCircle = {
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "34px",
+    height: "34px",
+    borderRadius: "50%",
+    background: "#fff",
+    marginRight: "10px",
+  };
+
   return (
-    <div className="displayLap" style={{ backgroundColor: "#25247b" }}>
+    <footer
+      className="displayLap"
+      style={{ backgroundColor: "#1a1a5e", color: "#fff" }}
+    >
       <div
-        className="container-fluid footer-area 
-      "
-        style={{ paddingTop: "80px" }}
+        style={{
+          maxWidth: "1280px",
+          margin: "0 auto",
+          padding: "60px 40px 30px",
+        }}
       >
-        <div className="row justify-content-center lh-base single-footer-widget">
-          <div className="col-6 ps-5">
-            <div className="single-footer-widget lineHeight-1-6">
-              <div className="logo p-3">
-                <Link href="/">
-                  <img {...Logo} alt="logo" width="180" height="40" />
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          <div className="col-2">
-            <h3 className="custom-footer-headings">Services</h3>
-            <ul className="list">
-              <li className="serviceFooter">
-                <Link href="/services/artificial-intelligence-services">
-                  Artificial Intelligence (AI)
-                </Link>
-              </li>
-               <li className="serviceFooter">
-                <Link href="/services/artificial-intelligence-governance">
-                  AI Governance (AIG)
-                </Link>
-              </li>
-              <li className="serviceFooter">
-                <Link href="/services/automation-services">
-                  Automation
-                </Link>
-              </li>
-              <li className="serviceFooter">
-                <Link href="/services/integration-services">
-                  Integration
-                </Link>
-              </li>
-              <li className="serviceFooter">
-                <Link href="/services/data-services">
-                  Data
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          <div className="col-2">
-            <h3 className="custom-footer-headings">Company</h3>
-            <ul className="list">
-              <li className="serviceFooter">
-                <Link href="/company/about">About</Link>
-              </li>
-              <li className="serviceFooter">
-                <Link href="/company/careers/">Careers</Link>
-              </li>
-            </ul>
-          </div>
-
-          <div className="col-2">
-            <h3 className="custom-footer-headings">Follow Us</h3>
-            <a
-              href="https://www.facebook.com/NitcoIncOfficial/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <img
-                {...fb}
-                alt="India"
-                style={{ width: "auto", height: "20px", marginRight: "5px" }}
-              />
-            </a>
-            <a
-              href="https://twitter.com/nitcoofficial/"
-              className="twitter text-white"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <img
-                {...X}
-                alt="India"
-                style={{ width: "auto", height: "20px", marginRight: "5px" }}
-              />
-            </a>
-            <a
-              href="https://www.linkedin.com/company/nitcoincofficial"
-              className="instagram text-white"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <img
-                {...linkdin}
-                alt="India"
-                style={{ width: "auto", height: "20px", marginRight: "5px" }}
-              />
-            </a>
-            <a
-              href="https://www.youtube.com/channel/UChm0AxXJl4gsIiUimX1kh-A"
-              className="instagram text-white"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <img
-                {...youtube}
-                alt="India"
-                style={{ width: "auto", height: "20px", marginRight: "0px" }}
-              />
-            </a>
-          </div>
-        </div>
-
+        {/* Top row */}
         <div
           style={{
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "space-evenly",
-            width: "100%",
-            padding: "0 !important",
+            display: "grid",
+            gridTemplateColumns: "1.2fr 1fr 1fr 1fr",
+            gap: "40px",
+            alignItems: "start",
           }}
-          className="row mt-5"
         >
-          <div className="copyright-area  p-4" style={{ width: "20%" }}>
-            <p>
-              <a href="mailto:YourPartner@nitcoinc.com">
-                <span className="text-white" style={{ fontSize: "13px" }}>
-                  YourPartner@nitcoinc.com
-                </span>
-              </a>
-            </p>
-            <div className="row">
-              <div>
-                <a
-                  href="/privacy-policy"
-                  className="text-white"
-                  style={{ fontSize: "13px", paddingTop: "10px" }}
-                >
-                  <GoArrowUpRight
-                    className="arrowupright-icon"
-                    style={{ fontSize: "18px", fontWeight: "800 !important" }}
-                  />
-                  Privacy Policy
-                </a>
-              </div>
-              <div>
-                <a
-                  href="/cookie-policy"
-                  className="text-white"
-                  style={{ fontSize: "13px", paddingTop: "10px" }}
-                >
-                  <span className="arrowupright-icon">
-                    <GoArrowUpRight
-                      className="arrowupright-icon"
-                      style={{
-                        fontSize: "18px",
-                        fontWeight: "800 !important",
-                      }}
-                    />
-                  </span>
-                  Cookie Policy
-                </a>
-              </div>
+          {/* Logo + locations */}
+          <div>
+            <Link href="/">
+              <img {...Logo} alt="NITCO" width="180" height="44" />
+            </Link>
+            <div style={{ marginTop: "32px" }}>
+              <p
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  fontSize: "14px",
+                  color: "#fff",
+                  marginBottom: "10px",
+                }}
+              >
+                <img
+                  {...USA}
+                  alt="USA"
+                  style={{
+                    width: "26px",
+                    height: "18px",
+                    marginRight: "10px",
+                  }}
+                />
+                USA - Texas
+              </p>
+              <p
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  fontSize: "14px",
+                  color: "#fff",
+                  margin: 0,
+                }}
+              >
+                <img
+                  {...Indian}
+                  alt="India"
+                  style={{
+                    width: "26px",
+                    height: "18px",
+                    marginRight: "10px",
+                  }}
+                />
+                India - Hyderabad
+              </p>
             </div>
-            <div className="mt-3"></div>
-            <p
-              className="text-white mt-3"
-              style={{ lineHeight: "18px", fontSize: "13px !important" }}
-            >
-              &copy; {currentYear} Nitco, Inc. All Rights Reserved.
-            </p>
           </div>
 
-          <div className=" text-white" style={{ width: "20%" }}>
-            <h6 className="text-white mt-3">
-              <img
-                {...USA}
-                alt="USA"
-                style={{ width: "30px", height: "20px", marginRight: "10px" }}
-              />
-              US Headquarters
-            </h6>
-            <div className="border-top-custom-pink"></div>
-            <p
+          {/* Services */}
+          <div>
+            <h3 style={headingStyle}>Services</h3>
+            <Link href="/services/artificial-intelligence-services" style={linkStyle}>
+              Artificial Intelligence (AI)
+            </Link>
+            <Link href="/services/artificial-intelligence-governance" style={linkStyle}>
+              AI Governance (AIG)
+            </Link>
+            <Link href="/services/automation-services" style={linkStyle}>
+              Automation
+            </Link>
+            <Link href="/services/integration-services" style={linkStyle}>
+              Integration
+            </Link>
+            <Link href="/services/data-services" style={linkStyle}>
+              Data
+            </Link>
+          </div>
+
+          {/* Company */}
+          <div>
+            <h3 style={headingStyle}>Company</h3>
+            <Link href="/company/about" style={linkStyle}>
+              About
+            </Link>
+            <Link href="/company/careers/" style={linkStyle}>
+              Careers
+            </Link>
+          </div>
+
+          {/* Follow Us + Contact */}
+          <div style={{ textAlign: "right" }}>
+            <h3 style={{ ...headingStyle, textAlign: "right" }}>Follow Us</h3>
+            <div style={{ marginBottom: "32px" }}>
+              <a
+                href="https://www.facebook.com/NitcoIncOfficial/"
+                target="_blank"
+                rel="noreferrer"
+                style={socialCircle}
+              >
+                <img
+                  {...fb}
+                  alt="Facebook"
+                  style={{ width: "16px", height: "16px" }}
+                />
+              </a>
+              <a
+                href="https://twitter.com/nitcoofficial/"
+                target="_blank"
+                rel="noreferrer"
+                style={socialCircle}
+              >
+                <img
+                  {...X}
+                  alt="X"
+                  style={{ width: "14px", height: "14px" }}
+                />
+              </a>
+              <a
+                href="https://www.linkedin.com/company/nitcoincofficial"
+                target="_blank"
+                rel="noreferrer"
+                style={socialCircle}
+              >
+                <img
+                  {...linkdin}
+                  alt="LinkedIn"
+                  style={{ width: "16px", height: "16px" }}
+                />
+              </a>
+              <a
+                href="https://www.youtube.com/channel/UChm0AxXJl4gsIiUimX1kh-A"
+                target="_blank"
+                rel="noreferrer"
+                style={{ ...socialCircle, marginRight: 0 }}
+              >
+                <img
+                  {...youtube}
+                  alt="YouTube"
+                  style={{ width: "16px", height: "16px" }}
+                />
+              </a>
+            </div>
+            <h3 style={{ ...headingStyle, textAlign: "right" }}>Contact Us</h3>
+            <a
+              href="mailto:YourPartner@nitcoinc.com"
               style={{
-                lineHeight: "18px",
-                fontSize: "13px",
-                paddingTop: "10px",
+                color: "#fff",
+                fontSize: "14px",
+                textDecoration: "none",
+                opacity: 0.95,
               }}
             >
-              440 Cobia Dr., Suite 1701 Katy, Texas 77494 <br />
-            </p>
-            <p style={{ fontSize: "13px" }}>281-503-7002</p>
-          </div>   <div
-            className=" text-white"
-            style={{ paddingBottom: "20px", width: "40%" }}
-          >
-            <h6 className="text-white mt-3">
-              {" "}
-              <img
-                {...Indian}
-                alt="India"
-                style={{ width: "30px", height: "20px", marginRight: "10px" }}
-              />
-              India office, Hyderabad
-            </h6>
-            <div className="border-top-custom-pink"></div>
-            <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <div style={{ width: "40%" }}>
-                <p
-                  style={{
-                    lineHeight: "18px",
-                    fontSize: "13px",
-                    paddingTop: "10px",
-                  }}
-                >
-                  514-515, 5th Floor DSL Abacus IT Park, IDA Uppal, Hyderabad,
-                  Telangana 500013, India
-                </p>
-                <p style={{ fontSize: "13px" }}>040-45437549</p>
-              </div>
-              <div
-                className=" text-white"
-                style={{ width: "40%", paddingTop: "10px" }}
-              >
-                <p style={{ fontSize: "13px" }}>
-                  Gachibowli, Hyderabad, Telangana 500032, India
-                </p>
-                <p style={{ fontSize: "13px" }}>040-45437626</p>
-              </div>
-            </div>
+              YourPartner@nitcoinc.com
+            </a>
           </div>
         </div>
+
+        {/* Divider */}
+        <div
+          style={{
+            borderTop: "1px solid rgba(255,255,255,0.18)",
+            marginTop: "40px",
+            paddingTop: "22px",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            flexWrap: "wrap",
+            gap: "12px",
+          }}
+        >
+          <div style={{ display: "flex", gap: "32px" }}>
+            <Link
+              href="/privacy-policy"
+              style={{ color: "#fff", fontSize: "13px", textDecoration: "none" }}
+            >
+              Privacy Policy
+            </Link>
+            <Link
+              href="/cookie-policy"
+              style={{ color: "#fff", fontSize: "13px", textDecoration: "none" }}
+            >
+              Cookie Policy
+            </Link>
+          </div>
+          <p style={{ color: "#fff", fontSize: "13px", margin: 0, opacity: 0.85 }}>
+            &copy; {currentYear} Nitco, Inc. All Rights Reserved.
+          </p>
+        </div>
       </div>
-    </div>
+    </footer>
   );
 };
+
 export default Footer;
