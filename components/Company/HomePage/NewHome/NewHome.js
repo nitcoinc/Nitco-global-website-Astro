@@ -129,7 +129,7 @@ const NewHome = () => {
 
           <div className={styles.vennWrap}>
             <img
-              src="/images/HomePage/venn-diagram.png"
+              src="/images/HomePage/venn-diagram-v2.png"
               alt="NITCO works at the intersection of Financial Execution, Operational Workflows, and Business Decision-Making"
               className={styles.vennImg}
             />
