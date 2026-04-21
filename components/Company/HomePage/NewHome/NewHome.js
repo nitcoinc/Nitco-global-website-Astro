@@ -127,17 +127,12 @@ const NewHome = () => {
             <p className={styles.whatLead}>NITCO works at the intersection of:</p>
           </div>
 
-          <div className={styles.vennWrap} aria-hidden="true">
-            <div className={`${styles.vennCircle} ${styles.vennC1}`}>
-              Financial<br />Execution
-            </div>
-            <div className={`${styles.vennCircle} ${styles.vennC2}`}>
-              Operational<br />Workflows
-            </div>
-            <div className={`${styles.vennCircle} ${styles.vennC3}`}>
-              Business<br />Decision-Making
-            </div>
-            <div className={styles.vennLogo}>NITCO</div>
+          <div className={styles.vennWrap}>
+            <img
+              src="/images/HomePage/venn-diagram.png"
+              alt="NITCO works at the intersection of Financial Execution, Operational Workflows, and Business Decision-Making"
+              className={styles.vennImg}
+            />
           </div>
 
           <p className={styles.whatFootNote}>

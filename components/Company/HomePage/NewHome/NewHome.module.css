@@ -124,10 +124,13 @@
 }
 .vennWrap {
   margin: 30px 0;
-  position: relative;
   width: 100%;
-  max-width: 640px;
-  height: 360px;
+}
+.vennImg {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
 }
 .vennCircle {
   position: absolute;
