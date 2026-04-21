@@ -123,7 +123,7 @@
   margin-top: 18px;
 }
 .vennWrap {
-  margin: 40px auto 30px;
+  margin: 30px 0;
   position: relative;
   width: 100%;
   max-width: 640px;
@@ -180,10 +180,10 @@
   z-index: 2;
 }
 .whatFootNote {
-  text-align: center;
+  text-align: left;
   font-size: 14px;
   color: #4a4f72;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 /* ====== THREE CORE PROGRAMS ====== */
