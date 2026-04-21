@@ -193,8 +193,17 @@
 .programs {
   background: #0d0a4a;
   color: #fff;
-  padding: 90px 0 140px;
   position: relative;
+  /* Tall section so each card gets a viewport-worth of scroll */
+  height: 300vh;
+}
+.programsSticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
 }
 .programsEyebrow {
   color: #5ac7dd;
@@ -208,19 +217,14 @@
   display: grid;
   grid-template-columns: 1fr 24px 1.4fr;
   gap: 60px;
-  align-items: start;
+  align-items: center;
   width: 100%;
 }
-.programsHeadCol {
-  position: relative;
-}
-.programsHeadInner {
-  position: sticky;
-  top: 120px;
+.programsHead {
   display: flex;
   flex-direction: column;
 }
-.programsHeadInner .h2 {
+.programsHead .h2 {
   color: #fff;
   font-size: 32px;
   font-weight: 800;
@@ -228,17 +232,12 @@
   line-height: 1.25;
   margin: 0;
 }
-.progressCol {
-  position: relative;
-}
 .progressBar {
-  position: sticky;
-  top: 50vh;
-  transform: translateY(-50%);
   display: flex;
   flex-direction: column;
   gap: 14px;
   align-items: center;
+  justify-content: center;
 }
 .progressDot {
   width: 3px;
@@ -251,11 +250,21 @@
   background: #ffffff;
   height: 70px;
 }
-.programsList {
+/* Viewport shows ~1 active card with the next peeking below */
+.programsViewport {
+  position: relative;
+  width: 100%;
+  height: 360px;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 88%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 88%, transparent 100%);
+}
+.programsTrack {
   display: flex;
   flex-direction: column;
   gap: 32px;
-  justify-self: stretch;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
 }
 .programCard {
   background: linear-gradient(135deg, #1a2b4a 0%, #142035 100%);
@@ -265,14 +274,13 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   box-shadow: 0 22px 60px rgba(0, 0, 0, 0.45);
-  min-height: 290px;
-  opacity: 0.55;
-  transform: scale(0.98);
-  transition: opacity 0.4s ease, transform 0.4s ease;
+  height: 290px;
+  flex-shrink: 0;
+  opacity: 0.5;
+  transition: opacity 0.5s ease;
 }
 .programCardActive {
   opacity: 1;
-  transform: scale(1);
 }
 .programImg {
   background-size: cover;
@@ -507,14 +515,15 @@
   .heroTitle { font-size: 34px; }
   .outcomesGrid,
   .engagementGrid { grid-template-columns: 1fr; gap: 40px; }
-  /* Disable sticky on tablet/mobile */
-  .programs { padding: 60px 0 70px; }
+  /* Disable pinned scroll on tablet/mobile */
+  .programs { height: auto; padding: 60px 0 70px; }
+  .programsSticky { position: static; height: auto; overflow: visible; }
   .programsGrid { grid-template-columns: 1fr; gap: 28px; }
-  .programsHeadInner { position: static; }
-  .programsList { gap: 20px; }
-  .programCard { opacity: 1; transform: none; grid-template-columns: 180px 1fr; min-height: 0; }
+  .progressBar { display: none; }
+  .programsViewport { height: auto; overflow: visible; -webkit-mask-image: none; mask-image: none; }
+  .programsTrack { transform: none !important; gap: 20px; }
+  .programCard { opacity: 1; grid-template-columns: 180px 1fr; height: auto; min-height: 240px; }
   .programImg { min-height: 160px; }
-  .progressCol { display: none; }
   .vennWrap { height: 320px; max-width: 460px; }
   .vennCircle { width: 180px; height: 180px; font-size: 12px; }
   .vennC2 { left: 8%; }

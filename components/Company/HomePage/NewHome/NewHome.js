@@ -3,27 +3,19 @@ import Link from "next/link";
 import styles from "./NewHome.module.css";
 
 const NewHome = () => {
-  const programCardRefs = useRef([]);
+  const programsRef = useRef(null);
   const [activeProgram, setActiveProgram] = useState(0);
 
   useEffect(() => {
     const onScroll = () => {
-      const cards = programCardRefs.current.filter(Boolean);
-      if (!cards.length) return;
-      // Pick the card whose center is closest to viewport center
-      const viewportMid = window.innerHeight / 2;
-      let bestIdx = 0;
-      let bestDist = Infinity;
-      cards.forEach((el, i) => {
-        const r = el.getBoundingClientRect();
-        const mid = r.top + r.height / 2;
-        const d = Math.abs(mid - viewportMid);
-        if (d < bestDist) {
-          bestDist = d;
-          bestIdx = i;
-        }
-      });
-      setActiveProgram((prev) => (prev === bestIdx ? prev : bestIdx));
+      const el = programsRef.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const total = el.offsetHeight - window.innerHeight;
+      if (total <= 0) return;
+      const progress = Math.min(1, Math.max(0, -rect.top / total));
+      const next = Math.min(2, Math.floor(progress * 3));
+      setActiveProgram((prev) => (prev === next ? prev : next));
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -176,12 +168,12 @@ const NewHome = () => {
         </div>
       </section>
 
-      {/* THREE CORE PROGRAMS — sticky heading, stacked cards */}
-      <section className={styles.programs}>
-        <div className={styles.container}>
-          <div className={styles.programsGrid}>
-            <div className={styles.programsHeadCol}>
-              <div className={styles.programsHeadInner}>
+      {/* THREE CORE PROGRAMS — pinned scroll, one card centered, next peeks */}
+      <section className={styles.programs} ref={programsRef}>
+        <div className={styles.programsSticky}>
+          <div className={styles.container}>
+            <div className={styles.programsGrid}>
+              <div className={styles.programsHead}>
                 <div className={styles.programsEyebrow}>
                   Three Core Programs
                 </div>
@@ -190,8 +182,6 @@ const NewHome = () => {
                   data with these targeted programs.
                 </h2>
               </div>
-            </div>
-            <div className={styles.progressCol}>
               <div className={styles.progressBar} aria-hidden="true">
                 {programs.map((_, i) => (
                   <span
@@ -202,30 +192,36 @@ const NewHome = () => {
                   />
                 ))}
               </div>
-            </div>
-            <div className={styles.programsList}>
-              {programs.map((p, i) => (
+              <div className={styles.programsViewport}>
                 <div
-                  key={p.title}
-                  ref={(el) => (programCardRefs.current[i] = el)}
-                  className={`${styles.programCard} ${
-                    i === activeProgram ? styles.programCardActive : ""
-                  }`}
+                  className={styles.programsTrack}
+                  style={{
+                    transform: `translateY(calc(${-activeProgram} * (290px + 32px)))`,
+                  }}
                 >
-                  <div
-                    className={styles.programImg}
-                    style={{ backgroundImage: `url(${p.img})` }}
-                    aria-hidden="true"
-                  />
-                  <div className={styles.programBody}>
-                    <h3 className={styles.programTitle}>{p.title}</h3>
-                    <p className={styles.programDesc}>{p.body}</p>
-                    <Link href="/services" className={styles.programBtn}>
-                      Know more
-                    </Link>
-                  </div>
+                  {programs.map((p, i) => (
+                    <div
+                      key={p.title}
+                      className={`${styles.programCard} ${
+                        i === activeProgram ? styles.programCardActive : ""
+                      }`}
+                    >
+                      <div
+                        className={styles.programImg}
+                        style={{ backgroundImage: `url(${p.img})` }}
+                        aria-hidden="true"
+                      />
+                      <div className={styles.programBody}>
+                        <h3 className={styles.programTitle}>{p.title}</h3>
+                        <p className={styles.programDesc}>{p.body}</p>
+                        <Link href="/services" className={styles.programBtn}>
+                          Know more
+                        </Link>
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              </div>
             </div>
           </div>
         </div>
