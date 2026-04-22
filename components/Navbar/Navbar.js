@@ -288,7 +288,7 @@ const Navbar = () => {
                 </div>
 
                 {/* CONTACT CTA */}
-                <Link href="/contact" className="desktopNav bg-[#ffffff] border-t-[#ffffff00] border-r-[#ffffff00] border-b-[#ffffff00] border-l-[#ffffff00] text-[#16164c]">
+                <Link href="/contact" className="desktopNav bg-[#ffffff] border-t-[#ffffff00] border-r-[#ffffff00] border-b-[#ffffff00] border-l-[#ffffff00] text-[#16164c] rounded-tl-[20px] rounded-tr-[20px] rounded-br-[20px] rounded-bl-[20px]">
                   Contact Us
                 </Link>
               </nav>
