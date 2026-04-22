@@ -3841,3 +3841,63 @@ button.primary-button,
     overflow-x: hidden !important;
   }
 }
+
+/* ===== SERVICES DROPDOWN - DARK NAVY STYLE ===== */
+.startp-nav nav .navbar-nav .nav-item-services .dropdown-menu-services {
+  background: #1a1a5e !important;
+  border: none !important;
+  border-radius: 12px !important;
+  padding: 28px 36px !important;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.35) !important;
+  min-width: 280px !important;
+  width: auto !important;
+  left: auto !important;
+  right: 0 !important;
+  transform: none !important;
+  top: 56px !important;
+}
+.dropdown-menu-services .dropdown-content-services {
+  display: block !important;
+}
+.dropdown-menu-services .dropdown-block-services {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.dropdown-menu-services .dropdown-block-services ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.dropdown-menu-services .dropdown-block-services ul li.hoverColorChange {
+  color: #6c6cd3 !important;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 12px 0 !important;
+  margin: 0 !important;
+  cursor: pointer;
+  background: transparent !important;
+  transition: color 0.25s ease, transform 0.25s ease;
+  border-radius: 0;
+}
+.dropdown-menu-services .dropdown-block-services ul li.hoverColorChange:hover {
+  background: transparent !important;
+  color: #ffffff !important;
+  font-weight: 700;
+  padding-left: 6px !important;
+  transform: translateX(4px);
+}
+
+/* Dropdown menu (Company) - dark navy variant when on home dark nav */
+body.home-dark-nav .dropdown-menu {
+  background: #1a1a5e !important;
+  border: none !important;
+  border-radius: 12px !important;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.35) !important;
+}
+body.home-dark-nav .dropdown-menu .hoverColorChange {
+  color: #6c6cd3 !important;
+}
+body.home-dark-nav .dropdown-menu .hoverColorChange:hover {
+  background: transparent !important;
+  color: #ffffff !important;
+}
