@@ -240,7 +240,7 @@ const Navbar = () => {
 
                     {/* COMPANY */}
                     <li
-                      className={`nav-item nav-has-caret ${activeNav === "company" ? "active" : ""}`}
+                      className={`nav-item-services nav-has-caret ${activeNav === "company" ? "active" : ""}`}
                     >
                       <Link
                         href="#"
@@ -254,26 +254,35 @@ const Navbar = () => {
                         <Caret />
                       </Link>
 
-                      <ul className="dropdown-menu">
-                        <li>
-                          <Link
-                            href="/company/about"
-                            className="hoverColorChange"
-                            onClick={() => handleNavClick("company")}
-                          >
-                            About Us
+                      <div className="solutions-megamenu">
+                        <div className="solutions-megamenu-inner">
+                          <Link href="/company/about" className="sm-card">
+                            <span className="sm-card-icon">
+                              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                                <circle cx="12" cy="12" r="10" />
+                                <path d="M12 16v-4M12 8h.01" />
+                              </svg>
+                            </span>
+                            <h4>About Us</h4>
+                            <p>Learn about NITCO's mission, leadership, and how we partner with enterprises to deliver real outcomes.</p>
                           </Link>
-                        </li>
-                        <li>
-                          <Link
-                            href="/company/careers"
-                            className="hoverColorChange"
-                            onClick={() => handleNavClick("company")}
-                          >
-                            Careers
+
+                          <Link href="/company/careers" className="sm-card">
+                            <span className="sm-card-icon">
+                              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                                <rect x="2" y="7" width="20" height="14" rx="2" />
+                                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+                              </svg>
+                            </span>
+                            <h4>Careers</h4>
+                            <p>Join a team building AI-driven solutions for working capital, automation, and decision-ready data.</p>
                           </Link>
-                        </li>
-                      </ul>
+
+                          <div className="sm-blurb" style={{ gridColumn: "span 2" }}>
+                            We're a team of strategists, engineers, and AI practitioners helping enterprises turn complex operations into measurable, working outcomes.
+                          </div>
+                        </div>
+                      </div>
                     </li>
                   </ul>
                 </div>
