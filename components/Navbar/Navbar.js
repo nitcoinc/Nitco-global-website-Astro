@@ -109,7 +109,7 @@ const Navbar = () => {
 
                     {/* AI AGENT COMMAND CENTER */}
                     <li
-                      className={`nav-item nav-has-caret ${activeNav === "agent-center" ? "active" : ""}`}
+                      className={`nav-item-services nav-has-caret ${activeNav === "agent-center" ? "active" : ""}`}
                     >
                       <Link
                         href="/agents"
@@ -119,6 +119,49 @@ const Navbar = () => {
                         AI Agent Command Center
                         <Caret />
                       </Link>
+
+                      <div className="solutions-megamenu">
+                        <div className="solutions-megamenu-inner">
+                          <Link href="/agents" className="sm-card">
+                            <span className="sm-card-icon">
+                              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M9 19V6l11-3v13" />
+                                <circle cx="6" cy="18" r="3" />
+                                <circle cx="17" cy="16" r="3" />
+                              </svg>
+                            </span>
+                            <h4>Data Quality Monitoring</h4>
+                            <p>An agent for governed data quality scoring, trends, and root-cause insights.</p>
+                          </Link>
+
+                          <Link href="/agents" className="sm-card">
+                            <span className="sm-card-icon">
+                              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                                <path d="M8 10h.01M12 10h.01M16 10h.01" />
+                              </svg>
+                            </span>
+                            <h4>Ask Your Data</h4>
+                            <p>An agent for natural language data exploration that generates SQL, visualizes insights, and explains query logic.</p>
+                          </Link>
+
+                          <Link href="/agents" className="sm-card">
+                            <span className="sm-card-icon">
+                              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                                <path d="M14 2v6h6" />
+                                <path d="M9 13h6M9 17h6" />
+                              </svg>
+                            </span>
+                            <h4>Intelligent Document Mapping Agent</h4>
+                            <p>An intelligent agent that extracts, maps, and standardizes data from documents, helping teams streamline workflows and improve data accuracy.</p>
+                          </Link>
+
+                          <div className="sm-blurb">
+                            Purpose-built AI agents that plug into your operations — automating data quality, exploration, and document workflows so your teams can move faster with confidence.
+                          </div>
+                        </div>
+                      </div>
                     </li>
 
                     {/* SOLUTIONS */}
