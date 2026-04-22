@@ -25,6 +25,13 @@ const HomePage = () => {
         body.home-dark-nav #header .nav-link,
         body.home-dark-nav #header .navbar-nav .nav-link { color: #ffffff !important; }
         body.home-dark-nav #header .navbar-toggler .icon-bar { background: #fff !important; }
+
+        /* Logo swap: show white on dark hero, dark on sticky/non-home */
+        .nav-logo-white { display: none; }
+        body.home-dark-nav #header .nav-logo-default { display: none; }
+        body.home-dark-nav #header .nav-logo-white { display: inline-block; }
+        body.home-dark-nav #header.is-sticky .nav-logo-default { display: inline-block; }
+        body.home-dark-nav #header.is-sticky .nav-logo-white { display: none; }
       `}</style>
       <Navbar />
       <NavBarMobile />

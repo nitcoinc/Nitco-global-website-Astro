@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import Logo from "../../images/nitco-images/Logo.svg";
+import LogoWhite from "../../images/nitco-images/LogoWhite.svg";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -55,7 +56,20 @@ const Navbar = () => {
               <nav className="navbar navbar-expand-md navbar-light">
                 {/* LOGO */}
                 <Link href="/" className="navbar-brand">
-                  <img {...Logo} alt="NITCO Logo" width="188" height="44" />
+                  <img
+                    {...Logo}
+                    alt="NITCO Logo"
+                    width="188"
+                    height="44"
+                    className="nav-logo-default"
+                  />
+                  <img
+                    {...LogoWhite}
+                    alt="NITCO Logo"
+                    width="188"
+                    height="44"
+                    className="nav-logo-white"
+                  />
                 </Link>
 
                 {/* TOGGLER */}
