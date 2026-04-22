@@ -30,8 +30,8 @@ const HomePage = () => {
         .nav-logo-white { display: none; }
         body.home-dark-nav #header .nav-logo-default { display: none; }
         body.home-dark-nav #header .nav-logo-white { display: inline-block; }
-        body.home-dark-nav #header.is-sticky .nav-logo-default { display: inline-block; }
-        body.home-dark-nav #header.is-sticky .nav-logo-white { display: none; }
+        body.home-dark-nav #header.is-sticky .nav-logo-default { display: none; }
+        body.home-dark-nav #header.is-sticky .nav-logo-white { display: inline-block; }
       `}</style>
       <Navbar />
       <NavBarMobile />
