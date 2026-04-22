@@ -106,11 +106,11 @@ const NewHome = () => {
   ];
 
   const outcomes = [
-    { text: "Reduced manual processing effort across operations by 50%+", highlight: true },
-    { text: "Identified significant working capital improvement opportunities" },
-    { text: "Accelerated document-driven workflows across shared services" },
-    { text: "Reduced reporting and decision cycle times" },
-    { text: "Improved trust in key business metrics across leadership teams" },
+    { text: "Reduced manual processing effort across operations by 50%+", href: "/case-studies", highlight: true },
+    { text: "Identified significant working capital improvement opportunities", href: "/case-studies" },
+    { text: "Accelerated document-driven workflows across shared services", href: "/case-studies" },
+    { text: "Reduced reporting and decision cycle times", href: "/case-studies" },
+    { text: "Improved trust in key business metrics across leadership teams", href: "/case-studies" },
   ];
 
   return (
@@ -265,7 +265,9 @@ const NewHome = () => {
                     key={o.text}
                     className={o.highlight ? styles.outcomesHighlight : ""}
                   >
-                    {o.text}
+                    <Link href={o.href} className={styles.outcomeLink}>
+                      {o.text}
+                    </Link>
                   </li>
                 ))}
               </ul>
