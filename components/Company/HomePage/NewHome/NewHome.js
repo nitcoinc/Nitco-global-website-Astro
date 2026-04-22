@@ -264,7 +264,7 @@ const NewHome = () => {
                 {outcomes.map((o, i) => (
                   <li
                     key={o.text}
-                    onClick={() => setActiveOutcome(i)}
+                    onMouseEnter={() => setActiveOutcome(i)}
                     className={i === activeOutcome ? styles.outcomesHighlight : ""}
                     style={{ cursor: "pointer" }}
                   >
