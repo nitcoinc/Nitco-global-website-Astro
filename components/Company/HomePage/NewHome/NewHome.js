@@ -118,6 +118,15 @@ const NewHome = () => {
     <>
       {/* HERO */}
       <section className={styles.hero}>
+        <video
+          className={styles.heroVideo}
+          src="/HomeHero.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+        />
+        <div className={styles.heroOverlay} aria-hidden="true" />
         <div className={`${styles.container} ${styles.heroInner}`}>
           <h1 className={styles.heroTitle}>
             Fix what’s slowing your business down — money leakage, operational
