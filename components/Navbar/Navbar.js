@@ -115,7 +115,7 @@ const Navbar = () => {
                           setActiveNav("services");
                         }}
                       >
-                        Services
+                        Solutions
                       </Link>
 
                       <ul className="dropdown-menu-services">
