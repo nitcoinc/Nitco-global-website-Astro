@@ -106,11 +106,11 @@ const NewHome = () => {
   ];
 
   const outcomes = [
-    { text: "Reduced manual processing effort across operations by 50%+", href: "/case-studies", highlight: true },
-    { text: "Identified significant working capital improvement opportunities", href: "/case-studies" },
-    { text: "Accelerated document-driven workflows across shared services", href: "/case-studies" },
-    { text: "Reduced reporting and decision cycle times", href: "/case-studies" },
-    { text: "Improved trust in key business metrics across leadership teams", href: "/case-studies" },
+    { text: "Reduced manual processing effort across operations by 50%+", href: "/contact", highlight: true },
+    { text: "Identified significant working capital improvement opportunities", href: "/contact" },
+    { text: "Accelerated document-driven workflows across shared services", href: "/contact" },
+    { text: "Reduced reporting and decision cycle times", href: "/contact" },
+    { text: "Improved trust in key business metrics across leadership teams", href: "/contact" },
   ];
 
   return (
