@@ -106,12 +106,13 @@ const NewHome = () => {
   ];
 
   const outcomes = [
-    { text: "Reduced manual processing effort across operations by 50%+", highlight: true },
-    { text: "Identified significant working capital improvement opportunities" },
-    { text: "Accelerated document-driven workflows across shared services" },
-    { text: "Reduced reporting and decision cycle times" },
-    { text: "Improved trust in key business metrics across leadership teams" },
+    { text: "Reduced manual processing effort across operations by 50%+", video: "/Home_Page_Video_1.mp4" },
+    { text: "Identified significant working capital improvement opportunities", video: "/Intigration.mp4" },
+    { text: "Accelerated document-driven workflows across shared services", video: "/Home_Page_Video_1.mp4" },
+    { text: "Reduced reporting and decision cycle times", video: "/Intigration.mp4" },
+    { text: "Improved trust in key business metrics across leadership teams", video: "/Home_Page_Video_1.mp4" },
   ];
+  const [activeOutcome, setActiveOutcome] = useState(0);
 
   return (
     <>
@@ -260,10 +261,12 @@ const NewHome = () => {
                 Real outcomes,<br />not just recommendations
               </h2>
               <ul className={styles.outcomesList}>
-                {outcomes.map((o) => (
+                {outcomes.map((o, i) => (
                   <li
                     key={o.text}
-                    className={o.highlight ? styles.outcomesHighlight : ""}
+                    onClick={() => setActiveOutcome(i)}
+                    className={i === activeOutcome ? styles.outcomesHighlight : ""}
+                    style={{ cursor: "pointer" }}
                   >
                     {o.text}
                   </li>
@@ -274,7 +277,22 @@ const NewHome = () => {
               </p>
             </div>
             <div className={styles.videoBox}>
-              <button className={styles.playBtn} aria-label="Play video">▶</button>
+              <video
+                key={outcomes[activeOutcome].video}
+                src={outcomes[activeOutcome].video}
+                autoPlay
+                muted
+                loop
+                playsInline
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  zIndex: 0,
+                }}
+              />
             </div>
           </div>
         </div>
