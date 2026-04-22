@@ -227,7 +227,7 @@ const Navbar = () => {
 
                     {/* RESOURCES */}
                     <li
-                      className={`nav-item nav-has-caret ${activeNav === "resources" ? "active" : ""}`}
+                      className={`nav-item ${activeNav === "resources" ? "active" : ""}`}
                     >
                       <Link
                         href="/insights/case-studies"
@@ -235,7 +235,6 @@ const Navbar = () => {
                         onClick={() => handleNavClick("resources")}
                       >
                         Resources
-                        <Caret />
                       </Link>
                     </li>
 
