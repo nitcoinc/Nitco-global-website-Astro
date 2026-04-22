@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
+import { useRouter } from "next/router";
 import styles from "./AgentPage.module.css";
 import Banner_image from "../../images/agent-images/BannerImage.webp";
 import SelectIcon from "../../images/agent-images/Select.svg";
@@ -11,8 +12,31 @@ import Contactfrom from "../Services/ContactForm/contactform";
 
 const AgentPage = () => {
 
+  const router = useRouter();
+
   const [activeTab, setActiveTab] = useState("all");
   const [openAgentUrl, setOpenAgentUrl] = useState(null);
+
+  useEffect(() => {
+    if (!router.isReady) return;
+  
+    const raw = router.query.agent;
+    const key = Array.isArray(raw) ? raw[0] : raw;
+  
+    if (!key) return;
+  
+    const agentMap = {
+      dqa: "https://dqa-agent.nitcoinc.com/",
+      ayd: "https://ayd-agent.nitcoinc.com/",
+      dma: "https://dma-ops.nitcoinc.ai/",
+    };
+  
+    const url = agentMap[key.toLowerCase()];
+  
+    if (url) {
+      setOpenAgentUrl(url);
+    }
+  }, [router.isReady, router.query.agent]);
 
   useEffect(() => {
     const handler = (event) => {

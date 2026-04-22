@@ -7,40 +7,52 @@ const NewHome = () => {
   const [activeProgram, setActiveProgram] = useState(0);
 
   useEffect(() => {
-    const onScroll = () => {
-      const el = programsRef.current;
-      if (!el) return;
-      const rect = el.getBoundingClientRect();
-      const total = el.offsetHeight - window.innerHeight;
-      if (total <= 0) return;
-      const progress = Math.min(1, Math.max(0, -rect.top / total));
-      const next = Math.min(2, Math.floor(progress * 3));
-      setActiveProgram((prev) => (prev === next ? prev : next));
+    const el = programsRef.current;
+    if (!el) return;
+  
+    let isScrolling = false;
+  
+    const onWheel = (e) => {
+      e.preventDefault();
+  
+      if (isScrolling) return;
+      isScrolling = true;
+  
+      setActiveProgram((prev) => {
+        if (e.deltaY > 0) {
+          return Math.min(prev + 1, programs.length - 1);
+        } else {
+          return Math.max(prev - 1, 0);
+        }
+      });
+  
+      setTimeout(() => {
+        isScrolling = false;
+      }, 600); // match animation timing
     };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
+  
+    el.addEventListener("wheel", onWheel, { passive: false });
+  
     return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
+      el.removeEventListener("wheel", onWheel);
     };
   }, []);
 
   const programs = [
     {
-      img: "/images/HomePage/AIBanner02.webp",
+      img: "/images/HomePage/partnerBackground.webp",
       title: "Working Capital & Spend Integrity Program",
       body:
         "Improve working capital, increase billing and payment accuracy, and strengthen financial execution.",
     },
     {
-      img: "/images/HomePage/automationHomePlatform.webp",
+      img: "/images/HomePage/partnerBackground.webp",
       title: "Manual Work & Workflow Automation Program",
       body:
         "Reduce manual work, streamline approvals, and automate document-driven processes.",
     },
     {
-      img: "/images/HomePage/Discover_AI.webp",
+      img: "/images/HomePage/partnerBackground.webp",
       title: "Data & Decision Acceleration Program",
       body:
         "Turn scattered data into trusted metrics and faster, evidence-based decisions across teams.",
@@ -129,8 +141,8 @@ const NewHome = () => {
         <div className={styles.heroOverlay} aria-hidden="true" />
         <div className={`${styles.container} ${styles.heroInner}`}>
           <h1 className={styles.heroTitle}>
-            Fix what’s slowing your business down — money leakage, operational
-            drag, and decision friction.
+            Fix what’s slowing your business down <br /> - money leakage, operational
+            drag,<br /> and decision friction.
           </h1>
           <p className={styles.heroSub}>
             NITCO helps enterprises improve working capital, accelerate
@@ -206,7 +218,7 @@ const NewHome = () => {
                 <div
                   className={styles.programsTrack}
                   style={{
-                    transform: `translateY(calc(${-activeProgram} * (290px + 32px)))`,
+                    transform: `translateY(calc(${-activeProgram} * 290px))`,
                   }}
                 >
                   {programs.map((p, i) => (

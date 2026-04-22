@@ -122,7 +122,7 @@ const Navbar = () => {
 
                       <div className="solutions-megamenu">
                         <div className="solutions-megamenu-inner">
-                          <Link href="/agents" className="sm-card">
+                        <Link href="/agents?agent=dqa" className="sm-card">
                             <span className="sm-card-icon">
                               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
                                 <path d="M9 19V6l11-3v13" />
@@ -134,7 +134,7 @@ const Navbar = () => {
                             <p>An agent for governed data quality scoring, trends, and root-cause insights.</p>
                           </Link>
 
-                          <Link href="/agents" className="sm-card">
+                          <Link href="/agents?agent=ayd" className="sm-card">
                             <span className="sm-card-icon">
                               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
                                 <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
@@ -145,7 +145,7 @@ const Navbar = () => {
                             <p>An agent for natural language data exploration that generates SQL, visualizes insights, and explains query logic.</p>
                           </Link>
 
-                          <Link href="/agents" className="sm-card">
+                          <Link href="/agents?agent=dma" className="sm-card">
                             <span className="sm-card-icon">
                               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
                                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />

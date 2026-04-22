@@ -3935,11 +3935,27 @@ body.home-dark-nav .nav-has-caret:hover > .nav-link {
 
 /* ===== SOLUTIONS MEGAMENU (full-width dark panel) ===== */
 .nav-item-services { position: static !important; }
+/* Invisible strip below each megamenu trigger: keeps pointer inside the <a>
+   while moving toward the fixed panel so .nav-item-services:hover is not lost
+   in the dead air gap (no layout shift — out-of-flow pseudo). */
+.startp-nav nav .navbar-nav .nav-item-services.nav-has-caret > .nav-link {
+  position: relative;
+}
+.startp-nav nav .navbar-nav .nav-item-services.nav-has-caret > .nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  height: 36px;
+  background: transparent;
+}
 .solutions-megamenu {
   position: fixed;
   left: 0;
   right: 0;
-  top: 80px;
+  /* Slightly higher than before to shorten the hover gap under the header */
+  top: 74px;
   width: 100vw;
   background: #1a1a5e;
   padding: 48px 0;
@@ -3958,7 +3974,7 @@ body.home-dark-nav .nav-has-caret:hover > .nav-link {
   pointer-events: auto;
   transform: translateY(0);
 }
-#header.is-sticky .solutions-megamenu { top: 70px; }
+#header.is-sticky .solutions-megamenu { top: 64px; }
 
 .solutions-megamenu-inner {
   max-width: 1280px;

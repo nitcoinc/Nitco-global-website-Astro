@@ -72,17 +72,20 @@
   pointer-events: none;
 }
 .heroInner {
-  max-width: 760px;
   position: relative;
+  height: 100%;
   z-index: 1;
+  margin-top: 70px;
+  margin-bottom: 30px;
 }
 .heroTitle {
-  font-size: 44px;
-  line-height: 1.18;
-  font-weight: 800;
-  letter-spacing: -0.4px;
+  font-size: 35px;         
+  line-height: 1.2;
+  font-weight: 700;
   margin: 0 0 18px;
   color: #fff;
+  max-width: 760px;         
+  text-wrap: balance;       
 }
 .heroSub {
   font-size: 16px;
@@ -125,6 +128,7 @@
   border-color: #ed1651;
 }
 .btnOutlinePink:hover { background: #ed1651; color: #fff; }
+
 
 /* ====== WHAT NITCO DOES ====== */
 .what {
@@ -211,12 +215,12 @@
   color: #fff;
   position: relative;
   /* Tall section so each card gets a viewport-worth of scroll */
-  height: 300vh;
+  height: 70vh;
 }
 .programsSticky {
   position: sticky;
   top: 0;
-  height: 100vh;
+  height: 70vh;
   display: flex;
   align-items: center;
   overflow: hidden;
