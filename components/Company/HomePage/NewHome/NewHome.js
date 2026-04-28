@@ -159,11 +159,11 @@ const NewHome = () => {
   ];
 
   const outcomes = [
-    { text: "Reduced manual processing effort across operations by 50%+", video: "/Home_Page_Video_1.mp4" },
-    { text: "Identified significant working capital improvement opportunities", video: "/Intigration.mp4" },
-    { text: "Accelerated document-driven workflows across shared services", video: "/Home_Page_Video_1.mp4" },
-    { text: "Reduced reporting and decision cycle times", video: "/Intigration.mp4" },
-    { text: "Improved trust in key business metrics across leadership teams", video: "/Home_Page_Video_1.mp4" },
+    { text: "Reduced manual processing effort across operations by 50%+", image: "/images/HomePage/outcome-1.png" },
+    { text: "Identified significant working capital improvement opportunities", image: "/images/HomePage/outcome-1.png" },
+    { text: "Accelerated document-driven workflows across shared services", image: "/images/HomePage/outcome-1.png" },
+    { text: "Reduced reporting and decision cycle times", image: "/images/HomePage/outcome-1.png" },
+    { text: "Improved trust in key business metrics across leadership teams", image: "/images/HomePage/outcome-1.png" },
   ];
   const whatNitcoCards = [
     {
@@ -440,13 +440,10 @@ const NewHome = () => {
               </p>
             </div>
             <div className={styles.videoBox}>
-              <video
-                key={outcomes[activeOutcome].video}
-                src={outcomes[activeOutcome].video}
-                autoPlay
-                muted
-                loop
-                playsInline
+              <img
+                key={outcomes[activeOutcome].image}
+                src={outcomes[activeOutcome].image}
+                alt={outcomes[activeOutcome].text}
                 style={{
                   position: "absolute",
                   inset: 0,
@@ -454,6 +451,7 @@ const NewHome = () => {
                   height: "100%",
                   objectFit: "cover",
                   zIndex: 0,
+                  transition: "opacity 0.4s ease",
                 }}
               />
             </div>
