@@ -185,13 +185,12 @@ const Navbar = () => {
                           <Link href="/services/data-services" className="sm-card">
                             <span className="sm-card-icon">
                               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                                <ellipse cx="12" cy="5" rx="8" ry="3" />
-                                <path d="M4 5v6c0 1.66 3.58 3 8 3s8-1.34 8-3V5" />
-                                <path d="M4 11v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6" />
+                                <path d="M12 1v22" />
+                                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
                               </svg>
                             </span>
-                            <h4>Working Capital &amp;<br />Spend Integrity Program</h4>
-                            <p>Improve working capital, increase billing and payment accuracy, and strengthen financial execution.</p>
+                            <h4>Working Capital &amp;<br />Spend Integrity</h4>
+                            <p>Improve billing accuracy, payment execution, and working capital performance.</p>
                           </Link>
 
                           <Link href="/services/automation-services" className="sm-card">
@@ -201,8 +200,8 @@ const Navbar = () => {
                                 <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.6 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6 1.65 1.65 0 0 0 10 3.09V3a2 2 0 1 1 4 0v.09c0 .66.39 1.25 1 1.51a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82c.26.61.85 1 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
                               </svg>
                             </span>
-                            <h4>Manual Work &amp; Workflow<br />Automation Program</h4>
-                            <p>Reduce manual work, streamline approvals, and automate document-driven processes.</p>
+                            <h4>Workflow<br />Automation</h4>
+                            <p>Eliminate manual effort and streamline exception-heavy processes.</p>
                           </Link>
 
                           <Link href="/services/data-services" className="sm-card">
@@ -214,8 +213,57 @@ const Navbar = () => {
                                 <path d="M3 14h7v7H3z" />
                               </svg>
                             </span>
-                            <h4>Decision-Ready<br />Data Program</h4>
-                            <p>Turn fragmented business data into trusted decision support.</p>
+                            <h4>Decision-Ready<br />Data</h4>
+                            <p>Turn fragmented data into trusted insight for faster decisions.</p>
+                          </Link>
+
+                          <div className="sm-blurb">
+                            We identify where business performance breaks across financial execution, operations, and decision-making — and rapidly turn those insights into practical, working solutions.
+                          </div>
+
+                          <Link href="/services/automation-services" className="sm-card">
+                            <span className="sm-card-icon">
+                              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+                              </svg>
+                            </span>
+                            <h4>Employee Knowledge<br />&amp; Productivity</h4>
+                            <p>Instant, context-aware answers across systems and documents.</p>
+                          </Link>
+
+                          <Link href="/services/automation-services" className="sm-card">
+                            <span className="sm-card-icon">
+                              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M3 12a9 9 0 0 1 18 0v6a2 2 0 0 1-2 2h-2v-7h4" />
+                                <path d="M3 12v6a2 2 0 0 0 2 2h2v-7H3" />
+                              </svg>
+                            </span>
+                            <h4>Customer Support<br />Optimization</h4>
+                            <p>Reduce support cost and improve resolution times.</p>
+                          </Link>
+
+                          <Link href="/services/artificial-intelligence-services" className="sm-card">
+                            <span className="sm-card-icon">
+                              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z" />
+                                <path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" />
+                                <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0" />
+                                <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" />
+                              </svg>
+                            </span>
+                            <h4>AI Solution<br />Delivery</h4>
+                            <p>Turn AI ideas into production-ready workflow solutions.</p>
+                          </Link>
+
+                          <Link href="/services/artificial-intelligence-governance" className="sm-card">
+                            <span className="sm-card-icon">
+                              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                              </svg>
+                            </span>
+                            <h4>AI Risk, Cost<br />&amp; Governance</h4>
+                            <p>Ensure AI is secure, controlled, cost-effective, and scalable.</p>
                           </Link>
 
                           <div className="sm-blurb">
