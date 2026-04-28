@@ -75,7 +75,7 @@ const NewHome = () => {
       ],
     },
     {
-      img: "/images/HomePage/outcomes-image.png",
+      img: "/images/HomePage/programs-gears.png",
       title: "Manual Work & Workflow Automation Program",
       body:
         "Reduce manual work, streamline approvals, and automate document-driven processes.",
