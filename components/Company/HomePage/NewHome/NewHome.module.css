@@ -13,7 +13,7 @@
   margin-bottom: 14px;
 }
 .eyebrowDark {
-  color: #6e72a4;
+  color: #2e2d78;
 }
 .h2 {
   font-size: 34px;
@@ -139,8 +139,9 @@
 .whatHead .h2 { font-size: 28px; }
 .whatLead {
   font-size: 14px;
-  color: #4a4f72;
+  color: black;
   margin-top: 18px;
+  font-weight: 500;
 }
 .vennWrap {
   margin: 30px 0;
@@ -205,8 +206,9 @@
 .whatFootNote {
   text-align: left;
   font-size: 14px;
-  color: #4a4f72;
+  color: black;
   margin-top: 10px;
+  font-weight: 500;
 }
 
 /* ====== THREE CORE PROGRAMS ====== */

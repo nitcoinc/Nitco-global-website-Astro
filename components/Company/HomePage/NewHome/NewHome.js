@@ -124,6 +124,26 @@ const NewHome = () => {
     { text: "Reduced reporting and decision cycle times", video: "/Intigration.mp4" },
     { text: "Improved trust in key business metrics across leadership teams", video: "/Home_Page_Video_1.mp4" },
   ];
+  const whatNitcoCards = [
+    {
+      title: "Financial Execution",
+      body:
+        "Fix working capital, payment accuracy & spend integrity at the workflow level to eliminate leakage.",
+      img: "/images/HomePage/partnerBackground.webp",
+    },
+    {
+      title: "Operational Workflows",
+      body:
+        "Compress cycle times across shared services & document-heavy workflows to match business pace.",
+      img: "/images/HomePage/partnerBackground.webp",
+    },
+    {
+      title: "Business Decision-Making",
+      body:
+        "Deliver decision-grade insights to leadership for faster, sharper, more reliable forecasting.",
+      img: "/images/HomePage/partnerBackground.webp",
+    },
+  ];
   const [activeOutcome, setActiveOutcome] = useState(0);
 
   return (
@@ -172,15 +192,77 @@ const NewHome = () => {
             <h2 className={styles.h2}>
               We focus on where business performance actually breaks — and fix it.
             </h2>
-            <p className={styles.whatLead}>NITCO works at the intersection of:</p>
+            <p className={styles.whatLead}>
+              NITCO works at the intersection of Financial execution, Operational
+              workflows, and Business decision-making
+            </p>
           </div>
 
-          <div className={styles.vennWrap}>
-            <img
-              src="/images/HomePage/venn-diagram-v2.png"
-              alt="NITCO works at the intersection of Financial Execution, Operational Workflows, and Business Decision-Making"
-              className={styles.vennImg}
-            />
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+              gap: "16px",
+              marginTop: "22px",
+            }}
+          >
+            {whatNitcoCards.map((card) => (
+              <article
+                key={card.title}
+                style={{
+                  borderRadius: "8px",
+                  overflow: "hidden",
+                  background: "#ffffff",
+                  boxShadow: "0 4px 16px rgba(15, 17, 64, 0.08)",
+                  minHeight: "370px",
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
+                <div style={{ padding: "22px 24px", flex: 1 }}>
+                  <h3
+                    style={{
+                      margin: "0 0 10px",
+                      fontSize: "18px",
+                      lineHeight: 1.2,
+                      color: "#0b0f3a",
+                    }}
+                  >
+                    {card.title}
+                  </h3>
+                  <p
+                    style={{
+                      margin: 0,
+                      fontSize: "14px",
+                      lineHeight: 1.45,
+                      color: "#111111",
+                    }}
+                  >
+                    {card.body}
+                  </p>
+                </div>
+                <div
+                  style={{
+                    background: "#2e2d78",
+                    minHeight: "220px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    padding: "14px",
+                  }}
+                >
+                  <img
+                    src={card.img}
+                    alt={card.title}
+                    style={{
+                      width: "100%",
+                      maxHeight: "220px",
+                      objectFit: "contain",
+                    }}
+                  />
+                </div>
+              </article>
+            ))}
           </div>
 
           <p className={styles.whatFootNote}>
