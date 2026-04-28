@@ -308,19 +308,30 @@ const WorkingCapital = () => {
         </div>
       </section>
 
-      {/* TYPICAL USE CASES — LIGHT */}
-      <section className={styles.sectionLight}>
+      {/* TYPICAL USE CASES — LAVENDER */}
+      <section className={styles.sectionLavender}>
         <div className={styles.container}>
-          <div className={`${styles.eyebrow} ${styles.eyebrowDark}`}>Typical Use Cases</div>
-          <h2 className={styles.h2}>Where this engagement delivers the most value.</h2>
-          <ul className={`${styles.iconList} ${styles.iconListTwoCol}`}>
+          <div className={styles.useHead}>
+            <div className={`${styles.eyebrow} ${styles.eyebrowDark}`}>Typical Use Cases</div>
+            <h2 className={styles.h2}>Where this engagement delivers the most value.</h2>
+            <p className={styles.lead}>
+              Common scenarios where finance and procurement teams unlock the biggest gains.
+            </p>
+          </div>
+          <div className={styles.useGrid}>
             {useCases.map((u, i) => (
-              <li key={i}>
-                <span className={styles.iconListIcon}><Icon name={u.icon} size={18} /></span>
-                <span>{u.text}</span>
-              </li>
+              <div className={styles.useCard} key={i}>
+                <span className={styles.useTag}>{`Scenario ${String(i + 1).padStart(2, "0")}`}</span>
+                <p className={styles.useText}>{u.text}</p>
+                <span className={styles.useArrow} aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M5 12h14" />
+                    <path d="m13 6 6 6-6 6" />
+                  </svg>
+                </span>
+              </div>
             ))}
-          </ul>
+          </div>
         </div>
       </section>
 
