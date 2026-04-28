@@ -61,42 +61,61 @@ const NewHome = () => {
     };
   }, []);
 
+  const defaultProgramDetails = [
+    "Working capital improvement opportunities",
+    "Billing and payment accuracy insights",
+    "Spend integrity and control gap visibility",
+    "Clear roadmap to improve financial execution",
+  ];
   const programs = [
     {
       img: "/images/HomePage/outcomes-image.png",
-      title: "Working Capital & Spend Integrity Program",
+      title: "Working Capital & Spend Integrity",
       body:
-        "Improve working capital, increase billing and payment accuracy, and strengthen financial execution.",
-      details: [
-        "Working capital improvement opportunities",
-        "Billing and payment accuracy insights",
-        "Spend integrity and control gap visibility",
-        "Clear roadmap to improve financial execution",
-      ],
+        "Improve billing accuracy, payment execution, and working capital performance",
+      details: defaultProgramDetails,
     },
     {
       img: "/images/HomePage/programs-gears.png",
-      title: "Manual Work & Workflow Automation Program",
+      title: "Workflow Automation",
       body:
-        "Reduce manual work, streamline approvals, and automate document-driven processes.",
-      details: [
-        "Working capital improvement opportunities",
-        "Billing and payment accuracy insights",
-        "Spend integrity and control gap visibility",
-        "Clear roadmap to improve financial execution",
-      ],
+        "Eliminate manual effort and streamline exception-heavy processes",
+      details: defaultProgramDetails,
     },
     {
       img: "/images/HomePage/outcomes-image.png",
-      title: "Data & Decision Acceleration Program",
+      title: "Decision-Ready Data",
       body:
-        "Turn scattered data into trusted metrics and faster, evidence-based decisions across teams.",
-      details: [
-        "Working capital improvement opportunities",
-        "Billing and payment accuracy insights",
-        "Spend integrity and control gap visibility",
-        "Clear roadmap to improve financial execution",
-      ],
+        "Turn fragmented data into trusted insight for faster decisions",
+      details: defaultProgramDetails,
+    },
+    {
+      img: "/images/HomePage/outcomes-image.png",
+      title: "Employee Knowledge & Productivity",
+      body:
+        "Instant, context-aware answers across systems and documents",
+      details: defaultProgramDetails,
+    },
+    {
+      img: "/images/HomePage/outcomes-image.png",
+      title: "Customer Support Optimization",
+      body:
+        "Reduce support cost and improve resolution times",
+      details: defaultProgramDetails,
+    },
+    {
+      img: "/images/HomePage/outcomes-image.png",
+      title: "AI Solution Delivery",
+      body:
+        "Turn AI ideas into production-ready workflow solutions",
+      details: defaultProgramDetails,
+    },
+    {
+      img: "/images/HomePage/outcomes-image.png",
+      title: "AI Risk, Cost & Governance",
+      body:
+        "Ensure AI is secure, controlled, cost-effective, and scalable.",
+      details: defaultProgramDetails,
     },
   ];
 
@@ -329,7 +348,7 @@ const NewHome = () => {
             <div className={styles.programsGrid}>
               <div className={styles.programsHead}>
                 <div className={styles.programsEyebrow}>
-                  Three Core Programs
+                  Our Core Programs
                 </div>
                 <h2 className={styles.h2}>
                   Drive better performance across finance, operations, and
