@@ -129,19 +129,19 @@ const NewHome = () => {
       title: "Financial Execution",
       body:
         "Fix working capital, payment accuracy & spend integrity at the workflow level to eliminate leakage.",
-      img: "/images/HomePage/partnerBackground.webp",
+      img: "/images/HomePage/whatNitco-illustration.png",
     },
     {
       title: "Operational Workflows",
       body:
         "Compress cycle times across shared services & document-heavy workflows to match business pace.",
-      img: "/images/HomePage/partnerBackground.webp",
+      img: "/images/HomePage/whatNitco-illustration.png",
     },
     {
       title: "Business Decision-Making",
       body:
         "Deliver decision-grade insights to leadership for faster, sharper, more reliable forecasting.",
-      img: "/images/HomePage/partnerBackground.webp",
+      img: "/images/HomePage/whatNitco-illustration.png",
     },
   ];
   const [activeOutcome, setActiveOutcome] = useState(0);
