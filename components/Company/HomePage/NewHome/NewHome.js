@@ -366,15 +366,17 @@ const NewHome = () => {
                         aria-hidden="true"
                       />
                       <div className={styles.programBody}>
-                        <h3 className={styles.programTitle}>{p.title}</h3>
-                        <p className={styles.programDesc}>{p.body}</p>
-                        <div className={styles.programDetails}>
-                          <p className={styles.programDetailsTitle}>What you get :</p>
-                          <ul className={styles.programDetailsList}>
-                            {p.details?.map((d) => (
-                              <li key={d}>{d}</li>
-                            ))}
-                          </ul>
+                        <div className={styles.programTextStack}>
+                          <div className={styles.programTextDefault}>
+                            <h3 className={styles.programTitle}>{p.title}</h3>
+                            <p className={styles.programDesc}>{p.body}</p>
+                          </div>
+                          <div className={styles.programTextHover}>
+                            <h3 className={styles.programTitle}>What you get</h3>
+                            <p className={styles.programDesc}>
+                              {p.details?.join(", ")}.
+                            </p>
+                          </div>
                         </div>
                         <Link href="/services" className={styles.programBtn}>
                           Know more

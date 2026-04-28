@@ -343,62 +343,30 @@
 }
 .programDesc {
   font-size: 14px;
-  color: rgba(255, 255, 255, 0.78);
-  margin: 0 0 22px;
-  line-height: 1.6;
-  opacity: 1;
-  max-height: 120px;
-  transition: opacity 0.35s ease, max-height 0.45s ease, margin 0.35s ease;
-  overflow: hidden;
-}
-.programCard:hover .programDesc {
-  opacity: 0;
-  max-height: 0;
-  margin: 0;
-}
-.programDetails {
-  opacity: 0;
-  max-height: 0;
-  overflow: hidden;
-  margin-bottom: 0;
-  transition: opacity 0.35s ease, max-height 0.5s ease, margin 0.35s ease;
-}
-.programCard:hover .programDetails {
-  opacity: 1;
-  max-height: 220px;
-  margin-bottom: 18px;
-}
-.programDetailsTitle {
-  font-size: 13px;
-  font-weight: 700;
-  color: #ffffff;
-  margin: 0 0 8px;
-  letter-spacing: 0.2px;
-}
-.programDetailsList {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-.programDetailsList li {
-  font-size: 13px;
-  line-height: 1.45;
   color: rgba(255, 255, 255, 0.85);
-  padding-left: 14px;
-  position: relative;
+  margin: 0;
+  line-height: 1.55;
 }
-.programDetailsList li::before {
-  content: "";
+.programTextStack {
+  position: relative;
+  margin-bottom: 22px;
+  min-height: 100px;
+}
+.programTextDefault,
+.programTextHover {
+  transition: opacity 0.35s ease;
+}
+.programTextHover {
   position: absolute;
-  left: 0;
-  top: 8px;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: #1BE1F2;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+.programCard:hover .programTextDefault {
+  opacity: 0;
+}
+.programCard:hover .programTextHover {
+  opacity: 1;
 }
 .programBtn {
   display: inline-block;
