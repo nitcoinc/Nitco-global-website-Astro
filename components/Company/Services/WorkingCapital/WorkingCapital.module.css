@@ -295,14 +295,12 @@
 }
 .getRow:last-child { border-bottom: 1px solid rgba(11, 15, 58, 0.10); }
 .getNum {
-  font-size: 44px;
-  font-weight: 800;
-  letter-spacing: -1px;
-  color: #1BE1F2;
+  font-size: 72px;
+  font-weight: 300;
+  color: #0d0a4a;
   line-height: 1;
+  letter-spacing: -2px;
   font-variant-numeric: tabular-nums;
-  -webkit-text-stroke: 1px #2e2d78;
-  text-shadow: 2px 2px 0 rgba(46, 45, 120, 0.08);
 }
 .getIconWrap { display: flex; align-items: center; }
 .getIcon {
