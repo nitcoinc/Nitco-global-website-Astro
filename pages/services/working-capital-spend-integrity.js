@@ -26,10 +26,10 @@ const WorkingCapitalPage = () => {
         body.home-dark-nav #header .navbar-toggler .icon-bar { background: #fff !important; }
 
         .nav-logo-white { display: none; }
-        body.home-dark-nav .nav-logo-white { display: inline-block; }
-        body.home-dark-nav .nav-logo-dark { display: none; }
-        body.home-dark-nav #header.is-sticky .nav-logo-white { display: none; }
-        body.home-dark-nav #header.is-sticky .nav-logo-dark { display: inline-block; }
+        body.home-dark-nav #header .nav-logo-default { display: none; }
+        body.home-dark-nav #header .nav-logo-white { display: inline-block; }
+        body.home-dark-nav #header.is-sticky .nav-logo-default { display: none; }
+        body.home-dark-nav #header.is-sticky .nav-logo-white { display: inline-block; }
       `}</style>
 
       <div className="d-none d-lg-block">
