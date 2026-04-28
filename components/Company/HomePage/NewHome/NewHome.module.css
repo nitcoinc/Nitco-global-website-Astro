@@ -326,12 +326,12 @@
 .programBody {
   position: relative;
   z-index: 1;
-  padding: 36px 40px;
+  padding: 36px 44px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   height: 100%;
-  max-width: 55%;
+  max-width: 78%;
   background: transparent;
 }
 .programTitle {
