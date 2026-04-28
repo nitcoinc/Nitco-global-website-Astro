@@ -67,18 +67,36 @@ const NewHome = () => {
       title: "Working Capital & Spend Integrity Program",
       body:
         "Improve working capital, increase billing and payment accuracy, and strengthen financial execution.",
+      details: [
+        "Working capital improvement opportunities",
+        "Billing and payment accuracy insights",
+        "Spend integrity and control gap visibility",
+        "Clear roadmap to improve financial execution",
+      ],
     },
     {
       img: "/images/HomePage/outcomes-image.png",
       title: "Manual Work & Workflow Automation Program",
       body:
         "Reduce manual work, streamline approvals, and automate document-driven processes.",
+      details: [
+        "Working capital improvement opportunities",
+        "Billing and payment accuracy insights",
+        "Spend integrity and control gap visibility",
+        "Clear roadmap to improve financial execution",
+      ],
     },
     {
       img: "/images/HomePage/outcomes-image.png",
       title: "Data & Decision Acceleration Program",
       body:
         "Turn scattered data into trusted metrics and faster, evidence-based decisions across teams.",
+      details: [
+        "Working capital improvement opportunities",
+        "Billing and payment accuracy insights",
+        "Spend integrity and control gap visibility",
+        "Clear roadmap to improve financial execution",
+      ],
     },
   ];
 
@@ -350,6 +368,14 @@ const NewHome = () => {
                       <div className={styles.programBody}>
                         <h3 className={styles.programTitle}>{p.title}</h3>
                         <p className={styles.programDesc}>{p.body}</p>
+                        <div className={styles.programDetails}>
+                          <p className={styles.programDetailsTitle}>What you get :</p>
+                          <ul className={styles.programDetailsList}>
+                            {p.details?.map((d) => (
+                              <li key={d}>{d}</li>
+                            ))}
+                          </ul>
+                        </div>
                         <Link href="/services" className={styles.programBtn}>
                           Know more
                         </Link>
