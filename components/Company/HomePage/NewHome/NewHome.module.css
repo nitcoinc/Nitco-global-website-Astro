@@ -213,7 +213,11 @@
 
 /* ====== THREE CORE PROGRAMS ====== */
 .programs {
-  background: linear-gradient(135deg, #ed1651 0%, #8c46dc 50%, #1BE1F2 100%);
+  background:
+    radial-gradient(circle at 5% 75%, rgba(140, 70, 220, 0.45) 0%, transparent 45%),
+    radial-gradient(circle at 18% 110%, rgba(237, 22, 81, 0.28) 0%, transparent 40%),
+    radial-gradient(circle at 95% 20%, rgba(27, 100, 220, 0.35) 0%, transparent 50%),
+    linear-gradient(135deg, #0b0a3a 0%, #110d4d 60%, #0b0a3a 100%);
   color: #fff;
   position: relative;
   padding: 110px 0 120px;
