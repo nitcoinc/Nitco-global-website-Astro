@@ -213,7 +213,7 @@
 
 /* ====== THREE CORE PROGRAMS ====== */
 .programs {
-  background: #0d0a4a;
+  background: linear-gradient(135deg, #ed1651 0%, #8c46dc 50%, #1BE1F2 100%);
   color: #fff;
   position: relative;
   padding: 110px 0 120px;
@@ -244,8 +244,7 @@
   gap: 24px;
 }
 .programCard2 {
-  position: relative;
-  background: linear-gradient(135deg, #ed1651 0%, #8c46dc 50%, #1BE1F2 100%);
+  background: #16164C;
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 14px;
   padding: 28px 28px 26px;
@@ -253,20 +252,19 @@
   flex-direction: column;
   align-items: flex-start;
   min-height: 240px;
-  overflow: hidden;
   transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 .programCard2:hover {
   transform: translateY(-4px);
-  border-color: rgba(255, 255, 255, 0.25);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+  border-color: rgba(27, 225, 242, 0.35);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
 }
 .programIcon {
   width: 44px;
   height: 44px;
   border-radius: 10px;
-  background: rgba(255, 255, 255, 0.18);
-  color: #fff;
+  background: rgba(124, 119, 230, 0.18);
+  color: #9D98F5;
   display: flex;
   align-items: center;
   justify-content: center;
