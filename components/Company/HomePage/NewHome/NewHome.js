@@ -141,11 +141,11 @@ const NewHome = () => {
   ];
 
   const outcomes = [
-    { text: "Reduced manual processing effort across operations by 50%+", video: "/Home_Page_Video_1.mp4" },
-    { text: "Identified significant working capital improvement opportunities", video: "/Intigration.mp4" },
-    { text: "Accelerated document-driven workflows across shared services", video: "/Home_Page_Video_1.mp4" },
-    { text: "Reduced reporting and decision cycle times", video: "/Intigration.mp4" },
-    { text: "Improved trust in key business metrics across leadership teams", video: "/Home_Page_Video_1.mp4" },
+    { text: "Reduced manual processing effort across operations by 50%+", image: "/images/HomePage/outcomes-image.png" },
+    { text: "Identified significant working capital improvement opportunities", image: "/images/HomePage/outcomes-image.png" },
+    { text: "Accelerated document-driven workflows across shared services", image: "/images/HomePage/outcomes-image.png" },
+    { text: "Reduced reporting and decision cycle times", image: "/images/HomePage/outcomes-image.png" },
+    { text: "Improved trust in key business metrics across leadership teams", image: "/images/HomePage/outcomes-image.png" },
   ];
   const whatNitcoCards = [
     {
@@ -413,8 +413,9 @@ const NewHome = () => {
             </div>
             <div className={styles.videoBox}>
               <img
-                src="/images/HomePage/outcomes-image.png"
-                alt="Measurable business outcomes"
+                key={outcomes[activeOutcome].image}
+                src={outcomes[activeOutcome].image}
+                alt={outcomes[activeOutcome].text}
                 style={{
                   position: "absolute",
                   inset: 0,
@@ -422,6 +423,7 @@ const NewHome = () => {
                   height: "100%",
                   objectFit: "cover",
                   zIndex: 0,
+                  transition: "opacity 0.4s ease",
                 }}
               />
             </div>
