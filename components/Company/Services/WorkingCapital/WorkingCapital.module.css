@@ -190,6 +190,147 @@
   background: #eef0ff;
   padding: 96px 0;
 }
+
+/* ===== Problem section (2-col) ===== */
+.problemGrid {
+  display: grid;
+  grid-template-columns: 1fr 1.05fr;
+  gap: 56px;
+  align-items: start;
+}
+.problemCopy { min-width: 0; }
+.problemCopy .lead { margin-top: 18px; }
+.problemFooter {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-top: 28px;
+  padding: 18px 20px;
+  background: rgba(237, 22, 81, 0.06);
+  border-left: 3px solid #ed1651;
+  border-radius: 0 12px 12px 0;
+}
+.problemFooterIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: #ed1651;
+  color: #fff;
+  flex-shrink: 0;
+}
+.problemFooterText {
+  font-size: 15px;
+  font-weight: 600;
+  color: #0b0f3a;
+  line-height: 1.5;
+}
+.problemStack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.problemCard {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 18px 20px;
+  background: #fff;
+  border: 1px solid #dfe2f3;
+  border-radius: 12px;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+.problemCard:hover {
+  transform: translateX(4px);
+  box-shadow: 0 10px 22px rgba(11, 10, 58, 0.06);
+  border-color: #c9cef0;
+}
+.problemCardIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(237, 22, 81, 0.10);
+  color: #ed1651;
+  flex-shrink: 0;
+}
+.problemCardBody { min-width: 0; }
+.problemCardKicker {
+  font-size: 11px;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #6e74a6;
+  margin-bottom: 4px;
+}
+.problemCardText {
+  font-size: 15px;
+  font-weight: 600;
+  color: #0b0f3a;
+  margin: 0;
+  line-height: 1.45;
+}
+
+/* ===== What You Get (numbered editorial rows) ===== */
+.getHead { margin-bottom: 48px; }
+.getList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.getRow {
+  display: grid;
+  grid-template-columns: 90px 60px 1fr;
+  gap: 28px;
+  align-items: start;
+  padding: 28px 0;
+  border-top: 1px solid rgba(11, 15, 58, 0.10);
+}
+.getRow:last-child { border-bottom: 1px solid rgba(11, 15, 58, 0.10); }
+.getNum {
+  font-size: 44px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  color: #1BE1F2;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  -webkit-text-stroke: 1px #2e2d78;
+  text-shadow: 2px 2px 0 rgba(46, 45, 120, 0.08);
+}
+.getIconWrap { display: flex; align-items: center; }
+.getIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: #fff;
+  color: #ed1651;
+  border: 1px solid #dfe2f3;
+}
+.getContent { min-width: 0; padding-top: 4px; }
+.getTitle {
+  font-size: 19px;
+  font-weight: 700;
+  color: #0b0f3a;
+  margin: 0 0 6px;
+  line-height: 1.35;
+}
+.getBody {
+  font-size: 15px;
+  line-height: 1.55;
+  color: #4a4f72;
+  margin: 0;
+  max-width: 640px;
+}
 .sectionDark {
   position: relative;
   background:
@@ -458,6 +599,9 @@
   .splitGrid { grid-template-columns: 1fr; gap: 36px; }
   .splitVisual { order: -1; }
   .splitImage { max-width: 380px; }
+  .problemGrid { grid-template-columns: 1fr; gap: 36px; }
+  .getRow { grid-template-columns: 64px 52px 1fr; gap: 18px; }
+  .getNum { font-size: 36px; }
   .cardGrid { grid-template-columns: repeat(2, 1fr); }
   .steps { grid-template-columns: repeat(2, 1fr); }
   .iconListTwoCol { grid-template-columns: 1fr; }

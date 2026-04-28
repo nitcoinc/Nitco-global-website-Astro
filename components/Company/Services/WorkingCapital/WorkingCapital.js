@@ -197,24 +197,37 @@ const WorkingCapital = () => {
         </div>
       </section>
 
-      {/* THE PROBLEM — LIGHT */}
-      <section className={styles.sectionLight}>
+      {/* THE PROBLEM — LAVENDER */}
+      <section className={styles.sectionLavender}>
         <div className={styles.container}>
-          <div className={`${styles.eyebrow} ${styles.eyebrowDark}`}>The Problem</div>
-          <h2 className={styles.h2}>
-            Most organizations believe their financial processes are under control — but in reality:
-          </h2>
-          <ul className={styles.iconList}>
-            {problems.map((p, i) => (
-              <li key={i}>
-                <span className={styles.iconListIcon}><Icon name={p.icon} size={18} /></span>
-                <span>{p.text}</span>
-              </li>
-            ))}
-          </ul>
-          <p className={styles.lead} style={{ marginTop: 28 }}>
-            The result: working capital drag, avoidable inefficiencies, and reduced financial control.
-          </p>
+          <div className={styles.problemGrid}>
+            <div className={styles.problemCopy}>
+              <div className={`${styles.eyebrow} ${styles.eyebrowDark}`}>The Problem</div>
+              <h2 className={styles.h2}>
+                Most organizations believe their financial processes are under control — but in reality, they aren’t.
+              </h2>
+              <p className={styles.lead}>
+                Hidden execution gaps quietly drag on working capital, accuracy, and control across finance and procurement.
+              </p>
+              <div className={styles.problemFooter}>
+                <span className={styles.problemFooterIcon}><Icon name="alert" size={18} /></span>
+                <span className={styles.problemFooterText}>
+                  The result: working capital drag, avoidable inefficiencies, and reduced financial control.
+                </span>
+              </div>
+            </div>
+            <div className={styles.problemStack}>
+              {problems.map((p, i) => (
+                <div className={styles.problemCard} key={i}>
+                  <span className={styles.problemCardIcon}><Icon name={p.icon} size={20} /></span>
+                  <div className={styles.problemCardBody}>
+                    <div className={styles.problemCardKicker}>{`Issue 0${i + 1}`}</div>
+                    <p className={styles.problemCardText}>{p.text}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
@@ -255,20 +268,27 @@ const WorkingCapital = () => {
         </div>
       </section>
 
-      {/* WHAT YOU GET — LIGHT */}
-      <section className={styles.sectionLight}>
+      {/* WHAT YOU GET — LAVENDER, numbered editorial rows */}
+      <section className={styles.sectionLavender}>
         <div className={styles.container}>
-          <div className={`${styles.eyebrow} ${styles.eyebrowDark}`}>What You Get</div>
-          <h2 className={styles.h2}>Outputs you can act on from day one.</h2>
-          <div className={styles.cardGrid}>
-            {whatYouGet.map((item, i) => (
-              <div className={styles.card} key={i}>
-                <span className={styles.cardIcon}><Icon name={item.icon} size={22} /></span>
-                <h3 className={styles.cardTitle}>{item.title}</h3>
-                <p className={styles.cardBody}>{item.body}</p>
-              </div>
-            ))}
+          <div className={styles.getHead}>
+            <div className={`${styles.eyebrow} ${styles.eyebrowDark}`}>What You Get</div>
+            <h2 className={styles.h2}>Outputs you can act on from day one.</h2>
           </div>
+          <ol className={styles.getList}>
+            {whatYouGet.map((item, i) => (
+              <li className={styles.getRow} key={i}>
+                <div className={styles.getNum}>{`0${i + 1}`}</div>
+                <div className={styles.getIconWrap}>
+                  <span className={styles.getIcon}><Icon name={item.icon} size={22} /></span>
+                </div>
+                <div className={styles.getContent}>
+                  <h3 className={styles.getTitle}>{item.title}</h3>
+                  <p className={styles.getBody}>{item.body}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 
