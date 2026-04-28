@@ -5,6 +5,29 @@ import styles from "./NewHome.module.css";
 const NewHome = () => {
   const programsRef = useRef(null);
   const [activeProgram, setActiveProgram] = useState(0);
+  const whatGridRef = useRef(null);
+  const [whatRevealed, setWhatRevealed] = useState(false);
+
+  useEffect(() => {
+    const el = whatGridRef.current;
+    if (!el || typeof IntersectionObserver === "undefined") {
+      setWhatRevealed(true);
+      return;
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setWhatRevealed(true);
+            io.disconnect();
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
 
   useEffect(() => {
     const el = programsRef.current;
@@ -199,6 +222,7 @@ const NewHome = () => {
           </div>
 
           <div
+            ref={whatGridRef}
             style={{
               display: "grid",
               gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
@@ -206,7 +230,7 @@ const NewHome = () => {
               marginTop: "22px",
             }}
           >
-            {whatNitcoCards.map((card) => (
+            {whatNitcoCards.map((card, idx) => (
               <article
                 key={card.title}
                 style={{
@@ -217,6 +241,14 @@ const NewHome = () => {
                   minHeight: "370px",
                   display: "flex",
                   flexDirection: "column",
+                  opacity: whatRevealed ? 1 : 0,
+                  transform: whatRevealed
+                    ? "translateY(0)"
+                    : "translateY(24px)",
+                  transition:
+                    "opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1)",
+                  transitionDelay: `${idx * 140}ms`,
+                  willChange: "opacity, transform",
                 }}
               >
                 <div style={{ padding: "22px 24px", flex: 1 }}>
