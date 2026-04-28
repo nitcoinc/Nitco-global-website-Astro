@@ -543,7 +543,7 @@
   top: 0;
   bottom: 0;
   width: 4px;
-  background: #1a1a5e;
+  background: linear-gradient(180deg, #1a1655 0%, #0b0f3a 100%);
   transform: scaleY(0.4);
   transform-origin: top;
   transition: transform 0.22s ease;
@@ -562,7 +562,7 @@
   font-weight: 700;
   color: #fff;
   padding: 4px 10px;
-  background: #1a1a5e;
+  background: linear-gradient(135deg, #1a1655 0%, #0b0f3a 100%);
   border-radius: 999px;
   align-self: flex-start;
 }
@@ -587,7 +587,7 @@
   transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease;
 }
 .useCard:hover .useArrow {
-  background: #1a1a5e;
+  background: linear-gradient(135deg, #1a1655 0%, #0b0f3a 100%);
   color: #fff;
   transform: translateX(4px);
 }
