@@ -426,6 +426,14 @@ const NewHome = () => {
                   transition: "opacity 0.4s ease",
                 }}
               />
+              <div className={styles.videoOverlay}>
+                <h3 className={styles.videoOverlayTitle}>
+                  {outcomes[activeOutcome].text}
+                </h3>
+                <Link href="/services" className={styles.videoOverlayBtn}>
+                  Know more
+                </Link>
+              </div>
             </div>
           </div>
         </div>

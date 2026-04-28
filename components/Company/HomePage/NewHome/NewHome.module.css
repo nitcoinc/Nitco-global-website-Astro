@@ -460,20 +460,65 @@
   background: linear-gradient(135deg, #1a1655 0%, #0b0f3a 100%);
   border-radius: 16px;
   position: relative;
-  min-height: 320px;
+  min-height: 360px;
   overflow: hidden;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-end;
 }
 .videoBox::after {
   content: "";
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(circle at 30% 40%, rgba(237, 22, 81, 0.25), transparent 60%),
-    radial-gradient(1px 1px at 20% 30%, #ffffff66, transparent 60%),
-    radial-gradient(1px 1px at 70% 60%, #ffffff66, transparent 60%);
+  background: linear-gradient(
+    180deg,
+    rgba(8, 10, 40, 0.15) 0%,
+    rgba(8, 10, 40, 0.55) 45%,
+    rgba(8, 10, 40, 0.85) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+.videoOverlay {
+  position: relative;
+  z-index: 2;
+  padding: 32px 32px 30px;
+  width: 100%;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.videoOverlayTitle {
+  font-size: 22px;
+  line-height: 1.25;
+  font-weight: 700;
+  margin: 0;
+  color: #fff;
+  text-wrap: balance;
+}
+.videoOverlayDesc {
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0;
+  color: #d8dbf2;
+  max-width: 420px;
+}
+.videoOverlayBtn {
+  align-self: flex-start;
+  margin-top: 6px;
+  padding: 9px 18px;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #16164c;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
+}
+.videoOverlayBtn:hover {
+  background: #1BE1F2;
+  color: #16164c;
+  transform: translateY(-1px);
 }
 .playBtn {
   position: relative;
