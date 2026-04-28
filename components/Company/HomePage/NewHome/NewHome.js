@@ -63,19 +63,19 @@ const NewHome = () => {
 
   const programs = [
     {
-      img: "/images/HomePage/partnerBackground.webp",
+      img: "/images/HomePage/outcomes-image.png",
       title: "Working Capital & Spend Integrity Program",
       body:
         "Improve working capital, increase billing and payment accuracy, and strengthen financial execution.",
     },
     {
-      img: "/images/HomePage/partnerBackground.webp",
+      img: "/images/HomePage/outcomes-image.png",
       title: "Manual Work & Workflow Automation Program",
       body:
         "Reduce manual work, streamline approvals, and automate document-driven processes.",
     },
     {
-      img: "/images/HomePage/partnerBackground.webp",
+      img: "/images/HomePage/outcomes-image.png",
       title: "Data & Decision Acceleration Program",
       body:
         "Turn scattered data into trusted metrics and faster, evidence-based decisions across teams.",
@@ -141,11 +141,11 @@ const NewHome = () => {
   ];
 
   const outcomes = [
-    { text: "Reduced manual processing effort across operations by 50%+", image: "/images/HomePage/outcomes-image.png" },
-    { text: "Identified significant working capital improvement opportunities", image: "/images/HomePage/outcomes-image.png" },
-    { text: "Accelerated document-driven workflows across shared services", image: "/images/HomePage/outcomes-image.png" },
-    { text: "Reduced reporting and decision cycle times", image: "/images/HomePage/outcomes-image.png" },
-    { text: "Improved trust in key business metrics across leadership teams", image: "/images/HomePage/outcomes-image.png" },
+    { text: "Reduced manual processing effort across operations by 50%+", video: "/Home_Page_Video_1.mp4" },
+    { text: "Identified significant working capital improvement opportunities", video: "/Intigration.mp4" },
+    { text: "Accelerated document-driven workflows across shared services", video: "/Home_Page_Video_1.mp4" },
+    { text: "Reduced reporting and decision cycle times", video: "/Intigration.mp4" },
+    { text: "Improved trust in key business metrics across leadership teams", video: "/Home_Page_Video_1.mp4" },
   ];
   const whatNitcoCards = [
     {
@@ -412,10 +412,13 @@ const NewHome = () => {
               </p>
             </div>
             <div className={styles.videoBox}>
-              <img
-                key={outcomes[activeOutcome].image}
-                src={outcomes[activeOutcome].image}
-                alt={outcomes[activeOutcome].text}
+              <video
+                key={outcomes[activeOutcome].video}
+                src={outcomes[activeOutcome].video}
+                autoPlay
+                muted
+                loop
+                playsInline
                 style={{
                   position: "absolute",
                   inset: 0,
@@ -423,17 +426,8 @@ const NewHome = () => {
                   height: "100%",
                   objectFit: "cover",
                   zIndex: 0,
-                  transition: "opacity 0.4s ease",
                 }}
               />
-              <div className={styles.videoOverlay}>
-                <h3 className={styles.videoOverlayTitle}>
-                  {outcomes[activeOutcome].text}
-                </h3>
-                <Link href="/services" className={styles.videoOverlayBtn}>
-                  Know more
-                </Link>
-              </div>
             </div>
           </div>
         </div>
