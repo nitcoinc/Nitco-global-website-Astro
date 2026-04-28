@@ -279,9 +279,6 @@ const WorkingCapital = () => {
             {whatYouGet.map((item, i) => (
               <li className={styles.getRow} key={i}>
                 <div className={styles.getNum}>{`0${i + 1}`}</div>
-                <div className={styles.getIconWrap}>
-                  <span className={styles.getIcon}><Icon name={item.icon} size={22} /></span>
-                </div>
                 <div className={styles.getContent}>
                   <h3 className={styles.getTitle}>{item.title}</h3>
                   <p className={styles.getBody}>{item.body}</p>

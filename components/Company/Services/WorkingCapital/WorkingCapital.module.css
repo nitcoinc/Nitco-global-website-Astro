@@ -287,9 +287,9 @@
 }
 .getRow {
   display: grid;
-  grid-template-columns: 90px 60px 1fr;
-  gap: 28px;
-  align-items: start;
+  grid-template-columns: 140px 1fr;
+  gap: 48px;
+  align-items: baseline;
   padding: 28px 0;
   border-top: 1px solid rgba(11, 15, 58, 0.10);
 }
@@ -598,8 +598,8 @@
   .splitVisual { order: -1; }
   .splitImage { max-width: 380px; }
   .problemGrid { grid-template-columns: 1fr; gap: 36px; }
-  .getRow { grid-template-columns: 64px 52px 1fr; gap: 18px; }
-  .getNum { font-size: 36px; }
+  .getRow { grid-template-columns: 80px 1fr; gap: 24px; }
+  .getNum { font-size: 48px; }
   .cardGrid { grid-template-columns: repeat(2, 1fr); }
   .steps { grid-template-columns: repeat(2, 1fr); }
   .iconListTwoCol { grid-template-columns: 1fr; }
