@@ -352,6 +352,29 @@
   max-width: 520px;
   filter: drop-shadow(0 18px 40px rgba(0, 0, 0, 0.35));
 }
+.imagePlaceholder {
+  width: 100%;
+  max-width: 520px;
+  aspect-ratio: 4 / 3;
+  border: 2px dashed rgba(255, 255, 255, 0.22);
+  border-radius: 16px;
+  background:
+    linear-gradient(135deg, rgba(27, 225, 242, 0.06), rgba(237, 22, 81, 0.06)),
+    rgba(255, 255, 255, 0.03);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: rgba(255, 255, 255, 0.55);
+}
+.imagePlaceholderLabel {
+  font-size: 13px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.55);
+}
 
 /* ===== How it starts (process steps) ===== */
 .steps {

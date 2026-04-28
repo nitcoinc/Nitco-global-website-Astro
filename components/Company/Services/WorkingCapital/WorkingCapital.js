@@ -1,6 +1,5 @@
 import React from "react";
 import Link from "next/link";
-import Image from "next/image";
 import styles from "./WorkingCapital.module.css";
 
 /* ===== Inline SVG icon set (consistent stroke style) ===== */
@@ -94,6 +93,14 @@ const Icon = ({ name, size = 22 }) => {
           <path d="M5 19c2-1 4-2 5-3 3-3 6-9 12-13-1 6-3 9-6 12-1 1-2 3-3 5l-3-1z" />
           <path d="M9 15a3 3 0 0 0-3 3l-2 2 4-1a3 3 0 0 0 3-3" />
           <circle cx="15" cy="9" r="1.2" />
+        </svg>
+      );
+    case "image":
+      return (
+        <svg {...props}>
+          <rect x="3" y="4" width="18" height="16" rx="2" />
+          <circle cx="9" cy="10" r="1.6" />
+          <path d="m4 18 5-5 4 4 3-3 4 4" />
         </svg>
       );
     default:
@@ -239,13 +246,10 @@ const WorkingCapital = () => {
               </ul>
             </div>
             <div className={styles.splitVisual} aria-hidden="true">
-              <Image
-                src="/images/HomePage/whatNitco-illustration.png"
-                alt=""
-                width={520}
-                height={400}
-                className={styles.splitImage}
-              />
+              <div className={styles.imagePlaceholder}>
+                <Icon name="image" size={36} />
+                <span className={styles.imagePlaceholderLabel}>Image placeholder</span>
+              </div>
             </div>
           </div>
         </div>
