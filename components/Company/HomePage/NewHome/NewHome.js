@@ -403,28 +403,25 @@ const NewHome = () => {
       {/* ENGAGEMENT MODEL */}
       <section className={styles.engagement}>
         <div className={styles.container}>
-          <div className={styles.engagementGrid}>
-            <div className={styles.engagementHead}>
-              <div className={`${styles.eyebrow} ${styles.eyebrowDark}`}>
-                Engagement Model
-              </div>
-              <h2 className={styles.h2}>Start focused. Scale with confidence.</h2>
-              <p className={styles.engagementMicro}>
-                Each of our programs is designed to:
-              </p>
-              <ul className={styles.engagementList}>
-                <li>Identify high-impact opportunities</li>
-                <li>Define a clear path forward</li>
-                <li>And enable quick progress toward implementation</li>
-              </ul>
-              <p className={styles.engagementMicro}>
-                You don’t need a massive transformation to get started.
-              </p>
-              <Link href="/contact" className={`${styles.btn} ${styles.btnPink}`}>
-                Get In Touch
-              </Link>
+          <div className={styles.engagementHead}>
+            <div className={`${styles.eyebrow} ${styles.eyebrowDark}`}>
+              Engagement Model
             </div>
-            <div className={styles.starsPanel} aria-hidden="true" />
+            <h2 className={styles.h2}>Start focused. Scale with confidence.</h2>
+            <p className={styles.engagementMicro}>
+              Each of our programs is designed to:
+            </p>
+            <ul className={styles.engagementList}>
+              <li>Identify high-impact opportunities</li>
+              <li>Define a clear path forward</li>
+              <li>And enable quick progress toward implementation</li>
+            </ul>
+            <p className={styles.engagementMicro}>
+              You don’t need a massive transformation to get started.
+            </p>
+            <Link href="/contact" className={`${styles.btn} ${styles.btnPink}`}>
+              Get In Touch
+            </Link>
           </div>
         </div>
       </section>
