@@ -412,13 +412,9 @@ const NewHome = () => {
               </p>
             </div>
             <div className={styles.videoBox}>
-              <video
-                key={outcomes[activeOutcome].video}
-                src={outcomes[activeOutcome].video}
-                autoPlay
-                muted
-                loop
-                playsInline
+              <img
+                src="/images/HomePage/outcomes-image.png"
+                alt="Measurable business outcomes"
                 style={{
                   position: "absolute",
                   inset: 0,
