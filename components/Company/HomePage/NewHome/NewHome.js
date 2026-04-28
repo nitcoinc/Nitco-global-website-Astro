@@ -3,8 +3,6 @@ import Link from "next/link";
 import styles from "./NewHome.module.css";
 
 const NewHome = () => {
-  const programsRef = useRef(null);
-  const [activeProgram, setActiveProgram] = useState(0);
   const whatGridRef = useRef(null);
   const [whatRevealed, setWhatRevealed] = useState(false);
 
@@ -29,93 +27,95 @@ const NewHome = () => {
     return () => io.disconnect();
   }, []);
 
-  useEffect(() => {
-    const el = programsRef.current;
-    if (!el) return;
-  
-    let isScrolling = false;
-  
-    const onWheel = (e) => {
-      e.preventDefault();
-  
-      if (isScrolling) return;
-      isScrolling = true;
-  
-      setActiveProgram((prev) => {
-        if (e.deltaY > 0) {
-          return Math.min(prev + 1, programs.length - 1);
-        } else {
-          return Math.max(prev - 1, 0);
-        }
-      });
-  
-      setTimeout(() => {
-        isScrolling = false;
-      }, 600); // match animation timing
-    };
-  
-    el.addEventListener("wheel", onWheel, { passive: false });
-  
-    return () => {
-      el.removeEventListener("wheel", onWheel);
-    };
-  }, []);
+  const iconWallet = (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="3" y="6" width="18" height="13" rx="2" />
+      <path d="M3 10h18" />
+      <circle cx="16.5" cy="14.5" r="1.2" fill="currentColor" stroke="none" />
+    </svg>
+  );
+  const iconGears = (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="9" cy="9" r="3" />
+      <path d="M9 3v2M9 13v2M3 9h2M13 9h2M5.3 5.3l1.4 1.4M11.3 11.3l1.4 1.4M5.3 12.7l1.4-1.4M11.3 6.7l1.4-1.4" />
+      <circle cx="16.5" cy="16.5" r="2.2" />
+    </svg>
+  );
+  const iconChart = (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M5 20V11M10 20V6M15 20v-7M20 20v-4" />
+    </svg>
+  );
+  const iconBook = (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4 5a2 2 0 0 1 2-2h12v18H6a2 2 0 0 1-2-2V5z" />
+      <path d="M8 7h7M8 11h7" />
+    </svg>
+  );
+  const iconHeadset = (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4 14v-2a8 8 0 0 1 16 0v2" />
+      <rect x="3" y="14" width="4" height="6" rx="1.2" />
+      <rect x="17" y="14" width="4" height="6" rx="1.2" />
+      <path d="M20 20a3 3 0 0 1-3 3h-2" />
+    </svg>
+  );
+  const iconRocket = (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M14 4c4 1 6 3 7 7-2 .4-3.5 1-5 2L9 20l-3-1-1-3 7-7c1-1.5 1.6-3 2-5z" />
+      <circle cx="15" cy="9" r="1.4" />
+      <path d="M5 19c-1 1-1 3-1 3s2 0 3-1" />
+    </svg>
+  );
+  const iconShield = (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 3l8 3v5c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-3z" />
+      <path d="M9 12l2 2 4-4" />
+    </svg>
+  );
 
-  const defaultProgramDetails = [
-    "Working capital improvement opportunities",
-    "Billing and payment accuracy insights",
-    "Spend integrity and control gap visibility",
-    "Clear roadmap to improve financial execution",
-  ];
   const programs = [
     {
-      img: "/images/HomePage/outcomes-image.png",
+      icon: iconWallet,
       title: "Working Capital & Spend Integrity",
-      body:
-        "Improve billing accuracy, payment execution, and working capital performance",
-      details: defaultProgramDetails,
+      body: "Improve billing accuracy, payment execution, and working capital performance",
+      cta: "Learn more",
     },
     {
-      img: "/images/HomePage/programs-gears.png",
+      icon: iconGears,
       title: "Workflow Automation",
-      body:
-        "Eliminate manual effort and streamline exception-heavy processes",
-      details: defaultProgramDetails,
+      body: "Eliminate manual effort and streamline exception-heavy processes",
+      cta: "Talk to us about this",
     },
     {
-      img: "/images/HomePage/outcomes-image.png",
+      icon: iconChart,
       title: "Decision-Ready Data",
-      body:
-        "Turn fragmented data into trusted insight for faster decisions",
-      details: defaultProgramDetails,
+      body: "Turn fragmented data into trusted insight for faster decisions",
+      cta: "Talk to us about this",
     },
     {
-      img: "/images/HomePage/outcomes-image.png",
+      icon: iconBook,
       title: "Employee Knowledge & Productivity",
-      body:
-        "Instant, context-aware answers across systems and documents",
-      details: defaultProgramDetails,
+      body: "Instant, context-aware answers across systems and documents",
+      cta: "Talk to us about this",
     },
     {
-      img: "/images/HomePage/outcomes-image.png",
+      icon: iconHeadset,
       title: "Customer Support Optimization",
-      body:
-        "Reduce support cost and improve resolution times",
-      details: defaultProgramDetails,
+      body: "Reduce support cost and improve resolution times",
+      cta: "Talk to us about this",
     },
     {
-      img: "/images/HomePage/outcomes-image.png",
+      icon: iconRocket,
       title: "AI Solution Delivery",
-      body:
-        "Turn AI ideas into production-ready workflow solutions",
-      details: defaultProgramDetails,
+      body: "Turn AI ideas into production-ready workflow solutions",
+      cta: "Talk to us about this",
     },
     {
-      img: "/images/HomePage/outcomes-image.png",
+      icon: iconShield,
       title: "AI Risk, Cost & Governance",
-      body:
-        "Ensure AI is secure, controlled, cost-effective, and scalable.",
-      details: defaultProgramDetails,
+      body: "Ensure AI is secure, controlled, cost-effective, and scalable.",
+      cta: "Talk to us about this",
     },
   ];
 
@@ -341,71 +341,28 @@ const NewHome = () => {
         </div>
       </section>
 
-      {/* THREE CORE PROGRAMS — pinned scroll, one card centered, next peeks */}
-      <section className={styles.programs} ref={programsRef}>
-        <div className={styles.programsSticky}>
-          <div className={styles.container}>
-            <div className={styles.programsGrid}>
-              <div className={styles.programsHead}>
-                <div className={styles.programsEyebrow}>
-                  Our Core Programs
-                </div>
-                <h2 className={styles.h2}>
-                  Drive better performance across finance, operations, and
-                  data with these targeted programs.
-                </h2>
+      {/* OUR PROGRAMS — icon card grid */}
+      <section className={styles.programs}>
+        <div className={styles.container}>
+          <div className={styles.programsHead2}>
+            <div className={styles.programsEyebrow}>Our Programs</div>
+            <h2 className={styles.programsHeadline}>
+              Targeted programs across finance, operations, data,
+              knowledge, and AI.
+            </h2>
+          </div>
+          <div className={styles.programsCardGrid}>
+            {programs.map((p) => (
+              <div key={p.title} className={styles.programCard2}>
+                <div className={styles.programIcon}>{p.icon}</div>
+                <h3 className={styles.programCardTitle}>{p.title}</h3>
+                <p className={styles.programCardBody}>{p.body}</p>
+                <Link href="/services" className={styles.programCardLink}>
+                  {p.cta}
+                  <span aria-hidden="true" className={styles.programCardArrow}>→</span>
+                </Link>
               </div>
-              <div className={styles.progressBar} aria-hidden="true">
-                {programs.map((_, i) => (
-                  <span
-                    key={i}
-                    className={`${styles.progressDot} ${
-                      i === activeProgram ? styles.progressDotActive : ""
-                    }`}
-                  />
-                ))}
-              </div>
-              <div className={styles.programsViewport}>
-                <div
-                  className={styles.programsTrack}
-                  style={{
-                    transform: `translateY(calc(${-activeProgram} * 290px))`,
-                  }}
-                >
-                  {programs.map((p, i) => (
-                    <div
-                      key={p.title}
-                      className={`${styles.programCard} ${
-                        i === activeProgram ? styles.programCardActive : ""
-                      }`}
-                    >
-                      <div
-                        className={styles.programImg}
-                        style={{ backgroundImage: `url(${p.img})` }}
-                        aria-hidden="true"
-                      />
-                      <div className={styles.programBody}>
-                        <div className={styles.programTextStack}>
-                          <div className={styles.programTextDefault}>
-                            <h3 className={styles.programTitle}>{p.title}</h3>
-                            <p className={styles.programDesc}>{p.body}</p>
-                          </div>
-                          <div className={styles.programTextHover}>
-                            <h3 className={styles.programTitle}>What you get</h3>
-                            <p className={styles.programDesc}>
-                              {p.details?.join(", ")}.
-                            </p>
-                          </div>
-                        </div>
-                        <Link href="/services" className={styles.programBtn}>
-                          Know more
-                        </Link>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
