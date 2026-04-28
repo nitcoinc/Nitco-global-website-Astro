@@ -293,8 +293,7 @@
   color: #fff;
   border-radius: 16px;
   overflow: hidden;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  position: relative;
   box-shadow: 0 22px 60px rgba(0, 0, 0, 0.45);
   height: 290px;
   flex-shrink: 0;
@@ -305,22 +304,34 @@
   opacity: 1;
 }
 .programImg {
+  position: absolute;
+  inset: 0;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  position: relative;
+  z-index: 0;
 }
 .programImg::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, rgba(13,10,74,0) 60%, rgba(13,10,74,0.55) 100%);
+  background: linear-gradient(
+    90deg,
+    rgba(8, 10, 40, 0.85) 0%,
+    rgba(8, 10, 40, 0.65) 40%,
+    rgba(8, 10, 40, 0.35) 75%,
+    rgba(8, 10, 40, 0.15) 100%
+  );
 }
 .programBody {
-  padding: 32px 36px;
+  position: relative;
+  z-index: 1;
+  padding: 36px 40px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  height: 100%;
+  max-width: 55%;
   background: transparent;
 }
 .programTitle {
@@ -339,17 +350,21 @@
 .programBtn {
   display: inline-block;
   align-self: flex-start;
-  background: #e9ecf3;
+  background: #ffffff;
   border: none;
-  color: #1a1655;
+  color: #16164c;
   font-size: 13px;
   font-weight: 600;
-  padding: 9px 18px;
-  border-radius: 8px;
+  padding: 10px 20px;
+  border-radius: 999px;
   text-decoration: none;
-  transition: background 0.15s ease;
+  transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
 }
-.programBtn:hover { background: #ffffff; }
+.programBtn:hover {
+  background: #1BE1F2;
+  color: #16164c;
+  transform: translateY(-1px);
+}
 
 /* ====== WHY NITCO ====== */
 .why {
@@ -558,8 +573,8 @@
   .progressBar { display: none; }
   .programsViewport { height: auto; overflow: visible; -webkit-mask-image: none; mask-image: none; }
   .programsTrack { transform: none !important; gap: 20px; }
-  .programCard { opacity: 1; grid-template-columns: 180px 1fr; height: auto; min-height: 240px; }
-  .programImg { min-height: 160px; }
+  .programCard { opacity: 1; height: auto; min-height: 260px; }
+  .programBody { max-width: 100%; padding: 28px; }
   .vennWrap { height: 320px; max-width: 460px; }
   .vennCircle { width: 180px; height: 180px; font-size: 12px; }
   .vennC2 { left: 8%; }
