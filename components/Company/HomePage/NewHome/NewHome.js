@@ -333,7 +333,7 @@ const NewHome = () => {
       </section>
 
       {/* WHY NITCO */}
-      <section className={styles.why}>
+      <section className={`${styles.why} bg-[#eef0ff]`}>
         <div className={styles.container}>
           <div className={styles.whyHead}>
             <div className={`${styles.eyebrow} ${styles.eyebrowCyan}`}>
