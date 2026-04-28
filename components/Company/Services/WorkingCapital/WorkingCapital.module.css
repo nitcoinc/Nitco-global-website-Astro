@@ -85,6 +85,13 @@
   position: relative;
   z-index: 2;
 }
+.heroGrid {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+.heroCopy { min-width: 0; }
 .heroTitle {
   font-size: 44px;
   line-height: 1.15;
@@ -101,6 +108,77 @@
   color: #cfd2f5;
   max-width: 640px;
   margin: 0 0 32px;
+}
+
+/* Hero floating visual */
+.heroVisual {
+  position: relative;
+  height: 360px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.heroOrb {
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(27, 225, 242, 0.45), transparent 60%),
+    radial-gradient(circle at 70% 70%, rgba(237, 22, 81, 0.35), transparent 60%);
+  filter: blur(20px);
+  z-index: 0;
+}
+.heroRing {
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: inset 0 0 60px rgba(27, 225, 242, 0.15);
+  z-index: 1;
+}
+.heroCard {
+  position: relative;
+  z-index: 2;
+  width: 280px;
+  background: rgba(15, 14, 65, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 16px;
+  padding: 18px 18px;
+  backdrop-filter: blur(8px);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+}
+.heroCardRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.heroCardIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: rgba(27, 225, 242, 0.12);
+  color: #1BE1F2;
+  flex-shrink: 0;
+}
+.heroCardLabel {
+  font-size: 11px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: #9aa1d6;
+  margin-bottom: 2px;
+}
+.heroCardValue {
+  font-size: 17px;
+  font-weight: 700;
+  color: #fff;
 }
 
 /* ===== Section bases ===== */
@@ -135,8 +213,8 @@
 }
 .sectionDark > .container { position: relative; z-index: 1; }
 
-/* ===== Bullet lists ===== */
-.bulletList {
+/* ===== Icon bullet lists ===== */
+.iconList {
   list-style: none;
   padding: 0;
   margin: 14px 0 0;
@@ -148,22 +226,37 @@
   color: #2a2f55;
   max-width: 820px;
 }
-.bulletList li {
-  padding-left: 28px;
-  position: relative;
+.iconList li {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
 }
-.bulletList li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 9px;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: #ed1651;
+.iconListIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: rgba(237, 22, 81, 0.10);
+  color: #ed1651;
+  flex-shrink: 0;
+  margin-top: 1px;
 }
-.bulletListLight li { color: #d6dafa; }
-.bulletListLight li::before { background: #1BE1F2; }
+.iconListLight {
+  color: #d6dafa;
+  max-width: 100%;
+}
+.iconListLight .iconListIcon {
+  background: rgba(27, 225, 242, 0.12);
+  color: #1BE1F2;
+}
+.iconListTwoCol {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px 32px;
+  max-width: 100%;
+}
 
 /* ===== Card grids ===== */
 .cardGrid {
@@ -184,6 +277,21 @@
   transform: translateY(-3px);
   box-shadow: 0 14px 28px rgba(11, 10, 58, 0.08);
   border-color: #c9cef0;
+}
+.cardIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(237, 22, 81, 0.10);
+  color: #ed1651;
+  margin-bottom: 16px;
+}
+.cardIconDark {
+  background: rgba(27, 225, 242, 0.12);
+  color: #1BE1F2;
 }
 .cardNum {
   font-size: 13px;
@@ -224,8 +332,31 @@
 .cardDark .cardBody { color: #cfd2f5; }
 .cardDark .cardNum { color: #1BE1F2; }
 
+/* ===== Split (2-column) layout ===== */
+.splitGrid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 56px;
+  align-items: center;
+}
+.splitCopy { min-width: 0; }
+.splitVisual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.splitImage {
+  width: 100%;
+  height: auto;
+  max-width: 520px;
+  filter: drop-shadow(0 18px 40px rgba(0, 0, 0, 0.35));
+}
+
 /* ===== How it starts (process steps) ===== */
 .steps {
+  list-style: none;
+  padding: 0;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 22px;
@@ -236,6 +367,18 @@
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 14px;
   padding: 26px 22px;
+  transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+}
+.step:hover {
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(27, 225, 242, 0.4);
+}
+.stepHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
 }
 .stepNum {
   display: inline-flex;
@@ -248,7 +391,16 @@
   color: #fff;
   font-weight: 800;
   font-size: 15px;
-  margin-bottom: 14px;
+}
+.stepIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: rgba(27, 225, 242, 0.12);
+  color: #1BE1F2;
 }
 .stepText {
   font-size: 15px;
@@ -277,14 +429,24 @@
   .heroTitle { font-size: 34px; }
   .h2 { font-size: 28px; }
   .hero { padding: 150px 0 80px; }
+  .heroGrid { grid-template-columns: 1fr; gap: 36px; }
+  .heroVisual { height: 300px; }
   .sectionLight, .sectionLavender, .sectionDark { padding: 72px 0; }
+  .splitGrid { grid-template-columns: 1fr; gap: 36px; }
+  .splitVisual { order: -1; }
+  .splitImage { max-width: 380px; }
   .cardGrid { grid-template-columns: repeat(2, 1fr); }
   .steps { grid-template-columns: repeat(2, 1fr); }
+  .iconListTwoCol { grid-template-columns: 1fr; }
 }
 @media (max-width: 640px) {
   .heroTitle { font-size: 28px; }
   .h2 { font-size: 24px; }
   .hero { padding: 130px 0 60px; }
+  .heroVisual { height: 260px; }
+  .heroCard { width: 240px; }
+  .heroOrb { width: 240px; height: 240px; }
+  .heroRing { width: 220px; height: 220px; }
   .cardGrid { grid-template-columns: 1fr; }
   .steps { grid-template-columns: 1fr; }
 }
