@@ -265,10 +265,6 @@ const Navbar = () => {
                             <h4>AI Risk, Cost<br />&amp; Governance</h4>
                             <p>Ensure AI is secure, controlled, cost-effective, and scalable.</p>
                           </Link>
-
-                          <div className="sm-blurb">
-                            We identify where business performance breaks across financial execution, operations, and decision-making — and rapidly turn those insights into practical, working solutions.
-                          </div>
                         </div>
                       </div>
                     </li>
