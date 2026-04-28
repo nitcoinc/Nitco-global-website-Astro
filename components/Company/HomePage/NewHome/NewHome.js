@@ -141,7 +141,7 @@ const NewHome = () => {
       title: "Business Decision-Making",
       body:
         "Deliver decision-grade insights to leadership for faster, sharper, more reliable forecasting.",
-      img: "/images/HomePage/whatNitco-illustration.png",
+      img: "/images/HomePage/whatNitco-analytics.png",
     },
   ];
   const [activeOutcome, setActiveOutcome] = useState(0);
