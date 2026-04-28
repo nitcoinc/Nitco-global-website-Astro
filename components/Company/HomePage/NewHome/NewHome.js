@@ -135,7 +135,7 @@ const NewHome = () => {
       title: "Operational Workflows",
       body:
         "Compress cycle times across shared services & document-heavy workflows to match business pace.",
-      img: "/images/HomePage/whatNitco-illustration.png",
+      img: "/images/HomePage/whatNitco-laptop.png",
     },
     {
       title: "Business Decision-Making",
