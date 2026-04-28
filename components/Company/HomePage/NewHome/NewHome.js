@@ -243,7 +243,7 @@ const NewHome = () => {
                 </div>
                 <div
                   style={{
-                    background: "#2e2d78",
+                    background: "#16164C",
                     minHeight: "220px",
                     display: "flex",
                     alignItems: "center",
@@ -255,8 +255,8 @@ const NewHome = () => {
                     src={card.img}
                     alt={card.title}
                     style={{
-                      width: "100%",
-                      maxHeight: "220px",
+                      width: "70%",
+                      maxHeight: "160px",
                       objectFit: "contain",
                     }}
                   />
