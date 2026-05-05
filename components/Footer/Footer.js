@@ -38,7 +38,7 @@ const Footer = () => {
   return (
     <footer
       className="displayLap"
-      style={{ backgroundColor: "#1a1a5e", color: "#fff" }}
+      style={{ backgroundColor: "#080715", color: "#fff" }}
     >
       <div
         style={{

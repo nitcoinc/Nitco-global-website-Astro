@@ -8,8 +8,10 @@
   left: 0;
   right: 0;
   z-index: 1000;
-  background: #0d0c3a;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  background: linear-gradient(180deg, rgba(46,45,120,0.18) 0%, rgba(8,9,30,0.85) 100%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   transition: box-shadow 0.3s ease;
 }
 .header.scrolled {
@@ -146,8 +148,10 @@
   right: auto;
   width: 100vw;
   transform: translateX(-50%);
-  background: #0d0c3a;
-  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  background: rgba(6, 7, 22, 0.95);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-top: 1px solid rgba(255, 255, 255, 0.10);
   border-bottom: 1px solid rgba(255, 255, 255, 0.07);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
 
@@ -335,7 +339,9 @@
   top: 100%;
   left: 0;
   right: 0;
-  background: #0d0c3a;
+  background: rgba(6, 7, 22, 0.97);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.07);
   padding: 0 20px;
   display: flex;
