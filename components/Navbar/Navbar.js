@@ -59,7 +59,7 @@ function MegaPanel({ items, intro, cols, open, narrow }) {
       <div className={styles.megaGlowCyan}   aria-hidden="true" />
       <div className={styles.megaGlowPink}   aria-hidden="true" />
       <div className={styles.megaGrid}       aria-hidden="true" />
-      <div className={styles.megaBody}>
+      <div className={cols === "compact" ? styles.megaBodyRight : styles.megaBody}>
         <div className={styles.megaIntro}>
           <p className={styles.megaIntroKicker}>{intro.kicker}</p>
           <h3 className={styles.megaIntroTitle}>{intro.title}</h3>
