@@ -31,6 +31,14 @@ Without Tina Cloud credentials, the local build is sufficient for the site to re
   - `NavBarMobile` stubbed to `() => null`
   - All 13 affected pages cleaned up (removed NavBarMobile imports, home-dark-nav hacks, Bootstrap wrapper divs)
   - `body { padding-top: 72px; }` added globally for fixed-nav offset
+- **Resources page** — `pages/resources.js` + `components/Resources/Resources.js` + `Resources.module.css` + `lib/resourcesData.js`
+  - Hero: kicker, h1, description, Library card (7 NITCO solution areas)
+  - Filter bar: 5 content-type tab pills (Case Studies, Blogs, White Papers, Explainer Videos, Webinars) + topic chips for Case Studies (All, AI, RPA, Intelligent Automation, Enterprise Integration)
+  - Responsive 3→2→1 column card grid with 16:9 image, type badge, title, description, date/duration footer, Read/Watch CTA
+  - `getStaticProps` reads MDX files from disk (`content/allPosts/` + `content/whitepaperspost/`) via `gray-matter` — no TinaCMS API server needed at runtime; TinaCMS still manages the files
+  - Case study images: `public/images/case-studies/[slug].webp` (12 local files)
+  - Static enrichment data (topics, descriptions, Vimeo explainer videos) in `lib/resourcesData.js`
+  - Links: Case Studies → `/case-studies/[slug]` (TinaCMS), Blogs → `/blog/[slug]` (TinaCMS), Whitepapers → `/whitepapers/[slug]` (TinaCMS), Webinars → `/webinar/[slug]` (TinaCMS), Explainer Videos → external Vimeo URLs
 
 ### Remaining (in order)
 - Home page (NewHome component)
@@ -38,7 +46,6 @@ Without Tina Cloud credentials, the local build is sufficient for the site to re
 - Service pages (AI Services, AI Governance, Automation, Data, Integration)
 - Platform page
 - Partners pages
-- Resources / Insights
 - Careers page
 
 ## Migration notes (Vercel → Replit)
