@@ -68,7 +68,7 @@ function MegaPanel({ items, intro, cols, open }) {
             {intro.ctaText} <Icon name="arrowRight" size={12} />
           </Link>
         </div>
-        <div className={[styles.megaItems, cols === 3 ? styles.megaItems3 : styles.megaItems2].join(" ")}>
+        <div className={[styles.megaItems, cols === 3 ? styles.megaItems3 : cols === "compact" ? styles.megaItems2compact : styles.megaItems2].join(" ")}>
           {items.map((item) => (
             <Link key={item.title} href={item.href} className={styles.megaItem}>
               <span className={styles.megaItemIcon}><Icon name={item.icon} size={14} /></span>
@@ -170,7 +170,7 @@ const Navbar = () => {
                 Company <Icon name="chevronDown" size={12} />
               </button>
               <MegaPanel
-                open={openMenu === "Company"} items={COMPANY} cols={2}
+                open={openMenu === "Company"} items={COMPANY} cols="compact"
                 intro={{ kicker: "Company", title: "Built for measurable, working solutions.", body: "Who we are, how we work, and how to join the team.", ctaText: "Read our story", ctaHref: "/company/about" }}
               />
             </li>
