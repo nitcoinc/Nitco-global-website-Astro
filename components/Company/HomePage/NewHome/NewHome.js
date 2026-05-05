@@ -207,7 +207,7 @@ function HeroVisual() {
             <div key={label} className={styles.heroLane}>
               <div className={styles.heroLaneTop}>
                 <div className={styles.heroLaneLabel}>
-                  <Icon size={15} color="#53eafd" />
+                  <div className={styles.heroLaneIcon}><Icon size={14} color="#53eafd" /></div>
                   <span>{label}</span>
                 </div>
                 <span className={styles.heroLanePct}>{value}%</span>

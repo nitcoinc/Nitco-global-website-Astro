@@ -216,14 +216,15 @@
   width: 40px;
   height: 40px;
   border-radius: 12px;
-  background: rgba(83,234,253,0.10);
-  border: 1px solid rgba(83,234,253,0.25);
+  background: rgba(83,234,253,0.12);
+  border: 1px solid rgba(83,234,253,0.35);
   display: flex;
   align-items: center;
   justify-content: center;
   color: #53eafd;
   flex-shrink: 0;
 }
+.heroCardIconWrap svg { stroke: #53eafd !important; }
 
 .heroCardMeta {
   font-size: 10px;
@@ -267,13 +268,23 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #53eafd;
   font-size: 12px;
   font-weight: 500;
   color: rgba(255,255,255,0.9);
 }
 
-.heroLaneLabel svg { color: #53eafd; flex-shrink: 0; }
+.heroLaneIcon {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background: rgba(83,234,253,0.12);
+  border: 1px solid rgba(83,234,253,0.30);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.heroLaneIcon svg { stroke: #53eafd !important; }
 
 .heroLanePct {
   font-size: 10px;
