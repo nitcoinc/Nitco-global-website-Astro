@@ -1,328 +1,402 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import styles from "./NewHome.module.css";
 
-const NewHome = () => {
-  const whatGridRef = useRef(null);
-  const [whatRevealed, setWhatRevealed] = useState(false);
-  const [activeOutcome, setActiveOutcome] = useState(0);
-  const [activeTestimonial, setActiveTestimonial] = useState(0);
+// ─── Inline SVG Icons ─────────────────────────────────────────────────────────
+const ArrowRight = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M5 12h14M12 5l7 7-7 7"/>
+  </svg>
+);
+const WalletIcon = ({ size = 24 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4"/><path d="M4 6v12c0 1.1.9 2 2 2h14v-4"/><circle cx="18" cy="12" r="2"/>
+  </svg>
+);
+const ActivityIcon = ({ size = 24 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+  </svg>
+);
+const LineChartIcon = ({ size = 24 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M3 3v18h18"/><polyline points="18 9 13 14 9 10 5 14"/>
+  </svg>
+);
+const TrendingDownIcon = () => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/>
+  </svg>
+);
+const ShieldCheckIcon = ({ size = 24 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/>
+  </svg>
+);
+const GaugeIcon = ({ size = 24 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 12 7 7"/><path d="M22 2 12 12"/>
+  </svg>
+);
+const LightbulbIcon = ({ size = 24 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/>
+  </svg>
+);
+const WorkflowIcon = ({ size = 24 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <rect x="3" y="3" width="5" height="5" rx="1"/><rect x="16" y="3" width="5" height="5" rx="1"/>
+    <rect x="16" y="16" width="5" height="5" rx="1"/>
+    <path d="M8 5.5h4a2 2 0 0 1 2 2v9a2 2 0 0 0 2 2h0"/><path d="M11 19H5.5a2 2 0 0 1-2-2V10"/>
+  </svg>
+);
+const BarChartIcon = ({ size = 24 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/>
+  </svg>
+);
+const BookOpenIcon = ({ size = 24 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+  </svg>
+);
+const HeadsetIcon = ({ size = 24 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M3 11V7a9 9 0 0 1 18 0v4"/>
+    <path d="M21 18a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"/>
+    <path d="M3 18a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
+  </svg>
+);
+const RocketIcon = ({ size = 24 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
+    <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
+    <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
+  </svg>
+);
+const ZapIcon = ({ size = 24 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+  </svg>
+);
+const ClockIcon = ({ size = 24 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+  </svg>
+);
+const TargetIcon = ({ size = 24 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>
+  </svg>
+);
+const SearchCodeIcon = ({ size = 24 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="m13 13.5 2-2.5-2-2.5"/><path d="m21 21-4.35-4.35"/>
+    <path d="M11 13.5 9 11l2-2.5"/><circle cx="11" cy="11" r="8"/>
+  </svg>
+);
+const CheckCircleIcon = ({ size = 24 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+  </svg>
+);
+const QuoteIcon = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+  </svg>
+);
+const FileSearchIcon = ({ size = 24 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>
+    <circle cx="11.5" cy="14.5" r="2.5"/><line x1="13.25" y1="16.25" x2="15" y2="18"/>
+  </svg>
+);
 
-  useEffect(() => {
-    const el = whatGridRef.current;
-    if (!el || typeof IntersectionObserver === "undefined") {
-      setWhatRevealed(true);
-      return;
-    }
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setWhatRevealed(true);
-            io.disconnect();
-          }
-        });
-      },
-      { threshold: 0.15 }
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
+function scrollToId(id) {
+  if (typeof window === "undefined") return;
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+}
 
-  /* ── SVG Icons ── */
-  const iconWallet = (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="3" y="6" width="18" height="13" rx="2" />
-      <path d="M3 10h18" />
-      <circle cx="16.5" cy="14.5" r="1.2" fill="currentColor" stroke="none" />
-    </svg>
-  );
-  const iconGears = (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="9" cy="9" r="3" />
-      <path d="M9 3v2M9 13v2M3 9h2M13 9h2M5.3 5.3l1.4 1.4M11.3 11.3l1.4 1.4M5.3 12.7l1.4-1.4M11.3 6.7l1.4-1.4" />
-      <circle cx="16.5" cy="16.5" r="2.2" />
-    </svg>
-  );
-  const iconChart = (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M5 20V11M10 20V6M15 20v-7M20 20v-4" />
-    </svg>
-  );
-  const iconBook = (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M4 5a2 2 0 0 1 2-2h12v18H6a2 2 0 0 1-2-2V5z" />
-      <path d="M8 7h7M8 11h7" />
-    </svg>
-  );
-  const iconHeadset = (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M4 14v-2a8 8 0 0 1 16 0v2" />
-      <rect x="3" y="14" width="4" height="6" rx="1.2" />
-      <rect x="17" y="14" width="4" height="6" rx="1.2" />
-      <path d="M20 20a3 3 0 0 1-3 3h-2" />
-    </svg>
-  );
-  const iconRocket = (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M14 4c4 1 6 3 7 7-2 .4-3.5 1-5 2L9 20l-3-1-1-3 7-7c1-1.5 1.6-3 2-5z" />
-      <circle cx="15" cy="9" r="1.4" />
-      <path d="M5 19c-1 1-1 3-1 3s2 0 3-1" />
-    </svg>
-  );
-  const iconShield = (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M12 3l8 3v5c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-3z" />
-      <path d="M9 12l2 2 4-4" />
-    </svg>
-  );
+// ─── Data ─────────────────────────────────────────────────────────────────────
+const pillars = [
+  { accent: "#00FFFF", glow: "rgba(0,255,255,0.18)", Icon: WalletIcon,    label: "Financial Execution",      title: "Where money quietly leaks",         description: "Working capital release timing, payment accuracy, and spend integrity — fixed at the workflow level so the leakage stops, not just the report." },
+  { accent: "#28BD5A", glow: "rgba(40,189,90,0.18)", Icon: GaugeIcon,     label: "Operations",                title: "Where work loses its speed",         description: "Cycle times across shared services and document-heavy workflows — compressed so operations move at the pace your business actually needs." },
+  { accent: "#FFD700", glow: "rgba(255,215,0,0.18)", Icon: LightbulbIcon, label: "Business Decision Making",  title: "Where leaders lose conviction",      description: "Decision-grade signals delivered to leadership so reporting and forecasting cycles get faster, sharper, and more trusted." },
+];
 
-  /* ── Data ── */
-  const programs = [
-    { icon: iconWallet, title: "Working Capital & Spend Integrity", body: "Improve billing accuracy, payment execution, and working capital performance", cta: "Learn more" },
-    { icon: iconGears, title: "Workflow Automation", body: "Eliminate manual effort and streamline exception-heavy processes", cta: "Talk to us about this" },
-    { icon: iconChart, title: "Decision-Ready Data", body: "Turn fragmented data into trusted insight for faster decisions", cta: "Talk to us about this" },
-    { icon: iconBook, title: "Employee Knowledge & Productivity", body: "Instant, context-aware answers across systems and documents", cta: "Talk to us about this" },
-    { icon: iconHeadset, title: "Customer Support Optimization", body: "Reduce support cost and improve resolution times", cta: "Talk to us about this" },
-    { icon: iconRocket, title: "AI Solution Delivery", body: "Turn AI ideas into production-ready workflow solutions", cta: "Talk to us about this" },
-    { icon: iconShield, title: "AI Risk, Cost & Governance", body: "Ensure AI is secure, controlled, cost-effective, and scalable.", cta: "Talk to us about this" },
+const programs = [
+  { Icon: WalletIcon,      title: "Working Capital & Spend Integrity",  description: "Improve billing accuracy, payment execution, and working capital performance.", to: "/solutions/working-capital-spend-integrity" },
+  { Icon: WorkflowIcon,    title: "Workflow Automation",                 description: "Eliminate manual effort and streamline exception-heavy processes.",             to: "/solutions/workflow-automation" },
+  { Icon: BarChartIcon,    title: "Decision-Ready Data",                 description: "Turn fragmented data into trusted insight for faster decisions.",               to: "/solutions/decision-ready-data" },
+  { Icon: BookOpenIcon,    title: "Employee Knowledge & Productivity",   description: "Instant, context-aware answers across systems and documents.",                  to: "/solutions/employee-knowledge-productivity" },
+  { Icon: HeadsetIcon,     title: "Customer Support Optimization",       description: "Reduce support cost and improve resolution times.",                             to: "/solutions/customer-support-optimization" },
+  { Icon: RocketIcon,      title: "AI Solution Delivery",                description: "Turn AI ideas into production-ready workflow solutions.",                       to: "/solutions/ai-solution-delivery" },
+  { Icon: ShieldCheckIcon, title: "AI Risk, Cost & Governance",          description: "Ensure AI is secure, controlled, cost-effective, and scalable.",               to: "/solutions/ai-risk-cost-governance" },
+];
+
+const stats = [
+  { Icon: ZapIcon,    value: "40–60%", label: "Less manual effort" },
+  { Icon: WalletIcon, value: "2–4%",   label: "Working capital gain" },
+  { Icon: ClockIcon,  value: "6–10 weeks", label: "To AI in production" },
+];
+
+const valueProps = [
+  { Icon: TargetIcon,     title: "We focus on business outcomes — not just technology",   body: "We start with where your business is failing money, time, or clarity — not with tools." },
+  { Icon: SearchCodeIcon, title: "We operate in the \u2018messy middle\u2019",             body: "Most real work happens between systems, in documents, emails, and exceptions. That\u2019s where we specialize." },
+  { Icon: ZapIcon,        title: "We combine AI with real-world execution",               body: "We apply AI where it helps — and combine it with structured logic and human oversight where it matters." },
+  { Icon: ClockIcon,      title: "We deliver progress quickly",                           body: "Our programs are designed to move from insight to actionable next steps in weeks, not months." },
+];
+
+const metrics = [
+  "Reduced manual processing effort across operations by 60%+",
+  "Identified significant working capital improvement opportunities",
+  "Accelerated document-driven workflows across shared services",
+  "Reduced reporting and decision-cycle times",
+  "Improved trust in key business metrics across leadership teams",
+];
+
+const kpiTiles = [
+  { Icon: GaugeIcon,       value: "60%+", label: "Manual effort removed" },
+  { Icon: WalletIcon,      value: "4x",   label: "Working capital opportunity" },
+  { Icon: FileSearchIcon,  value: "5x",   label: "Faster document workflows" },
+  { Icon: LineChartIcon,   value: "70%+", label: "Decision-cycle compression" },
+  { Icon: ShieldCheckIcon, value: "95%",  label: "Leadership trust in metrics" },
+];
+
+const testimonials = [
+  { quote: "NITCO did a tremendous job leading the integration and preparing us for go live. Their deep product knowledge, responsiveness, and commitment including weekend support were critical to the success of this highly visible implementation.", role: "Director of IT", company: "Industrial Equipment and Material Handling Company", tag: "Enterprise Integration" },
+  { quote: "NITCO integrated our ERP and TMS platforms and automated our shipment workflows. We reduced manual effort, improved accuracy and now process global shipments faster than ever before.", role: "Sr. Director of Enterprise Applications", company: "Global Freight & Logistics Provider", tag: "Workflow Automation" },
+  { quote: "What used to be a tedious, error-prone process is now fully automated. RPA and document intelligence transformed how we handle high-volume invoices — faster cycles, fewer mistakes and real-time insights.", role: "Finance Manager", company: "Global Food & Beverage Leader", tag: "Intelligent Automation" },
+  { quote: "Their team helped us turn raw operational data into real insights. With tailored models and custom solutions, we've improved forecasting, reduced downtime and made faster, data-backed decisions.", role: "Program Manager", company: "Global Energy Company", tag: "Decision-Ready Data" },
+  { quote: "Repetitive tasks that once slowed us down now run hands-free. With automation in place, our teams focus more on operations and less on paperwork.", role: "Automation Manager", company: "Global Chemicals Manufacturer", tag: "RPA" },
+  { quote: "We brought together data from multiple systems into a single, reliable view. Integration simplified reporting, improved accuracy and gave our teams a clearer picture of performance across the business.", role: "IT Manager", company: "Leading Building Materials Provider", tag: "Enterprise Integration" },
+  { quote: "The virtual assistant made resident support available 24/7. It answers questions, handles requests and creates a more responsive, connected experience for our communities.", role: "Sr Manager", company: "Property Management Company", tag: "Conversational AI" },
+  { quote: "Our virtual assistant transformed onboard operations — streamlining staff tasks, handling requests and saving time across voyages. It\u2019s like having a digital crew member that never sleeps.", role: "Manager", company: "Cruise Hospitality & Wellness", tag: "Conversational AI" },
+];
+
+const engagementSteps = [
+  "Identify high-impact opportunities",
+  "Define a clear path forward",
+  "Enable quick progress toward implementation",
+];
+
+// ─── Hero Right-Panel Visual ───────────────────────────────────────────────────
+function HeroVisual() {
+  const lanes = [
+    { label: "Money leakage",     Icon: WalletIcon,    value: 88 },
+    { label: "Operational drag",  Icon: ActivityIcon,  value: 72 },
+    { label: "Decision friction", Icon: LineChartIcon, value: 95 },
   ];
-
-  const partnerLogos = [
-    { src: "/images/HomePage/awsHomePlatform.webp", alt: "AWS" },
-    { src: "/images/HomePage/automationHomePlatform.webp", alt: "Automation Anywhere" },
-    { src: "/images/HomePage/BlueprismHomePlatform.webp", alt: "Blue Prism" },
-    { src: "/images/HomePage/BoomiHomePlatform.webp", alt: "Boomi" },
-    { src: "/images/HomePage/CeligoHomePlatform.webp", alt: "Celigo" },
-    { src: "/images/HomePage/saidot-home.png", alt: "Saidot" },
-    { src: "/images/HomePage/IBMHomePlatform.webp", alt: "IBM" },
-    { src: "/images/HomePage/JitterHomePlatform.webp", alt: "Jitterbit" },
-    { src: "/images/HomePage/KoreHomePlatform.webp", alt: "Kore.ai" },
-    { src: "/images/HomePage/MicroSoftHomePlatform.webp", alt: "Microsoft" },
-    { src: "/images/HomePage/TrayHomePlatform.webp", alt: "Tray.io" },
-    { src: "/images/HomePage/UIHomePlatform.webp", alt: "UiPath" },
-    { src: "/images/HomePage/WorkatoHomePlatform.webp", alt: "Workato" },
-  ];
-
-  const testimonials = [
-    { quote: "NITCO did a tremendous job leading the integration and preparing us for go live. Their deep product knowledge, responsiveness, and commitment including weekend support were critical to the success of this highly visible implementation. This milestone will significantly improve our order to cash process and is a key reason we continue to partner with NITCO.", designation: "Director of IT", company: "Industrial Equipment and Material Handling Company", logo: "/images/HomePage/IndustrialEquipmentandMaterialHandlingCompany.svg" },
-    { quote: "NITCO integrated our ERP and TMS platforms and automated our shipment workflows. We reduced manual effort, improved accuracy and now process global shipments faster than ever before.", designation: "Sr. Director of Enterprise Applications", company: "Global Freight & Logistics Provider", logo: "/images/HomePage/GlobalFreightLogisticsProvider.svg" },
-    { quote: "What used to be a tedious, error-prone process is now fully automated. RPA and document intelligence transformed how we handle high-volume invoices — faster cycles, fewer mistakes and real-time insights.", designation: "Finance Manager", company: "Global Food & Beverage Leader", logo: "/images/HomePage/GlobalFoodandBeverageLeader.svg" },
-    { quote: "Their team helped us turn raw operational data into real insights. With tailored models and custom solutions, we've improved forecasting, reduced downtime and made faster, data-backed decisions.", designation: "Program Manager", company: "Global Energy Company", logo: "/images/HomePage/GlobalEnergyCompany.svg" },
-    { quote: "Repetitive tasks that once slowed us down now run hands-free. With automation in place, our teams focus more on operations and less on paperwork.", designation: "Automation Manager", company: "Global Chemicals Manufacturer", logo: "/images/HomePage/GlobalChemicalManufacturer.svg" },
-    { quote: "We brought together data from multiple systems into a single, reliable view. Integration simplified reporting, improved accuracy and gave our teams a clearer picture of performance across the business.", designation: "IT Manager", company: "Leading Building Materials Provider", logo: "/images/HomePage/LeadingBuildingMaterialsProvider.svg" },
-    { quote: "The virtual assistant made resident support available 24/7. It answers questions, handles requests and creates a more responsive, connected experience for our communities.", designation: "Sr Manager", company: "Property Management Company", logo: "/images/HomePage/PropertyManagementCompany.svg" },
-    { quote: "Our virtual assistant transformed onboard operations — streamlining staff tasks, handling requests and saving time across voyages. It's like having a digital crew member that never sleeps.", designation: "Manager", company: "Cruise Hospitality & Wellness", logo: "/images/HomePage/CruiseHospitalityandWellness.svg" },
-  ];
-
-  const why = [
-    { title: "We focus on business outcomes — not just technology", body: "We start with where your business is losing money, time, or clarity — not with tools." },
-    { title: 'We operate in the \u201Cmessy middle\u201D', body: "Most real work happens between systems — in documents, emails, and exceptions. That's where we specialize." },
-    { title: "We combine AI with real-world execution", body: "We apply AI where it helps — and combine it with structured logic and human oversight where it matters." },
-    { title: "We deliver progress quickly", body: "Our programs are designed to move from insight to actionable next steps in weeks, not months." },
-  ];
-
-  const outcomes = [
-    { text: "Reduced manual processing effort across operations by 50%+", image: "/images/HomePage/outcome-1.png" },
-    { text: "Identified significant working capital improvement opportunities", image: "/images/HomePage/outcomes-image.png" },
-    { text: "Accelerated document-driven workflows across shared services", image: "/images/HomePage/outcome-1.png" },
-    { text: "Reduced reporting and decision cycle times", image: "/images/HomePage/outcomes-image.png" },
-    { text: "Improved trust in key business metrics across leadership teams", image: "/images/HomePage/outcome-1.png" },
-  ];
-
-  const whatNitcoCards = [
-    { title: "Financial Execution", body: "Fix working capital, payment accuracy & spend integrity at the workflow level to eliminate leakage.", img: "/images/HomePage/whatNitco-illustration.png" },
-    { title: "Operational Workflows", body: "Compress cycle times across shared services & document-heavy workflows to match business pace.", img: "/images/HomePage/whatNitco-laptop.png" },
-    { title: "Business Decision-Making", body: "Deliver decision-grade insights to leadership for faster, sharper, more reliable forecasting.", img: "/images/HomePage/whatNitco-analytics.png" },
-  ];
-
-  const prevTestimonial = () => setActiveTestimonial((p) => (p === 0 ? testimonials.length - 1 : p - 1));
-  const nextTestimonial = () => setActiveTestimonial((p) => (p === testimonials.length - 1 ? 0 : p + 1));
-
   return (
-    <>
+    <div className={styles.heroVisual}>
+      <div className={styles.heroGlow} aria-hidden="true" />
+      <div className={styles.heroCard}>
+        <div className={styles.heroCardHeader}>
+          <div className={styles.heroCardTitleRow}>
+            <span className={styles.heroCardIconWrap}><ActivityIcon size={20} /></span>
+            <div>
+              <p className={styles.heroCardMeta}>Execution</p>
+              <p className={styles.heroCardTitle}>Health overview</p>
+            </div>
+          </div>
+          <span className={styles.heroCardBadge}><TrendingDownIcon /> drag</span>
+        </div>
+        <div className={styles.heroLanes}>
+          {lanes.map(({ label, Icon, value }, i) => (
+            <div key={label} className={styles.heroLane}>
+              <div className={styles.heroLaneTop}>
+                <div className={styles.heroLaneLabel}><Icon size={14} /><span>{label}</span></div>
+                <span className={styles.heroLanePct}>{value}%</span>
+              </div>
+              <div className={styles.heroBarBg}>
+                <div className={styles.heroBarFill} style={{ "--bar-w": `${value}%`, animationDelay: `${0.4 + i * 0.15}s` }} />
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className={styles.heroCardFooter}>
+          <span className={styles.heroCardFooterLabel}>Live signal</span>
+          <span className={styles.heroCardFooterStatus}>
+            <span className={styles.heroPingOuter} aria-hidden="true" />
+            <span className={styles.heroPingInner} aria-hidden="true" />
+            Active
+          </span>
+        </div>
+      </div>
+      <div className={styles.heroChipTopRight}>
+        <div className={styles.heroChipRow}><TrendingDownIcon /><span className={styles.heroChipMeta}>Cycle time</span></div>
+        <div className={styles.heroChipValue}>-42%<span className={styles.heroChipUnit}> qoq</span></div>
+      </div>
+      <div className={styles.heroChipBottomLeft}>
+        <ShieldCheckIcon size={14} />
+        <div>
+          <p className={styles.heroChipMeta}>Leakage recovered</p>
+          <p className={styles.heroChipTitle}>Quarter to date</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function TestimonialCard({ t }) {
+  return (
+    <div className={styles.testimonialCard}>
+      <div className={styles.testimonialTop}>
+        <span className={styles.testimonialQuoteIcon}><QuoteIcon /></span>
+        <span className={styles.testimonialTag}>{t.tag}</span>
+      </div>
+      <p className={styles.testimonialText}>{t.quote}</p>
+      <div className={styles.testimonialFooter}>
+        <p className={styles.testimonialRole}>{t.role}</p>
+        <p className={styles.testimonialCompany}>{t.company}</p>
+      </div>
+    </div>
+  );
+}
+
+// ─── Main Component ────────────────────────────────────────────────────────────
+export default function NewHome() {
+  return (
+    <div className={styles.root}>
+
       {/* ── HERO ── */}
       <section className={styles.hero}>
-        <video className={styles.heroVideo} src="/HomeHero.mp4" autoPlay muted loop playsInline />
-        <div className={styles.heroOverlay} aria-hidden="true" />
-        <div className={`${styles.container} ${styles.heroInner}`}>
-          <h1 className={styles.heroTitle}>
-            Fix what&apos;s slowing your business down <br /> — money leakage, operational drag,<br /> and decision friction.
-          </h1>
-          <p className={styles.heroSub}>
-            NITCO helps enterprises improve working capital, accelerate operations, and make faster decisions with AI-enabled execution.
-          </p>
-          <div className={styles.ctaRow}>
-            <Link href="/services" className={`${styles.btn} ${styles.btnPink}`}>Explore Solutions</Link>
-            <Link href="/platform" className={`${styles.btn} ${styles.btnDark}`}>See How It Works</Link>
-            <Link href="/contact" className={`${styles.btn} ${styles.btnOutlinePink}`}>Talk to an Expert</Link>
+        <div className={styles.gridTexture} aria-hidden="true" />
+        <div className={styles.glowTopRight} aria-hidden="true" />
+        <div className={styles.glowBottomLeft} aria-hidden="true" />
+        <div className={styles.container}>
+          <div className={styles.heroInner}>
+            <div className={styles.heroContent}>
+              <h1 className={styles.heroH1}>Fix what&apos;s slowing your business down.</h1>
+              <p className={styles.heroSub}>
+                We help mid-market and enterprise companies eliminate{" "}
+                <strong>money leakage</strong>,{" "}
+                <strong>operational drag</strong>, and{" "}
+                <strong>decision friction</strong>{" "}
+                with targeted AI execution.
+              </p>
+              <div className={styles.heroCtas}>
+                <button className={styles.ctaPrimary} onClick={() => scrollToId("command-center")}>
+                  Explore Solutions <ArrowRight />
+                </button>
+                <button className={styles.ctaOutline} onClick={() => scrollToId("what-we-do")}>
+                  See How It Works <ArrowRight />
+                </button>
+                <Link href="/contact" className={styles.ctaCyan}>
+                  Talk to an Expert <ArrowRight />
+                </Link>
+              </div>
+            </div>
+            <div className={styles.heroVisualCol}>
+              <HeroVisual />
+            </div>
           </div>
         </div>
       </section>
 
       {/* ── WHAT NITCO DOES ── */}
-      <section className={styles.what}>
+      <section id="what-we-do" className={styles.what}>
+        <div className={styles.gridTexture} aria-hidden="true" />
+        <div className={styles.glowTopRight} aria-hidden="true" />
+        <div className={styles.glowBottomLeft} aria-hidden="true" />
         <div className={styles.container}>
-          <div className={styles.whatHead}>
-            <div className={`${styles.eyebrow} ${styles.eyebrowDark}`}>What NITCO Does</div>
-            <h2 className={styles.h2}>We focus on where business performance actually breaks — and fix it.</h2>
-            <p className={styles.whatLead}>NITCO works at the intersection of Financial execution, Operational workflows, and Business decision-making</p>
+          <div className={styles.whatHeader}>
+            <div className={styles.whatHeadLeft}>
+              <p className={styles.eyebrow}>What NITCO Does</p>
+              <h2 className={styles.whatH2}>
+                We focus on where business performance{" "}
+                <span className={styles.gradientText}>actually breaks</span>{" "}
+                — and fix it.
+              </h2>
+            </div>
+            <p className={styles.whatSub}>
+              NITCO works at three execution surfaces where mid-market and
+              enterprise companies bleed value the fastest.
+            </p>
           </div>
-          <div
-            ref={whatGridRef}
-            style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "16px", marginTop: "22px" }}
-          >
-            {whatNitcoCards.map((card, idx) => (
-              <article
-                key={card.title}
-                style={{
-                  borderRadius: "8px", overflow: "hidden", background: "#ffffff",
-                  boxShadow: "0 4px 16px rgba(15,17,64,0.08)", minHeight: "370px",
-                  display: "flex", flexDirection: "column",
-                  opacity: whatRevealed ? 1 : 0,
-                  transform: whatRevealed ? "translateY(0)" : "translateY(24px)",
-                  transition: "opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1)",
-                  transitionDelay: `${idx * 140}ms`,
-                  willChange: "opacity, transform",
-                }}
-              >
-                <div style={{ padding: "22px 24px", flex: 1 }}>
-                  <h3 style={{ margin: "0 0 10px", fontSize: "18px", lineHeight: 1.2, color: "#0b0f3a" }}>{card.title}</h3>
-                  <p style={{ margin: 0, fontSize: "14px", lineHeight: 1.45, color: "#111111" }}>{card.body}</p>
+          <div className={styles.pillarsGrid}>
+            {pillars.map(({ accent, glow, Icon, label, title, description }, idx) => (
+              <article key={label} className={styles.pillarCard}>
+                <div className={styles.pillarAccentLine} style={{ background: `linear-gradient(90deg, transparent, ${accent}, transparent)` }} />
+                <div className={styles.pillarHoverGlow} style={{ background: `radial-gradient(circle, ${glow} 0%, transparent 70%)` }} aria-hidden="true" />
+                <div className={styles.pillarTop}>
+                  <div className={styles.pillarIconWrap} style={{ borderColor: `${accent}33` }}>
+                    <span style={{ color: accent }}><Icon size={24} /></span>
+                  </div>
+                  <span className={styles.pillarNum} style={{ color: accent }}>0{idx + 1}</span>
                 </div>
-                <div style={{ background: "#16164C", minHeight: "220px", display: "flex", alignItems: "center", justifyContent: "center", padding: "14px" }}>
-                  <img src={card.img} alt={card.title} style={{ width: "70%", maxHeight: "160px", objectFit: "contain" }} />
-                </div>
+                <p className={styles.pillarLabel}>{label}</p>
+                <h3 className={styles.pillarTitle}>{title}</h3>
+                <p className={styles.pillarDesc}>{description}</p>
               </article>
             ))}
           </div>
-          <p className={styles.whatFootNote}>We don't just analyze problems — we help you move toward working solutions quickly.</p>
-        </div>
-      </section>
-
-      {/* ── OUR PROGRAMS ── */}
-      <section className={styles.programs}>
-        <div className={styles.container}>
-          <div className={styles.programsHead2}>
-            <div className={styles.programsEyebrow}>Our Programs</div>
-            <h2 className={styles.programsHeadline}>Targeted programs across finance, operations, data, knowledge, and AI.</h2>
-          </div>
-          <div className={styles.programsCardGrid}>
-            {programs.map((p) => (
-              <div key={p.title} className={styles.programCard2}>
-                <div className={styles.programIcon}>{p.icon}</div>
-                <h3 className={styles.programCardTitle}>{p.title}</h3>
-                <p className={styles.programCardBody}>{p.body}</p>
-                <Link href="/services" className={styles.programCardLink}>
-                  {p.cta}
-                  <span aria-hidden="true" className={styles.programCardArrow}>→</span>
-                </Link>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── POWERED BY PLATFORMS ── */}
-      <section className={styles.partners}>
-        <div className={styles.container}>
-          <div className={styles.partnersHead}>
-            <div className={`${styles.eyebrow} ${styles.eyebrowDark}`}>Technology Partners</div>
-            <h2 className={styles.partnersH2}>Powered by <span className={styles.pink}>Platforms</span></h2>
-            <p className={styles.partnersSub}>
-              We work alongside a diverse network of global technology partners to co-create solutions that are scalable, secure and future-focused.
-            </p>
-          </div>
-        </div>
-        <div className={styles.marqueeOuter}>
-          <div className={styles.marqueeTrack}>
-            {[...partnerLogos, ...partnerLogos].map((logo, i) => (
-              <div key={i} className={styles.marqueeItem}>
-                <img src={logo.src} alt={logo.alt} className={styles.marqueeImg} />
-              </div>
-            ))}
-          </div>
-        </div>
-        <div className={styles.container}>
-          <div style={{ textAlign: "center", marginTop: "40px" }}>
-            <Link href="/platform" className={`${styles.btn} ${styles.btnOutlineDark}`}>View All Partners</Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ── TRUSTED BY INDUSTRY LEADERS (TESTIMONIALS) ── */}
-      <section className={styles.testimonials}>
-        <div className={styles.container}>
-          <div className={styles.testimonialsTop}>
-            <div>
-              <div className={styles.testimonialsEyebrow}>Client Stories</div>
-              <h2 className={styles.testimonialsH2}>
-                Trusted by <span className={styles.pink}>Industry Leaders</span>
-              </h2>
+          <div className={styles.synthBar}>
+            <div className={styles.synthAccentLine} aria-hidden="true" />
+            <div className={styles.synthText}>
+              <p className={styles.eyebrowCyan}>The intersection</p>
+              <p className={styles.synthHeadline}>
+                We don&apos;t just analyze problems — we help you move toward working solutions quickly.
+              </p>
             </div>
-            <div className={styles.testimonialNav}>
-              <button className={styles.testimonialArrow} onClick={prevTestimonial} aria-label="Previous">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M15 18l-6-6 6-6" />
-                </svg>
-              </button>
-              <span className={styles.testimonialCount}>{activeTestimonial + 1} / {testimonials.length}</span>
-              <button className={styles.testimonialArrow} onClick={nextTestimonial} aria-label="Next">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M9 18l6-6-6-6" />
-                </svg>
-              </button>
-            </div>
+            <a href="#command-center" className={styles.synthCta}
+              onClick={(e) => { e.preventDefault(); scrollToId("command-center"); }}>
+              See the programs <ArrowRight />
+            </a>
           </div>
+        </div>
+      </section>
 
-          <div className={styles.testimonialsGrid}>
-            {[0, 1].map((offset) => {
-              const idx = (activeTestimonial + offset) % testimonials.length;
-              const t = testimonials[idx];
-              return (
-                <div key={idx} className={styles.testimonialCard}>
-                  <div className={styles.testimonialQuoteIcon}>
-                    <img src="/images/HomePage/Quotes.svg" alt="quote" style={{ width: "36px", opacity: 0.6 }} />
-                  </div>
-                  <p className={styles.testimonialQuote}>&ldquo;{t.quote}&rdquo;</p>
-                  <div className={styles.testimonialFooter}>
-                    <img src={t.logo} alt={t.company} className={styles.testimonialLogo} />
-                    <div>
-                      <p className={styles.testimonialDesignation}>{t.designation}</p>
-                      <p className={styles.testimonialCompany}>{t.company}</p>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
+      {/* ── CORE PROGRAMS ── */}
+      <section id="command-center" className={styles.programs}>
+        <div className={styles.container}>
+          <div className={styles.programsHeader}>
+            <p className={styles.eyebrowCyan}>Our Programs</p>
+            <h2 className={styles.programsH2}>
+              Targeted programs across finance, operations, data, knowledge, and AI.
+            </h2>
           </div>
-
-          <div className={styles.testimonialDots}>
-            {testimonials.map((_, i) => (
-              <button
-                key={i}
-                className={`${styles.dot} ${i === activeTestimonial ? styles.dotActive : ""}`}
-                onClick={() => setActiveTestimonial(i)}
-                aria-label={`Go to testimonial ${i + 1}`}
-              />
+          <div className={styles.programsGrid}>
+            {programs.map(({ Icon, title, description, to }, i) => (
+              <Link key={i} href={to} className={styles.programCard}>
+                <span className={styles.programTopLine} aria-hidden="true" />
+                <div className={styles.programIconWrap}><Icon size={28} /></div>
+                <h3 className={styles.programTitle}>{title}</h3>
+                <p className={styles.programDesc}>{description}</p>
+                <span className={styles.programLearnMore}>Learn more <ArrowRight /></span>
+              </Link>
             ))}
+            {/* Stats panel — spans 2 columns */}
+            <div className={styles.statsPanel}>
+              <div className={styles.statsGlow} aria-hidden="true" />
+              <div className={styles.statsGrid}>
+                {stats.map(({ Icon, value, label }) => (
+                  <div key={label} className={styles.statItem}>
+                    <span className={styles.statIconWrap}><Icon size={20} /></span>
+                    <p className={styles.statValue}>{value}</p>
+                    <p className={styles.statLabel}>{label}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* ── WHY NITCO ── */}
-      <section className={styles.why}>
+      <section id="solutions" className={styles.why}>
         <div className={styles.container}>
-          <div className={styles.whyHead}>
-            <div className={`${styles.eyebrow} ${styles.eyebrowCyan}`}>Why NITCO?</div>
-            <h2 className={styles.whyH2}>Turning vision into high-impact technology solutions.</h2>
+          <div className={styles.whyHeaderWrap}>
+            <p className={styles.eyebrowCyan}>Why NITCO?</p>
+            <h2 className={styles.whyH2}>Turning Vision into High-Impact Technology Solutions.</h2>
           </div>
-          <div className={styles.whyList}>
-            {why.map((w, i) => (
-              <div key={w.title} className={styles.whyRow}>
-                <div className={styles.whyNum}>{String(i + 1).padStart(2, "0")}</div>
-                <h3 className={styles.whyHeadline}>{w.title}</h3>
-                <p className={styles.whyText}>{w.body}</p>
+          <div className={styles.whyGrid}>
+            {valueProps.map(({ Icon, title, body }, i) => (
+              <div key={i} className={styles.whyCard}>
+                <div className={styles.whyIconWrap}><Icon size={24} /></div>
+                <h3 className={styles.whyCardTitle}>{title}</h3>
+                <p className={styles.whyCardBody}>{body}</p>
               </div>
             ))}
           </div>
@@ -330,52 +404,104 @@ const NewHome = () => {
       </section>
 
       {/* ── OUTCOMES ── */}
-      <section className={styles.outcomes}>
+      <section id="resources" className={styles.outcomes}>
+        <div className={styles.outcomesBgWrap} aria-hidden="true">
+          <img src="/images/HomePage/outcomes-image.png" alt="" className={styles.outcomesBgImg} />
+          <div className={styles.outcomesBgOverlay} />
+        </div>
         <div className={styles.container}>
-          <div className={styles.outcomesGrid}>
-            <div className={styles.outcomesHead}>
-              <div className={styles.eyebrow}>Outcomes</div>
-              <h2 className={`${styles.h2} ${styles.h2Light}`}>Real outcomes,<br />not just recommendations</h2>
-              <ul className={styles.outcomesList}>
-                {outcomes.map((o, i) => (
-                  <li key={o.text} onMouseEnter={() => setActiveOutcome(i)} className={i === activeOutcome ? styles.outcomesHighlight : ""} style={{ cursor: "pointer" }}>
-                    {o.text}
+          <div className={styles.outcomesInner}>
+            <div className={styles.outcomesLeft}>
+              <p className={styles.eyebrowCyan}>Outcomes</p>
+              <h2 className={styles.outcomesH2}>Real outcomes, not just recommendations.</h2>
+              <ul className={styles.metricsList}>
+                {metrics.map((m, i) => (
+                  <li key={i} className={styles.metricItem}>
+                    <span className={styles.metricIcon}><CheckCircleIcon size={22} /></span>
+                    <span>{m}</span>
                   </li>
                 ))}
               </ul>
-              <p className={styles.outcomesNote}>We focus on measurable improvements — not just analysis.</p>
+              <p className={styles.outcomesPull}>We focus on measurable improvements — not just analysis.</p>
             </div>
-            <div className={styles.videoBox}>
-              <img
-                key={outcomes[activeOutcome].image}
-                src={outcomes[activeOutcome].image}
-                alt={outcomes[activeOutcome].text}
-                style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", zIndex: 0, transition: "opacity 0.4s ease" }}
-              />
+            <div className={styles.outcomesRight}>
+              <div className={styles.kpiHeader}>
+                <span className={styles.eyebrowCyan}>Engagement KPIs</span>
+                <div className={styles.kpiDivider} />
+                <span className={styles.kpiIndicative}>Indicative</span>
+              </div>
+              <div className={styles.kpiGrid}>
+                {kpiTiles.map(({ Icon, value, label }, i) => (
+                  <div key={i} className={`${styles.kpiTile}${i === kpiTiles.length - 1 ? " " + styles.kpiTileWide : ""}`}>
+                    <div className={styles.kpiTileGlow} aria-hidden="true" />
+                    <div className={styles.kpiTileTop}>
+                      <div className={styles.kpiIconWrap}><Icon size={16} /></div>
+                      <span className={styles.kpiTileNum}>{String(i + 1).padStart(2, "0")}</span>
+                    </div>
+                    <div className={styles.kpiValue}>{value}</div>
+                    <div className={styles.kpiLabel}>{label}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── TESTIMONIALS ── */}
+      <section className={styles.testimonials}>
+        <div className={styles.testimonialsEdgeLeft} aria-hidden="true" />
+        <div className={styles.testimonialsEdgeRight} aria-hidden="true" />
+        <div className={styles.container}>
+          <p className={styles.eyebrowCyan}>Client Stories</p>
+          <h2 className={styles.testimonialsH2}>Trusted by Industry Leaders</h2>
+        </div>
+        <div className={styles.marqueeWrap}>
+          <div className={styles.marqueeRow}>
+            <div className={styles.marqueeLeft}>
+              {[...testimonials, ...testimonials].map((t, i) => (
+                <TestimonialCard key={`r1-${i}`} t={t} />
+              ))}
+            </div>
+          </div>
+          <div className={styles.marqueeRow}>
+            <div className={styles.marqueeRight}>
+              {[...testimonials.slice(4), ...testimonials.slice(0, 4), ...testimonials.slice(4), ...testimonials.slice(0, 4)].map((t, i) => (
+                <TestimonialCard key={`r2-${i}`} t={t} />
+              ))}
             </div>
           </div>
         </div>
       </section>
 
       {/* ── ENGAGEMENT MODEL ── */}
-      <section className={styles.engagement}>
+      <section id="engagement" className={styles.engagement}>
+        <div className={styles.engagementBgWrap} aria-hidden="true">
+          <img src="/images/HomePage/engagement-bg.jpg" alt="" className={styles.engagementBgImg} />
+          <div className={styles.engagementBgOverlay} />
+        </div>
         <div className={styles.container}>
-          <div className={styles.engagementHead}>
-            <div className={`${styles.eyebrow} ${styles.eyebrowDark}`}>Engagement Model</div>
-            <h2 className={styles.h2}>Start focused. Scale with confidence.</h2>
-            <p className={styles.engagementMicro}>Each of our programs is designed to:</p>
-            <ul className={styles.engagementList}>
-              <li>Identify high-impact opportunities</li>
-              <li>Define a clear path forward</li>
-              <li>And enable quick progress toward implementation</li>
-            </ul>
-            <p className={styles.engagementMicro}>You don&apos;t need a massive transformation to get started.</p>
-            <Link href="/contact" className={`${styles.btn} ${styles.btnPink}`}>Get In Touch</Link>
+          <div className={styles.engagementCenter}>
+            <p className={styles.eyebrowCyan}>Engagement Model</p>
+            <h2 className={styles.engagementH2}>
+              Start focused.<br />
+              Scale with confidence.
+            </h2>
+            <p className={styles.engagementSub}>Each of our programs is designed to:</p>
+            <div className={styles.stepsRow}>
+              {engagementSteps.map((step, i) => (
+                <div key={i} className={styles.stepCard}>
+                  <span className={styles.stepNum} aria-hidden="true">0{i + 1}</span>
+                  <h3 className={styles.stepTitle}>{step}</h3>
+                </div>
+              ))}
+            </div>
+            <p className={styles.engagementTagline}>You don&apos;t need a massive transformation to get started.</p>
+            <Link href="/contact" className={styles.engagementCta}>Get in Touch</Link>
           </div>
         </div>
       </section>
-    </>
-  );
-};
 
-export default NewHome;
+    </div>
+  );
+}
