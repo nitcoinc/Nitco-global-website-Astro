@@ -52,15 +52,14 @@ const COMPANY = [
 ];
 
 /* ── Mega menu panel ── */
-function MegaPanel({ items, intro, cols, open, wide }) {
+function MegaPanel({ items, intro, cols, open }) {
   return (
-    <div className={[styles.megaPanel, wide ? styles.megaPanelWide : "", open ? styles.megaOpen : ""].join(" ")}>
+    <div className={[styles.megaPanel, open ? styles.megaOpen : ""].join(" ")}>
       <div className={styles.megaGlowPurple} aria-hidden="true" />
       <div className={styles.megaGlowCyan}   aria-hidden="true" />
       <div className={styles.megaGlowPink}   aria-hidden="true" />
       <div className={styles.megaGrid}       aria-hidden="true" />
-      <div className={styles.megaTopLine}    aria-hidden="true" />
-      <div className={[styles.megaBody, cols === 2 ? styles.megaBodyNarrow : ""].join(" ")}>
+      <div className={styles.megaBody}>
         <div className={styles.megaIntro}>
           <p className={styles.megaIntroKicker}>{intro.kicker}</p>
           <h3 className={styles.megaIntroTitle}>{intro.title}</h3>
@@ -134,7 +133,7 @@ const Navbar = () => {
                 Solutions <Icon name="chevronDown" size={12} className={openMenu === "Solutions" ? styles.chevron : styles.chevron} />
               </button>
               <MegaPanel
-                open={openMenu === "Solutions"} wide items={SOLUTIONS} cols={3}
+                open={openMenu === "Solutions"} items={SOLUTIONS} cols={3}
                 intro={{ kicker: "Solutions", title: "AI-led outcomes across the operations spectrum.", body: "Pick a domain and see how we move from analysis to working solutions.", ctaText: "Explore all solutions", ctaHref: "/services/working-capital-spend-integrity" }}
               />
             </li>
