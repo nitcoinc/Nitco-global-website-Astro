@@ -194,7 +194,7 @@ function HeroVisual() {
       <div className={styles.heroCard}>
         <div className={styles.heroCardHeader}>
           <div className={styles.heroCardTitleRow}>
-            <span className={styles.heroCardIconWrap}><ActivityIcon size={20} /></span>
+            <span className={styles.heroCardIconWrap} style={{ color: "#53eafd" }}><ActivityIcon size={20} /></span>
             <div>
               <p className={styles.heroCardMeta}>Execution</p>
               <p className={styles.heroCardTitle}>Health overview</p>
