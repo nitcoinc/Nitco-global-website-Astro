@@ -3,7 +3,6 @@ import path from "path";
 import matter from "gray-matter";
 import Navbar from "../components/Navbar/Navbar";
 import Footer from "../components/Footer/Footer";
-import FooterDesignMobile from "../components/Footer/FooterDesign/FooterDesignMobile";
 import Resources from "../components/Resources/Resources";
 
 export default function ResourcesPage({ blogs, caseStudies, webinars, whitepapers }) {
@@ -17,7 +16,6 @@ export default function ResourcesPage({ blogs, caseStudies, webinars, whitepaper
         whitepapers={whitepapers}
       />
       <Footer />
-      <FooterDesignMobile />
     </>
   );
 }

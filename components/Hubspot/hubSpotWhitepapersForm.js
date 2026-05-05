@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import styles from "./hubspot.module.css";
 
 const HubSpotWhitepapersForm = ({ formId, downloadLink }) => {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -12,12 +13,11 @@ const HubSpotWhitepapersForm = ({ formId, downloadLink }) => {
     script.addEventListener("load", () => {
       if (window.hbspt && !isSubmitted) {
         window.hbspt.forms.create({
-          region: "na1", // ✅ adjust if your HubSpot portal region differs
+          region: "na1",
           portalId: "8158070",
           formId: formId,
           target: "#hubspotFormContainer",
           onFormSubmit: () => {
-            // Wait to let HubSpot process the submission
             setTimeout(() => {
               setIsSubmitted(true);
               const container = document.getElementById("hubspotFormContainer");
@@ -28,9 +28,7 @@ const HubSpotWhitepapersForm = ({ formId, downloadLink }) => {
       }
     });
 
-    return () => {
-      script.remove();
-    };
+    return () => { script.remove(); };
   }, [formId, isSubmitted]);
 
   const handleDownload = async () => {
@@ -39,14 +37,12 @@ const HubSpotWhitepapersForm = ({ formId, downloadLink }) => {
       const blob = await response.blob();
       const url = window.URL.createObjectURL(blob);
       const filename = downloadLink.split("/").pop() || "whitepaper.pdf";
-
       const a = document.createElement("a");
       a.href = url;
       a.download = filename;
       document.body.appendChild(a);
       a.click();
       a.remove();
-
       window.URL.revokeObjectURL(url);
     } catch (err) {
       console.error("Download failed", err);
@@ -55,17 +51,18 @@ const HubSpotWhitepapersForm = ({ formId, downloadLink }) => {
 
   if (isSubmitted && downloadLink) {
     return (
-      <div className="thankyou-box">
-        <h2>Thank You!</h2>
-        <p>Here is your whitepaper ready for download.</p>
-        <button onClick={handleDownload} className="download-btn">
-          DOWNLOAD
+      <div className={styles.thankYou}>
+        <div className={styles.thankYouIcon}>✓</div>
+        <h2 className={styles.thankYouTitle}>Thank You!</h2>
+        <p className={styles.thankYouText}>Your whitepaper is ready to download.</p>
+        <button onClick={handleDownload} className={styles.downloadBtn}>
+          Download Now
         </button>
       </div>
     );
   }
 
-  return <div id="hubspotFormContainer"></div>;
+  return <div id="hubspotFormContainer" className={styles.formContainer}></div>;
 };
 
 export default HubSpotWhitepapersForm;

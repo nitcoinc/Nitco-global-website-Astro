@@ -1,82 +1,74 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useTina } from "tinacms/dist/react";
 import ReactMarkdown from "react-markdown";
-import Layout from "../../Layout";
 import Navbar from "../../Navbar/Navbar";
 import Footer from "../../Footer/Footer";
-import NavBarMobile from "../../Navbar/NavBarMobile/navBarMobile";
-import FooterDesignMobile from "../../Footer/FooterDesign/FooterDesignMobile";
-import styles from "./whitepaperpost.module.css"
+import styles from "./whitepaperpost.module.css";
 import HubSpotWhitepapersForm from "../../Hubspot/hubSpotWhitepapersForm";
-
-
-
-
 
 export default function Whitepapers({ query, variables, data: pageData }) {
   const {
     data: { post },
   } = useTina({ query, variables, data: pageData });
 
-  const [isSticky, setIsSticky] = useState(false);
-
-  useEffect(() => {
-    const sentinel = document.querySelector("#formSentinel");
-    const observer = new IntersectionObserver(
-      ([entry]) => setIsSticky(!entry.isIntersecting),
-      { root: null }
-    );
-    if (sentinel) observer.observe(sentinel);
-    return () => observer.disconnect();
-  }, []);
-
   const whitepaper = pageData?.whitepapers;
-  const content = whitepaper?.body || "";
   const downloadLink = whitepaper?.pdfFileUrl || null;
 
-
-
   return (
-    <Layout>
+    <div className={styles.page}>
       <Navbar />
-      <NavBarMobile />
-      <div className={styles.main}>
-        <div className={styles.imageTextMain}>
+
+      {/* ── Hero ── */}
+      <div className={styles.hero}>
+        {whitepaper?.image && (
           <img
-            src={whitepaper?.image}
-            alt={whitepaper?.title}
-            className={styles.image}
+            src={whitepaper.image}
+            alt={whitepaper.title || "Whitepaper"}
+            className={styles.heroImg}
           />
-          <div className={styles.textMain}>
-            <p className={styles.highlightText}>
-              {whitepaper?.pagetype}
-            </p>
-            <h1 className={styles.text}>{whitepaper?.title}</h1>
-          </div>
-        </div>
-        <div className="container">
-          <div className={`row ${styles.block2}`}>
-            <div className="col-lg-8 col-md-12" style={{ marginBottom: "40px" }}>
-              <div className="markdown-container">
-                <ReactMarkdown>{whitepaper?.body}</ReactMarkdown>
-              </div>
-            </div>
-            <div className="col-lg-4 col-md-12" style={{ marginBottom: "40px" }}>
-              <div className="whitepapers-download-from" id="secondary">
-                <h3 style={{ color: "#dc4a46" }}>
-                  Please fill out the form to download your copy
-                </h3>
-                <HubSpotWhitepapersForm
-                  formId="431f4e43-590b-4aa7-aeb4-bccb4a47adf0"
-                  downloadLink={downloadLink}
-                />
-              </div>
-            </div>
-          </div>
+        )}
+        <div className={styles.heroOverlay} />
+        <div className={styles.heroContent}>
+          <span className={styles.badge}>
+            {whitepaper?.pagetype || "White Paper"}
+          </span>
+          {whitepaper?.title && (
+            <h1 className={styles.heroTitle}>{whitepaper.title}</h1>
+          )}
         </div>
       </div>
+
+      {/* ── Body ── */}
+      <div className={styles.bodyWrap}>
+        <div className={styles.cols}>
+
+          {/* Left — article */}
+          <article className={styles.article}>
+            <div className={styles.prose}>
+              <ReactMarkdown>{whitepaper?.body}</ReactMarkdown>
+            </div>
+          </article>
+
+          {/* Right — HubSpot download form */}
+          <aside className={styles.sidebar}>
+            <div className={styles.formCard}>
+              <h3 className={styles.formHeading}>
+                Download your copy
+              </h3>
+              <p className={styles.formSubheading}>
+                Fill out the form below to get instant access to this whitepaper.
+              </p>
+              <HubSpotWhitepapersForm
+                formId="431f4e43-590b-4aa7-aeb4-bccb4a47adf0"
+                downloadLink={downloadLink}
+              />
+            </div>
+          </aside>
+
+        </div>
+      </div>
+
       <Footer />
-      <FooterDesignMobile />
-    </Layout>
+    </div>
   );
 }
