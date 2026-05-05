@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import LogoWhite from "../../images/nitco-images/LogoWhite.svg";
 import styles from "./Navbar.module.css";
 
 /* ── Inline SVG icons ── */
@@ -109,7 +108,7 @@ const Navbar = () => {
       <div className={styles.inner}>
         {/* Logo */}
         <Link href="/" className={styles.logo}>
-          <img src={LogoWhite.src} alt="NITCO Inc." width={160} height={36} />
+          <img src="/images/logo-nitco.png" alt="NITCO Inc." width={200} height={46} />
         </Link>
 
         {/* Desktop nav */}
