@@ -8,19 +8,20 @@ const ArrowRight = () => (
     <path d="M5 12h14M12 5l7 7-7 7"/>
   </svg>
 );
-const WalletIcon = ({ size = 24, color = "#53eafd" }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4"/><path d="M4 6v12c0 1.1.9 2 2 2h14v-4"/><circle cx="18" cy="12" r="2"/>
+const IC = { stroke: "#53eafd", strokeWidth: "2", fill: "none" };
+const WalletIcon = ({ size = 24 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4" style={IC}/><path d="M4 6v12c0 1.1.9 2 2 2h14v-4" style={IC}/><circle cx="18" cy="12" r="2" style={IC}/>
   </svg>
 );
-const ActivityIcon = ({ size = 24, color = "currentColor" }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+const ActivityIcon = ({ size = 24 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" style={IC}/>
   </svg>
 );
-const LineChartIcon = ({ size = 24, color = "#53eafd" }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <path d="M3 3v18h18"/><polyline points="18 9 13 14 9 10 5 14"/>
+const LineChartIcon = ({ size = 24 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M3 3v18h18" style={IC}/><polyline points="18 9 13 14 9 10 5 14" style={IC}/>
   </svg>
 );
 const TrendingDownIcon = () => (
