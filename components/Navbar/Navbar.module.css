@@ -8,10 +8,8 @@
   left: 0;
   right: 0;
   z-index: 1000;
-  background: linear-gradient(180deg, rgba(46,45,120,0.18) 0%, rgba(8,9,30,0.85) 100%);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  background: linear-gradient(135deg, #0e0d38 0%, #080715 60%, #08091e 100%);
+  border-bottom: none;
   transition: box-shadow 0.3s ease;
 }
 .header.scrolled {
