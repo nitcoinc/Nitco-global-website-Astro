@@ -39,6 +39,7 @@ Marketing site built with Next.js 14 (Pages Router) and TinaCMS for content.
 ## Product
 
 - **7 Solutions pages** — `/solutions/[slug]` — fully ported from V20 design. Each has: hero (glassmorphic card + floating chips), Problems, Focus Areas, What You Get + Outcomes (2-col), Use Cases grid, How It Starts steps, Explore Other Solutions, CTA banner.
+- **AI Agent Command Center** — `/ai-agent-command-center` — hero with live agent card, 3-agent grid (Data Quality Monitoring, Ask Your Data, Intelligent Document Mapping), How It Works 3-step section, CTA banner. Component at `components/AICommandCenter/`.
 - **Home page** — Full V20 port with video hero, 7-section layout, partner marquee, testimonial carousel.
 - **Resources page** — Filterable content library (Case Studies, Blogs, White Papers, Explainer Videos, Webinars).
 - **About page** — Company overview.
@@ -65,3 +66,8 @@ Marketing site built with Next.js 14 (Pages Router) and TinaCMS for content.
 - Platform page
 - Partners pages
 - Careers page
+
+## Key component files
+
+- `components/AICommandCenter/AICommandCenter.js` + `.module.css` — AI Agent Command Center page
+- `components/Solutions/SolutionPage.js` + `.module.css` — shared Solutions template
