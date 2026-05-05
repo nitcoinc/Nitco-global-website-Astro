@@ -266,7 +266,7 @@
 }
 .megaItems3 { grid-template-columns: repeat(3, 1fr); }
 .megaItems2 { grid-template-columns: repeat(2, 1fr); }
-.megaItems2compact { grid-template-columns: repeat(2, minmax(0, 220px)); }
+.megaItems2compact { grid-template-columns: repeat(2, minmax(0, 220px)); margin-left: auto; }
 
 .megaItem {
   display: flex;
