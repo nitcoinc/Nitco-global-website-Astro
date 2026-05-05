@@ -81,11 +81,11 @@
   border: 1px solid rgba(255,255,255,0.1);
   background: rgba(8,9,30,0.6);
   backdrop-filter: blur(16px);
-  padding: 56px;
+  padding: 56px 56px 56px 56px;
   box-shadow: 0 32px 64px rgba(0,0,0,0.35);
 }
 @media (max-width: 640px) {
-  .formCard { padding: 32px 24px; }
+  .formCard { padding: 40px 28px; }
 }
 .formTitle {
   font-size: 22px;
