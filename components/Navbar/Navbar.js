@@ -161,7 +161,7 @@ const Navbar = () => {
             </li>
 
             {/* Company */}
-            <li className={[styles.navItem, styles.navItemRelative].join(" ")} role="none" onMouseEnter={() => setOpenMenu("Company")}>
+            <li className={styles.navItem} role="none" onMouseEnter={() => setOpenMenu("Company")}>
               <button
                 className={[styles.navLink, openMenu === "Company" ? styles.active : ""].join(" ")}
                 aria-haspopup="true" aria-expanded={openMenu === "Company"}
@@ -170,7 +170,7 @@ const Navbar = () => {
                 Company <Icon name="chevronDown" size={12} />
               </button>
               <MegaPanel
-                open={openMenu === "Company"} items={COMPANY} cols="compact" narrow
+                open={openMenu === "Company"} items={COMPANY} cols="compact"
                 intro={{ kicker: "Company", title: "Built for measurable, working solutions.", body: "Who we are, how we work, and how to join the team.", ctaText: "Read our story", ctaHref: "/company/about" }}
               />
             </li>
