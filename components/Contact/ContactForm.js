@@ -33,10 +33,13 @@ const HUBSPOT_URL =
   "https://api.hsforms.com/submissions/v3/integration/submit/8158070/591b39dd-a13c-4a1b-a1e4-c941be318797";
 
 const INTEREST_MAP = {
-  "Artificial Intelligence": "AI",
-  Integration: "Integration",
-  Automation: "Automation",
-  Data: "Data",
+  "Working Capital & Spend Integrity": "Working Capital & Spend Integrity",
+  "Workflow Automation":               "Workflow Automation",
+  "Decision-Ready Data":               "Decision-Ready Data",
+  "Employee Knowledge & Productivity": "Employee Knowledge & Productivity",
+  "Customer Experience & Support":     "Customer Experience & Support",
+  "AI Solution Delivery":              "AI Solution Delivery",
+  "AI Risk, Cost & Governance":        "AI Risk, Cost & Governance",
 };
 
 export default function ContactForm() {

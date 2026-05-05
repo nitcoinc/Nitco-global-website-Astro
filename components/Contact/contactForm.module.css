@@ -151,6 +151,9 @@
   grid-template-columns: 1fr 1fr;
   gap: 10px;
 }
+.checkboxGrid .checkboxItem:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+}
 @media (max-width: 400px) { .checkboxGrid { grid-template-columns: 1fr; } }
 .checkboxItem {
   display: flex;
