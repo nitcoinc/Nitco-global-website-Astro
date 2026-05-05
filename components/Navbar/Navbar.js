@@ -52,9 +52,9 @@ const COMPANY = [
 ];
 
 /* ── Mega menu panel ── */
-function MegaPanel({ items, intro, cols, open }) {
+function MegaPanel({ items, intro, cols, open, narrow }) {
   return (
-    <div className={[styles.megaPanel, open ? styles.megaOpen : ""].join(" ")}>
+    <div className={[styles.megaPanel, narrow ? styles.megaPanelNarrow : "", open ? styles.megaOpen : ""].join(" ")}>
       <div className={styles.megaGlowPurple} aria-hidden="true" />
       <div className={styles.megaGlowCyan}   aria-hidden="true" />
       <div className={styles.megaGlowPink}   aria-hidden="true" />
@@ -161,7 +161,7 @@ const Navbar = () => {
             </li>
 
             {/* Company */}
-            <li className={styles.navItem} role="none" onMouseEnter={() => setOpenMenu("Company")}>
+            <li className={[styles.navItem, styles.navItemRelative].join(" ")} role="none" onMouseEnter={() => setOpenMenu("Company")}>
               <button
                 className={[styles.navLink, openMenu === "Company" ? styles.active : ""].join(" ")}
                 aria-haspopup="true" aria-expanded={openMenu === "Company"}
@@ -170,7 +170,7 @@ const Navbar = () => {
                 Company <Icon name="chevronDown" size={12} />
               </button>
               <MegaPanel
-                open={openMenu === "Company"} items={COMPANY} cols="compact"
+                open={openMenu === "Company"} items={COMPANY} cols="compact" narrow
                 intro={{ kicker: "Company", title: "Built for measurable, working solutions.", body: "Who we are, how we work, and how to join the team.", ctaText: "Read our story", ctaHref: "/company/about" }}
               />
             </li>

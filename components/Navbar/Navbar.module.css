@@ -158,6 +158,20 @@
   pointer-events: auto;
 }
 
+/* Narrow variant — anchored under its own trigger nav item */
+.navItemRelative { position: relative !important; }
+
+.megaPanelNarrow {
+  left: auto;
+  right: 0;
+  width: 560px;
+  transform: translateY(-4px);
+  border-radius: 0 0 16px 16px;
+}
+.megaPanelNarrow.megaOpen {
+  transform: translateY(0);
+}
+
 /* glow effects inside panel */
 .megaGlowPurple {
   position: absolute;
