@@ -32,7 +32,7 @@ export default function SolutionRoute({ solution }) {
   return (
     <>
       <Head>
-        <title>{solution.title} | NITCO Inc.</title>
+        <title>{solution.title + " | NITCO Inc."}</title>
         <meta name="description" content={solution.subtitle} />
       </Head>
       <Navbar />
