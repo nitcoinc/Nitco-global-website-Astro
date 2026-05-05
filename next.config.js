@@ -8,6 +8,7 @@ const output =
 module.exports = {
     output: "standalone",
     images: { unoptimized: true },
+    allowedDevHosts: "all",
 
     async rewrites() {
         return [
