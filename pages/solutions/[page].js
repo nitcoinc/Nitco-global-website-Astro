@@ -1,41 +1,61 @@
-import * as React from "react"
-import { client } from "../../tina/__generated__/client";
+import React, { useCallback } from "react";
+import Head from "next/head";
+import Navbar from "../../components/Navbar/Navbar";
+import Footer from "../../components/Footer/Footer";
+import FooterDesignMobile from "../../components/Footer/FooterDesign/FooterDesignMobile";
+import SolutionPage from "../../components/Solutions/SolutionPage";
+import { ALL_SOLUTIONS, getSolutionBySlug } from "../../lib/solutionsData";
 
-import Page from "../../components/Page";
+export default function SolutionRoute({ solution }) {
+  const handleContact = useCallback(() => {
+    const el = document.getElementById("contact");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    } else {
+      window.location.href = "/#contact";
+    }
+  }, []);
 
-export default (props) => <Page {...props} />;
+  if (!solution) {
+    return (
+      <>
+        <Navbar />
+        <div style={{ minHeight: "60vh", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff" }}>
+          <p>Solution not found.</p>
+        </div>
+        <Footer />
+        <FooterDesignMobile />
+      </>
+    );
+  }
 
-export async function getStaticPaths() {
-    const pagesResponse = await client.queries.pageConnection({
-        filter: { pageType: { eq: "solutions" } }
-    });
-
-    let paths = pagesResponse?.data?.pageConnection?.edges
-        ?.map(({ node }) => node)
-        ?.reduce((ps, { _sys }) => {
-            const filename = _sys.filename.split("__")[1];
-            if (filename != null) ps.push({
-                params: { page: filename }
-            });
-            return ps;
-        }, []);
-    paths = paths != null ? paths : [];
-
-    return { paths, fallback: false };
+  return (
+    <>
+      <Head>
+        <title>{solution.title} | NITCO Inc.</title>
+        <meta name="description" content={solution.subtitle} />
+      </Head>
+      <Navbar />
+      <SolutionPage solution={solution} onContact={handleContact} />
+      <Footer />
+      <FooterDesignMobile />
+    </>
+  );
 }
 
-export const getStaticProps = async (context) => {
-    const pageName = context.params.page;
-    
-    const { data, query, variables } = await client.queries.page({
-        relativePath: `solutions__${pageName}.mdx`,
-    });
+export async function getStaticPaths() {
+  const paths = ALL_SOLUTIONS.map((s) => ({
+    params: { page: s.slug },
+  }));
+  return { paths, fallback: false };
+}
 
-    return {
-        props: {
-            data,
-            query,
-            variables
-        },
-    };
-};
+export async function getStaticProps({ params }) {
+  const solution = getSolutionBySlug(params.page);
+  if (!solution) {
+    return { notFound: true };
+  }
+  return {
+    props: { solution },
+  };
+}

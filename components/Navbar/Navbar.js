@@ -30,7 +30,7 @@ const Icon = ({ name, size = 16 }) => {
 
 /* ── Data ── */
 const SOLUTIONS = [
-  { icon: "wallet",   title: "Working Capital & Spend Integrity",    desc: "Improve billing accuracy, payment execution, and working capital performance", href: "/services/working-capital-spend-integrity" },
+  { icon: "wallet",   title: "Working Capital & Spend Integrity",    desc: "Improve billing accuracy, payment execution, and working capital performance", href: "/solutions/working-capital-spend-integrity" },
   { icon: "workflow", title: "Workflow Automation",                   desc: "Eliminate manual effort and streamline exception-heavy processes",               href: "/solutions/workflow-automation" },
   { icon: "chart",    title: "Decision-Ready Data",                   desc: "Turn fragmented data into trusted insight for faster decisions",                  href: "/solutions/decision-ready-data" },
   { icon: "book",     title: "Employee Knowledge & Productivity",      desc: "Instant, context-aware answers across systems and documents",                    href: "/solutions/employee-knowledge-productivity" },

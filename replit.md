@@ -2,66 +2,66 @@
 
 Marketing site built with Next.js 14 (Pages Router) and TinaCMS for content.
 
-## Running on Replit
+## Run & Operate
 
-- Workflow `Start application` runs `npm run dev` which executes `next dev -p 5000 -H 0.0.0.0`.
-- Replit's preview proxies port 5000 — the dev server must bind to `0.0.0.0:5000`.
+- Workflow `Start application` runs `PORT=5000 npm run dev` → `next dev -p 5000 -H 0.0.0.0`.
+- `npm run dev:tina` — requires `TINA_TOKEN` + `NEXT_PUBLIC_TINA_CLIENT_ID` env vars.
+- `npm run build` / `npm run start` — production build/start bound to port 5000.
+- Regenerate TinaCMS client after editing `tina/` collections: `TINA_PUBLIC_IS_LOCAL=true npx tinacms build --local`
 
-## Scripts
+## Stack
 
-- `npm run dev` — Plain Next.js dev server on port 5000 (used by the Replit workflow).
-- `npm run dev:tina` — Wrapped with `tinacms dev` (requires Tina Cloud env vars: `TINA_TOKEN`, `NEXT_PUBLIC_TINA_CLIENT_ID`).
-- `npm run build` / `npm run start` — Production build / start, also bound to port 5000.
+- **Framework**: Next.js 14.2.3 Pages Router, plain JS (no TypeScript)
+- **Styling**: CSS Modules only — no Tailwind, no Bootstrap, no framer-motion
+- **CMS**: TinaCMS (local-build mode; Tina Cloud optional)
+- **Icons**: Inline SVG in component files (no lucide-react or other icon libs)
+- **Brand**: navy bg `#080715`, primary indigo `#5C5AE0`/`#2E2D78`, cyan `#53eafd`
 
-## TinaCMS generated client
+## Where things live
 
-`lib/seoCache.js` imports from `tina/__generated__/client`. This folder is produced by `tinacms build`. To regenerate after editing `tina/` collections, run:
+- `pages/` — Next.js pages (Pages Router)
+- `components/` — React components, each folder has a CSS Module alongside
+- `lib/solutionsData.js` — All 7 Solutions pages content (source of truth for copy/data)
+- `lib/resourcesData.js` — Resources page enrichment data
+- `content/` — MDX files managed by TinaCMS (blog, case-studies, whitepapers, webinars)
+- `tina/__generated__/` — Generated TinaCMS client (do not edit manually)
+- `styles/css/style.css` — Global CSS (`body { padding-top: 72px; background: #080715; }`)
+- `public/images/` — Static images (logos, case-study webps, partner logos, home page assets)
 
-```
-TINA_PUBLIC_IS_LOCAL=true npx tinacms build --local
-```
+## Architecture decisions
 
-Without Tina Cloud credentials, the local build is sufficient for the site to render. With credentials, use `npm run dev:tina` for the full editing experience.
+- **No TinaCMS API at runtime**: all `getStaticProps` functions read from disk via `gray-matter` or `lib/solutionsData.js`. The app builds/runs without Tina Cloud credentials.
+- **Inline SVG icons**: each component defines its own `Icon({name})` switch — avoids external icon library bundle weight.
+- **CSS Modules only**: each component has a co-located `.module.css` file; no global utility classes.
+- **Solutions pages**: single shared template `components/Solutions/SolutionPage.js` + data in `lib/solutionsData.js`; dynamic route at `pages/solutions/[page].js`.
+- **Hero visual variants**: `type: "steps" | "sparkline" | "kpigrid"` in solutionsData controls which hero card widget renders.
 
-## Porting progress (Vite/React source → Next.js Pages Router)
+## Product
 
-### Completed
-- **About page** — `components/Company/AboutNew/AboutNew.js` + CSS module; `pages/company/about.js` updated
-- **Navbar** — Full rewrite at `components/Navbar/Navbar.js` + `Navbar.module.css`. Glassmorphism fixed header, mega-menu dropdowns (Solutions 7-item 3-col, Partners 4-item 2-col, Company 2-item), mobile accordion, always-dark. No Bootstrap, no framer-motion — CSS modules only.
-  - `NavBarMobile` stubbed to `() => null`
-  - All 13 affected pages cleaned up (removed NavBarMobile imports, home-dark-nav hacks, Bootstrap wrapper divs)
-  - `body { padding-top: 72px; }` added globally for fixed-nav offset
-- **Resources page** — `pages/resources.js` + `components/Resources/Resources.js` + `Resources.module.css` + `lib/resourcesData.js`
-  - Hero: kicker, h1, description, Library card (7 NITCO solution areas)
-  - Filter bar: 5 content-type tab pills (Case Studies, Blogs, White Papers, Explainer Videos, Webinars) + topic chips for Case Studies (All, AI, RPA, Intelligent Automation, Enterprise Integration)
-  - Responsive 3→2→1 column card grid with 16:9 image, type badge, title, description, date/duration footer, Read/Watch CTA
-  - `getStaticProps` reads MDX files from disk (`content/allPosts/` + `content/whitepaperspost/`) via `gray-matter` — no TinaCMS API server needed at runtime; TinaCMS still manages the files
-  - Case study images: `public/images/case-studies/[slug].webp` (12 local files)
-  - Static enrichment data (topics, descriptions, Vimeo explainer videos) in `lib/resourcesData.js`
-  - Links: Case Studies → `/case-studies/[slug]` (TinaCMS), Blogs → `/blog/[slug]` (TinaCMS), Whitepapers → `/whitepapers/[slug]` (TinaCMS), Webinars → `/webinar/[slug]` (TinaCMS), Explainer Videos → external Vimeo URLs
+- **7 Solutions pages** — `/solutions/[slug]` — fully ported from V20 design. Each has: hero (glassmorphic card + floating chips), Problems, Focus Areas, What You Get + Outcomes (2-col), Use Cases grid, How It Starts steps, Explore Other Solutions, CTA banner.
+- **Home page** — Full V20 port with video hero, 7-section layout, partner marquee, testimonial carousel.
+- **Resources page** — Filterable content library (Case Studies, Blogs, White Papers, Explainer Videos, Webinars).
+- **About page** — Company overview.
+- **Navbar** — Glassmorphic fixed header, mega-menu dropdowns (Solutions 7-item, Partners 4-item, Company 2-item), mobile accordion.
+- **TinaCMS slug pages** — blog, case-studies, webinar, whitepapers (disk-based, no API server needed).
 
-### Completed (continued)
-- **Home page** — `components/Company/HomePage/NewHome/NewHome.js` + `NewHome.module.css`
-  - Hero: full-screen video (`/HomeHero.mp4`) with gradient overlay, star-field pseudo-element, h1 + sub + 3 CTA buttons
-  - "What NITCO Does": 3 scroll-reveal cards (Financial Execution, Operational Workflows, Business Decision-Making) with illustration images
-  - "Our Programs": 7 icon-cards in dark navy 3-col grid (Working Capital, Workflow Automation, Decision-Ready Data, Knowledge, Customer Support, AI Delivery, AI Governance)
-  - "Powered by Platforms": CSS marquee (no JS deps) auto-scrolling 13 partner logos (AWS, Automation Anywhere, Blue Prism, Boomi, Celigo, Saidot, IBM, Jitterbit, Kore.ai, Microsoft, Tray.io, UiPath, Workato) — greyscale fading in on hover
-  - "Trusted by Industry Leaders": 2-up testimonial cards with prev/next arrows + dot navigation — 8 client testimonials with company logos
-  - "Why NITCO": numbered list layout (01–04) with large numerals
-  - "Outcomes": hover-interactive list linked to right-side image panel
-  - "Engagement Model": full-bleed image BG section with CTA
-  - Partner logos + testimonial SVGs copied to `public/images/HomePage/`
-  - TinaCMS slug pages (`blog`, `case-studies`, `webinar`, `whitepapers`, `insights/[page]`, `[page]`) — `getStaticPaths` AND `getStaticProps` now read from disk via `gray-matter` (no TinaCMS API server required at dev/build time)
+## User preferences
 
-### Remaining (in order)
-- Working Capital page hero
+- Dark navy `#080715` background everywhere — matches V20 `bg-background`.
+- No animations/framer-motion — CSS transitions only.
+- Inline SVG icon pattern (no icon libraries).
+- Pages Router (not App Router).
+
+## Gotchas
+
+- `blurWidth`/`blurHeight` warnings in Footer are pre-existing and unrelated to new work.
+- `body { padding-top: 72px }` is set in `styles/css/style.css` to offset the fixed navbar — do not remove.
+- TinaCMS-driven catch-all `pages/[page].js` and `pages/insights/[page].js` still exist for legacy MDX content.
+- Solutions navbar link for "Working Capital" must point to `/solutions/working-capital-spend-integrity` (not `/services/...`).
+
+## Remaining pages (in order)
+
 - Service pages (AI Services, AI Governance, Automation, Data, Integration)
 - Platform page
 - Partners pages
 - Careers page
-
-## Migration notes (Vercel → Replit)
-
-- Dev/start scripts updated to bind `0.0.0.0:5000` (Replit preview requirement).
-- TinaCMS wrapper removed from the default `dev`/`start` scripts so the app boots without Tina Cloud secrets; the wrapped versions remain available as `dev:tina`/`start:tina`.
-- Generated TinaCMS client (`tina/__generated__/`) created via local Tina build.
