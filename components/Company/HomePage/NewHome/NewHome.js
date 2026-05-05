@@ -9,17 +9,17 @@ const ArrowRight = () => (
   </svg>
 );
 const WalletIcon = ({ size = 24 }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
     <path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4"/><path d="M4 6v12c0 1.1.9 2 2 2h14v-4"/><circle cx="18" cy="12" r="2"/>
   </svg>
 );
 const ActivityIcon = ({ size = 24 }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
     <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
   </svg>
 );
 const LineChartIcon = ({ size = 24 }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
     <path d="M3 3v18h18"/><polyline points="18 9 13 14 9 10 5 14"/>
   </svg>
 );
@@ -206,7 +206,10 @@ function HeroVisual() {
           {lanes.map(({ label, Icon, value }, i) => (
             <div key={label} className={styles.heroLane}>
               <div className={styles.heroLaneTop}>
-                <div className={styles.heroLaneLabel}><Icon size={14} /><span>{label}</span></div>
+                <div className={styles.heroLaneLabel}>
+                  <span style={{ color: "#53eafd", display: "flex", flexShrink: 0 }}><Icon size={15} /></span>
+                  <span>{label}</span>
+                </div>
                 <span className={styles.heroLanePct}>{value}%</span>
               </div>
               <div className={styles.heroBarBg}>
