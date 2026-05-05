@@ -3,7 +3,6 @@ import Layout from "../../components/Layout";
 import ArtificialSection1 from "../../components/Services/Section1/artificialSection1";
 import ArtificialSection2 from "../../components/Services/section2/artificialSection2";
 import Navbar from '../../components/Navbar/Navbar';
-import NavBarMobile from "../../components/Navbar/NavBarMobile/navBarMobile"
 import DiscoverAuto from "../../images/services-image/AutomationImg/Discover-Auto.webp";
 import AdviceAuto from "../../images/services-image/AutomationImg/Advice-Auto.webp";
 import DeliverAuto from "../../images/services-image/AutomationImg/Deliver-Auto.webp";
@@ -168,7 +167,6 @@ const automationService = () => {
   return (
     <Layout>
       <Navbar />
-      <NavBarMobile />
       <ArtificialSection1 data={DataSection1} />
       <ArtificialSection2 section2Data={Section2} />
       <ArtificialInteligencesection3

@@ -3,7 +3,6 @@ import ArtificialSection1 from "../../components/Services/Section1/artificialSec
 import Layout from "../../components/Layout";
 import ArtificialSection2 from "../../components/Services/section2/artificialSection2";
 import Navbar from '../../components/Navbar/Navbar';
-import NavBarMobile from "../../components/Navbar/NavBarMobile/navBarMobile"
 
 import AIG_Icon from "../../images/services-image/Aigimages/ai-governance-icon.svg";
 import AIGGiff from "../../images/services-image/Aigimages/AI-Governance-Icon.gif";
@@ -205,7 +204,6 @@ const aigovernance = () => {
     return (
         <Layout>
             <Navbar />
-            <NavBarMobile />
             <ArtificialSection1 data={DataSection1} />
             <ArtificialSection2 section2Data={Section2} />
             <ArtificialInteligencesection3

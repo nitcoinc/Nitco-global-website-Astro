@@ -1,6 +1,5 @@
 import Footer from "../components/Footer/Footer";
 import Navbar from "../components/Navbar/Navbar";
-import NavBarMobile from "../components/Navbar/NavBarMobile/navBarMobile";
 import FooterDesignMobile from "../components/Footer/FooterDesign/FooterDesignMobile";
 import Services from "../components/Services/services";
 import Layout from "../components/Layout";
@@ -10,7 +9,6 @@ const ServicesPage = () => {
   return (
     <Layout>
       <Navbar />
-      <NavBarMobile />
       <Services />
       <Footer />
       <FooterDesignMobile />

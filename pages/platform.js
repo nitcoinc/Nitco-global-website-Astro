@@ -6,18 +6,15 @@ import { getSeoForPath } from "../lib/fetchSeoData";
 import TechonologyAlliances from "../components/platform/Technology/techonologyAlliances";
 import Footer from "../components/Footer/Footer";
 import Navbar from "../components/Navbar/Navbar";
-import NavBarMobile from "../components/Navbar/NavBarMobile/navBarMobile";
 import FooterDesignMobile from "../components/Footer/FooterDesign/FooterDesignMobile";
 
 const Platform = () => {
   return (
     <div>
       <Navbar />
-      <NavBarMobile />
       <PlatformPage />
       <div>
         <Powerplatform />
-        
       </div>
       <TechonologyAlliances />
       <Contactform title="Get In Touch" />

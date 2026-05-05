@@ -17,7 +17,6 @@ import AIBanner03 from "../../images/services-image/AiImages/AIBanner03.webp";
 import AIIcon1 from "../../images/services-image/Icons/AI.gif";
 import { getSeoForPath } from "../../lib/fetchSeoData";
 import Navbar from '../../components/Navbar/Navbar';
-import NavBarMobile from "../../components/Navbar/NavBarMobile/navBarMobile"
 
 
 
@@ -198,7 +197,6 @@ const artificialIntelligence = () => {
   return (
     <Layout>
       <Navbar />
-      <NavBarMobile />
       <ArtificialSection1 data={DataSection1} />
       <ArtificialSection2 section2Data={Section2} />
       <ArtificialInteligencesection3

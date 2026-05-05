@@ -1,346 +1,254 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import Logo from "../../images/nitco-images/Logo.svg";
 import LogoWhite from "../../images/nitco-images/LogoWhite.svg";
+import styles from "./Navbar.module.css";
 
-const Caret = () => (
-  <svg
-    className="nav-caret"
-    width="11"
-    height="7"
-    viewBox="0 0 11 7"
-    fill="none"
-    aria-hidden="true"
-  >
-    <path
-      d="M1 1l4.5 4.5L10 1"
-      stroke="currentColor"
-      strokeWidth="1.6"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-);
+/* ── Inline SVG icons ── */
+const Icon = ({ name, size = 16 }) => {
+  const p = { width: size, height: size, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 1.75, strokeLinecap: "round", strokeLinejoin: "round", "aria-hidden": "true", focusable: "false" };
+  switch (name) {
+    case "chevronDown": return <svg {...p}><path d="m6 9 6 6 6-6"/></svg>;
+    case "arrowRight":  return <svg {...p}><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>;
+    case "menu":        return <svg {...p}><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>;
+    case "x":           return <svg {...p}><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>;
+    case "wallet":      return <svg {...p}><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/><circle cx="16" cy="15" r="1" fill="currentColor" stroke="none"/></svg>;
+    case "workflow":    return <svg {...p}><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="13" width="8" height="8" rx="2"/><path d="M11 7h4a2 2 0 0 1 2 2v4"/></svg>;
+    case "chart":       return <svg {...p}><path d="M3 3v18h18"/><path d="m7 16 4-4 4 4 4-4"/></svg>;
+    case "book":        return <svg {...p}><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>;
+    case "headset":     return <svg {...p}><path d="M3 12a9 9 0 0 1 18 0v3a2 2 0 0 1-2 2h-2v-5h4"/><path d="M3 12v3a2 2 0 0 0 2 2h2v-5H3"/></svg>;
+    case "rocket":      return <svg {...p}><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>;
+    case "shield":      return <svg {...p}><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>;
+    case "building":    return <svg {...p}><rect x="4" y="3" width="16" height="18" rx="1.5"/><path d="M9 7h.01M15 7h.01M9 11h.01M15 11h.01M9 15h.01M15 15h.01"/><path d="M10 21v-4h4v4"/></svg>;
+    case "briefcase":   return <svg {...p}><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>;
+    case "cloud":       return <svg {...p}><path d="M17.5 19a4.5 4.5 0 1 0-1.4-8.78 6 6 0 0 0-11.6 2.28A4 4 0 0 0 6 19h11.5z"/></svg>;
+    case "network":     return <svg {...p}><circle cx="12" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><path d="M12 7v4M7 17l-2 2M17 17l2 2M12 11l-5 6M12 11l5 6"/></svg>;
+    case "bot":         return <svg {...p}><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/><path d="M8 15h.01M16 15h.01"/></svg>;
+    case "messages":    return <svg {...p}><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 10h.01M12 10h.01M16 10h.01"/></svg>;
+    default: return null;
+  }
+};
 
+/* ── Data ── */
+const SOLUTIONS = [
+  { icon: "wallet",   title: "Working Capital & Spend Integrity",    desc: "Improve billing accuracy, payment execution, and working capital performance", href: "/services/working-capital-spend-integrity" },
+  { icon: "workflow", title: "Workflow Automation",                   desc: "Eliminate manual effort and streamline exception-heavy processes",               href: "/solutions/workflow-automation" },
+  { icon: "chart",    title: "Decision-Ready Data",                   desc: "Turn fragmented data into trusted insight for faster decisions",                  href: "/solutions/decision-ready-data" },
+  { icon: "book",     title: "Employee Knowledge & Productivity",      desc: "Instant, context-aware answers across systems and documents",                    href: "/solutions/employee-knowledge-productivity" },
+  { icon: "headset",  title: "Customer Support Optimization",         desc: "Reduce support cost and improve resolution times",                               href: "/solutions/customer-support-optimization" },
+  { icon: "rocket",   title: "AI Solution Delivery",                  desc: "Turn AI ideas into production-ready workflow solutions",                          href: "/solutions/ai-solution-delivery" },
+  { icon: "shield",   title: "AI Risk, Cost & Governance",            desc: "Ensure AI is secure, controlled, cost-effective, and scalable",                  href: "/solutions/ai-risk-cost-governance" },
+];
+
+const PARTNERS = [
+  { icon: "cloud",    title: "Cloud & AI Platforms",                  desc: "Hyperscaler partnerships powering our AI and data foundations",                  href: "/partners/cloud-ai-platforms" },
+  { icon: "network",  title: "Integration & Automation Platforms",    desc: "iPaaS and enterprise integration partners for connected workflows",              href: "/partners/integration-automation-platforms" },
+  { icon: "bot",      title: "Intelligent Automation & RPA",          desc: "Best-in-class RPA and intelligent automation alliances for scale",               href: "/partners/intelligent-automation-rpa" },
+  { icon: "messages", title: "Conversational AI",                     desc: "Conversational AI platform partners for assistants and agents",                  href: "/partners/conversational-ai" },
+];
+
+const COMPANY = [
+  { icon: "building",  title: "About Us", desc: "Who we are and how we work",  href: "/company/about" },
+  { icon: "briefcase", title: "Careers",  desc: "Join our team",               href: "/company/careers" },
+];
+
+/* ── Mega menu panel ── */
+function MegaPanel({ items, intro, cols, open, wide }) {
+  return (
+    <div className={[styles.megaPanel, wide ? styles.megaPanelWide : "", open ? styles.megaOpen : ""].join(" ")}>
+      <div className={styles.megaGlowPurple} aria-hidden="true" />
+      <div className={styles.megaGlowCyan}   aria-hidden="true" />
+      <div className={styles.megaGlowPink}   aria-hidden="true" />
+      <div className={styles.megaGrid}       aria-hidden="true" />
+      <div className={styles.megaTopLine}    aria-hidden="true" />
+      <div className={[styles.megaBody, cols === 2 ? styles.megaBodyNarrow : ""].join(" ")}>
+        <div className={styles.megaIntro}>
+          <p className={styles.megaIntroKicker}>{intro.kicker}</p>
+          <h3 className={styles.megaIntroTitle}>{intro.title}</h3>
+          <p className={styles.megaIntroBody}>{intro.body}</p>
+          <Link href={intro.ctaHref} className={styles.megaIntroCta}>
+            {intro.ctaText} <Icon name="arrowRight" size={12} />
+          </Link>
+        </div>
+        <div className={[styles.megaItems, cols === 3 ? styles.megaItems3 : styles.megaItems2].join(" ")}>
+          {items.map((item) => (
+            <Link key={item.title} href={item.href} className={styles.megaItem}>
+              <span className={styles.megaItemIcon}><Icon name={item.icon} size={14} /></span>
+              <span className={styles.megaItemText}>
+                <span className={styles.megaItemTitle}>{item.title}</span>
+                <span className={styles.megaItemDesc}>{item.desc}</span>
+              </span>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ── Main component ── */
 const Navbar = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [activeSubmenu, setActiveSubmenu] = useState(null);
-  const [activeDescription, setActiveDescription] = useState("ai-d");
-  const [activeNav, setActiveNav] = useState("");
-
-  const toggleNavbar = () => {
-    setMenuOpen(!menuOpen);
-  };
-
-  const handleNavClick = (navKey) => {
-    setActiveNav(navKey);
-    setMenuOpen(false);
-  };
+  const [scrolled,   setScrolled]   = useState(false);
+  const [openMenu,   setOpenMenu]   = useState(null);   // 'Solutions' | 'Partners' | 'Company' | null
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileSub,  setMobileSub]  = useState(null);   // 'Solutions' | 'Partners' | 'Company' | null
 
   useEffect(() => {
-    const handleScroll = () => {
-      const header = document.getElementById("header");
-      if (!header) return;
-
-      if (window.scrollY > 20) {
-        header.classList.add("is-sticky");
-      } else {
-        header.classList.remove("is-sticky");
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const navbarClass = menuOpen
-    ? "collapse navbar-collapse show"
-    : "collapse navbar-collapse";
-
-  const togglerClass = menuOpen
-    ? "navbar-toggler navbar-toggler-right"
-    : "navbar-toggler navbar-toggler-right collapsed";
-
-  const handleMouseEnter = (menu) => {
-    setActiveSubmenu(menu);
-    setActiveDescription(`${menu}-d`);
-  };
+  const toggleMobileSub = (key) => setMobileSub(prev => prev === key ? null : key);
+  const closeMobile = () => { setMobileOpen(false); setMobileSub(null); };
 
   return (
-    <div className="displayLapNav">
-      <header id="header" className="headroom">
-        <div className="container">
-          <div className="startp-nav">
-            <div className="container-fluid px-0">
-              <nav className="navbar navbar-expand-md navbar-light">
-                {/* LOGO */}
-                <Link href="/" className="navbar-brand">
-                  <img
-                    {...Logo}
-                    alt="NITCO Logo"
-                    width="188"
-                    height="44"
-                    className="nav-logo-default"
-                  />
-                  <img
-                    {...LogoWhite}
-                    alt="NITCO Logo"
-                    width="188"
-                    height="44"
-                    className="nav-logo-white"
-                  />
-                </Link>
+    <header
+      id="header"
+      className={[styles.header, scrolled ? styles.scrolled : ""].join(" ")}
+      onMouseLeave={() => setOpenMenu(null)}
+    >
+      <div className={styles.inner}>
+        {/* Logo */}
+        <Link href="/" className={styles.logo}>
+          <img src={LogoWhite.src} alt="NITCO Inc." width={160} height={36} />
+        </Link>
 
-                {/* TOGGLER */}
-                <button
-                  onClick={toggleNavbar}
-                  className={togglerClass}
-                  type="button"
-                  aria-label="Toggle navigation"
-                >
-                  <span className="icon-bar top-bar"></span>
-                  <span className="icon-bar middle-bar"></span>
-                  <span className="icon-bar bottom-bar"></span>
-                </button>
+        {/* Desktop nav */}
+        <div className={styles.desktopNav}>
+          <ul className={styles.navList} role="menubar">
 
-                {/* NAV LINKS */}
-                <div className={navbarClass}>
-                  <ul className="navbar-nav ms-auto">
+            {/* AI Agent Command Center — direct link */}
+            <li className={styles.navItem} role="none">
+              <Link href="/ai-agent-command-center" className={styles.navLink} role="menuitem">
+                AI Agent Command Center
+              </Link>
+            </li>
 
-                    {/* AI AGENT COMMAND CENTER */}
-                    <li
-                      className={`nav-item-services nav-has-caret ${activeNav === "agent-center" ? "active" : ""}`}
-                    >
-                      <Link
-                        href="/agents"
-                        className="nav-link"
-                        onClick={() => handleNavClick("agent-center")}
-                      >
-                        AI Agent Command Center
-                        <Caret />
-                      </Link>
+            {/* Solutions */}
+            <li className={styles.navItem} role="none" onMouseEnter={() => setOpenMenu("Solutions")}>
+              <button
+                className={[styles.navLink, openMenu === "Solutions" ? styles.active : ""].join(" ")}
+                aria-haspopup="true" aria-expanded={openMenu === "Solutions"}
+                role="menuitem"
+              >
+                Solutions <Icon name="chevronDown" size={12} className={openMenu === "Solutions" ? styles.chevron : styles.chevron} />
+              </button>
+              <MegaPanel
+                open={openMenu === "Solutions"} wide items={SOLUTIONS} cols={3}
+                intro={{ kicker: "Solutions", title: "AI-led outcomes across the operations spectrum.", body: "Pick a domain and see how we move from analysis to working solutions.", ctaText: "Explore all solutions", ctaHref: "/services/working-capital-spend-integrity" }}
+              />
+            </li>
 
-                      <div className="solutions-megamenu">
-                        <div className="solutions-megamenu-inner">
-                        <Link href="/agents?agent=dqa" className="sm-card">
-                            <span className="sm-card-icon">
-                              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                                <path d="M9 19V6l11-3v13" />
-                                <circle cx="6" cy="18" r="3" />
-                                <circle cx="17" cy="16" r="3" />
-                              </svg>
-                            </span>
-                            <h4>Data Quality Monitoring</h4>
-                            <p>An agent for governed data quality scoring, trends, and root-cause insights.</p>
-                          </Link>
+            {/* Partners */}
+            <li className={styles.navItem} role="none" onMouseEnter={() => setOpenMenu("Partners")}>
+              <button
+                className={[styles.navLink, openMenu === "Partners" ? styles.active : ""].join(" ")}
+                aria-haspopup="true" aria-expanded={openMenu === "Partners"}
+                role="menuitem"
+              >
+                Partners <Icon name="chevronDown" size={12} />
+              </button>
+              <MegaPanel
+                open={openMenu === "Partners"} items={PARTNERS} cols={2}
+                intro={{ kicker: "Partners", title: "Best-in-class platforms behind every engagement.", body: "We partner across cloud, integration, automation, and conversational AI.", ctaText: "Meet our partners", ctaHref: "/partners/cloud-ai-platforms" }}
+              />
+            </li>
 
-                          <Link href="/agents?agent=ayd" className="sm-card">
-                            <span className="sm-card-icon">
-                              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-                                <path d="M8 10h.01M12 10h.01M16 10h.01" />
-                              </svg>
-                            </span>
-                            <h4>Ask Your Data</h4>
-                            <p>An agent for natural language data exploration that generates SQL, visualizes insights, and explains query logic.</p>
-                          </Link>
+            {/* Resources */}
+            <li className={styles.navItem} role="none">
+              <Link href="/resources" className={styles.navLink} role="menuitem">
+                Resources
+              </Link>
+            </li>
 
-                          <Link href="/agents?agent=dma" className="sm-card">
-                            <span className="sm-card-icon">
-                              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                                <path d="M14 2v6h6" />
-                                <path d="M9 13h6M9 17h6" />
-                              </svg>
-                            </span>
-                            <h4>Intelligent Document Mapping Agent</h4>
-                            <p>An intelligent agent that extracts, maps, and standardizes data from documents, helping teams streamline workflows and improve data accuracy.</p>
-                          </Link>
+            {/* Company */}
+            <li className={styles.navItem} role="none" onMouseEnter={() => setOpenMenu("Company")}>
+              <button
+                className={[styles.navLink, openMenu === "Company" ? styles.active : ""].join(" ")}
+                aria-haspopup="true" aria-expanded={openMenu === "Company"}
+                role="menuitem"
+              >
+                Company <Icon name="chevronDown" size={12} />
+              </button>
+              <MegaPanel
+                open={openMenu === "Company"} items={COMPANY} cols={2}
+                intro={{ kicker: "Company", title: "Built for measurable, working solutions.", body: "Who we are, how we work, and how to join the team.", ctaText: "Read our story", ctaHref: "/company/about" }}
+              />
+            </li>
+          </ul>
 
-                          <div className="sm-blurb">
-                            Purpose-built AI agents that plug into your operations — automating data quality, exploration, and document workflows so your teams can move faster with confidence.
-                          </div>
-                        </div>
-                      </div>
-                    </li>
+          <Link href="/contact" className={styles.contactBtn}>
+            Contact Us <Icon name="arrowRight" size={14} />
+          </Link>
+        </div>
 
-                    {/* SOLUTIONS */}
-                    <li
-                      className={`nav-item-services nav-has-caret ${activeNav === "services" ? "active" : ""}`}
-                    >
-                      <Link
-                        href="#"
-                        className="nav-link"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          setActiveNav("services");
-                        }}
-                      >
-                        Solutions
-                        <Caret />
-                      </Link>
+        {/* Mobile toggle */}
+        <button
+          className={styles.mobileToggle}
+          onClick={() => setMobileOpen(v => !v)}
+          aria-label={mobileOpen ? "Close menu" : "Open menu"}
+          aria-expanded={mobileOpen}
+          aria-controls="mobile-nav"
+        >
+          <Icon name={mobileOpen ? "x" : "menu"} size={22} />
+        </button>
+      </div>
 
-                      <div className="solutions-megamenu">
-                        <div className="solutions-megamenu-inner">
-                          <Link href="/services/working-capital-spend-integrity" className="sm-card">
-                            <span className="sm-card-icon">
-                              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                                <path d="M12 1v22" />
-                                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-                              </svg>
-                            </span>
-                            <h4>Working Capital &amp;<br />Spend Integrity</h4>
-                            <p>Improve billing accuracy, payment execution, and working capital performance.</p>
-                          </Link>
+      {/* Mobile menu */}
+      <nav id="mobile-nav" className={[styles.mobileMenu, mobileOpen ? styles.mobileOpen : ""].join(" ")} aria-label="Mobile navigation">
 
-                          <Link href="/services/automation-services" className="sm-card">
-                            <span className="sm-card-icon">
-                              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                                <circle cx="12" cy="12" r="3" />
-                                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.6 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6 1.65 1.65 0 0 0 10 3.09V3a2 2 0 1 1 4 0v.09c0 .66.39 1.25 1 1.51a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82c.26.61.85 1 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
-                              </svg>
-                            </span>
-                            <h4>Workflow<br />Automation</h4>
-                            <p>Eliminate manual effort and streamline exception-heavy processes.</p>
-                          </Link>
+        {/* AI Agent Command Center */}
+        <div className={styles.mobileNavItem}>
+          <Link href="/ai-agent-command-center" className={styles.mobileNavLink} onClick={closeMobile}>
+            AI Agent Command Center
+          </Link>
+        </div>
 
-                          <Link href="/services/data-services" className="sm-card">
-                            <span className="sm-card-icon">
-                              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                                <path d="M3 3h7v7H3z" />
-                                <path d="M14 3h7v7h-7z" />
-                                <path d="M14 14h7v7h-7z" />
-                                <path d="M3 14h7v7H3z" />
-                              </svg>
-                            </span>
-                            <h4>Decision-Ready<br />Data</h4>
-                            <p>Turn fragmented data into trusted insight for faster decisions.</p>
-                          </Link>
-
-                          <div className="sm-blurb">
-                            We identify where business performance breaks across financial execution, operations, and decision-making — and rapidly turn those insights into practical, working solutions.
-                          </div>
-
-                          <Link href="/services/automation-services" className="sm-card">
-                            <span className="sm-card-icon">
-                              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
-                                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
-                              </svg>
-                            </span>
-                            <h4>Employee Knowledge<br />&amp; Productivity</h4>
-                            <p>Instant, context-aware answers across systems and documents.</p>
-                          </Link>
-
-                          <Link href="/services/automation-services" className="sm-card">
-                            <span className="sm-card-icon">
-                              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                                <path d="M3 12a9 9 0 0 1 18 0v6a2 2 0 0 1-2 2h-2v-7h4" />
-                                <path d="M3 12v6a2 2 0 0 0 2 2h2v-7H3" />
-                              </svg>
-                            </span>
-                            <h4>Customer Support<br />Optimization</h4>
-                            <p>Reduce support cost and improve resolution times.</p>
-                          </Link>
-
-                          <Link href="/services/artificial-intelligence-services" className="sm-card">
-                            <span className="sm-card-icon">
-                              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                                <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z" />
-                                <path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" />
-                                <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0" />
-                                <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" />
-                              </svg>
-                            </span>
-                            <h4>AI Solution<br />Delivery</h4>
-                            <p>Turn AI ideas into production-ready workflow solutions.</p>
-                          </Link>
-
-                          <Link href="/services/artificial-intelligence-governance" className="sm-card">
-                            <span className="sm-card-icon">
-                              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                              </svg>
-                            </span>
-                            <h4>AI Risk, Cost<br />&amp; Governance</h4>
-                            <p>Ensure AI is secure, controlled, cost-effective, and scalable.</p>
-                          </Link>
-                        </div>
-                      </div>
-                    </li>
-
-                    {/* RESOURCES */}
-                    <li
-                      className={`nav-item ${activeNav === "resources" ? "active" : ""}`}
-                    >
-                      <Link
-                        href="/insights/case-studies"
-                        className="nav-link"
-                        onClick={() => handleNavClick("resources")}
-                      >
-                        Resources
-                      </Link>
-                    </li>
-
-                    {/* COMPANY */}
-                    <li
-                      className={`nav-item-services nav-has-caret ${activeNav === "company" ? "active" : ""}`}
-                    >
-                      <Link
-                        href="#"
-                        className="nav-link"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          setActiveNav("company");
-                        }}
-                      >
-                        Company
-                        <Caret />
-                      </Link>
-
-                      <div className="solutions-megamenu">
-                        <div className="solutions-megamenu-inner">
-                          <Link href="/company/about" className="sm-card">
-                            <span className="sm-card-icon">
-                              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                                <circle cx="12" cy="12" r="10" />
-                                <path d="M12 16v-4M12 8h.01" />
-                              </svg>
-                            </span>
-                            <h4>About Us</h4>
-                            <p>Learn about NITCO's mission, leadership, and how we partner with enterprises to deliver real outcomes.</p>
-                          </Link>
-
-                          <Link href="/company/careers" className="sm-card">
-                            <span className="sm-card-icon">
-                              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                                <rect x="2" y="7" width="20" height="14" rx="2" />
-                                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
-                              </svg>
-                            </span>
-                            <h4>Careers</h4>
-                            <p>Join a team building AI-driven solutions for working capital, automation, and decision-ready data.</p>
-                          </Link>
-
-                          <div className="sm-blurb" style={{ gridColumn: "span 2" }}>
-                            We're a team of strategists, engineers, and AI practitioners helping enterprises turn complex operations into measurable, working outcomes.
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-
-                {/* CONTACT CTA */}
-                <Link href="/contact" className="desktopNav bg-[#ffffff] border-t-[#ffffff00] border-r-[#ffffff00] border-b-[#ffffff00] border-l-[#ffffff00] text-[#16164c] rounded-tl-[20px] rounded-tr-[20px] rounded-br-[20px] rounded-bl-[20px]">
-                  Contact Us
-                </Link>
-              </nav>
+        {/* Solutions accordion */}
+        {[
+          { key: "Solutions", items: SOLUTIONS, label: "Solutions" },
+          { key: "Partners",  items: PARTNERS,  label: "Partners" },
+          { key: "Company",   items: COMPANY,   label: "Company" },
+        ].map(({ key, items, label }) => (
+          <div key={key} className={styles.mobileNavItem}>
+            <button
+              className={styles.mobileNavLink}
+              onClick={() => toggleMobileSub(key)}
+              aria-expanded={mobileSub === key}
+            >
+              {label}
+              <svg className={[styles.mobileChevron, mobileSub === key ? styles.open : ""].join(" ")} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="m6 9 6 6 6-6"/>
+              </svg>
+            </button>
+            <div className={[styles.mobileSubMenu, mobileSub === key ? styles.subOpen : ""].join(" ")}>
+              <div className={styles.mobileSubList}>
+                {items.map((item) => (
+                  <Link key={item.title} href={item.href} className={styles.mobileSubItem} onClick={closeMobile}>
+                    <span className={styles.mobileSubIcon}><Icon name={item.icon} size={16} /></span>
+                    <span>
+                      <div className={styles.mobileSubTitle}>{item.title}</div>
+                      <div className={styles.mobileSubDesc}>{item.desc}</div>
+                    </span>
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
+        ))}
+
+        {/* Resources */}
+        <div className={styles.mobileNavItem}>
+          <Link href="/resources" className={styles.mobileNavLink} onClick={closeMobile}>
+            Resources
+          </Link>
         </div>
-      </header>
-    </div>
+
+        <Link href="/contact" className={styles.mobileContactBtn} onClick={closeMobile}>
+          Contact Us <Icon name="arrowRight" size={16} />
+        </Link>
+      </nav>
+    </header>
   );
 };
 

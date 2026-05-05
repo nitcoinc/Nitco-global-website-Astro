@@ -3,7 +3,6 @@ import Layout from "../../components/Layout";
 import ArtificialSection1 from "../../components/Services/Section1/artificialSection1";
 import ArtificialSection2 from "../../components/Services/section2/artificialSection2";
 import Navbar from '../../components/Navbar/Navbar';
-import NavBarMobile from "../../components/Navbar/NavBarMobile/navBarMobile"
 import Discover from "../../images/services-image/IntegrationImg/Discover_integration.webp";
 import Advice from "../../images/services-image/IntegrationImg/Advice-integration.webp";
 import Deliver from "../../images/services-image/IntegrationImg/Deliver-integration.webp";
@@ -190,7 +189,6 @@ const integrationService = () => {
   return (
     <Layout>
       <Navbar />
-      <NavBarMobile />
       <ArtificialSection1 data={DataSection1} />
       <ArtificialSection2 section2Data={Section2} />
       <ArtificialInteligencesection3

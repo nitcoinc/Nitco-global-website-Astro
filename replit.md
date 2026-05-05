@@ -23,6 +23,24 @@ TINA_PUBLIC_IS_LOCAL=true npx tinacms build --local
 
 Without Tina Cloud credentials, the local build is sufficient for the site to render. With credentials, use `npm run dev:tina` for the full editing experience.
 
+## Porting progress (Vite/React source → Next.js Pages Router)
+
+### Completed
+- **About page** — `components/Company/AboutNew/AboutNew.js` + CSS module; `pages/company/about.js` updated
+- **Navbar** — Full rewrite at `components/Navbar/Navbar.js` + `Navbar.module.css`. Glassmorphism fixed header, mega-menu dropdowns (Solutions 7-item 3-col, Partners 4-item 2-col, Company 2-item), mobile accordion, always-dark. No Bootstrap, no framer-motion — CSS modules only.
+  - `NavBarMobile` stubbed to `() => null`
+  - All 13 affected pages cleaned up (removed NavBarMobile imports, home-dark-nav hacks, Bootstrap wrapper divs)
+  - `body { padding-top: 72px; }` added globally for fixed-nav offset
+
+### Remaining (in order)
+- Home page (NewHome component)
+- Working Capital page hero
+- Service pages (AI Services, AI Governance, Automation, Data, Integration)
+- Platform page
+- Partners pages
+- Resources / Insights
+- Careers page
+
 ## Migration notes (Vercel → Replit)
 
 - Dev/start scripts updated to bind `0.0.0.0:5000` (Replit preview requirement).
