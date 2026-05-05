@@ -40,8 +40,20 @@ Without Tina Cloud credentials, the local build is sufficient for the site to re
   - Static enrichment data (topics, descriptions, Vimeo explainer videos) in `lib/resourcesData.js`
   - Links: Case Studies → `/case-studies/[slug]` (TinaCMS), Blogs → `/blog/[slug]` (TinaCMS), Whitepapers → `/whitepapers/[slug]` (TinaCMS), Webinars → `/webinar/[slug]` (TinaCMS), Explainer Videos → external Vimeo URLs
 
+### Completed (continued)
+- **Home page** — `components/Company/HomePage/NewHome/NewHome.js` + `NewHome.module.css`
+  - Hero: full-screen video (`/HomeHero.mp4`) with gradient overlay, star-field pseudo-element, h1 + sub + 3 CTA buttons
+  - "What NITCO Does": 3 scroll-reveal cards (Financial Execution, Operational Workflows, Business Decision-Making) with illustration images
+  - "Our Programs": 7 icon-cards in dark navy 3-col grid (Working Capital, Workflow Automation, Decision-Ready Data, Knowledge, Customer Support, AI Delivery, AI Governance)
+  - "Powered by Platforms": CSS marquee (no JS deps) auto-scrolling 13 partner logos (AWS, Automation Anywhere, Blue Prism, Boomi, Celigo, Saidot, IBM, Jitterbit, Kore.ai, Microsoft, Tray.io, UiPath, Workato) — greyscale fading in on hover
+  - "Trusted by Industry Leaders": 2-up testimonial cards with prev/next arrows + dot navigation — 8 client testimonials with company logos
+  - "Why NITCO": numbered list layout (01–04) with large numerals
+  - "Outcomes": hover-interactive list linked to right-side image panel
+  - "Engagement Model": full-bleed image BG section with CTA
+  - Partner logos + testimonial SVGs copied to `public/images/HomePage/`
+  - TinaCMS slug pages (`blog`, `case-studies`, `webinar`, `whitepapers`, `insights/[page]`, `[page]`) — `getStaticPaths` AND `getStaticProps` now read from disk via `gray-matter` (no TinaCMS API server required at dev/build time)
+
 ### Remaining (in order)
-- Home page (NewHome component)
 - Working Capital page hero
 - Service pages (AI Services, AI Governance, Automation, Data, Integration)
 - Platform page
