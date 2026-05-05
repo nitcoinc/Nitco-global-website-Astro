@@ -7,8 +7,6 @@ import rehypeRaw from "rehype-raw";
 import styles from "./allposts.module.css";
 import Navbar from "../../Navbar/Navbar";
 import Footer from "../../Footer/Footer";
-import NavBarMobile from "../../Navbar/NavBarMobile/navBarMobile";
-import FooterDesignMobile from "../../Footer/FooterDesign/FooterDesignMobile";
 import InsightsSubscribeForm from "../../Hubspot/HubspotInsightsForm/insightsSubscribeForm";
 
 export default function Post({
@@ -35,14 +33,11 @@ export default function Post({
     const handleScroll = () => {
       const containerSticky = containerRef.current;
       const sticky = stickyRef.current;
-
       if (!containerSticky || !sticky) return;
-
       const containerRect = containerSticky.getBoundingClientRect();
       const stickyHeight = sticky.offsetHeight;
       const rightSectionWidth = sticky.parentElement.offsetWidth;
-      const topOffset = 80;
-
+      const topOffset = 90;
       if (containerRect.top <= topOffset) {
         if (containerRect.bottom >= stickyHeight + topOffset) {
           setFixed(true);
@@ -59,99 +54,83 @@ export default function Post({
         sticky.style.width = "100%";
       }
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const pageType = pageData?.allPosts?.pagetype || pageData?.allPosts?.pageType || "Blog";
+  const title = pageData?.allPosts?.title;
+  const image = pageData?.allPosts?.image;
+  const body = pageData?.allPosts?.body;
+
   return (
-    <div>
+    <div className={styles.page}>
       <Navbar />
-      <NavBarMobile />
 
-      <div className={styles.main}>
-        {/* Hero Section */}
-        <div className={styles.imageTextMain}>
-          <img
-            src={pageData?.allPosts.image}
-            alt={
-              pageData?.allPosts.title
-                ? pageData?.allPosts.title
-                : pageData?.allPosts.pagetype
-                  ? `${pageData?.allPosts.pagetype} visual`
-                  : "Nitco banner image"
-            }
-            className={styles.image}
-          />
-          {pageData?.allPosts.title ? (
-            <div className={styles.textMain}>
-              <p className={styles.highlightText}>
-                {pageData?.allPosts.pagetype}{" "}
-              </p>
-              <h1 className={styles.text}>{pageData?.allPosts.title}</h1>
-            </div>
-          ) : (
-            " "
-          )}
+      {/* ── Hero ── */}
+      <div className={styles.hero}>
+        {image && (
+          <img src={image} alt={title || pageType} className={styles.heroImg} />
+        )}
+        <div className={styles.heroOverlay} />
+        <div className={styles.heroContent}>
+          <span className={styles.badge}>{pageType}</span>
+          {title && <h1 className={styles.heroTitle}>{title}</h1>}
         </div>
+      </div>
 
-        {/* Content Section */}
-        <div style={{ marginTop: "70px" }} className="container">
-          <div className={styles.pageWrapper}>
-            <div className={styles.containerSticky} ref={containerRef}>
-              {/* Left Section */}
-              <div className={styles.leftSection}>
-                <div>
-                  <ReactMarkdown
-                    remarkPlugins={[remarkGfm]}
-                    rehypePlugins={[rehypeRaw]}
-                  >
-                    {pageData?.allPosts.body}
-                  </ReactMarkdown>
-                </div>
+      {/* ── Body ── */}
+      <div className={styles.bodyWrap}>
+        <div className={styles.cols} ref={containerRef}>
 
-                {/* Recent Posts Section */}
-                <div className={styles.sectionHead}>
-                  <h1 style={{ fontWeight: "600" }}>
-                    Recent <span style={{ color: "#ed1651" }}>Post</span>
-                  </h1>
-                  <div className={styles.mainRecent}>
-                    {blogdata.slice(0, 4).map((post, index) => (
-                      <a
-                        href={`/${post.pageType}/${post.slug}`}
-                        key={index}
-                        className={styles.box}
-                      >
-                        <img
-                          src={post.image}
-                          alt={post.title || post.pageType || "Nitco recent post"}
-                          className={styles.ImagesSty}
-                        />
-                        <p className={styles.description}>{post.title}</p>
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* Right Section (Subscribe Form) */}
-              <div className={styles.rightSection}>
-                <div
-                  ref={stickyRef}
-                  className={`${styles.stickyCard} 
-                    ${fixed ? styles.fixed : ""} 
-                    ${bottomReached ? styles.bottom : ""}`}
-                >
-                  <InsightsSubscribeForm />
-                </div>
-              </div>
+          {/* Left — article */}
+          <article className={styles.article}>
+            <div className={styles.prose}>
+              <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
+                {body}
+              </ReactMarkdown>
             </div>
-          </div>
+
+            {/* Recent Posts */}
+            {blogdata && blogdata.length > 0 && (
+              <section className={styles.recentSection}>
+                <h2 className={styles.recentHeading}>
+                  Recent <span className={styles.accent}>Posts</span>
+                </h2>
+                <div className={styles.recentGrid}>
+                  {blogdata.slice(0, 4).map((p, i) => (
+                    <a
+                      key={i}
+                      href={`/${p.pageType}/${p.slug}`}
+                      className={styles.recentCard}
+                    >
+                      <img
+                        src={p.image}
+                        alt={p.title || p.pageType || "Post"}
+                        className={styles.recentImg}
+                      />
+                      <p className={styles.recentTitle}>{p.title}</p>
+                    </a>
+                  ))}
+                </div>
+              </section>
+            )}
+          </article>
+
+          {/* Right — subscribe form */}
+          <aside className={styles.sidebar}>
+            <div
+              ref={stickyRef}
+              className={`${styles.stickyWrap} ${fixed ? styles.fixed : ""} ${bottomReached ? styles.bottom : ""}`}
+            >
+              <InsightsSubscribeForm />
+            </div>
+          </aside>
+
         </div>
       </div>
 
       <Footer />
-      <FooterDesignMobile />
     </div>
   );
 }

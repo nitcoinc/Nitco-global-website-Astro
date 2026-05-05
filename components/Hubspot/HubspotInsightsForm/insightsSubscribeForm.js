@@ -1,15 +1,13 @@
 import React, { useState } from "react";
-import styles from "./subscribe.module.css"
+import styles from "./subscribe.module.css";
 
-const InsightsSubscribeForm = ({ }) => {
-
+const InsightsSubscribeForm = () => {
   const [formData, setFormData] = useState({
     firstname: "",
     company: "",
     email: "",
     interests: [],
   });
-
 
   const interestMapping = {
     "AI (Artificial Intelligence)": "AI (Artificial Intelligence)",
@@ -21,27 +19,22 @@ const InsightsSubscribeForm = ({ }) => {
 
   const handleChange = (e) => {
     const { id, value } = e.target;
-    setFormData({
-      ...formData,
-      [id]: value,
-    });
+    setFormData({ ...formData, [id]: value });
   };
 
   const handleInterestClick = (value) => {
-    setFormData((prevState) => {
-      const selected = prevState.interests.includes(value)
-        ? prevState.interests.filter((i) => i !== value)
-        : [...prevState.interests, value];
-      return { ...prevState, interests: selected };
+    setFormData((prev) => {
+      const selected = prev.interests.includes(value)
+        ? prev.interests.filter((i) => i !== value)
+        : [...prev.interests, value];
+      return { ...prev, interests: selected };
     });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-
-    // HubSpot API URL
-    const HUBSPOT_URL = "https://api.hsforms.com/submissions/v3/integration/submit/8158070/d0f017e3-30cf-4cf7-98ea-b2b1fce2eec8";
+    const HUBSPOT_URL =
+      "https://api.hsforms.com/submissions/v3/integration/submit/8158070/d0f017e3-30cf-4cf7-98ea-b2b1fce2eec8";
     const body = {
       fields: [
         { name: "email", value: formData.email },
@@ -50,101 +43,95 @@ const InsightsSubscribeForm = ({ }) => {
         { name: "interests", value: formData.interests.join("; ") },
       ],
     };
-
     try {
       const response = await fetch(HUBSPOT_URL, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
       });
-
       if (!response.ok) {
-        const errorDetails = await response.json(); // Get the error details
+        const errorDetails = await response.json();
         alert(`Error submitting the form: ${errorDetails.message || response.statusText}`);
       } else {
         alert("Form submitted successfully!");
-        setFormData({
-          firstname: "",
-          company: "",
-          email: "",
-          interests: [],
-        });
+        setFormData({ firstname: "", company: "", email: "", interests: [] });
       }
-    } catch (error) {
+    } catch {
       alert("There was an error submitting the form.");
     }
   };
+
   return (
     <div className={styles.Main}>
-      <h4>Subscribe</h4>
+      <h4>Stay Updated</h4>
+      <p>Subscribe for the latest insights delivered to your inbox.</p>
 
-      <form id="contactForm" onSubmit={handleSubmit}>
-        <div >
-          <label className={styles.labels} htmlFor="email">E-mail<span style={{ color: "#ed1651" }}>*</span></label>
-          <br />
-          <input
-            type="email"
-            className={styles.inputfield}
-            id="email"
-            placeholder="  *Email"
-            value={formData.email}
-            onChange={handleChange}
-          />
-        </div>
-        <div >
-          <label className={styles.labels} htmlFor="firstname">Name<span style={{ color: "#ed1651" }}>*</span></label>
-          <br />
-          <input
-            type="text"
-            className={styles.inputfield}
-            id="firstname"
-            placeholder="  *Name"
-            value={formData.firstname}
-            onChange={handleChange}
-          />
-        </div>
-        <div >
-          <label className={styles.labels} htmlFor="company">Company<span style={{ color: "#ed1651" }}>*</span></label>
-          <br />
-          <input
-            type="text"
-            className={styles.inputfield}
-            id="company"
-            placeholder="  *Company"
-            value={formData.company}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="form-group col-md-11">
-          <label htmlFor="interest" className={styles.labels}>Interests</label>
-          <div className="d-flex flex-wrap">
-            {Object.keys(interestMapping).map((displayName, index) => {
-              const hubSpotValue = interestMapping[displayName];
-              const isChecked = formData.interests.includes(hubSpotValue);
+      <form onSubmit={handleSubmit}>
+        <label className={styles.labels} htmlFor="email">
+          Email <span style={{ color: "#53eafd" }}>*</span>
+        </label>
+        <input
+          type="email"
+          className={styles.inputfield}
+          id="email"
+          placeholder="you@company.com"
+          value={formData.email}
+          onChange={handleChange}
+          required
+        />
 
-              return (
-                <div
-                  key={index}
-                  style={{ minWidth: "200px", display: "flex", alignItems: "flex-start", color: "#fff", marginTop: "5px" }}
-                >
-                  <input
-                    className="me-2"
-                    type="checkbox"
-                    checked={isChecked}
-                    onChange={() => handleInterestClick(hubSpotValue)}
-                  />
-                  <label className={styles.courses}>
-                    {displayName}
-                  </label>
+        <label className={styles.labels} htmlFor="firstname">
+          Name <span style={{ color: "#53eafd" }}>*</span>
+        </label>
+        <input
+          type="text"
+          className={styles.inputfield}
+          id="firstname"
+          placeholder="Your name"
+          value={formData.firstname}
+          onChange={handleChange}
+          required
+        />
 
-                </div>
-              );
-            })}
-          </div>
+        <label className={styles.labels} htmlFor="company">
+          Company <span style={{ color: "#53eafd" }}>*</span>
+        </label>
+        <input
+          type="text"
+          className={styles.inputfield}
+          id="company"
+          placeholder="Company name"
+          value={formData.company}
+          onChange={handleChange}
+          required
+        />
+
+        <hr className={styles.divider} />
+
+        <label className={styles.labels}>Interests</label>
+        <div className={styles.interestList}>
+          {Object.keys(interestMapping).map((displayName, index) => {
+            const hubSpotValue = interestMapping[displayName];
+            const isChecked = formData.interests.includes(hubSpotValue);
+            return (
+              <div key={index} className={styles.interestItem}>
+                <input
+                  type="checkbox"
+                  checked={isChecked}
+                  onChange={() => handleInterestClick(hubSpotValue)}
+                  id={`interest-${index}`}
+                />
+                <label htmlFor={`interest-${index}`} className={styles.courses}>
+                  {displayName}
+                </label>
+              </div>
+            );
+          })}
         </div>
-        <button type="submit" className={styles.btn}>Submit</button>
+
+        <button type="submit" className={styles.btn}>
+          Subscribe
+        </button>
       </form>
     </div>
   );
