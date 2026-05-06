@@ -116,7 +116,7 @@ const Navbar = () => {
           <ul className={styles.navList} role="menubar">
 
             {/* AI Agent Command Center — direct link */}
-            <li className={styles.navItem} role="none">
+            <li className={styles.navItem} role="none" onMouseEnter={() => setOpenMenu(null)}>
               <Link href="/ai-agent-command-center" className={styles.navLink} role="menuitem">
                 AI Agent Command Center
               </Link>
@@ -153,7 +153,7 @@ const Navbar = () => {
             </li>
 
             {/* Resources */}
-            <li className={styles.navItem} role="none">
+            <li className={styles.navItem} role="none" onMouseEnter={() => setOpenMenu(null)}>
               <Link href="/resources" className={styles.navLink} role="menuitem">
                 Resources
               </Link>
