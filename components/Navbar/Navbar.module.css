@@ -35,7 +35,7 @@
   text-decoration: none;
   flex-shrink: 0;
 }
-.logo img { display: block; height: 46px; width: auto; }
+.logo img { display: block; height: 54px; width: auto; }
 
 /* ===== DESKTOP NAV ===== */
 .desktopNav {

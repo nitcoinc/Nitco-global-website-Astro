@@ -108,7 +108,7 @@ const Navbar = () => {
       <div className={styles.inner}>
         {/* Logo */}
         <Link href="/" className={styles.logo}>
-          <img src="/images/logo-nitco.png" alt="NITCO Inc." width={200} height={46} />
+          <img src="/images/logo-nitco.png" alt="NITCO Inc." width={234} height={54} />
         </Link>
 
         {/* Desktop nav */}
