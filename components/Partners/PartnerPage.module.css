@@ -99,7 +99,7 @@
   height: 46px;
   padding: 0 28px;
   border-radius: 9999px;
-  background: linear-gradient(90deg, #2e2d78, #3a3a9c, #53eafd);
+  background: linear-gradient(90deg, #3d3ca0 0%, #2e2d78 100%);
   font-size: 14px;
   font-weight: 500;
   color: #fff;
@@ -107,11 +107,10 @@
   cursor: pointer;
   font-family: inherit;
   text-decoration: none;
-  box-shadow: 0 8px 30px rgba(83,234,253,0.18);
-  transition: box-shadow 0.25s, transform 0.2s;
+  box-shadow: 0 12px 28px -10px rgba(61, 60, 160, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  transition: transform 0.2s;
 }
 .ctaPrimary:hover {
-  box-shadow: 0 8px 40px rgba(83,234,253,0.35);
   transform: translateY(-1px);
   color: #fff;
 }
