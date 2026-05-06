@@ -7,12 +7,7 @@ import AICommandCenter from "../components/AICommandCenter/AICommandCenter";
 
 export default function AIAgentCommandCenterPage() {
   const handleContact = useCallback(() => {
-    const el = document.getElementById("contact");
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
-    } else {
-      window.location.href = "/#contact";
-    }
+    window.location.href = "/contact";
   }, []);
 
   return (

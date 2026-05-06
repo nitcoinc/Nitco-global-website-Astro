@@ -7,12 +7,7 @@ import CareersPage from "../../components/Company/careersPage";
 
 export default function CareerPage() {
   const handleContact = useCallback(() => {
-    const el = document.getElementById("contact");
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
-    } else {
-      window.location.href = "/#contact";
-    }
+    window.location.href = "/contact";
   }, []);
 
   return (

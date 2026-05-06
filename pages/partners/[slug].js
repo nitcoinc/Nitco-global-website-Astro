@@ -11,12 +11,7 @@ export default function PartnerCategoryPage({ category }) {
   const router = useRouter();
 
   const handleContact = useCallback(() => {
-    const el = document.getElementById("contact");
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
-    } else {
-      window.location.href = "/#contact";
-    }
+    window.location.href = "/contact";
   }, []);
 
   if (!category) {

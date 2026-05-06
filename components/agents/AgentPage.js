@@ -206,11 +206,7 @@ const AgentPage = () => {
                     </button>
                   )}
 
-                  <a
-                    href="https://nitcoinc.com/contact"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
+                  <a href="/contact">
                     <button className={styles.talkExpertBtn}>
                       Talk to an Expert
                     </button>
@@ -291,11 +287,7 @@ const AgentPage = () => {
                   )}
 
                   {/* Talk to Expert */}
-                  <a
-                    href="https://nitcoinc.com/contact"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
+                  <a href="/contact">
                     <button className={styles.talkExpertBtnDark}>
                       Talk to an Expert
                     </button>
