@@ -570,15 +570,16 @@
   align-items: center;
   gap: 10px;
   padding: 16px 32px;
-  border-radius: 30px;
-  background: #ed1651;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #3d3ca0 0%, #2e2d78 100%);
   color: #fff;
   font-weight: 700;
   font-size: 15px;
   text-decoration: none;
-  transition: background 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 12px 28px -10px rgba(61, 60, 160, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  transition: transform 0.2s ease;
 }
-.ctaBtn:hover { background: #c91245; color: #fff; transform: translateY(-1px); }
+.ctaBtn:hover { transform: translateY(-1px); color: #fff; }
 
 /* ===== ANIMATIONS ===== */
 @keyframes fadeInUp {
