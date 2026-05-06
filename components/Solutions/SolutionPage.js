@@ -58,7 +58,7 @@ function Icon({ name, size = 20 }) {
     lock: <><rect x="3" y="11" width="18" height="11" rx="2" strokeLinecap="round" strokeLinejoin="round" /><path strokeLinecap="round" strokeLinejoin="round" d="M7 11V7a5 5 0 0110 0v4" /></>,
     fileWarning: <><path strokeLinecap="round" strokeLinejoin="round" d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" /><polyline strokeLinecap="round" strokeLinejoin="round" points="14 2 14 8 20 8" /><line strokeLinecap="round" strokeLinejoin="round" x1="12" y1="12" x2="12" y2="16" /><line strokeLinecap="round" strokeLinejoin="round" x1="12" y1="18" x2="12.01" y2="18" /></>,
     arrowLeft: <><line strokeLinecap="round" strokeLinejoin="round" x1="19" y1="12" x2="5" y2="12" /><polyline strokeLinecap="round" strokeLinejoin="round" points="12 19 5 12 12 5" /></>,
-    arrowRight: <><line strokeLinecap="round" strokeLinejoin="round" x1="5" y1="12" x2="19" y2="12" /><polyline strokeLinecap="round" strokeLinejoin="round" points="12 5 19 12 12 19" /></>,
+    arrowRight: <><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></>,
   };
   return (
     <svg

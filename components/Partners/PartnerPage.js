@@ -34,7 +34,7 @@ function Icon({ name, size = 20 }) {
     scrollText: <><path d="M8 21h12a2 2 0 002-2v-2H10v2a2 2 0 01-4 0V5a2 2 0 00-2-2H4a2 2 0 00-2 2v3h6"/><path d="M19 3H8.5A2.5 2.5 0 006 5.5v0A2.5 2.5 0 008.5 8H20v13"/><line x1="10" y1="12" x2="16" y2="12"/><line x1="10" y1="16" x2="14" y2="16"/></>,
     sparkles: <><path d="M12 3l1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5z"/><path d="M20 2l.75 2.25L23 5l-2.25.75L20 8l-.75-2.25L17 5l2.25-.75z"/><path d="M4 16l.5 1.5L6 18l-1.5.5L4 20l-.5-1.5L2 18l1.5-.5z"/></>,
     arrowLeft: <><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></>,
-    arrowRight: <><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></>,
+    arrowRight: <><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></>,
     bookOpen: <><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></>,
   };
   return <svg {...p}>{paths[name] || <circle cx="12" cy="12" r="9"/>}</svg>;
