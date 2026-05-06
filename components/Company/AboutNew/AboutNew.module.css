@@ -3,10 +3,10 @@
    ============================================= */
 .page {
   background:
-    radial-gradient(circle at 8% 70%, rgba(237, 22, 81, 0.18) 0%, transparent 35%),
-    radial-gradient(circle at 92% 25%, rgba(140, 70, 220, 0.18) 0%, transparent 40%),
-    radial-gradient(circle at 60% 95%, rgba(60, 100, 220, 0.18) 0%, transparent 45%),
-    linear-gradient(180deg, #0b0a3a 0%, #110d4d 100%);
+    radial-gradient(circle at 8% 70%, rgba(237, 22, 81, 0.12) 0%, transparent 35%),
+    radial-gradient(circle at 92% 25%, rgba(92, 90, 224, 0.12) 0%, transparent 40%),
+    radial-gradient(circle at 60% 95%, rgba(60, 100, 220, 0.10) 0%, transparent 45%),
+    #080715;
   color: #fff;
   font-family: 'Switzer', 'Lato', -apple-system, BlinkMacSystemFont, sans-serif;
 }
