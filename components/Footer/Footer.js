@@ -7,8 +7,9 @@ import X from "../../images/FooterDesignChange/X.svg";
 import youtube from "../../images/FooterDesignChange/youtube.svg";
 import linkdin from "../../images/FooterDesignChange/linkdin.svg";
 
+const CURRENT_YEAR = new Date().getFullYear();
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
+  const currentYear = CURRENT_YEAR;
 
   const headingStyle = {
     color: "#fff",

@@ -41,11 +41,14 @@ const CONTENT_TYPES = [
   { key: "Webinars",         label: "Webinars" },
 ];
 
-/* ── format date ── */
+/* ── format date (locale-independent to avoid SSR/client hydration mismatch) ── */
+const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 function formatDate(dateStr) {
   if (!dateStr) return null;
   try {
-    return new Date(dateStr).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+    const d = new Date(dateStr);
+    if (isNaN(d.getTime())) return null;
+    return `${MONTHS[d.getUTCMonth()]} ${d.getUTCDate()}, ${d.getUTCFullYear()}`;
   } catch { return null; }
 }
 
