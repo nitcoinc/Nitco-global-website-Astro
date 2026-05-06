@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect, useCallback } from "react";
 import Link from "next/link";
 import styles from "./Resources.module.css";
 import {
@@ -53,7 +53,7 @@ function formatDate(dateStr) {
 }
 
 /* ── Card ── */
-function Card({ title, description, image, date, duration, badge, topics, href, external, isVideo }) {
+function Card({ title, description, image, date, duration, badge, topics, href, external, isVideo, onPlay }) {
   const inner = (
     <>
       <div className={styles.cardImageWrap}>
@@ -105,13 +105,20 @@ function Card({ title, description, image, date, duration, badge, topics, href, 
           </span>
           <span className={styles.cardCta}>
             {isVideo ? "Watch" : "Read"}
-            {external ? <Icon name="arrowUpRight" size={12} /> : <Icon name="arrowRight" size={12} />}
+            {onPlay ? <Icon name="play" size={12} /> : external ? <Icon name="arrowUpRight" size={12} /> : <Icon name="arrowRight" size={12} />}
           </span>
         </div>
       </div>
     </>
   );
 
+  if (onPlay) {
+    return (
+      <button type="button" onClick={onPlay} className={`${styles.card} ${styles.cardButton}`}>
+        {inner}
+      </button>
+    );
+  }
   if (external) {
     return (
       <a href={href} target="_blank" rel="noopener noreferrer" className={styles.card}>
@@ -126,6 +133,16 @@ function Card({ title, description, image, date, duration, badge, topics, href, 
 export default function Resources({ blogs, caseStudies, webinars, whitepapers }) {
   const [activeTab, setActiveTab]     = useState("Case Studies");
   const [activeTopic, setActiveTopic] = useState("All");
+  const [videoModal, setVideoModal]   = useState(null); // vimeo video ID or null
+
+  const closeModal = useCallback(() => setVideoModal(null), []);
+
+  useEffect(() => {
+    if (!videoModal) return;
+    const onKey = (e) => { if (e.key === "Escape") closeModal(); };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [videoModal, closeModal]);
 
   /* Enrich case studies with static topics/description */
   const enrichedCaseStudies = useMemo(() => {
@@ -217,9 +234,8 @@ export default function Resources({ blogs, caseStudies, webinars, whitepapers })
             description={item.description}
             image={item.image}
             badge="Explainer Video"
-            href={item.href}
-            external
             isVideo
+            onPlay={() => setVideoModal(item.slug)}
           />
         );
       case "Webinars":
@@ -349,6 +365,40 @@ export default function Resources({ blogs, caseStudies, webinars, whitepapers })
           </div>
         </div>
       </section>
+
+      {/* ── Video lightbox ── */}
+      {videoModal && (
+        <div
+          className={styles.modalOverlay}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Video player"
+          onClick={closeModal}
+        >
+          <div className={styles.modalBox} onClick={(e) => e.stopPropagation()}>
+            <button
+              type="button"
+              className={styles.modalClose}
+              onClick={closeModal}
+              aria-label="Close video"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+              </svg>
+            </button>
+            <div className={styles.modalIframeWrap}>
+              <iframe
+                src={`https://player.vimeo.com/video/${videoModal}?autoplay=1&title=0&byline=0&portrait=0&color=1BE1F2`}
+                className={styles.modalIframe}
+                frameBorder="0"
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowFullScreen
+                title="Explainer Video"
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
