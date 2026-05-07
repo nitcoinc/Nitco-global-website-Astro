@@ -69,5 +69,5 @@ Marketing site built with Next.js 14 (Pages Router) and TinaCMS for content.
 
 - `components/AICommandCenter/AICommandCenter.js` + `.module.css` — AI Agent Command Center page
 - `components/Partners/PartnerPage.js` + `.module.css` — shared Partners template; data in `lib/partnersData.js`; route at `pages/partners/[slug].js`
-- `components/Company/careersPage.js` + `.module.css` — Careers page at `/company/careers`
+- `components/Careers/careersPage.js` + `.module.css` — Careers page at `/company/careers`
 - `components/Solutions/SolutionPage.js` + `.module.css` — shared Solutions template

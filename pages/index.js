@@ -1,15 +1,15 @@
 import React from "react";
-import NewHome from "../components/Company/HomePage/NewHome/NewHome";
+import HomePage from "../components/HomePage/HomePage";
 import Footer from "../components/Footer/Footer";
 import Navbar from "../components/Navbar/Navbar";
 import FooterDesignMobile from "../components/Footer/FooterDesign/FooterDesignMobile";
 import { getSeoForPath } from "../lib/fetchSeoData";
 
-const HomePage = () => {
+const HomePageComponent = () => {
   return (
     <>
       <Navbar />
-      <NewHome />
+      <HomePage />
       <Footer />
       <FooterDesignMobile />
     </>
@@ -21,4 +21,4 @@ export async function getStaticProps() {
   return { props: { seo } };
 }
 
-export default HomePage;
+export default HomePageComponent;

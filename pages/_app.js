@@ -80,10 +80,10 @@ function MyApp({ Component, pageProps }) {
         `}
       </Script>
 
-      <Script src="//cdn.iubenda.com/cs/tcf/stub-v2.js" strategy="beforeInteractive" />
-      <Script src="//cdn.iubenda.com/cs/tcf/safe-tcf-v2.js" strategy="beforeInteractive" />
-      <Script src="//cdn.iubenda.com/cs/ccpa/stub.js" strategy="beforeInteractive" />
-      <Script src="//cdn.iubenda.com/cs/iubenda_cs.js" strategy="afterInteractive" async />
+      <Script src="https://cdn.iubenda.com/cs/tcf/stub-v2.js" strategy="beforeInteractive" />
+      <Script src="https://cdn.iubenda.com/cs/tcf/safe-tcf-v2.js" strategy="beforeInteractive" />
+      <Script src="https://cdn.iubenda.com/cs/ccpa/stub.js" strategy="beforeInteractive" />
+      <Script src="https://cdn.iubenda.com/cs/iubenda_cs.js" strategy="afterInteractive" async />
 
       {/* ========================= */}
       {/* LEADSY TRACKING */}
@@ -167,14 +167,3 @@ export default MyApp;
 
 
 
-{/* Initialize Chat */}
-      {/* <Script id="koreai-init" strategy="afterInteractive">
-        {`
-    window.addEventListener("load", function () {
-      if (window.KoreChatSDK) {
-        KoreChatSDK.chatConfig.botOptions.API_KEY_CONFIG.KEY = '724abd38ef7541939c8c13ea8efa4f1ac884140988204488bae0f4fc2e82a1bbstf3';
-        new KoreChatSDK.chatWindow().show(KoreChatSDK.chatConfig);
-      }
-    });
-  `}
-      </Script> */}

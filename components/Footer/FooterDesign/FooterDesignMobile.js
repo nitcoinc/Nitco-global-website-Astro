@@ -1,268 +1,243 @@
 import Link from "next/link";
 import Logo from "../../../images/nitco-images/LogoWhite.svg";
-import { GoArrowUpRight } from "react-icons/go";
 import USA from "../../../images/FooterDesignChange/USA.png";
 import Indian from "../../../images/FooterDesignChange/Indian.png";
 import fb from "../../../images/FooterDesignChange/fb.svg";
 import X from "../../../images/FooterDesignChange/X.svg";
 import youtube from "../../../images/FooterDesignChange/youtube.svg";
 import linkdin from "../../../images/FooterDesignChange/linkdin.svg";
+
 import styles from "./FooterDesignMobile.module.css";
+
 const CURRENT_YEAR = new Date().getFullYear();
+
 const Footer = () => {
-  const currentYear = CURRENT_YEAR;
   return (
-    <div
-      className={styles.displayMobile}
-      style={{ backgroundColor: "#25247b" }}
-    >
-      <div className={`${styles.footerAreaNew} container-fluid`}>
-        <div className="row justify-content-center lh-base single-footer-widget">
-          <div style={{ display: "flex", justifyContent: "center" }}>
-            <Link href="/">
-              <img {...Logo} alt="logo" width="180" height="40" />
-            </Link>
-          </div>
+    <footer className={styles.displayMobile}>
+      <div className={styles.footerWrapper}>
+        {/* Logo */}
+        <div className={styles.logoSection}>
+          <Link href="/">
+            <img {...Logo} alt="logo" width="180" height="40" />
+          </Link>
         </div>
 
-        <div className="row justify-content-center lh-base single-footer-widget">
-          <div>
-            <h3
-              style={{ color: "#fff", marginBottom: "0px", fontSize: "15px" }}
-            >
-              Services
-            </h3>
-            <div style={{ fontSize: "12px" }}>
-              <Link
-                href="/services/artificial-intelligence-services"
-                style={{ color: "#fff", paddingRight: "10px" }}
-              >
-                Artificial Intelligence (AI){" "}
-                <span style={{ color: "#fff", paddingRight: "10px" }}>|</span>
+        {/* Tablet Layout */}
+        <div className={styles.tabletLayout}>
+          {/* Services */}
+          <div className={styles.section}>
+            <h3>Services</h3>
+
+            <div className={styles.linksInline}>
+              <Link href="/services/artificial-intelligence-services">
+                Artificial Intelligence (AI)
               </Link>
-              <Link
-                href="/services/artificial-intelligence-governance"
-                style={{ color: "#fff", paddingRight: "10px" }}
-              >
-                AI Governance (AIG){" "}
-                <span style={{ color: "#fff", paddingRight: "10px" }}>|</span>
+
+              <span>|</span>
+
+              <Link href="/services/artificial-intelligence-governance">
+                AI Governance (AIG)
               </Link>
-              <Link
-                href="/services/automation-services"
-                style={{ color: "#fff", paddingRight: "10px" }}
-              >
-                Automation{" "}
+
+              <span>|</span>
+
+              <Link href="/services/automation-services">
+                Automation
               </Link>
-              <span style={{ color: "#fff", paddingRight: "10px" }}>|</span>
-              <Link
-                href="/services/integration-services"
-                style={{ color: "#fff", paddingRight: "10px" }}
-              >
-                Integration{" "}
+
+              <span>|</span>
+
+              <Link href="/services/integration-services">
+                Integration
               </Link>
-              <span style={{ color: "#fff", paddingRight: "10px" }}>|</span>
-              <Link
-                href="/services/data-services"
-                style={{ color: "#fff", paddingRight: "10px" }}
-              >
+
+              <span>|</span>
+
+              <Link href="/services/data-services">
                 Data
               </Link>
             </div>
           </div>
-          <div style={{ display: "flex", gap: "30px" }}>
-            <div style={{ marginTop: "30px", textAlign: "left" }}>
-              <h3
-                style={{ color: "#fff", marginBottom: "0px", fontSize: "15px" }}
-              >
-                Company
-              </h3>
-              <div className="list" style={{ fontSize: "12px" }}>
-                <Link
-                  href="/company/about"
-                  style={{ color: "#fff", paddingRight: "10px" }}
-                >
-                  About{" "}
-                </Link>
-                <span style={{ color: "#fff", paddingRight: "10px" }}>|</span>
 
-                <Link
-                  href="/company/careers/"
-                  style={{ color: "#fff", paddingRight: "10px" }}
-                >
-                  Careers
-                </Link>
+          <div className={styles.companySocialRow}>
+            {/* Company */}
+            <div className={styles.section}>
+              <h3>Company</h3>
+
+              <div className={styles.linksInline}>
+                <Link href="/company/about">About</Link>
+
+                <span>|</span>
+
+                <Link href="/company/careers/">Careers</Link>
               </div>
             </div>
-            <div style={{ paddingTop: "30px" }}>
-              <h3
-                style={{ color: "#fff", marginBottom: "0px", fontSize: "15px" }}
-              >
-                Follow Us
-              </h3>
-              <a
-                href="https://www.facebook.com/NitcoIncOfficial/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <img {...fb} alt="India" className={styles.socialIcons} />
-              </a>
-              <a
-                href="https://twitter.com/nitcoofficial/"
-                className="twitter text-white"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <img {...X} alt="India" className={styles.socialIcons} />
-              </a>
-              <a
-                href="https://www.linkedin.com/company/nitcoincofficial"
-                className="instagram text-white"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <img {...linkdin} alt="India" className={styles.socialIcons} />
-              </a>
-              <a
-                href="https://www.youtube.com/channel/UChm0AxXJl4gsIiUimX1kh-A"
-                className="instagram text-white"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <img
-                  {...youtube}
-                  alt="India"
-                  className={styles.socialIcons}
-                  style={{ marginRight: "0px" }}
-                />
-              </a>
+
+            {/* Social */}
+            <div className={styles.section}>
+              <h3>Follow Us</h3>
+
+              <div className={styles.socialWrapper}>
+                <a
+                  href="https://www.facebook.com/NitcoIncOfficial/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className={styles.socialCircle}
+                >
+                  <img {...fb} alt="Facebook" />
+                </a>
+
+                <a
+                  href="https://twitter.com/nitcoofficial/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className={styles.socialCircle}
+                >
+                  <img {...X} alt="X" />
+                </a>
+
+                <a
+                  href="https://www.linkedin.com/company/nitcoincofficial"
+                  target="_blank"
+                  rel="noreferrer"
+                  className={styles.socialCircle}
+                >
+                  <img {...linkdin} alt="LinkedIn" />
+                </a>
+
+                <a
+                  href="https://www.youtube.com/channel/UChm0AxXJl4gsIiUimX1kh-A"
+                  target="_blank"
+                  rel="noreferrer"
+                  className={styles.socialCircle}
+                >
+                  <img {...youtube} alt="YouTube" />
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* Address Section */}
+          <div className={styles.addressSection}>
+            <div className={styles.divider}></div>
+
+            <div className={styles.addressRow}>
+              <img {...USA} alt="USA" />
+
+              <div>
+                <p>
+                  <strong>US Headquarters:</strong> 440 Cobia Dr., Suite 1701
+                  Katy, Texas 77494
+                </p>
+
+                <span>281-503-7002</span>
+              </div>
+            </div>
+
+            <div className={styles.divider}></div>
+
+            <div className={styles.addressRow}>
+              <img {...Indian} alt="India" />
+
+              <div>
+                <p>
+                  <strong>India Hyderabad:</strong> 514-515, 5th Floor DSL
+                  Abacus IT Park, IDA Uppal, Hyderabad, Telangana 500013,
+                  India.
+                </p>
+
+                <span>040-45437549</span>
+
+                <p className={styles.mt10}>
+                  Gachibowli, Hyderabad, Telangana 500032, India
+                </p>
+
+                <span>040-45437626</span>
+              </div>
             </div>
           </div>
         </div>
 
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "space-evenly",
-            width: "100%",
-            padding: "0 !important",
-          }}
-          className="row"
-        >
-          <div className={styles.headUnderLine}></div>
-          <div
-            style={{ color: "#fff", display: "flex", paddingBottom: "15px" }}
-          >
-            
-            <img
-              {...USA}
-              alt="USA"
-              style={{ width: "30px", height: "20px", marginRight: "10px" }}
-            />
-            <p
-              style={{
-              
-                fontSize: "12px",
-                margin: "0px",
-                marginTop: "-5px",
-              }}
-            >
-              <span className={styles.CountryHeadNew}>US Headquarters: </span>
-              440 Cobia Dr., Suite 1701 Katy, Texas 77494 <br />{" "}
-              <span style={{ fontSize: "12px" }}>281-503-7002</span>
-            </p>
-          </div>
-          <div className={styles.headUnderLine}></div>
-          <div
-            style={{
-              paddingBottom: "20px",
-              width: "100%",
-              color: "#fff",
-              display: "flex",          
-            }}
-          >
-            <img
-              {...Indian}
-              alt="India"
-              style={{ width: "30px", height: "20px", marginRight: "10px" }}
-            />
-            <div>
-              <p
-                style={{
-                  fontSize: "12px",
-                  margin: "0px",
-                  marginTop: "-5px",
-                }}
-              >
-                <span className={styles.CountryHeadNew}>India Hyderabad: </span>
-                514-515, 5th Floor DSL Abacus IT Park, IDA Uppal, Hyderabad,
-                Telangana 500013, India.
-              </p>
-              <p style={{ fontSize: "12px" }}>040-45437549</p>
+        {/* Mobile Layout */}
+        <div className={styles.mobileLayout}>
+          <div className={styles.mobileSection}>
+            <h3>Services</h3>
 
-              <p style={{ fontSize: "12px", margin: "0px", marginTop: "10px" }}>
-                Gachibowli, Hyderabad, Telangana 500032, India
-              </p>
-              <p style={{ fontSize: "12px" }}>040-45437626</p>
+            <Link href="/services/artificial-intelligence-services">
+              Artificial Intelligence (AI)
+            </Link>
+
+            <Link href="/services/artificial-intelligence-governance">
+              AI Governance (AIG)
+            </Link>
+
+            <Link href="/services/automation-services">
+              Automation
+            </Link>
+
+            <Link href="/services/integration-services">
+              Integration
+            </Link>
+
+            <Link href="/services/data-services">
+              Data
+            </Link>
+          </div>
+
+          <div className={styles.mobileSection}>
+            <h3>Company</h3>
+
+            <Link href="/company/about">About</Link>
+
+            <Link href="/company/careers/">Careers</Link>
+          </div>
+
+          <div className={styles.mobileSection}>
+            <h3>Follow Us</h3>
+
+            <div className={styles.socialWrapper}>
+              <a href="#"><img {...fb} alt="" /></a>
+              <a href="#"><img {...X} alt="" /></a>
+              <a href="#"><img {...linkdin} alt="" /></a>
+              <a href="#"><img {...youtube} alt="" /></a>
             </div>
           </div>
-        </div>
-      </div>
 
-      <div className={styles.copyRightNew}>
-        <div>
-          <p>
+          <div className={styles.mobileSection}>
+            <h3>Contact Us</h3>
+
             <a href="mailto:YourPartner@nitcoinc.com">
-              <span className="text-white" style={{ fontSize: "12px" }}>
-                YourPartner@nitcoinc.com
-              </span>
+              YourPartner@nitcoinc.com
             </a>
-          </p>
-          <div style={{ display: "flex", justifyContent: "space-around" }}>
+          </div>
+
+          <div className={styles.mobileCountry}>
             <div>
-              <a
-                href="/privacy-policy"
-                className="text-white"
-                style={{ fontSize: "12px" }}
-              >
-                <GoArrowUpRight
-                  className="arrowupright-icon"
-                  style={{ fontSize: "12px" }}
-                />
-                Privacy Policy
-              </a>
+              <img {...USA} alt="USA" />
+              <span>USA - Texas</span>
             </div>
+
             <div>
-              <a
-                href="/cookie-policy"
-                className="text-white"
-                style={{ fontSize: "12px" }}
-              >
-                <span className="arrowupright-icon">
-                  <GoArrowUpRight
-                    className="arrowupright-icon"
-                    style={{
-                      fontSize: "12px",
-                      fontWeight: "800 !important",
-                    }}
-                  />
-                </span>
-                Cookie Policy
-              </a>
+              <img {...Indian} alt="India" />
+              <span>India - Hyderabad</span>
             </div>
           </div>
         </div>
-        <div
-          style={{
-            fontSize: "12px !important",
-            color: "#fff",
-            marginTop: "15px",
-          }}
-        >
-          &copy; {currentYear} Nitco, Inc. All Rights Reserved.
+
+        {/* Bottom */}
+        <div className={styles.bottomBar}>
+          <div className={styles.policyLinks}>
+            <Link href="/privacy-policy">Privacy Policy</Link>
+
+            <Link href="/cookie-policy">Cookie Policy</Link>
+          </div>
+
+          <p>
+            &copy; {CURRENT_YEAR} Nitco, Inc. All Rights Reserved.
+          </p>
         </div>
       </div>
-    </div>
+    </footer>
   );
 };
 

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Link from "next/link";
 import styles from "./AICommandCenter.module.css";
 
@@ -43,6 +44,9 @@ const ALL_AGENTS = [
     title: "Data Quality Monitoring",
     slug: "data-quality-monitoring",
     description: "An agent for governed data quality scoring, trends, and root-cause insights.",
+    trackingKey: "dqa",
+    appUrl: "https://dqa-agent.nitcoinc.com/",
+    videoUrl: "https://player.vimeo.com/video/1157300947?autoplay=1&muted=1",
   },
   {
     icon: "messageSquare",
@@ -50,6 +54,9 @@ const ALL_AGENTS = [
     title: "Ask Your Data",
     slug: "ask-your-data",
     description: "An agent for natural language data exploration that generates SQL, visualizes insights, and explains query logic.",
+    trackingKey: "ayd",
+    appUrl: "https://ayd-agent.nitcoinc.com/",
+    videoUrl: "https://player.vimeo.com/video/1172175850?autoplay=1&muted=1",
   },
   {
     icon: "fileText",
@@ -57,6 +64,9 @@ const ALL_AGENTS = [
     title: "Intelligent Document Mapping Agent",
     slug: "document-mapping",
     description: "An intelligent agent that extracts, maps, and standardizes data from documents, helping teams streamline workflows and improve data accuracy.",
+    trackingKey: "dma",
+    appUrl: "https://dma-ops.nitcoinc.ai/",
+    videoUrl: "https://player.vimeo.com/video/1180817877?h=5ce79c97a0&autoplay=1&muted=1",
   },
 ];
 
@@ -92,6 +102,52 @@ function LiveDot() {
 }
 
 export default function AICommandCenter({ onContact }) {
+  const [openAgentUrl, setOpenAgentUrl] = useState(null);
+  const pushTrackingEvent = (eventName, payload) => {
+    if (typeof window === "undefined") return;
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: eventName,
+      ...payload,
+    });
+  };
+
+  const updateModalTrackingUrl = (agentKey, viewType) => {
+    const url = new URL(window.location.href);
+    url.searchParams.set("agent", agentKey);
+    url.searchParams.set("view", viewType);
+    window.history.pushState({ agent: agentKey, view: viewType }, "", url.toString());
+    pushTrackingEvent("virtual_pageview", {
+      page_path: `${url.pathname}${url.search}`,
+      page_location: url.toString(),
+      agent: agentKey,
+      view: viewType,
+    });
+    pushTrackingEvent("agent_modal_open", { agent: agentKey, view: viewType, url: url.toString() });
+  };
+
+  const clearModalTrackingUrl = () => {
+    const url = new URL(window.location.href);
+    url.searchParams.delete("agent");
+    url.searchParams.delete("view");
+    window.history.replaceState({}, "", url.toString());
+    pushTrackingEvent("virtual_pageview", {
+      page_path: `${url.pathname}${url.search}`,
+      page_location: url.toString(),
+    });
+    pushTrackingEvent("agent_modal_close", { url: url.toString() });
+  };
+
+  const openAgentModal = (url, agentKey, viewType) => {
+    setOpenAgentUrl(url);
+    updateModalTrackingUrl(agentKey, viewType);
+  };
+
+  const closeAgentModal = () => {
+    setOpenAgentUrl(null);
+    clearModalTrackingUrl();
+  };
+
   return (
     <div className={styles.page}>
 
@@ -239,11 +295,19 @@ export default function AICommandCenter({ onContact }) {
                 <p className={styles.agentCardDesc}>{agent.description}</p>
 
                 <div className={styles.agentCardActions}>
-                  <button type="button" className={styles.agentCardActionBtn} onClick={onContact}>
+                  <button
+                    type="button"
+                    className={styles.agentCardActionBtn}
+                    onClick={() => openAgentModal(agent.appUrl, agent.trackingKey, "app")}
+                  >
                     Explore <Icon name="arrowRight" size={13}/>
                   </button>
                   <span className={styles.actionDivider}>|</span>
-                  <button type="button" className={styles.agentCardActionBtnMuted} onClick={onContact}>
+                  <button
+                    type="button"
+                    className={styles.agentCardActionBtnMuted}
+                    onClick={() => openAgentModal(agent.videoUrl, agent.trackingKey, "video")}
+                  >
                     <Icon name="playCircle" size={14}/> Watch Video
                   </button>
                   <span className={styles.actionDivider}>|</span>
@@ -304,6 +368,38 @@ export default function AICommandCenter({ onContact }) {
           </div>
         </div>
       </section>
+
+      {openAgentUrl && (
+        <div
+          className={styles.modalOverlay}
+          onClick={closeAgentModal}
+        >
+          <div
+            className={
+              openAgentUrl.includes("vimeo")
+                ? styles.videoModalContent
+                : styles.agentModalContent
+            }
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              type="button"
+              className={styles.closeModal}
+              onClick={closeAgentModal}
+            >
+              ✕
+            </button>
+            <div className={styles.iframeWrapper}>
+              <iframe
+                src={openAgentUrl}
+                className={styles.agentIframe}
+                allow="autoplay; fullscreen"
+                title="Agent content"
+              />
+            </div>
+          </div>
+        </div>
+      )}
 
     </div>
   );

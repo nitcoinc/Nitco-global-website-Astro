@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import styles from "./NewHome.module.css";
+import styles from "./HomePage.module.css";
 
 // ─── Inline SVG Icons ─────────────────────────────────────────────────────────
 const ArrowRight = () => (

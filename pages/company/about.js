@@ -3,14 +3,14 @@ import Layout from "../../components/Layout";
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
 import FooterDesignMobile from "../../components/Footer/FooterDesign/FooterDesignMobile";
-import AboutNew from "../../components/Company/AboutNew/AboutNew";
+import AboutUs from "../../components/AboutUs/AboutUs";
 import { getSeoForPath } from "../../lib/fetchSeoData";
 
 const AboutUsPage = () => {
   return (
     <Layout>
       <Navbar />
-      <AboutNew />
+      <AboutUs />
       <Footer />
       <FooterDesignMobile />
     </Layout>

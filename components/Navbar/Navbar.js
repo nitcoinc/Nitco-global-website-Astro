@@ -133,7 +133,7 @@ const Navbar = () => {
               </button>
               <MegaPanel
                 open={openMenu === "Solutions"} items={SOLUTIONS} cols={3}
-                intro={{ kicker: "Solutions", title: "AI-led outcomes across the operations spectrum.", body: "Pick a domain and see how we move from analysis to working solutions.", ctaText: "Explore all solutions", ctaHref: "/services/working-capital-spend-integrity" }}
+                intro={{ kicker: "Solutions", title: "AI-led outcomes across the operations spectrum.", body: "Pick a domain and see how we move from analysis to working solutions.", ctaText: "Explore all solutions", ctaHref: "/solutions/working-capital-spend-integrity" }}
               />
             </li>
 

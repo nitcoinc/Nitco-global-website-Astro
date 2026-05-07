@@ -3,7 +3,7 @@ import Head from "next/head";
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
 import FooterDesignMobile from "../../components/Footer/FooterDesign/FooterDesignMobile";
-import CareersPage from "../../components/Company/careersPage";
+import CareersPage from "../../components/Careers/careersPage";
 
 export default function CareerPage() {
   const handleContact = useCallback(() => {

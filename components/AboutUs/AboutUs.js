@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import styles from "./AboutNew.module.css";
+import styles from "./AboutUs.module.css";
 
 /* ===== Inline SVG icon set ===== */
 const Icon = ({ name, size = 22, strokeWidth = 1.75 }) => {
