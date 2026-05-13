@@ -138,6 +138,9 @@
 .libraryPillIcon {
   width: 13px;
   height: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: #1BE1F2;
   flex-shrink: 0;
 }
