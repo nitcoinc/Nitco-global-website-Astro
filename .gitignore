@@ -1,53 +1,52 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# Dependencies
+node_modules/
+.pnpm-store/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
 
-.direnv/
-notes/
-.vscode
+# Build outputs
+dist/
+build/
+.next/
+out/
+*.egg-info/
 
-# dependencies
-/node_modules
-/.pnp
-.pnp.js
+# Environment
+.env
+.env.*
+!.env.example
 
-# testing
-/coverage
+# Claude / AI tools
+.claude/audit.log
+_archive/
+*.research_brief.md
+research_results.json
+validation_log.json
 
-# next.js
-/.next/
-/out/
-
-# production
-/build
-
-# misc
+# OS
 .DS_Store
-*.pem
+Thumbs.db
+desktop.ini
 
-# debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
 
-# local env files
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+# Testing
+coverage/
+.coverage
+htmlcov/
+.pytest_cache/
+playwright-report/
+test-results/
 
-# vercel
-.vercel
+# Logs
+*.log
+logs/
 
-node_modules
-# next-video
-videos/*
-!videos/*.json
-!videos/*.js
-!videos/*.ts
-public/_next-video
-
-node_modules
-.env
-
-__generated__
-tina/__generated__/*
+# Snapshots (local only — pushed to private repo separately)
+snapshots/
