@@ -43,17 +43,16 @@ const Footer = () => {
     >
       <div
         style={{
-          maxWidth: "1280px",
-          margin: "0 auto",
-          padding: "60px 40px 30px",
+          padding: "50px 120px 30px",
+          paddingRight: "100px",
         }}
       >
         {/* Top row */}
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "1.2fr 1fr 1fr 1fr",
-            gap: "40px",
+            gridTemplateColumns: "1.2fr 1.8fr 1fr 1fr",
+            gap: "80px",
             alignItems: "start",
           }}
         >
@@ -108,21 +107,27 @@ const Footer = () => {
 
           {/* Services */}
           <div>
-            <h3 style={headingStyle}>Services</h3>
-            <Link href="/services/artificial-intelligence-services" style={linkStyle}>
-              Artificial Intelligence (AI)
+            <h3 style={headingStyle}>Solutions</h3>
+            <Link href="/solutions/working-capital-spend-integrity" style={linkStyle}>
+              Working Capital & Spend Integrity Program
             </Link>
-            <Link href="/services/artificial-intelligence-governance" style={linkStyle}>
-              AI Governance (AIG)
+            <Link href="/solutions/workflow-automation" style={linkStyle}>
+            Workflow Automation
             </Link>
-            <Link href="/services/automation-services" style={linkStyle}>
-              Automation
+            <Link href="/solutions/decision-ready-data" style={linkStyle}>
+              Decision-Ready Data Program
             </Link>
-            <Link href="/services/integration-services" style={linkStyle}>
-              Integration
+            <Link href="/solutions/employee-knowledge-productivity" style={linkStyle}>
+              Employee Knowledge & Productivity
             </Link>
-            <Link href="/services/data-services" style={linkStyle}>
-              Data
+            <Link href="/solutions/customer-support-optimization" style={linkStyle}>
+              Customer Experience & Support Optimization
+            </Link>
+              <Link href="/solutions/ai-solution-delivery" style={linkStyle}>
+              AI Solution Delivery
+            </Link>
+              <Link href="/solutions/ai-risk-cost-governance" style={linkStyle}>
+              AI Risk, Cost & Governance
             </Link>
           </div>
 

@@ -468,13 +468,6 @@ export default function NewHome() {
               ))}
             </div>
           </div>
-          <div className={styles.marqueeRow}>
-            <div className={styles.marqueeRight}>
-              {[...testimonials.slice(4), ...testimonials.slice(0, 4), ...testimonials.slice(4), ...testimonials.slice(0, 4)].map((t, i) => (
-                <TestimonialCard key={`r2-${i}`} t={t} />
-              ))}
-            </div>
-          </div>
         </div>
       </section>
 

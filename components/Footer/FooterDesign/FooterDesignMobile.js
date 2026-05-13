@@ -26,36 +26,48 @@ const Footer = () => {
         <div className={styles.tabletLayout}>
           {/* Services */}
           <div className={styles.section}>
-            <h3>Services</h3>
+            <h3>Solutions</h3>
 
             <div className={styles.linksInline}>
-              <Link href="/services/artificial-intelligence-services">
-                Artificial Intelligence (AI)
-              </Link>
+              <Link href="/solutions/working-capital-spend-integrity">
+              Working Capital & Spend Integrity Program
+            </Link>
 
               <span>|</span>
 
-              <Link href="/services/artificial-intelligence-governance">
-                AI Governance (AIG)
-              </Link>
+            <Link href="/solutions/workflow-automation">
+            Workflow Automation
+            </Link>
 
               <span>|</span>
 
-              <Link href="/services/automation-services">
-                Automation
-              </Link>
+               <Link href="/solutions/decision-ready-data">
+              Decision-Ready Data Program
+            </Link>
 
               <span>|</span>
 
-              <Link href="/services/integration-services">
-                Integration
-              </Link>
+                <Link href="/solutions/employee-knowledge-productivity">
+              Employee Knowledge & Productivity
+            </Link>
 
               <span>|</span>
 
-              <Link href="/services/data-services">
-                Data
-              </Link>
+            <Link href="/solutions/customer-support-optimization">
+              Customer Experience & Support Optimization
+            </Link>
+
+               <span>|</span>
+
+             <Link href="/solutions/ai-solution-delivery">
+              AI Solution Delivery
+            </Link>
+
+               <span>|</span>
+
+            <Link href="/solutions/ai-risk-cost-governance">
+              AI Risk, Cost & Governance
+            </Link>
             </div>
           </div>
 
@@ -161,26 +173,37 @@ const Footer = () => {
         {/* Mobile Layout */}
         <div className={styles.mobileLayout}>
           <div className={styles.mobileSection}>
-            <h3>Services</h3>
+            <h3>Solutions</h3>
 
-            <Link href="/services/artificial-intelligence-services">
-              Artificial Intelligence (AI)
+           <Link href="/solutions/working-capital-spend-integrity">
+              Working Capital & Spend Integrity Program
             </Link>
 
-            <Link href="/services/artificial-intelligence-governance">
-              AI Governance (AIG)
+            <Link href="/solutions/workflow-automation">
+            Workflow Automation
             </Link>
 
-            <Link href="/services/automation-services">
-              Automation
+
+               <Link href="/solutions/decision-ready-data">
+              Decision-Ready Data Program
             </Link>
 
-            <Link href="/services/integration-services">
-              Integration
+
+                <Link href="/solutions/employee-knowledge-productivity">
+              Employee Knowledge & Productivity
             </Link>
 
-            <Link href="/services/data-services">
-              Data
+            <Link href="/solutions/customer-support-optimization">
+              Customer Experience & Support Optimization
+            </Link>
+
+
+             <Link href="/solutions/ai-solution-delivery">
+              AI Solution Delivery
+            </Link>
+
+            <Link href="/solutions/ai-risk-cost-governance">
+              AI Risk, Cost & Governance
             </Link>
           </div>
 

@@ -156,7 +156,71 @@ function HeroVisual({ category }) {
   );
 }
 
-export default function PartnerPage({ category, onContact }) {
+function CaseStudyCard({ cs }) {
+  return (
+    <Link href={`/case-studies/${cs.slug}`} style={{ textDecoration: "none", display: "block" }}>
+      <div style={{
+        background: "#0e0c1e",
+        border: "1px solid rgba(255,255,255,0.08)",
+        borderRadius: "12px",
+        overflow: "hidden",
+        transition: "border-color 0.2s",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+      }}>
+        {cs.image && (
+          <div style={{ height: "180px", overflow: "hidden", flexShrink: 0 }}>
+            <img
+              src={cs.image}
+              alt={cs.title}
+              loading="lazy"
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            />
+          </div>
+        )}
+        <div style={{ padding: "20px", display: "flex", flexDirection: "column", flex: 1 }}>
+          <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginBottom: "12px" }}>
+            {cs.topics.map((t) => (
+              <span key={t} style={{
+                fontSize: "11px",
+                fontWeight: 600,
+                padding: "3px 10px",
+                borderRadius: "999px",
+                background: "rgba(83,234,253,0.1)",
+                color: "#53eafd",
+                letterSpacing: "0.03em",
+              }}>{t}</span>
+            ))}
+          </div>
+          <p style={{ color: "#fff", fontSize: "15px", fontWeight: 600, margin: "0 0 10px", lineHeight: 1.4 }}>
+            {cs.title}
+          </p>
+          {cs.description && (
+            <p style={{
+              color: "rgba(255,255,255,0.6)",
+              fontSize: "13px",
+              lineHeight: 1.6,
+              margin: "0 0 16px",
+              display: "-webkit-box",
+              WebkitLineClamp: 3,
+              WebkitBoxOrient: "vertical",
+              overflow: "hidden",
+              flex: 1,
+            }}>
+              {cs.description}
+            </p>
+          )}
+          <span style={{ color: "#53eafd", fontSize: "13px", fontWeight: 500 }}>
+            Read case study →
+          </span>
+        </div>
+      </div>
+    </Link>
+  );
+}
+
+export default function PartnerPage({ category, caseStudies = [], onContact }) {
   const others = PARTNER_CATEGORIES.filter((c) => c.slug !== category.slug);
 
   return (
@@ -251,6 +315,47 @@ export default function PartnerPage({ category, onContact }) {
           </div>
         </div>
       </section>
+
+      {caseStudies.length > 0 && (
+        <>
+          <hr className={styles.hairline}/>
+          <section className={styles.section}>
+            <div className={styles.container}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", flexWrap: "wrap", gap: "16px", marginBottom: "40px" }}>
+                <div>
+                  <p className={styles.eyebrow}>Related Case Studies</p>
+                  <h2 className={styles.sectionTitle} style={{ margin: "8px 0 8px" }}>Outcomes we've delivered</h2>
+                  <p className={styles.sectionSub} style={{ margin: 0 }}>Real-world results from programs aligned to this category.</p>
+                </div>
+                <Link href="/resources" style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "6px",
+                  border: "1px solid rgba(255,255,255,0.2)",
+                  borderRadius: "999px",
+                  padding: "9px 20px",
+                  color: "#fff",
+                  fontSize: "13px",
+                  fontWeight: 500,
+                  textDecoration: "none",
+                  whiteSpace: "nowrap",
+                }}>
+                  Browse all case studies <Icon name="arrowRight" size={13}/>
+                </Link>
+              </div>
+              <div style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
+                gap: "24px",
+              }}>
+                {caseStudies.map((cs) => (
+                  <CaseStudyCard key={cs.slug} cs={cs}/>
+                ))}
+              </div>
+            </div>
+          </section>
+        </>
+      )}
 
       <hr className={styles.hairline}/>
 
