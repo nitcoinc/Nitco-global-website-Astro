@@ -61,7 +61,7 @@
     "eslint-config-next": "12.0.3",
     "next-sitemap": "^4.2.3",
     "prettier": "^2.8.8",
-    "sanity": "^5.25.1",
+    "sanity": "^3.99.0",
     "sass": "^1.71.0"
   }
 }
