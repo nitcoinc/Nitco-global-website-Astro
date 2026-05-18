@@ -9,80 +9,72 @@ import VideosbuttonsListArea from "./Resources/resourceListingPage/explainerVide
 import PrivacyPolicy from "../components/Policy/privacypolicy.js";
 import CookiePolicy from "../components/Policy/cookiepolicy.js";
 
-
-
 const { Fragment } = React;
 
-
-export default ({ page }) => {
+export default ({ page, posts = [], whitepapers = [] }) => {
   const { blocks } = page || {};
   if (blocks == null) return <></>;
   return (
     <>
       {blocks.map((block, i) => {
-        switch (block.__typename) {
-          case "PageBlocksButtonBlock":
+        switch (block._type) {
+          case "buttonBlock":
             return (
-              <Fragment key={i + block.__typename}>
+              <Fragment key={i + block._type}>
                 <VideosbuttonsListArea data={block} />
               </Fragment>
             );
-          case "PageBlocksBlogBlock":
+          case "blogBlock":
             return (
-              <Fragment key={i + block.__typename}>
-                <BlogPage data={block} />
+              <Fragment key={i + block._type}>
+                <BlogPage posts={posts.filter((p) => p.postType === "blog")} />
               </Fragment>
             );
-          case "PageBlocksCaseStudiesBlock":
+          case "caseStudiesBlock":
             return (
-              <Fragment key={i + block.__typename}>
-                <CaseStudies data={block} />
+              <Fragment key={i + block._type}>
+                <CaseStudies posts={posts.filter((p) => p.postType === "caseStudy")} />
               </Fragment>
             );
-          case "PageBlocksWhitePapersBlock":
+          case "whitePapersBlock":
             return (
-              <Fragment key={i + block.__typename}>
-                <WhitePapers data={block} />
+              <Fragment key={i + block._type}>
+                <WhitePapers whitepapers={whitepapers} />
               </Fragment>
             );
-          case "PageBlocksLeftVideoBlock":
+          case "leftVideoBlock":
             return (
-              <Fragment key={i + block.__typename}>
+              <Fragment key={i + block._type}>
                 <LeftVideoPage data={block} />
               </Fragment>
             );
-          case "PageBlocksRightVideoBlock":
+          case "rightVideoBlock":
             return (
-              <Fragment key={i + block.__typename}>
+              <Fragment key={i + block._type}>
                 <RightVideoPage data={block} />
               </Fragment>
             );
-          // case "PageBlocksNewsBlock":
-          //   return (
-          //     <Fragment key={i + block.__typename}>
-          //       <NewsPage data={block} />
-          //     </Fragment>
-          //   );
-          case "PageBlocksWebinarBlock":
+          case "webinarBlock":
             return (
-              <Fragment key={i + block.__typename}>
-                <WebinarsPage data={block} />
+              <Fragment key={i + block._type}>
+                <WebinarsPage posts={posts.filter((p) => p.postType === "webinar")} />
               </Fragment>
             );
-          case "PageBlocksPolicydefinitionsBlock":
+          case "policyBlock":
             return (
-              <Fragment key={i + block.__typename}>
+              <Fragment key={i + block._type}>
                 <PrivacyPolicy data={block} />
               </Fragment>
             );
-
-          case "PageBlocksCookieTypesBlock":
+          case "cookieBlock":
             return (
-              <Fragment key={i + block.__typename}>
+              <Fragment key={i + block._type}>
                 <CookiePolicy data={block} />
               </Fragment>
             );
-        };
+          default:
+            return null;
+        }
       })}
     </>
   );
