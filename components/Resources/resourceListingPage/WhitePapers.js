@@ -35,10 +35,11 @@ const WhitePapers = ({ whitepapers = [] }) => {
             <div className={styles.caseStudyGrid}>
               {currentItems.map((item, i) => {
                 const { image, title, description, slug } = item;
+                const itemKey = slug || i;
 
                 if (i === 0) {
                   return (
-                    <div key={i} className={styles.featuredItem}>
+                    <div key={itemKey} className={styles.featuredItem}>
                       <div className={styles.featuredImage}>
                         <Link href={`/whitepapers/${slug}`}><img src={image} alt={title} /></Link>
                       </div>
@@ -51,7 +52,7 @@ const WhitePapers = ({ whitepapers = [] }) => {
                 }
 
                 return (
-                  <div key={i} className={styles.card}>
+                  <div key={itemKey} className={styles.card}>
                     <Link href={`/whitepapers/${slug}`}><img src={image} alt={title} className={styles.cardImg} /></Link>
                     <div style={{ padding: "0.75rem 1rem 1rem" }}>
                       <Link href={`/whitepapers/${slug}`}><h6 className={styles.itemTitle}>{truncateText(title, 80)}</h6></Link>

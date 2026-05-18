@@ -63,8 +63,14 @@ const CaseStudies = ({ posts = [] }) => {
             <div className={styles.selectedFilters}>
               <h3>Active Filters</h3>
               <div className={styles.filterGroup}>
-                {[...selectedFilters.topics, ...selectedFilters.industries, ...selectedFilters.departments].map((f, i) => (
-                  <button key={i} className={styles.filterButton}>{f}</button>
+                {selectedFilters.topics.map((f) => (
+                  <button key={`topic-${f}`} className={styles.filterButton} onClick={() => handleFilterClick("topics", f)}>{f}</button>
+                ))}
+                {selectedFilters.industries.map((f) => (
+                  <button key={`industry-${f}`} className={styles.filterButton} onClick={() => handleFilterClick("industries", f)}>{f}</button>
+                ))}
+                {selectedFilters.departments.map((f) => (
+                  <button key={`dept-${f}`} className={styles.filterButton} onClick={() => handleFilterClick("departments", f)}>{f}</button>
                 ))}
               </div>
               <button className={styles.clearButton} onClick={clearFilters}>Clear All</button>
@@ -118,12 +124,13 @@ const CaseStudies = ({ posts = [] }) => {
             <div className={styles.caseStudyGrid}>
               {currentItems.map((item, i) => {
                 const { image, title, description = "", slug, blogdepartment, blogindustry, blogcategory, duration, publishedAt } = item;
+                const itemKey = slug || i;
                 const tags = [blogindustry, blogdepartment, blogcategory].filter(Boolean);
                 const dateDisplay = publishedAt ? new Date(publishedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : '';
 
                 if (i === 0) {
                   return (
-                    <div key={i} className={styles.featuredItem}>
+                    <div key={itemKey} className={styles.featuredItem}>
                       <div className={styles.featuredImage}>
                         <Link href={`/case-studies/${slug}`}><img src={image} alt={title} /></Link>
                       </div>
@@ -138,7 +145,7 @@ const CaseStudies = ({ posts = [] }) => {
                 }
 
                 return (
-                  <div key={i} className={styles.card}>
+                  <div key={itemKey} className={styles.card}>
                     <Link href={`/case-studies/${slug}`}><img src={image} alt={title} className={styles.cardImg} /></Link>
                     <div style={{ padding: "0.75rem 1rem 1rem" }}>
                       <div className={styles.tags}>{tags.map((tag, idx) => <span key={idx} className={styles.tag}>{tag}</span>)}</div>

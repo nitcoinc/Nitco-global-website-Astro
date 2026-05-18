@@ -51,7 +51,7 @@ const WebinarsPage = ({ posts = [] }) => {
             <div className={styles.selectedFilters}>
               <h3>Active Filters</h3>
               <div className={styles.filterGroup}>
-                {selectedTopics.map((t, i) => <button key={i} className={styles.filterButton}>{t}</button>)}
+                {selectedTopics.map((t) => <button key={t} className={styles.filterButton} onClick={() => handleFilterClick(t)}>{t}</button>)}
               </div>
               <button className={styles.clearButton} onClick={clearFilters}>Clear All</button>
             </div>
@@ -80,11 +80,12 @@ const WebinarsPage = ({ posts = [] }) => {
             <div className={styles.caseStudyGrid}>
               {currentItems.map((item, i) => {
                 const { title, description, image, slug, blogcategory, duration, publishedAt } = item;
+                const itemKey = slug || i;
                 const dateDisplay = publishedAt ? new Date(publishedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : '';
 
                 if (i === 0) {
                   return (
-                    <div key={i} className={styles.featuredItem}>
+                    <div key={itemKey} className={styles.featuredItem}>
                       <div className={styles.featuredImage}>
                         <Link href={`/webinar/${slug}`}><img src={image} alt={title} /></Link>
                       </div>
@@ -99,7 +100,7 @@ const WebinarsPage = ({ posts = [] }) => {
                 }
 
                 return (
-                  <div key={i} className={styles.card}>
+                  <div key={itemKey} className={styles.card}>
                     <Link href={`/webinar/${slug}`}><img src={image} alt={title} className={styles.cardImg} /></Link>
                     <div style={{ padding: "0.75rem 1rem 1rem" }}>
                       <div className={styles.tags}>{blogcategory && <span className={styles.tag}>{blogcategory}</span>}</div>

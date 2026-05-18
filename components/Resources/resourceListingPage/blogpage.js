@@ -53,8 +53,8 @@ const BlogPage = ({ posts = [] }) => {
             <div className={styles.selectedFilters}>
               <h3>Active Filters</h3>
               <div className={styles.filterGroup}>
-                {selectedCategories.map((cat, i) => (
-                  <button key={i} className={styles.filterButton}>{cat}</button>
+                {selectedCategories.map((cat) => (
+                  <button key={cat} className={styles.filterButton} onClick={() => handleFilterClick(cat)}>{cat}</button>
                 ))}
               </div>
               <button className={styles.clearButton} onClick={clearFilters}>Clear All</button>
@@ -99,12 +99,13 @@ const BlogPage = ({ posts = [] }) => {
             <div className={styles.caseStudyGrid}>
               {currentPosts.map((item, i) => {
                 const { image, title, description, slug, blogcategory, duration, publishedAt } = item;
+                const itemKey = slug || i;
                 const tags = [blogcategory].filter(Boolean);
                 const dateDisplay = publishedAt ? new Date(publishedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : '';
 
                 if (i === 0) {
                   return (
-                    <div key={i} className={styles.featuredItem}>
+                    <div key={itemKey} className={styles.featuredItem}>
                       <div className={styles.featuredImage}>
                         <Link href={`/blog/${slug}`}>
                           <img src={image} alt={title} />
@@ -128,7 +129,7 @@ const BlogPage = ({ posts = [] }) => {
                 }
 
                 return (
-                  <div key={i} className={styles.card}>
+                  <div key={itemKey} className={styles.card}>
                     <Link href={`/blog/${slug}`}>
                       <img src={image} alt={title} className={styles.cardImg} />
                     </Link>
