@@ -3661,7 +3661,7 @@ button.primary-button,
   transform: translate(-50%, -50%);
   width: 32px;
   height: 32px;
-  background-image: url('../../images/HomePage/bot_icon.png');
+  background-image: url('/images/bot_icon.png');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -3719,7 +3719,7 @@ button.primary-button,
   position: absolute;
   width: 20px;
   height: 20px;
-  background-image: url('../../images/HomePage/bot_icon.png');
+  background-image: url('/images/bot_icon.png');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
