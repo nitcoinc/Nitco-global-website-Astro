@@ -11,12 +11,7 @@ module.exports = {
     allowedDevHosts: "all",
 
     async rewrites() {
-        return [
-            {
-                source: '/admin',
-                destination: '/admin/index.html',
-            },
-        ];
+        return [];
     },
 
     async redirects() {

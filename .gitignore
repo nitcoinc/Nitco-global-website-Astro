@@ -45,8 +45,8 @@ validation_log.json
 _archive/
 Error_*.md
 
-# TinaCMS generated temp
-tina/.tina__temp/
+# Sanity
+.sanity/
 
 # OS
 .DS_Store
@@ -73,3 +73,5 @@ logs/
 
 # Snapshots (local only — pushed to private repo separately)
 snapshots/
+# CocoIndex Code (ccc)
+/.cocoindex_code/

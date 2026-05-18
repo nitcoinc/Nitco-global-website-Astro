@@ -17,7 +17,6 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@portabletext/react": "^6.2.0",
     "@sanity/client": "^7.22.0",
-    "@tinacms/datalayer": "^1.2.33",
     "animate.css": "^4.1.1",
     "aos": "^2.3.4",
     "graphql": "^16.8.1",
@@ -25,8 +24,6 @@
     "markdown-to-jsx": "^7.4.3",
     "marked": "^12.0.1",
     "moment": "^2.30.1",
-    "mongodb": "^6.4.0",
-    "mongodb-level": "^0.0.4",
     "next": "14.2.3",
     "next-auth": "^4.24.6",
     "next-video": "^0.16.2",
@@ -49,14 +46,10 @@
     "slick-carousel": "^1.8.1",
     "styled-components": "^6.4.1",
     "swiper": "^9.3.1",
-    "swr": "^2.2.5",
-    "tinacms": "1.5.29",
-    "tinacms-authjs": "1.0.6",
-    "tinacms-gitprovider-github": "1.0.4"
+    "swr": "^2.2.5"
   },
   "devDependencies": {
     "@portabletext/markdown": "^1.2.0",
-    "@tinacms/cli": "^1.5.34",
     "cross-env": "^7.0.3",
     "dotenv": "^17.2.3",
     "eslint": "7",
