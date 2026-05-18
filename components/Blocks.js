@@ -15,7 +15,7 @@ const { Fragment } = React;
 
 
 export default ({ page }) => {
-  const { blocks } = page;
+  const { blocks } = page || {};
   if (blocks == null) return <></>;
   return (
     <>
