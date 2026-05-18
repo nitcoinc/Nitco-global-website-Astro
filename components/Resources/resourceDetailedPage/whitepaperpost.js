@@ -1,16 +1,11 @@
 import React from "react";
-import { useTina } from "tinacms/dist/react";
 import ReactMarkdown from "react-markdown";
 import Navbar from "../../Navbar/Navbar";
 import Footer from "../../Footer/Footer";
 import styles from "./whitepaperpost.module.css";
 import HubSpotWhitepapersForm from "../../Hubspot/hubSpotWhitepapersForm";
 
-export default function Whitepapers({ query, variables, data: pageData }) {
-  const {
-    data: { post },
-  } = useTina({ query, variables, data: pageData });
-
+export default function Whitepapers({ data: pageData }) {
   const whitepaper = pageData?.whitepapers;
   const downloadLink = whitepaper?.pdfFileUrl || null;
 

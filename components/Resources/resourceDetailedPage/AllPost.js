@@ -1,6 +1,5 @@
 import * as React from "react";
 import { useEffect, useRef, useState } from "react";
-import { useTina } from "tinacms/dist/react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
@@ -10,20 +9,9 @@ import Footer from "../../Footer/Footer";
 import InsightsSubscribeForm from "../../Hubspot/HubspotInsightsForm/insightsSubscribeForm";
 
 export default function Post({
-  query,
-  variables,
   data: pageData,
   sorteddata: blogdata,
 }) {
-  const {
-    data: { post },
-  } = useTina({
-    query: query,
-    variables: variables,
-    data: pageData,
-    sorteddata: blogdata,
-  });
-
   const stickyRef = useRef(null);
   const containerRef = useRef(null);
   const [fixed, setFixed] = useState(false);
