@@ -13,17 +13,40 @@ build/
 out/
 *.egg-info/
 
-# Environment
+# Environment & secrets
 .env
 .env.*
 !.env.example
 
-# Claude / AI tools
-.claude/audit.log
-_archive/
+# Private keys & certificates
+*.pem
+*.key
+*.p12
+*.pfx
+*.cert
+*.crt
+*.der
+
+# Credential files
+credentials.json
+serviceAccountKey.json
+*-credentials.json
+*-service-account.json
+.sentryclirc
+
+# Claude / AI tools (local dev only)
+.claude/
+.mcp.json
+CLAUDE.md
+PROJECT.md
 *.research_brief.md
 research_results.json
 validation_log.json
+_archive/
+Error_*.md
+
+# TinaCMS generated temp
+tina/.tina__temp/
 
 # OS
 .DS_Store
