@@ -86,10 +86,12 @@ async function migrateWhitepapers() {
     try {
       const raw = fs.readFileSync(path.join(dir, filename), 'utf8')
       const { data: fm, content } = matter(raw)
+      const rawSlug = fm.slug || ''
+      const safeSlug = decodeURIComponent(rawSlug).toLowerCase().replace(/[^a-z0-9-]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '')
       docs.push({
         _type: 'whitepaper',
-        _id: `whitepaper-${fm.slug}`,
-        slug: { _type: 'slug', current: fm.slug },
+        _id: `whitepaper-${safeSlug}`,
+        slug: { _type: 'slug', current: safeSlug },
         title: fm.title || '',
         image: fm.image || '',
         pdfFileUrl: fm.pdfFileUrl || null,
