@@ -13,17 +13,11 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-ARG TINA_TOKEN
-ARG NEXT_PUBLIC_TINA_CLIENT_ID
-ARG NEXT_PUBLIC_TINA_BRANCH
-
-ENV TINA_TOKEN=$TINA_TOKEN
-ENV NEXT_PUBLIC_TINA_CLIENT_ID=$NEXT_PUBLIC_TINA_CLIENT_ID
-ENV NEXT_PUBLIC_TINA_BRANCH=$NEXT_PUBLIC_TINA_BRANCH
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 
-RUN pnpm tinacms build && pnpm run build:export
+# tina/__generated__ is committed — no TinaCloud credentials needed at build time
+RUN pnpm run build:export
 
 # ---- runner ----
 FROM node:20-alpine AS runner
