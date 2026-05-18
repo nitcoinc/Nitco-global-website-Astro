@@ -16,6 +16,14 @@ const client = createClient({
   useCdn: false,
 })
 
+function stableKey(str) {
+  let hash = 0
+  for (let i = 0; i < str.length; i++) {
+    hash = ((hash << 5) - hash + str.charCodeAt(i)) | 0
+  }
+  return Math.abs(hash).toString(36).padStart(6, '0')
+}
+
 function derivePostType(pageType) {
   if (pageType === 'case-studies') return 'caseStudy'
   if (pageType === 'webinar') return 'webinar'
@@ -34,20 +42,30 @@ function mdxToPortableText(mdxBody) {
 async function migratePosts() {
   const dir = path.join(ROOT, 'content/allPosts')
   const files = fs.readdirSync(dir).filter((f) => f.endsWith('.mdx'))
-  const docs = files.map((filename) => {
-    const raw = fs.readFileSync(path.join(dir, filename), 'utf8')
-    const { data: fm, content } = matter(raw)
-    return {
-      _type: 'post',
-      _id: `post-${fm.slug}`,
-      slug: { _type: 'slug', current: fm.slug },
-      postType: derivePostType(fm.pageType),
-      title: fm.title || '',
-      image: fm.image || '',
-      publishedAt: fm.date || null,
-      body: mdxToPortableText(content),
+  const docs = []
+  const errors = []
+  for (const filename of files) {
+    try {
+      const raw = fs.readFileSync(path.join(dir, filename), 'utf8')
+      const { data: fm, content } = matter(raw)
+      docs.push({
+        _type: 'post',
+        _id: `post-${fm.slug}`,
+        slug: { _type: 'slug', current: fm.slug },
+        postType: derivePostType(fm.pageType),
+        title: fm.title || '',
+        image: fm.image || '',
+        publishedAt: fm.date || null,
+        body: mdxToPortableText(content),
+      })
+    } catch (err) {
+      errors.push({ filename, error: err.message })
     }
-  })
+  }
+  if (errors.length > 0) {
+    console.warn(`  Skipped ${errors.length} files with errors:`)
+    errors.forEach(({ filename, error }) => console.warn(`    - ${filename}: ${error}`))
+  }
   console.log(`Migrating ${docs.length} posts...`)
   for (let i = 0; i < docs.length; i += 100) {
     const batch = docs.slice(i, i + 100)
@@ -62,19 +80,29 @@ async function migratePosts() {
 async function migrateWhitepapers() {
   const dir = path.join(ROOT, 'content/whitepaperspost')
   const files = fs.readdirSync(dir).filter((f) => f.endsWith('.mdx'))
-  const docs = files.map((filename) => {
-    const raw = fs.readFileSync(path.join(dir, filename), 'utf8')
-    const { data: fm, content } = matter(raw)
-    return {
-      _type: 'whitepaper',
-      _id: `whitepaper-${fm.slug}`,
-      slug: { _type: 'slug', current: fm.slug },
-      title: fm.title || '',
-      image: fm.image || '',
-      pdfFileUrl: fm.pdfFileUrl || null,
-      body: mdxToPortableText(content),
+  const docs = []
+  const errors = []
+  for (const filename of files) {
+    try {
+      const raw = fs.readFileSync(path.join(dir, filename), 'utf8')
+      const { data: fm, content } = matter(raw)
+      docs.push({
+        _type: 'whitepaper',
+        _id: `whitepaper-${fm.slug}`,
+        slug: { _type: 'slug', current: fm.slug },
+        title: fm.title || '',
+        image: fm.image || '',
+        pdfFileUrl: fm.pdfFileUrl || null,
+        body: mdxToPortableText(content),
+      })
+    } catch (err) {
+      errors.push({ filename, error: err.message })
     }
-  })
+  }
+  if (errors.length > 0) {
+    console.warn(`  Skipped ${errors.length} files with errors:`)
+    errors.forEach(({ filename, error }) => console.warn(`    - ${filename}: ${error}`))
+  }
   console.log(`Migrating ${docs.length} whitepapers...`)
   for (let i = 0; i < docs.length; i += 100) {
     const batch = docs.slice(i, i + 100)
@@ -102,53 +130,66 @@ async function migratePages() {
     Pagebannerblock: 'pageBannerBlock',
   }
 
-  const docs = files.map((filename) => {
-    const raw = fs.readFileSync(path.join(dir, filename), 'utf8')
-    const { data: fm } = matter(raw)
-    const rawBlocks = fm.blocks || []
-    const blocks = rawBlocks.map((b) => {
-      const tinaType = b._template
-      const sanityType = BLOCK_TYPE_MAP[tinaType] || tinaType
-      const block = { _type: sanityType, _key: Math.random().toString(36).slice(2) }
+  const docs = []
+  const errors = []
+  for (const filename of files) {
+    try {
+      const raw = fs.readFileSync(path.join(dir, filename), 'utf8')
+      const { data: fm } = matter(raw)
+      const rawBlocks = fm.blocks || []
+      const blocks = rawBlocks.map((b, blockIndex) => {
+        const tinaType = b._template
+        const sanityType = BLOCK_TYPE_MAP[tinaType] || tinaType
+        const block = { _type: sanityType, _key: stableKey(b._template + (fm.slug || '') + blockIndex) }
 
-      if (sanityType === 'buttonBlock' && b.buttonList) {
-        block.buttonList = (b.buttonList || []).map((btn) => ({
-          _key: Math.random().toString(36).slice(2),
-          name: btn.name,
-          url: btn.url,
-        }))
-      }
-      if (sanityType === 'rightVideoBlock') {
-        block.tagline_R_V = b.tagline_R_V || ''
-        block.text_R_V = b.text_R_V || ''
-        block.video_R_V = b.video_R_V || ''
-        block.url_R_V = b.url_R_V || ''
-      }
-      if (sanityType === 'leftVideoBlock') {
-        block.tagline_L_V = b.tagline_L_V || ''
-        block.text_L_V = b.text_L_V || ''
-        block.video_L_V = b.video_L_V || ''
-      }
-      if (sanityType === 'policyBlock' || sanityType === 'cookieBlock') {
-        block.mainheading = b.mainheading || ''
-        block.lastupdated = b.lastupdated || null
-        block.body = mdxToPortableText(b.body || '')
-      }
-      return block
-    })
-
-    return {
-      _type: 'page',
-      _id: `page-${fm.slug}`,
-      slug: { _type: 'slug', current: fm.slug },
-      pageType: fm.pageType || '',
-      blocks,
+        if (sanityType === 'buttonBlock' && b.buttonList) {
+          block.buttonList = (b.buttonList || []).map((btn, btnIndex) => ({
+            _key: stableKey((btn.name || '') + (btn.url || '') + btnIndex),
+            name: btn.name,
+            url: btn.url,
+          }))
+        }
+        if (sanityType === 'rightVideoBlock') {
+          block.tagline_R_V = b.tagline_R_V || ''
+          block.text_R_V = b.text_R_V || ''
+          block.video_R_V = b.video_R_V || ''
+          block.url_R_V = b.url_R_V || ''
+        }
+        if (sanityType === 'leftVideoBlock') {
+          block.tagline_L_V = b.tagline_L_V || ''
+          block.text_L_V = b.text_L_V || ''
+          block.video_L_V = b.video_L_V || ''
+        }
+        if (sanityType === 'policyBlock' || sanityType === 'cookieBlock') {
+          block.mainheading = b.mainheading || ''
+          block.lastupdated = b.lastupdated || null
+          block.body = mdxToPortableText(b.body || '')
+        }
+        return block
+      })
+      docs.push({
+        _type: 'page',
+        _id: `page-${fm.slug}`,
+        slug: { _type: 'slug', current: fm.slug },
+        pageType: fm.pageType || '',
+        blocks,
+      })
+    } catch (err) {
+      errors.push({ filename, error: err.message })
     }
-  })
+  }
+  if (errors.length > 0) {
+    console.warn(`  Skipped ${errors.length} files with errors:`)
+    errors.forEach(({ filename, error }) => console.warn(`    - ${filename}: ${error}`))
+  }
   console.log(`Migrating ${docs.length} pages...`)
-  const tx = client.transaction()
-  docs.forEach((doc) => tx.createOrReplace(doc))
-  await tx.commit()
+  for (let i = 0; i < docs.length; i += 100) {
+    const batch = docs.slice(i, i + 100)
+    const tx = client.transaction()
+    batch.forEach((doc) => tx.createOrReplace(doc))
+    await tx.commit()
+    console.log(`  committed batch ${Math.floor(i / 100) + 1}`)
+  }
   console.log(`Done: ${docs.length} pages`)
 }
 
