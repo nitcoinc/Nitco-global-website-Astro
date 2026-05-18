@@ -3,36 +3,30 @@ import Link from "next/link";
 import ButtonsListArea from "./buttonAreaDesign/buttonsArea";
 import styles from "./resorcesGlobal.module.css";
 
-const BlogPage = ({ data }) => {
-  const { blogpost, catheading, categories = [] } = data;
-
-  const [selectedFilters, setSelectedFilters] = useState({ categories: [] });
+const BlogPage = ({ posts = [] }) => {
+  const [selectedCategories, setSelectedCategories] = useState([]);
   const [showAllCategories, setShowAllCategories] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
 
-  useEffect(() => { setCurrentPage(1); }, [selectedFilters]);
+  useEffect(() => { setCurrentPage(1); }, [selectedCategories]);
 
-  const handleFilterClick = (filterType, filterValue) => {
-    setSelectedFilters((prev) => ({
-      ...prev,
-      [filterType]: prev[filterType].includes(filterValue)
-        ? prev[filterType].filter((v) => v !== filterValue)
-        : [...prev[filterType], filterValue],
-    }));
+  const categories = [...new Set(posts.map((p) => p.blogcategory).filter(Boolean))];
+
+  const handleFilterClick = (cat) => {
+    setSelectedCategories((prev) =>
+      prev.includes(cat) ? prev.filter((c) => c !== cat) : [...prev, cat]
+    );
   };
 
-  const clearFilters = () => setSelectedFilters({ categories: [] });
+  const clearFilters = () => setSelectedCategories([]);
 
-  const filteredBlogs = blogpost.filter(
-    (blog) =>
-      selectedFilters.categories.length === 0 ||
-      selectedFilters.categories.includes(blog.blogcategory) ||
-      (blog.blogcategory2 && selectedFilters.categories.includes(blog.blogcategory2))
+  const filteredPosts = posts.filter(
+    (p) => selectedCategories.length === 0 || selectedCategories.includes(p.blogcategory)
   );
 
-  const totalPages = Math.ceil(filteredBlogs.length / itemsPerPage);
-  const currentBlogs = filteredBlogs.slice(
+  const totalPages = Math.ceil(filteredPosts.length / itemsPerPage);
+  const currentPosts = filteredPosts.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
@@ -52,15 +46,14 @@ const BlogPage = ({ data }) => {
       </div>
 
       <div className={styles.caseStudyContainer}>
-        {/* Sidebar */}
         <div className={styles.sidebar}>
           <ButtonsListArea />
 
-          {selectedFilters.categories.length > 0 && (
+          {selectedCategories.length > 0 && (
             <div className={styles.selectedFilters}>
               <h3>Active Filters</h3>
               <div className={styles.filterGroup}>
-                {selectedFilters.categories.map((cat, i) => (
+                {selectedCategories.map((cat, i) => (
                   <button key={i} className={styles.filterButton}>{cat}</button>
                 ))}
               </div>
@@ -70,17 +63,17 @@ const BlogPage = ({ data }) => {
 
           {categories.length > 0 && (
             <div className={styles.widget}>
-              <h3 className={styles.widgetTitle}>{catheading}</h3>
+              <h3 className={styles.widgetTitle}>Categories</h3>
               <div className={styles.widgetContent}>
                 {categories
                   .slice(0, showAllCategories ? categories.length : 3)
-                  .map(({ catdesc }, i) => (
+                  .map((cat, i) => (
                     <button
                       key={i}
                       className={styles.filterButton}
-                      onClick={() => handleFilterClick("categories", catdesc)}
+                      onClick={() => handleFilterClick(cat)}
                     >
-                      {catdesc}
+                      {cat}
                     </button>
                   ))}
               </div>
@@ -96,25 +89,25 @@ const BlogPage = ({ data }) => {
           )}
         </div>
 
-        {/* Main content */}
         <div className={styles.mainContent}>
-          {currentBlogs.length === 0 ? (
+          {currentPosts.length === 0 ? (
             <div className={styles.noResults}>
               <p>No blogs match your current filters.</p>
               <p>Try adjusting or clearing your filters.</p>
             </div>
           ) : (
             <div className={styles.caseStudyGrid}>
-              {currentBlogs.map((item, i) => {
-                const { blogimage, headingpro, description, slug, blogcategory, blogcategory2, duration, postedon } = item;
-                const tags = [blogcategory, blogcategory2].filter(Boolean);
+              {currentPosts.map((item, i) => {
+                const { image, title, description, slug, blogcategory, duration, publishedAt } = item;
+                const tags = [blogcategory].filter(Boolean);
+                const dateDisplay = publishedAt ? new Date(publishedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : '';
 
                 if (i === 0) {
                   return (
                     <div key={i} className={styles.featuredItem}>
                       <div className={styles.featuredImage}>
                         <Link href={`/blog/${slug}`}>
-                          <img src={blogimage} alt={headingpro} />
+                          <img src={image} alt={title} />
                         </Link>
                       </div>
                       <div className={styles.featuredContent}>
@@ -122,12 +115,12 @@ const BlogPage = ({ data }) => {
                           {tags.map((tag, idx) => <span key={idx} className={styles.tag}>{tag}</span>)}
                         </div>
                         <Link href={`/blog/${slug}`}>
-                          <h3 className={styles.itemTitle}>{truncateText(headingpro, 80)}</h3>
+                          <h3 className={styles.itemTitle}>{truncateText(title, 80)}</h3>
                         </Link>
                         <p className={styles.description}>{truncateText(description, 200)}</p>
                         <div className={styles.meta}>
                           {duration && <span>{duration}</span>}
-                          {postedon && <span>{postedon}</span>}
+                          {dateDisplay && <span>{dateDisplay}</span>}
                         </div>
                       </div>
                     </div>
@@ -137,19 +130,19 @@ const BlogPage = ({ data }) => {
                 return (
                   <div key={i} className={styles.card}>
                     <Link href={`/blog/${slug}`}>
-                      <img src={blogimage} alt={headingpro} className={styles.cardImg} />
+                      <img src={image} alt={title} className={styles.cardImg} />
                     </Link>
                     <div style={{ padding: "0.75rem 1rem 1rem" }}>
                       <div className={styles.tags}>
                         {tags.map((tag, idx) => <span key={idx} className={styles.tag}>{tag}</span>)}
                       </div>
                       <Link href={`/blog/${slug}`}>
-                        <h6 className={styles.itemTitle}>{truncateText(headingpro, 80)}</h6>
+                        <h6 className={styles.itemTitle}>{truncateText(title, 80)}</h6>
                       </Link>
                       <p className={styles.description}>{truncateText(description, 150)}</p>
                       <div className={styles.meta}>
                         {duration && <span>{duration}</span>}
-                        {postedon && <span>{postedon}</span>}
+                        {dateDisplay && <span>{dateDisplay}</span>}
                       </div>
                     </div>
                   </div>
