@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import * as Icon from "react-feather";
 import ButtonsListArea from "./buttonAreaDesign/buttonsArea";
 import { duration } from "moment";
@@ -286,7 +287,7 @@ const NewsPage = ({ data }) => {
                         >
                           <div className="col-7 mb-4">
                             <Link href={`/news/${slug}`}>
-                              <img src={file} alt="Works" />
+                              <Image src={file} alt="News image" width={600} height={400} unoptimized />
                             </Link>
                           </div>
                           <div className="col-5">
@@ -327,7 +328,7 @@ const NewsPage = ({ data }) => {
                         <div key={i + "service"} className="col-6">
                           <div>
                             <Link href={`/news/${slug}`}>
-                              <img src={file} alt="Works" />
+                              <Image src={file} alt="News image" width={600} height={400} unoptimized />
                             </Link>
                             <div>
                               <Link href={`/news/${slug}`}>

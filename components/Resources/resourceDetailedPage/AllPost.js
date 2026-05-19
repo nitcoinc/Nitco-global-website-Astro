@@ -1,5 +1,6 @@
 import * as React from "react";
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
@@ -59,7 +60,7 @@ export default function Post({
       {/* ── Hero ── */}
       <div className={styles.hero}>
         {image && (
-          <img src={urlFor(image, { width: 1200 })} alt={title || pageType} className={styles.heroImg} />
+          <Image src={urlFor(image, { width: 1200 })} alt={title || pageType} width={1200} height={630} sizes="100vw" priority className={styles.heroImg} />
         )}
         <div className={styles.heroOverlay} />
         <div className={styles.heroContent}>
@@ -93,9 +94,11 @@ export default function Post({
                       href={`/${p.pageType}/${p.slug}`}
                       className={styles.recentCard}
                     >
-                      <img
+                      <Image
                         src={urlFor(p.image, { width: 400 })}
                         alt={p.title || p.pageType || "Post"}
+                        width={400}
+                        height={267}
                         className={styles.recentImg}
                       />
                       <p className={styles.recentTitle}>{p.title}</p>

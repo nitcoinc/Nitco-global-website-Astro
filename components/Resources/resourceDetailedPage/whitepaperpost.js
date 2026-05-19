@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import ReactMarkdown from "react-markdown";
 import Navbar from "../../Navbar/Navbar";
 import Footer from "../../Footer/Footer";
@@ -17,11 +18,7 @@ export default function Whitepapers({ data: pageData }) {
       {/* ── Hero ── */}
       <div className={styles.hero}>
         {whitepaper?.image && (
-          <img
-            src={urlFor(whitepaper.image, { width: 1200 })}
-            alt={whitepaper.title || "Whitepaper"}
-            className={styles.heroImg}
-          />
+          <Image src={urlFor(whitepaper.image, { width: 1200 })} alt={whitepaper.title || "Whitepaper"} width={1200} height={630} sizes="100vw" priority className={styles.heroImg} />
         )}
         <div className={styles.heroOverlay} />
         <div className={styles.heroContent}>

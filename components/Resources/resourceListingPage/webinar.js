@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import ButtonsListArea from "./buttonAreaDesign/buttonsArea";
 import styles from "./resorcesGlobal.module.css";
 import { urlFor } from '../../../lib/sanityImage.js';
@@ -88,7 +89,7 @@ const WebinarsPage = ({ posts = [] }) => {
                   return (
                     <div key={itemKey} className={styles.featuredItem}>
                       <div className={styles.featuredImage}>
-                        <Link href={`/webinar/${slug}`}><img src={urlFor(image, { width: 400 })} alt={title} /></Link>
+                        <Link href={`/webinar/${slug}`}><Image src={urlFor(image, { width: 400 })} alt={title} width={400} height={267} sizes="(max-width: 768px) 100vw, 400px" /></Link>
                       </div>
                       <div className={styles.featuredContent}>
                         <div className={styles.tags}>{blogcategory && <span className={styles.tag}>{blogcategory}</span>}</div>
@@ -102,7 +103,7 @@ const WebinarsPage = ({ posts = [] }) => {
 
                 return (
                   <div key={itemKey} className={styles.card}>
-                    <Link href={`/webinar/${slug}`}><img src={urlFor(image, { width: 400 })} alt={title} className={styles.cardImg} /></Link>
+                    <Link href={`/webinar/${slug}`}><Image src={urlFor(image, { width: 400 })} alt={title} width={400} height={267} sizes="(max-width: 768px) 100vw, 400px" className={styles.cardImg} /></Link>
                     <div style={{ padding: "0.75rem 1rem 1rem" }}>
                       <div className={styles.tags}>{blogcategory && <span className={styles.tag}>{blogcategory}</span>}</div>
                       <Link href={`/webinar/${slug}`}><h6 className={styles.itemTitle}>{truncateText(title, 80)}</h6></Link>
