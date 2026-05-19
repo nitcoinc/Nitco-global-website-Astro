@@ -10,7 +10,8 @@
     "lint": "next lint",
     "migrate:images": "node --env-file=.env scripts/migrate-images.mjs",
     "test:e2e": "playwright test",
-    "test:e2e:ui": "playwright test --ui"
+    "test:e2e:ui": "playwright test --ui",
+    "lhci": "lhci autorun"
   },
   "dependencies": {
     "@fontsource/montserrat": "^5.2.6",
@@ -44,6 +45,7 @@
     "swr": "^2.2.5"
   },
   "devDependencies": {
+    "@lhci/cli": "^0.15.1",
     "@playwright/test": "^1.60.0",
     "@portabletext/markdown": "^1.2.0",
     "@types/react": "^19.2.14",

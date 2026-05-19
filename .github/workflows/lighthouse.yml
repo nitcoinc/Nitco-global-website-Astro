@@ -1,0 +1,23 @@
+name: Lighthouse CI
+on: [pull_request]
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 10
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'pnpm'
+      - run: pnpm install --frozen-lockfile --config.minimumReleaseAge=0
+      - run: pnpm run build
+        env:
+          NEXT_PUBLIC_SANITY_PROJECT_ID: t8ctf4dg
+          NEXT_PUBLIC_SANITY_DATASET: production
+          NEXT_PUBLIC_GTM_ID: GTM-K6CXJBJN
+      - run: pnpm run lhci
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
