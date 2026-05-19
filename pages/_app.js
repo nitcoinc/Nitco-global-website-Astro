@@ -68,8 +68,8 @@ function MyApp({ Component, pageProps }) {
             ccpaAcknowledgeOnDisplay: false,
             whitelabel: false,
             lang: "en",
-            siteId: 2053600,
-            cookiePolicyId: 12542728,
+            siteId: ${process.env.NEXT_PUBLIC_IUBENDA_SITE_ID || 2053600},
+            cookiePolicyId: ${process.env.NEXT_PUBLIC_IUBENDA_COOKIE_POLICY_ID || 12542728},
             floatingPreferencesButtonDisplay: "bottom-left",
             banner: {
               acceptButtonDisplay: true,
@@ -94,7 +94,7 @@ function MyApp({ Component, pageProps }) {
         id="leadsy"
         src="https://r2.leadsy.ai/tag.js"
         strategy="afterInteractive"
-        data-pid="1dyBPBDbcXYcBnDGy"
+        data-pid={process.env.NEXT_PUBLIC_LEADSY_PID || "1dyBPBDbcXYcBnDGy"}
         data-version="062024"
       />
 
@@ -120,7 +120,7 @@ function MyApp({ Component, pageProps }) {
 
       <Script
         id="scriptintel"
-        src="https://api-gateway.scriptintel.io/service/visitorintel/visitorTag/221764/script.js?apiKey=MjIxNzY0NDMyOWE4NDUtZDMxYy00MjEwLThkYzEtYTM5NzNlNTFjYjVj"
+        src={process.env.NEXT_PUBLIC_SCRIPTINTEL_TAG_URL || "https://api-gateway.scriptintel.io/service/visitorintel/visitorTag/221764/script.js?apiKey=MjIxNzY0NDMyOWE4NDUtZDMxYy00MjEwLThkYzEtYTM5NzNlNTFjYjVj"}
         strategy="afterInteractive"
         charSet="utf-8"
       />
