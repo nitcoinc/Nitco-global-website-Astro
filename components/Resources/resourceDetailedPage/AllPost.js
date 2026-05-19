@@ -9,6 +9,7 @@ import Navbar from "../../Navbar/Navbar";
 import Footer from "../../Footer/Footer";
 import InsightsSubscribeForm from "../../Hubspot/HubspotInsightsForm/insightsSubscribeForm";
 import { urlFor } from '../../../lib/sanityImage.js';
+import { BlogPostingSchema } from '../../seo/StructuredData';
 
 export default function Post({
   data: pageData,
@@ -52,10 +53,23 @@ export default function Post({
   const title = pageData?.allPosts?.title;
   const image = pageData?.allPosts?.image;
   const body = pageData?.allPosts?.body;
+  const description = pageData?.allPosts?.description;
+  const publishedAt = pageData?.allPosts?.publishedAt;
+  const postedBy = pageData?.allPosts?.postedBy;
 
   return (
     <div className={styles.page}>
       <Navbar />
+
+      {image && (
+        <BlogPostingSchema
+          title={title}
+          description={description}
+          image={urlFor(image, { width: 1200 })}
+          datePublished={publishedAt}
+          author={postedBy}
+        />
+      )}
 
       {/* ── Hero ── */}
       <div className={styles.hero}>
