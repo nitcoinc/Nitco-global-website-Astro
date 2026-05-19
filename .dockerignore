@@ -10,7 +10,8 @@ README.md
 *.md
 docs/
 artifacts/
-content/
+content/pages
+content/singleDocumentCollections
 sanity/
 .sanity/
 scripts/
