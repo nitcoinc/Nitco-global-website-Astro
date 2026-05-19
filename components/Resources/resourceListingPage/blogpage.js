@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import ButtonsListArea from "./buttonAreaDesign/buttonsArea";
 import styles from "./resorcesGlobal.module.css";
+import { urlFor } from '../../../lib/sanityImage.js';
 
 const BlogPage = ({ posts = [] }) => {
   const [selectedCategories, setSelectedCategories] = useState([]);
@@ -108,7 +109,7 @@ const BlogPage = ({ posts = [] }) => {
                     <div key={itemKey} className={styles.featuredItem}>
                       <div className={styles.featuredImage}>
                         <Link href={`/blog/${slug}`}>
-                          <img src={image} alt={title} />
+                          <img src={urlFor(image, { width: 400 })} alt={title} />
                         </Link>
                       </div>
                       <div className={styles.featuredContent}>
@@ -131,7 +132,7 @@ const BlogPage = ({ posts = [] }) => {
                 return (
                   <div key={itemKey} className={styles.card}>
                     <Link href={`/blog/${slug}`}>
-                      <img src={image} alt={title} className={styles.cardImg} />
+                      <img src={urlFor(image, { width: 400 })} alt={title} className={styles.cardImg} />
                     </Link>
                     <div style={{ padding: "0.75rem 1rem 1rem" }}>
                       <div className={styles.tags}>

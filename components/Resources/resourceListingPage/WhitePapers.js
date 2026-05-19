@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import ButtonsListArea from "./buttonAreaDesign/buttonsArea";
 import styles from "./resorcesGlobal.module.css";
+import { urlFor } from '../../../lib/sanityImage.js';
 
 const WhitePapers = ({ whitepapers = [] }) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -41,7 +42,7 @@ const WhitePapers = ({ whitepapers = [] }) => {
                   return (
                     <div key={itemKey} className={styles.featuredItem}>
                       <div className={styles.featuredImage}>
-                        <Link href={`/whitepapers/${slug}`}><img src={image} alt={title} /></Link>
+                        <Link href={`/whitepapers/${slug}`}><img src={urlFor(image, { width: 400 })} alt={title} /></Link>
                       </div>
                       <div className={styles.featuredContent}>
                         <Link href={`/whitepapers/${slug}`}><h3 className={styles.itemTitle}>{truncateText(title, 80)}</h3></Link>
@@ -53,7 +54,7 @@ const WhitePapers = ({ whitepapers = [] }) => {
 
                 return (
                   <div key={itemKey} className={styles.card}>
-                    <Link href={`/whitepapers/${slug}`}><img src={image} alt={title} className={styles.cardImg} /></Link>
+                    <Link href={`/whitepapers/${slug}`}><img src={urlFor(image, { width: 400 })} alt={title} className={styles.cardImg} /></Link>
                     <div style={{ padding: "0.75rem 1rem 1rem" }}>
                       <Link href={`/whitepapers/${slug}`}><h6 className={styles.itemTitle}>{truncateText(title, 80)}</h6></Link>
                       <p className={styles.description}>{truncateText(description, 150)}</p>

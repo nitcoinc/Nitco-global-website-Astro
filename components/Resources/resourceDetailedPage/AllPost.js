@@ -7,6 +7,7 @@ import styles from "./allposts.module.css";
 import Navbar from "../../Navbar/Navbar";
 import Footer from "../../Footer/Footer";
 import InsightsSubscribeForm from "../../Hubspot/HubspotInsightsForm/insightsSubscribeForm";
+import { urlFor } from '../../../lib/sanityImage.js';
 
 export default function Post({
   data: pageData,
@@ -58,7 +59,7 @@ export default function Post({
       {/* ── Hero ── */}
       <div className={styles.hero}>
         {image && (
-          <img src={image} alt={title || pageType} className={styles.heroImg} />
+          <img src={urlFor(image, { width: 1200 })} alt={title || pageType} className={styles.heroImg} />
         )}
         <div className={styles.heroOverlay} />
         <div className={styles.heroContent}>
@@ -93,7 +94,7 @@ export default function Post({
                       className={styles.recentCard}
                     >
                       <img
-                        src={p.image}
+                        src={urlFor(p.image, { width: 400 })}
                         alt={p.title || p.pageType || "Post"}
                         className={styles.recentImg}
                       />

@@ -7,6 +7,7 @@ import {
   SOLUTION_AREAS,
   EXPLAINER_VIDEOS,
 } from "../../lib/resourcesData";
+import { urlFor } from '../../lib/sanityImage.js';
 
 /* ── Inline SVG icons ── */
 const Icon = ({ name, size = 14 }) => {
@@ -59,7 +60,7 @@ function Card({ title, description, image, date, duration, badge, topics, href, 
       <div className={styles.cardImageWrap}>
         {image && (
           <img
-            src={image}
+            src={urlFor(image, { width: 600 })}
             alt=""
             className={styles.cardImg}
             loading="lazy"

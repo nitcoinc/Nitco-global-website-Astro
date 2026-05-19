@@ -4,6 +4,7 @@ import Navbar from "../../Navbar/Navbar";
 import Footer from "../../Footer/Footer";
 import styles from "./whitepaperpost.module.css";
 import HubSpotWhitepapersForm from "../../Hubspot/hubSpotWhitepapersForm";
+import { urlFor } from '../../../lib/sanityImage.js';
 
 export default function Whitepapers({ data: pageData }) {
   const whitepaper = pageData?.whitepapers;
@@ -17,7 +18,7 @@ export default function Whitepapers({ data: pageData }) {
       <div className={styles.hero}>
         {whitepaper?.image && (
           <img
-            src={whitepaper.image}
+            src={urlFor(whitepaper.image, { width: 1200 })}
             alt={whitepaper.title || "Whitepaper"}
             className={styles.heroImg}
           />
