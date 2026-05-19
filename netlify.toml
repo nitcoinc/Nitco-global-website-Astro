@@ -1,7 +1,0 @@
-[[plugins]]
-package = "@netlify/plugin-sitemap"
-
-  [plugins.inputs]
-  buildDir = "public"                 # or "dist" / "out" depending on your framework
-  baseUrl = "https://nitcoinc.com"   # ✅ correct key
-  prettyURLs = true                  # optional: removes .html in links

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import styles from "./Navbar.module.css";
 
@@ -108,7 +109,7 @@ const Navbar = () => {
       <div className={styles.inner}>
         {/* Logo */}
         <Link href="/" className={styles.logo}>
-          <img src="/images/logo-nitco.png" alt="NITCO Inc." width={234} height={54} />
+          <Image src="/images/logo-nitco.png" alt="NITCO Inc." width={234} height={54} priority />
         </Link>
 
         {/* Desktop nav */}

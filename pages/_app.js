@@ -1,16 +1,15 @@
 import React from "react";
 import Script from "next/script";
 import Head from "next/head";
+import LazyChatbot from '../components/Chatbot/LazyChatbot';
+import ErrorBoundary from '../components/ErrorBoundary';
+import { OrganizationSchema, WebSiteSchema } from '../components/seo/StructuredData';
 
 // Global Styles
 import "../styles/css/bootstrap.min.css";
-import "animate.css";
 import "../styles/css/boxicons.min.css";
-import "../styles/css/flaticon.css";
 import "react-accessible-accordion/dist/fancy-example.css";
 import "/node_modules/aos/dist/aos.css";
-import "swiper/css";
-import "swiper/css/bundle";
 import "../styles/css/switzer.css";
 import "@fontsource/montserrat";
 import "../styles/css/style.css";
@@ -30,20 +29,39 @@ function MyApp({ Component, pageProps }) {
       {/* SEO */}
       <Head>
         <title>{seo?.title || defaultTitle}</title>
-        <meta
-          name="description"
-          content={seo?.description || defaultDescription}
-        />
+        <meta name="description" content={seo?.description || defaultDescription} />
         <link rel="canonical" href={seo?.canonical || defaultCanonical} />
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
+        {/* Open Graph */}
+        <meta property="og:type" content={seo?.ogType || 'website'} />
+        <meta property="og:site_name" content="NITCO Inc." />
+        <meta property="og:title" content={seo?.title || defaultTitle} />
+        <meta property="og:description" content={seo?.description || defaultDescription} />
+        <meta property="og:url" content={seo?.canonical || defaultCanonical} />
+        <meta property="og:image" content={seo?.ogImage || 'https://nitcoinc.com/images/og-default.jpg'} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={seo?.title || defaultTitle} />
+        <meta name="twitter:description" content={seo?.description || defaultDescription} />
+        <meta name="twitter:image" content={seo?.ogImage || 'https://nitcoinc.com/images/og-default.jpg'} />
+
+        <OrganizationSchema />
+        <WebSiteSchema />
       </Head>
 
-      <Component {...pageProps} />
+      <ErrorBoundary>
+        <Component {...pageProps} />
+      </ErrorBoundary>
 
       {/* ========================= */}
       {/* IUBENDA COOKIE CONSENT */}
       {/* ========================= */}
 
-      <Script id="iubenda-config" strategy="beforeInteractive">
+      <Script id="iubenda-config" strategy="afterInteractive">
         {`
           var _iub = _iub || [];
           _iub.csConfiguration = {
@@ -67,8 +85,8 @@ function MyApp({ Component, pageProps }) {
             ccpaAcknowledgeOnDisplay: false,
             whitelabel: false,
             lang: "en",
-            siteId: 2053600,
-            cookiePolicyId: 12542728,
+            siteId: ${process.env.NEXT_PUBLIC_IUBENDA_SITE_ID || 2053600},
+            cookiePolicyId: ${process.env.NEXT_PUBLIC_IUBENDA_COOKIE_POLICY_ID || 12542728},
             floatingPreferencesButtonDisplay: "bottom-left",
             banner: {
               acceptButtonDisplay: true,
@@ -80,9 +98,9 @@ function MyApp({ Component, pageProps }) {
         `}
       </Script>
 
-      <Script src="https://cdn.iubenda.com/cs/tcf/stub-v2.js" strategy="beforeInteractive" />
-      <Script src="https://cdn.iubenda.com/cs/tcf/safe-tcf-v2.js" strategy="beforeInteractive" />
-      <Script src="https://cdn.iubenda.com/cs/ccpa/stub.js" strategy="beforeInteractive" />
+      <Script src="https://cdn.iubenda.com/cs/tcf/stub-v2.js" strategy="afterInteractive" />
+      <Script src="https://cdn.iubenda.com/cs/tcf/safe-tcf-v2.js" strategy="afterInteractive" />
+      <Script src="https://cdn.iubenda.com/cs/ccpa/stub.js" strategy="afterInteractive" />
       <Script src="https://cdn.iubenda.com/cs/iubenda_cs.js" strategy="afterInteractive" async />
 
       {/* ========================= */}
@@ -93,9 +111,25 @@ function MyApp({ Component, pageProps }) {
         id="leadsy"
         src="https://r2.leadsy.ai/tag.js"
         strategy="afterInteractive"
-        data-pid="1dyBPBDbcXYcBnDGy"
+        data-pid={process.env.NEXT_PUBLIC_LEADSY_PID || "1dyBPBDbcXYcBnDGy"}
         data-version="062024"
       />
+
+      {/* ========================= */}
+      {/* RB2B VISITOR IDENTIFICATION */}
+      {/* ========================= */}
+      <Script id="rb2b" strategy="afterInteractive">
+        {`
+    !function(key){
+      if(window.reb2b) return;
+      window.reb2b = {loaded:true};
+      var s = document.createElement("script");
+      s.async = true;
+      s.src = "https://ddwl4m2hdecbv.cloudfront.net/b/" + key + "/" + key + ".js.gz";
+      document.getElementsByTagName("script")[0].parentNode.insertBefore(s, document.getElementsByTagName("script")[0]);
+    }(process.env.NEXT_PUBLIC_RB2B_KEY || "4O7Z0HEQE9NX");
+  `}
+      </Script>
 
       {/* ========================= */}
       {/* SCRIPT INTEL */}
@@ -103,7 +137,7 @@ function MyApp({ Component, pageProps }) {
 
       <Script
         id="scriptintel"
-        src="https://api-gateway.scriptintel.io/service/visitorintel/visitorTag/221764/script.js?apiKey=MjIxNzY0NDMyOWE4NDUtZDMxYy00MjEwLThkYzEtYTM5NzNlNTFjYjVj"
+        src={process.env.NEXT_PUBLIC_SCRIPTINTEL_TAG_URL || "https://api-gateway.scriptintel.io/service/visitorintel/visitorTag/221764/script.js?apiKey=MjIxNzY0NDMyOWE4NDUtZDMxYy00MjEwLThkYzEtYTM5NzNlNTFjYjVj"}
         strategy="afterInteractive"
         charSet="utf-8"
       />
@@ -124,26 +158,7 @@ function MyApp({ Component, pageProps }) {
       {/* KORE.AI CHATBOT */}
       {/* ========================= */}
 
-      {/* Load SDK */}
-      <Script
-        src="https://cdn.jsdelivr.net/npm/kore-web-sdk@11.19.1/dist/umd/kore-web-sdk-umd-chat.min.js"
-        strategy="afterInteractive"
-      />
-      <Script id="koreai-init" strategy="afterInteractive">
-        {`
-    window.addEventListener("load", function () {
-      if (window.KoreChatSDK) {
-
-        KoreChatSDK.chatConfig.botOptions.API_KEY_CONFIG.KEY = '724abd38ef7541939c8c13ea8efa4f1ac884140988204488bae0f4fc2e82a1bbstf3';
-        KoreChatSDK.chatConfig.widgetOptions = {
-          position: "bottom-right"
-        };
-
-        new KoreChatSDK.chatWindow().show(KoreChatSDK.chatConfig);
-      }
-    });
-  `}
-      </Script>
+      <LazyChatbot />
 
     </>
   );

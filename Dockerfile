@@ -1,11 +1,11 @@
-FROM node:20-alpine AS base
-RUN npm install -g pnpm
+FROM node:22-alpine AS base
+RUN npm install -g pnpm@10
 
 # ---- deps ----
 FROM base AS deps
 WORKDIR /app
 COPY package.json pnpm-lock.yaml ./
-RUN pnpm install --frozen-lockfile
+RUN pnpm install --frozen-lockfile --config.minimumReleaseAge=0
 
 # ---- builder ----
 FROM base AS builder
@@ -15,12 +15,28 @@ COPY . .
 
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
+ENV NEXT_PUBLIC_SANITY_PROJECT_ID=t8ctf4dg
+ENV NEXT_PUBLIC_SANITY_DATASET=production
 
-# tina/__generated__ is committed — no TinaCloud credentials needed at build time
-RUN pnpm run build:export
+ARG NEXT_PUBLIC_IUBENDA_SITE_ID
+ARG NEXT_PUBLIC_IUBENDA_COOKIE_POLICY_ID
+ARG NEXT_PUBLIC_LEADSY_PID
+ARG NEXT_PUBLIC_SCRIPTINTEL_TAG_URL
+ARG NEXT_PUBLIC_KORE_API_KEY
+ARG NEXT_PUBLIC_GTM_ID
+ARG NEXT_PUBLIC_RB2B_KEY
+ENV NEXT_PUBLIC_IUBENDA_SITE_ID=$NEXT_PUBLIC_IUBENDA_SITE_ID \
+    NEXT_PUBLIC_IUBENDA_COOKIE_POLICY_ID=$NEXT_PUBLIC_IUBENDA_COOKIE_POLICY_ID \
+    NEXT_PUBLIC_LEADSY_PID=$NEXT_PUBLIC_LEADSY_PID \
+    NEXT_PUBLIC_SCRIPTINTEL_TAG_URL=$NEXT_PUBLIC_SCRIPTINTEL_TAG_URL \
+    NEXT_PUBLIC_KORE_API_KEY=$NEXT_PUBLIC_KORE_API_KEY \
+    NEXT_PUBLIC_GTM_ID=$NEXT_PUBLIC_GTM_ID \
+    NEXT_PUBLIC_RB2B_KEY=$NEXT_PUBLIC_RB2B_KEY
+
+RUN pnpm run build
 
 # ---- runner ----
-FROM node:20-alpine AS runner
+FROM node:22-alpine AS runner
 WORKDIR /app
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1

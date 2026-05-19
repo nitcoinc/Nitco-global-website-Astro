@@ -1,0 +1,2 @@
+6.7M	/home/pmandapati/Desktop/agent-projects/Nitco_global_website/.next/static
+66M	/home/pmandapati/Desktop/agent-projects/Nitco_global_website/.next/standalone

@@ -1,16 +1,13 @@
 import React from "react";
-import { useTina } from "tinacms/dist/react";
+import Image from "next/image";
 import ReactMarkdown from "react-markdown";
 import Navbar from "../../Navbar/Navbar";
 import Footer from "../../Footer/Footer";
 import styles from "./whitepaperpost.module.css";
 import HubSpotWhitepapersForm from "../../Hubspot/hubSpotWhitepapersForm";
+import { urlFor } from '../../../lib/sanityImage.js';
 
-export default function Whitepapers({ query, variables, data: pageData }) {
-  const {
-    data: { post },
-  } = useTina({ query, variables, data: pageData });
-
+export default function Whitepapers({ data: pageData }) {
   const whitepaper = pageData?.whitepapers;
   const downloadLink = whitepaper?.pdfFileUrl || null;
 
@@ -21,11 +18,7 @@ export default function Whitepapers({ query, variables, data: pageData }) {
       {/* ── Hero ── */}
       <div className={styles.hero}>
         {whitepaper?.image && (
-          <img
-            src={whitepaper.image}
-            alt={whitepaper.title || "Whitepaper"}
-            className={styles.heroImg}
-          />
+          <Image src={urlFor(whitepaper.image, { width: 1200 })} alt={whitepaper.title || "Whitepaper"} width={1200} height={630} sizes="100vw" priority className={styles.heroImg} />
         )}
         <div className={styles.heroOverlay} />
         <div className={styles.heroContent}>

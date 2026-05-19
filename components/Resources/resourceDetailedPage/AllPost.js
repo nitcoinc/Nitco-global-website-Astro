@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useEffect, useRef, useState } from "react";
-import { useTina } from "tinacms/dist/react";
+import Image from "next/image";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
@@ -8,22 +8,13 @@ import styles from "./allposts.module.css";
 import Navbar from "../../Navbar/Navbar";
 import Footer from "../../Footer/Footer";
 import InsightsSubscribeForm from "../../Hubspot/HubspotInsightsForm/insightsSubscribeForm";
+import { urlFor } from '../../../lib/sanityImage.js';
+import { BlogPostingSchema } from '../../seo/StructuredData';
 
 export default function Post({
-  query,
-  variables,
   data: pageData,
   sorteddata: blogdata,
 }) {
-  const {
-    data: { post },
-  } = useTina({
-    query: query,
-    variables: variables,
-    data: pageData,
-    sorteddata: blogdata,
-  });
-
   const stickyRef = useRef(null);
   const containerRef = useRef(null);
   const [fixed, setFixed] = useState(false);
@@ -62,15 +53,28 @@ export default function Post({
   const title = pageData?.allPosts?.title;
   const image = pageData?.allPosts?.image;
   const body = pageData?.allPosts?.body;
+  const description = pageData?.allPosts?.description;
+  const publishedAt = pageData?.allPosts?.publishedAt;
+  const postedBy = pageData?.allPosts?.postedBy;
 
   return (
     <div className={styles.page}>
       <Navbar />
 
+      {image && (
+        <BlogPostingSchema
+          title={title}
+          description={description}
+          image={urlFor(image, { width: 1200 })}
+          datePublished={publishedAt}
+          author={postedBy}
+        />
+      )}
+
       {/* ── Hero ── */}
       <div className={styles.hero}>
         {image && (
-          <img src={image} alt={title || pageType} className={styles.heroImg} />
+          <Image src={urlFor(image, { width: 1200 })} alt={title || pageType} width={1200} height={630} sizes="100vw" priority className={styles.heroImg} />
         )}
         <div className={styles.heroOverlay} />
         <div className={styles.heroContent}>
@@ -104,9 +108,12 @@ export default function Post({
                       href={`/${p.pageType}/${p.slug}`}
                       className={styles.recentCard}
                     >
-                      <img
-                        src={p.image}
+                      <Image
+                        src={urlFor(p.image, { width: 400 })}
                         alt={p.title || p.pageType || "Post"}
+                        width={400}
+                        height={267}
+                        sizes="(max-width: 768px) 100vw, 400px"
                         className={styles.recentImg}
                       />
                       <p className={styles.recentTitle}>{p.title}</p>
