@@ -1,139 +1,107 @@
-# Nitcoinc - Organizational Website with Next.js, React, and Tina CMS
+# Nitco Inc — Global Website
 
-This Project utilizes Next.js for frontend-development, React for building UI components, and Tina CMS as a backend for content management. It is hosted on Tina Cloud and deployed using Netlify.
+Next.js 14 marketing site for [nitcoinc.com](https://nitcoinc.com). Content managed via Sanity v5. Deployed as a Docker container.
 
-## Installation
+## Tech Stack
 
-Before getting started, ensure that you have the following prerequisites installed on your system:
+| Layer | Technology |
+|---|---|
+| Framework | Next.js 14.2.3 (`output: standalone`) |
+| UI | React 19 |
+| CMS | Sanity v5 (hosted at sanity.io) |
+| Styling | Bootstrap 5 + custom CSS |
+| Package manager | pnpm 10 |
+| Runtime | Node.js 22 (Alpine Docker image) |
+| Testing | Playwright (E2E) + Lighthouse CI |
+| CI | GitHub Actions |
 
-- [Node.js](https://nodejs.org/en/download/): Make sure you have Node.js installed. You can download and install it from the [official website](https://nodejs.org/).
+## Prerequisites
 
-- [Git](https://git-scm.com/downloads): Ensure that Git is installed on your system. You can download and install it from the [official website](https://git-scm.com/downloads).
+- Node.js 22+
+- pnpm 10+ (`npm install -g pnpm`)
+- Git
 
-Once you have Node.js and Git installed, you can proceed with the following steps:
+## Local Development
 
-clone the reposiory:
 ```sh
-git clone (https://github.com/nitcoinc/global-website.git)
-```
-Install the project's dependencies:
-
-```
-npm install
+git clone https://github.com/pmandapati-nitcoinc/Nitco-global-website-v1.git
+cd Nitco-global-website-v1
+pnpm install
 ```
 
-Run the project locally:
+Copy env file and fill in values:
 
-```
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-### Tina CMS Configuration
-
-Access the Tina CMS interface by navigating to [http://localhost:3000/admin](http://localhost:3000/admin) after running the project locally.
-
-Customize your content types and fields using Tina's schema configuration.
-
-### Building the Starter Locally (Using the hosted content API)
-
-Before running the project locally, you need to set up the required environment variables. Follow these steps:
-
-1. Rename `.env.example` to `.env`.
-
-2. Open the `.env` file and replace the placeholders with the actual values:
-
-- `NEXT_PUBLIC_TINA_CLIENT_ID`: Obtain this value from the project you create at app.tina.io.
-- `TINA_TOKEN`: Obtain this value from the project you create at app.tina.io.
-- `NEXT_PUBLIC_TINA_BRANCH`: Specify the branch with Tina configured.
-
-3. Save the `.env` file.
-
-
-Build the project:
-
-```bash
-npm run build
+```sh
+cp .env.example .env
 ```
 
-### Pushing Changes from VS Code to Branch and Merging with dev
+Required env vars (see `.env.example` for full list):
 
-If you're making changes directly in VS Code and want to push them to a branch, and then merge with the dev branch, follow these steps:
+```
+NEXT_PUBLIC_SANITY_PROJECT_ID=   # from sanity.io project settings
+NEXT_PUBLIC_SANITY_DATASET=production
+SANITY_TOKEN=                    # read token from sanity.io
+```
 
-1. **Push Changes to Branch:**
-   - Make your changes in VS Code.
-   - Save your changes.
-   - Open the terminal in VS Code.
-   - Stage your changes:
-     ```sh
-     git add .
-     ```
-   - Commit your changes:
-     ```sh
-     git commit -m "Your commit message"
-     ```
-   - Push your changes to the branch:
-     ```sh
-     git push origin <your_branch_name>
-     ```
+Run dev server:
 
-2. **Stash Changes before Merging with dev:**
-   - If you have unstaged changes that you want to stash before merging with the dev branch, use:
-     ```sh
-     git stash
-     ```
+```sh
+pnpm run dev
+```
 
-3. **Pull Content from dev to Your Branch:**
-   - Switch to your branch:
-     ```sh
-     git checkout <your_branch_name>
-     ```
-   - Pull content from the dev branch to your branch:
-     ```sh
-     git pull origin dev
-     ```
+Open [http://localhost:3000](http://localhost:3000).
 
-4. **Unstash Changes:**
-   - If you stashed changes earlier, unstash them:
-     ```sh
-     git stash apply
-     ```
+## Build
 
-5. **Commit to Your Branch:**
-   - Stage your changes (if needed):
-     ```sh
-     git add .
-     ```
-   - Commit your changes:
-     ```sh
-     git commit -m "Your commit message"
-     ```
+```sh
+pnpm run build
+pnpm run start
+```
 
-6. **Merge with dev:**
-   - Once your changes are committed to your branch, you can merge it with the dev branch:
-     ```sh
-     git checkout dev
-     git merge <your_branch_name>
-     ```
-   - Resolve any merge conflicts if necessary.
-   - Push the changes to the dev branch:
-     ```sh
-     git push origin dev
-     ```
+## Testing
 
-This process ensures that your changes are pushed to a branch, merged with the dev branch after pulling the latest changes, and finally pushed to the dev branch. Remember to replace `<your_branch_name>` with the name of your branch.
+```sh
+# E2E smoke tests (requires built + running server)
+pnpm run test:e2e
 
+# Lighthouse CI
+pnpm run lhci
+```
 
-## Learn More
+## Docker
 
-To learn more about Tina, take a look at the following resources:
+```sh
+docker build -t nitco-global .
+docker run -p 3000:3000 --env-file .env nitco-global
+```
 
-- [Tina Docs](https://tina.io/docs)
-- [Getting starter guide](https://tina.io/guides/tina-cloud/starter/overview/)
+## Content Management
 
-You can check out [Tina Github repository](https://github.com/tinacms/tinacms) - your feedback and contributions are welcome!
+Content lives in two places:
 
-## [Deploy on Vercel](https://tina.io/guides/tina-cloud/add-tinacms-to-existing-site/deployment/)
+- **Sanity Studio** — blog posts, case studies, whitepapers, team, pages. Access at [nitcoinc.sanity.studio](https://nitcoinc.sanity.studio).
+- **`content/`** — local MDX files for allPosts, whitepapers, users (legacy, being migrated to Sanity).
 
+## Environment Variables
 
+See `.env.example` for the full list. Key variables:
+
+| Variable | Purpose |
+|---|---|
+| `NEXT_PUBLIC_SANITY_PROJECT_ID` | Sanity project ID |
+| `NEXT_PUBLIC_SANITY_DATASET` | Sanity dataset (production) |
+| `SANITY_TOKEN` | Sanity read token |
+| `NEXT_PUBLIC_GTM_ID` | Google Tag Manager container ID |
+| `NEXT_PUBLIC_IUBENDA_SITE_ID` | Iubenda cookie consent |
+| `NEXT_PUBLIC_KORE_API_KEY` | Kore.ai chatbot SDK key |
+
+## Branch Workflow
+
+```sh
+# Feature work
+git checkout -b feat/your-feature
+git push origin feat/your-feature
+gh pr create
+```
+
+Main branch deploys automatically via CI/CD pipeline.
