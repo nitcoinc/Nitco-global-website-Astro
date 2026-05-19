@@ -1,5 +1,6 @@
 import { useState, useMemo, useEffect, useCallback } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import styles from "./Resources.module.css";
 import {
   CASE_STUDY_ENRICHMENT,
@@ -59,11 +60,13 @@ function Card({ title, description, image, date, duration, badge, topics, href, 
     <>
       <div className={styles.cardImageWrap}>
         {image && (
-          <img
+          <Image
             src={urlFor(image, { width: 600 })}
             alt=""
+            width={600}
+            height={400}
+            sizes="(max-width: 768px) 100vw, 600px"
             className={styles.cardImg}
-            loading="lazy"
             onError={(e) => { e.currentTarget.style.display = "none"; }}
           />
         )}

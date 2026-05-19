@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import styles from "./HomePage.module.css";
 
 // ─── Inline SVG Icons ─────────────────────────────────────────────────────────
@@ -410,7 +411,7 @@ export default function NewHome() {
       {/* ── OUTCOMES ── */}
       <section id="resources" className={styles.outcomes}>
         <div className={styles.outcomesBgWrap} aria-hidden="true">
-          <img src="/images/HomePage/outcomes-image.png" alt="" className={styles.outcomesBgImg} />
+          <Image src="/images/HomePage/outcomes-image.png" alt="" fill sizes="100vw" className={styles.outcomesBgImg} />
           <div className={styles.outcomesBgOverlay} />
         </div>
         <div className={styles.container}>
@@ -474,7 +475,7 @@ export default function NewHome() {
       {/* ── ENGAGEMENT MODEL ── */}
       <section id="engagement" className={styles.engagement}>
         <div className={styles.engagementBgWrap} aria-hidden="true">
-          <img src="/images/HomePage/engagement-bg.jpg" alt="" className={styles.engagementBgImg} />
+          <Image src="/images/HomePage/engagement-bg.jpg" alt="" fill sizes="100vw" className={styles.engagementBgImg} />
           <div className={styles.engagementBgOverlay} />
         </div>
         <div className={styles.container}>

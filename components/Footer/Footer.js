@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import Logo from "../../images/nitco-images/LogoWhite.svg";
 import USA from "../../images/FooterDesignChange/USA.png";
 import Indian from "../../images/FooterDesignChange/Indian.png";
@@ -59,7 +60,7 @@ const Footer = () => {
           {/* Logo + locations */}
           <div>
             <Link href="/">
-              <img {...Logo} alt="NITCO" width="180" height="44" />
+              <Image src={Logo} alt="NITCO" width={180} height={44} />
             </Link>
             <div style={{ marginTop: "32px" }}>
               <p
@@ -71,15 +72,7 @@ const Footer = () => {
                   marginBottom: "10px",
                 }}
               >
-                <img
-                  {...USA}
-                  alt="USA"
-                  style={{
-                    width: "26px",
-                    height: "18px",
-                    marginRight: "10px",
-                  }}
-                />
+                <Image src={USA} alt="USA" width={26} height={18} style={{ marginRight: "10px" }} />
                 USA - Texas
               </p>
               <p
@@ -91,15 +84,7 @@ const Footer = () => {
                   margin: 0,
                 }}
               >
-                <img
-                  {...Indian}
-                  alt="India"
-                  style={{
-                    width: "26px",
-                    height: "18px",
-                    marginRight: "10px",
-                  }}
-                />
+                <Image src={Indian} alt="India" width={26} height={18} style={{ marginRight: "10px" }} />
                 India - Hyderabad
               </p>
             </div>
@@ -152,11 +137,7 @@ const Footer = () => {
                 rel="noreferrer"
                 style={socialCircle}
               >
-                <img
-                  {...fb}
-                  alt="Facebook"
-                  style={{ width: "16px", height: "16px" }}
-                />
+                <Image src={fb} alt="Facebook" width={16} height={16} />
               </a>
               <a
                 href="https://twitter.com/nitcoofficial/"
@@ -164,11 +145,7 @@ const Footer = () => {
                 rel="noreferrer"
                 style={socialCircle}
               >
-                <img
-                  {...X}
-                  alt="X"
-                  style={{ width: "14px", height: "14px" }}
-                />
+                <Image src={X} alt="X" width={14} height={14} />
               </a>
               <a
                 href="https://www.linkedin.com/company/nitcoincofficial"
@@ -176,11 +153,7 @@ const Footer = () => {
                 rel="noreferrer"
                 style={socialCircle}
               >
-                <img
-                  {...linkdin}
-                  alt="LinkedIn"
-                  style={{ width: "16px", height: "16px" }}
-                />
+                <Image src={linkdin} alt="LinkedIn" width={16} height={16} />
               </a>
               <a
                 href="https://www.youtube.com/channel/UChm0AxXJl4gsIiUimX1kh-A"
@@ -188,11 +161,7 @@ const Footer = () => {
                 rel="noreferrer"
                 style={{ ...socialCircle, marginRight: 0 }}
               >
-                <img
-                  {...youtube}
-                  alt="YouTube"
-                  style={{ width: "16px", height: "16px" }}
-                />
+                <Image src={youtube} alt="YouTube" width={16} height={16} />
               </a>
             </div>
             <h3 style={{ ...headingStyle, textAlign: "right" }}>Contact Us</h3>

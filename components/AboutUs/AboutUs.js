@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import styles from "./AboutUs.module.css";
 
 /* ===== Inline SVG icon set ===== */
@@ -478,7 +479,7 @@ const AboutNew = () => {
                     <span className={styles.leaderInitials} aria-hidden="true">
                       {getInitials(leader.name)}
                     </span>
-                    <img src={leader.image} alt={leader.name} loading="lazy" />
+                    <Image src={leader.image} alt={leader.name} width={300} height={300} />
                   </span>
                   <div className={styles.leaderMeta}>
                     <h3 className={styles.leaderName}>{leader.name}</h3>

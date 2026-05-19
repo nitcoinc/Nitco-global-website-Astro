@@ -1,0 +1,2 @@
+6.5M	.next/static
+67M	.next/standalone

@@ -6,25 +6,6 @@ export default function Document() {
     <Html lang="en">
       <Head>
 
-        {/* RB2B Visitor Identification */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              !function(key){
-                if(window.reb2b) return;
-                window.reb2b = {loaded:true};
-                var s = document.createElement("script");
-                s.async = true;
-                s.src = "https://ddwl4m2hdecbv.cloudfront.net/b/" + key + "/" + key + ".js.gz";
-                document.getElementsByTagName("script")[0].parentNode.insertBefore(
-                  s,
-                  document.getElementsByTagName("script")[0]
-                );
-              }("4O7Z0HEQE9NX");
-            `,
-          }}
-        />
-
         {/* Google Tag Manager */}
         <script
           dangerouslySetInnerHTML={{
@@ -36,7 +17,7 @@ export default function Document() {
               j.async=true;
               j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
               f.parentNode.insertBefore(j,f);
-              })(window,document,'script','dataLayer','GTM-K6CXJBJN');
+              })(window,document,'script','dataLayer',process.env.NEXT_PUBLIC_GTM_ID || 'GTM-K6CXJBJN');
             `,
           }}
         />
@@ -51,7 +32,7 @@ export default function Document() {
         {/* Google Tag Manager (noscript) */}
         <noscript>
           <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-K6CXJBJN"
+            src={`https://www.googletagmanager.com/ns.html?id=${process.env.NEXT_PUBLIC_GTM_ID || 'GTM-K6CXJBJN'}`}
             height="0"
             width="0"
             style={{ display: "none", visibility: "hidden" }}

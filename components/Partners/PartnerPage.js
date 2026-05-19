@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { PARTNER_CATEGORIES } from "../../lib/partnersData";
 import styles from "./PartnerPage.module.css";
 
@@ -47,13 +48,13 @@ function PartnerLogo({ partner, boxClass, fallbackClass }) {
   return (
     <div className={boxClass}>
       {showImg ? (
-        <img
+        <Image
           src={`https://www.google.com/s2/favicons?domain=${partner.domain}&sz=128`}
           alt=""
+          width={32}
+          height={32}
           onError={() => setErrored(true)}
-          loading="lazy"
-          decoding="async"
-          referrerPolicy="no-referrer"
+          unoptimized
         />
       ) : (
         <div className={fallbackClass}>
@@ -171,10 +172,12 @@ function CaseStudyCard({ cs }) {
       }}>
         {cs.image && (
           <div style={{ height: "180px", overflow: "hidden", flexShrink: 0 }}>
-            <img
+            <Image
               src={cs.image}
               alt={cs.title}
-              loading="lazy"
+              width={400}
+              height={180}
+              sizes="(max-width: 768px) 100vw, 400px"
               style={{ width: "100%", height: "100%", objectFit: "cover" }}
             />
           </div>

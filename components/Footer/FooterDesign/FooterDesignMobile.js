@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import Logo from "../../../images/nitco-images/LogoWhite.svg";
 import USA from "../../../images/FooterDesignChange/USA.png";
 import Indian from "../../../images/FooterDesignChange/Indian.png";
@@ -18,7 +19,7 @@ const Footer = () => {
         {/* Logo */}
         <div className={styles.logoSection}>
           <Link href="/">
-            <img {...Logo} alt="logo" width="180" height="40" />
+            <Image src={Logo} alt="logo" width={180} height={40} />
           </Link>
         </div>
 
@@ -96,7 +97,7 @@ const Footer = () => {
                   rel="noreferrer"
                   className={styles.socialCircle}
                 >
-                  <img {...fb} alt="Facebook" />
+                  <Image src={fb} alt="Facebook" width={20} height={20} />
                 </a>
 
                 <a
@@ -105,7 +106,7 @@ const Footer = () => {
                   rel="noreferrer"
                   className={styles.socialCircle}
                 >
-                  <img {...X} alt="X" />
+                  <Image src={X} alt="X" width={20} height={20} />
                 </a>
 
                 <a
@@ -114,7 +115,7 @@ const Footer = () => {
                   rel="noreferrer"
                   className={styles.socialCircle}
                 >
-                  <img {...linkdin} alt="LinkedIn" />
+                  <Image src={linkdin} alt="LinkedIn" width={20} height={20} />
                 </a>
 
                 <a
@@ -123,7 +124,7 @@ const Footer = () => {
                   rel="noreferrer"
                   className={styles.socialCircle}
                 >
-                  <img {...youtube} alt="YouTube" />
+                  <Image src={youtube} alt="YouTube" width={20} height={20} />
                 </a>
               </div>
             </div>
@@ -134,7 +135,7 @@ const Footer = () => {
             <div className={styles.divider}></div>
 
             <div className={styles.addressRow}>
-              <img {...USA} alt="USA" />
+              <Image src={USA} alt="USA" width={26} height={18} />
 
               <div>
                 <p>
@@ -149,7 +150,7 @@ const Footer = () => {
             <div className={styles.divider}></div>
 
             <div className={styles.addressRow}>
-              <img {...Indian} alt="India" />
+              <Image src={Indian} alt="India" width={26} height={18} />
 
               <div>
                 <p>
@@ -219,10 +220,10 @@ const Footer = () => {
             <h3>Follow Us</h3>
 
             <div className={styles.socialWrapper}>
-              <a href="#"><img {...fb} alt="" /></a>
-              <a href="#"><img {...X} alt="" /></a>
-              <a href="#"><img {...linkdin} alt="" /></a>
-              <a href="#"><img {...youtube} alt="" /></a>
+              <a href="#"><Image src={fb} alt="Facebook" width={20} height={20} /></a>
+              <a href="#"><Image src={X} alt="X" width={20} height={20} /></a>
+              <a href="#"><Image src={linkdin} alt="LinkedIn" width={20} height={20} /></a>
+              <a href="#"><Image src={youtube} alt="YouTube" width={20} height={20} /></a>
             </div>
           </div>
 
@@ -236,12 +237,12 @@ const Footer = () => {
 
           <div className={styles.mobileCountry}>
             <div>
-              <img {...USA} alt="USA" />
+              <Image src={USA} alt="USA" width={26} height={18} />
               <span>USA - Texas</span>
             </div>
 
             <div>
-              <img {...Indian} alt="India" />
+              <Image src={Indian} alt="India" width={26} height={18} />
               <span>India - Hyderabad</span>
             </div>
           </div>

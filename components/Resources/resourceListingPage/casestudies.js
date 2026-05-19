@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import ButtonsListArea from "./buttonAreaDesign/buttonsArea";
 import styles from "./resorcesGlobal.module.css";
 import { urlFor } from '../../../lib/sanityImage.js';
@@ -133,7 +134,7 @@ const CaseStudies = ({ posts = [] }) => {
                   return (
                     <div key={itemKey} className={styles.featuredItem}>
                       <div className={styles.featuredImage}>
-                        <Link href={`/case-studies/${slug}`}><img src={urlFor(image, { width: 400 })} alt={title} /></Link>
+                        <Link href={`/case-studies/${slug}`}><Image src={urlFor(image, { width: 400 })} alt={title} width={400} height={267} sizes="(max-width: 768px) 100vw, 400px" /></Link>
                       </div>
                       <div className={styles.featuredContent}>
                         <div className={styles.tags}>{tags.map((tag, idx) => <span key={idx} className={styles.tag}>{tag}</span>)}</div>
@@ -147,7 +148,7 @@ const CaseStudies = ({ posts = [] }) => {
 
                 return (
                   <div key={itemKey} className={styles.card}>
-                    <Link href={`/case-studies/${slug}`}><img src={urlFor(image, { width: 400 })} alt={title} className={styles.cardImg} /></Link>
+                    <Link href={`/case-studies/${slug}`}><Image src={urlFor(image, { width: 400 })} alt={title} width={400} height={267} sizes="(max-width: 768px) 100vw, 400px" className={styles.cardImg} /></Link>
                     <div style={{ padding: "0.75rem 1rem 1rem" }}>
                       <div className={styles.tags}>{tags.map((tag, idx) => <span key={idx} className={styles.tag}>{tag}</span>)}</div>
                       <Link href={`/case-studies/${slug}`}><h6 className={styles.itemTitle}>{truncateText(title, 80)}</h6></Link>
