@@ -2,6 +2,7 @@ import React from "react";
 import Script from "next/script";
 import Head from "next/head";
 import LazyChatbot from '../components/Chatbot/LazyChatbot';
+import ErrorBoundary from '../components/ErrorBoundary';
 import { OrganizationSchema, WebSiteSchema } from '../components/seo/StructuredData';
 
 // Global Styles
@@ -52,7 +53,9 @@ function MyApp({ Component, pageProps }) {
         <WebSiteSchema />
       </Head>
 
-      <Component {...pageProps} />
+      <ErrorBoundary>
+        <Component {...pageProps} />
+      </ErrorBoundary>
 
       {/* ========================= */}
       {/* IUBENDA COOKIE CONSENT */}
