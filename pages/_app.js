@@ -2,6 +2,7 @@ import React from "react";
 import Script from "next/script";
 import Head from "next/head";
 import LazyChatbot from '../components/Chatbot/LazyChatbot';
+import { OrganizationSchema, WebSiteSchema } from '../components/seo/StructuredData';
 
 // Global Styles
 import "../styles/css/bootstrap.min.css";
@@ -31,11 +32,28 @@ function MyApp({ Component, pageProps }) {
       {/* SEO */}
       <Head>
         <title>{seo?.title || defaultTitle}</title>
-        <meta
-          name="description"
-          content={seo?.description || defaultDescription}
-        />
+        <meta name="description" content={seo?.description || defaultDescription} />
         <link rel="canonical" href={seo?.canonical || defaultCanonical} />
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
+        {/* Open Graph */}
+        <meta property="og:type" content={seo?.ogType || 'website'} />
+        <meta property="og:site_name" content="NITCO Inc." />
+        <meta property="og:title" content={seo?.title || defaultTitle} />
+        <meta property="og:description" content={seo?.description || defaultDescription} />
+        <meta property="og:url" content={seo?.canonical || defaultCanonical} />
+        <meta property="og:image" content={seo?.ogImage || 'https://nitcoinc.com/images/og-default.jpg'} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={seo?.title || defaultTitle} />
+        <meta name="twitter:description" content={seo?.description || defaultDescription} />
+        <meta name="twitter:image" content={seo?.ogImage || 'https://nitcoinc.com/images/og-default.jpg'} />
+
+        <OrganizationSchema />
+        <WebSiteSchema />
       </Head>
 
       <Component {...pageProps} />
