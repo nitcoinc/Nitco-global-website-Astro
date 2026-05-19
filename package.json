@@ -8,7 +8,9 @@
     "postbuild": "npx next-sitemap",
     "start": "next start -p ${PORT:-3000}",
     "lint": "next lint",
-    "migrate:images": "node --env-file=.env scripts/migrate-images.mjs"
+    "migrate:images": "node --env-file=.env scripts/migrate-images.mjs",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui"
   },
   "dependencies": {
     "@fontsource/montserrat": "^5.2.6",
@@ -42,6 +44,7 @@
     "swr": "^2.2.5"
   },
   "devDependencies": {
+    "@playwright/test": "^1.60.0",
     "@portabletext/markdown": "^1.2.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
