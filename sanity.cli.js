@@ -5,4 +5,5 @@ export default defineCliConfig({
     projectId: 't8ctf4dg',
     dataset: 'production',
   },
+  studioHost: 'nitco-global',
 })
