@@ -177,8 +177,8 @@ function CaseStudyCard({ cs }) {
               alt={cs.title}
               width={400}
               height={180}
+              sizes="(max-width: 768px) 100vw, 400px"
               style={{ width: "100%", height: "100%", objectFit: "cover" }}
-              unoptimized
             />
           </div>
         )}

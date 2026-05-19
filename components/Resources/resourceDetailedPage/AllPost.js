@@ -99,6 +99,7 @@ export default function Post({
                         alt={p.title || p.pageType || "Post"}
                         width={400}
                         height={267}
+                        sizes="(max-width: 768px) 100vw, 400px"
                         className={styles.recentImg}
                       />
                       <p className={styles.recentTitle}>{p.title}</p>
