@@ -18,7 +18,7 @@ export const post = {
       validation: (R) => R.required(),
     },
     { name: 'title', title: 'Title', type: 'string', validation: (R) => R.required() },
-    { name: 'image', title: 'Image path', type: 'string' },
+    { name: 'image', title: 'Image', type: 'image', options: { hotspot: true } },
     { name: 'publishedAt', title: 'Published at', type: 'datetime' },
     { name: 'postedBy', title: 'Posted by', type: 'string' },
     { name: 'duration', title: 'Read duration', type: 'string' },

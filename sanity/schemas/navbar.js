@@ -3,6 +3,6 @@ export const navbar = {
   title: 'Navbar',
   type: 'document',
   fields: [
-    { name: 'navbarImage', title: 'Logo image path', type: 'string' },
+    { name: 'navbarImage', title: 'Logo', type: 'image' },
   ],
 }
