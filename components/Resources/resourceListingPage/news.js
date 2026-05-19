@@ -3,7 +3,6 @@ import Link from "next/link";
 import Image from "next/image";
 import * as Icon from "react-feather";
 import ButtonsListArea from "./buttonAreaDesign/buttonsArea";
-import { duration } from "moment";
 
 const NewsPage = ({ data }) => {
   const {
