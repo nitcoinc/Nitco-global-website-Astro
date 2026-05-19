@@ -1,6 +1,7 @@
 import React from "react";
 import Script from "next/script";
 import Head from "next/head";
+import LazyChatbot from '../components/Chatbot/LazyChatbot';
 
 // Global Styles
 import "../styles/css/bootstrap.min.css";
@@ -124,26 +125,7 @@ function MyApp({ Component, pageProps }) {
       {/* KORE.AI CHATBOT */}
       {/* ========================= */}
 
-      {/* Load SDK */}
-      <Script
-        src="https://cdn.jsdelivr.net/npm/kore-web-sdk@11.19.1/dist/umd/kore-web-sdk-umd-chat.min.js"
-        strategy="afterInteractive"
-      />
-      <Script id="koreai-init" strategy="afterInteractive">
-        {`
-    window.addEventListener("load", function () {
-      if (window.KoreChatSDK) {
-
-        KoreChatSDK.chatConfig.botOptions.API_KEY_CONFIG.KEY = '724abd38ef7541939c8c13ea8efa4f1ac884140988204488bae0f4fc2e82a1bbstf3';
-        KoreChatSDK.chatConfig.widgetOptions = {
-          position: "bottom-right"
-        };
-
-        new KoreChatSDK.chatWindow().show(KoreChatSDK.chatConfig);
-      }
-    });
-  `}
-      </Script>
+      <LazyChatbot />
 
     </>
   );
