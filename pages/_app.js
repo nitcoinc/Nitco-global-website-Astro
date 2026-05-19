@@ -99,6 +99,22 @@ function MyApp({ Component, pageProps }) {
       />
 
       {/* ========================= */}
+      {/* RB2B VISITOR IDENTIFICATION */}
+      {/* ========================= */}
+      <Script id="rb2b" strategy="afterInteractive">
+        {`
+    !function(key){
+      if(window.reb2b) return;
+      window.reb2b = {loaded:true};
+      var s = document.createElement("script");
+      s.async = true;
+      s.src = "https://ddwl4m2hdecbv.cloudfront.net/b/" + key + "/" + key + ".js.gz";
+      document.getElementsByTagName("script")[0].parentNode.insertBefore(s, document.getElementsByTagName("script")[0]);
+    }(process.env.NEXT_PUBLIC_RB2B_KEY || "4O7Z0HEQE9NX");
+  `}
+      </Script>
+
+      {/* ========================= */}
       {/* SCRIPT INTEL */}
       {/* ========================= */}
 

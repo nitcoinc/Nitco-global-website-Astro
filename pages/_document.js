@@ -6,25 +6,6 @@ export default function Document() {
     <Html lang="en">
       <Head>
 
-        {/* RB2B Visitor Identification */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              !function(key){
-                if(window.reb2b) return;
-                window.reb2b = {loaded:true};
-                var s = document.createElement("script");
-                s.async = true;
-                s.src = "https://ddwl4m2hdecbv.cloudfront.net/b/" + key + "/" + key + ".js.gz";
-                document.getElementsByTagName("script")[0].parentNode.insertBefore(
-                  s,
-                  document.getElementsByTagName("script")[0]
-                );
-              }("4O7Z0HEQE9NX");
-            `,
-          }}
-        />
-
         {/* Google Tag Manager */}
         <script
           dangerouslySetInnerHTML={{
