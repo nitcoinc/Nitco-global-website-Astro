@@ -43,7 +43,7 @@ function MyApp({ Component, pageProps }) {
       {/* IUBENDA COOKIE CONSENT */}
       {/* ========================= */}
 
-      <Script id="iubenda-config" strategy="beforeInteractive">
+      <Script id="iubenda-config" strategy="afterInteractive">
         {`
           var _iub = _iub || [];
           _iub.csConfiguration = {
@@ -80,9 +80,9 @@ function MyApp({ Component, pageProps }) {
         `}
       </Script>
 
-      <Script src="https://cdn.iubenda.com/cs/tcf/stub-v2.js" strategy="beforeInteractive" />
-      <Script src="https://cdn.iubenda.com/cs/tcf/safe-tcf-v2.js" strategy="beforeInteractive" />
-      <Script src="https://cdn.iubenda.com/cs/ccpa/stub.js" strategy="beforeInteractive" />
+      <Script src="https://cdn.iubenda.com/cs/tcf/stub-v2.js" strategy="afterInteractive" />
+      <Script src="https://cdn.iubenda.com/cs/tcf/safe-tcf-v2.js" strategy="afterInteractive" />
+      <Script src="https://cdn.iubenda.com/cs/ccpa/stub.js" strategy="afterInteractive" />
       <Script src="https://cdn.iubenda.com/cs/iubenda_cs.js" strategy="afterInteractive" async />
 
       {/* ========================= */}
