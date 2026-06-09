@@ -1,0 +1,39 @@
+---
+import matter from 'gray-matter';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import WhitepaperPost from '../../islands/WhitepaperPost.jsx';
+import { getSeoForPath } from '../../lib/fetchSeoData.js';
+
+export async function getStaticPaths() {
+  const files = import.meta.glob('../../../content/whitepaperspost/whitepapers__*.mdx', { as: 'raw', eager: true });
+  return Object.entries(files).map(([filePath, raw]) => {
+    const fileName = filePath.split('/').pop();
+    const slug = fileName.replace(/^whitepapers__/, '').replace(/\.mdx$/, '');
+    const { data, content } = matter(raw);
+
+    return {
+      params: { slug },
+      props: {
+        postData: {
+          slug: data.slug || slug,
+          pageType: data.pageType || 'whitepapers',
+          pagetype: data.pagetype || 'Whitepaper',
+          title: data.title || '',
+          image: data.image || null,
+          pdfFileUrl: data.pdfFileUrl || null,
+          body: content.trim(),
+        },
+      },
+    };
+  });
+}
+
+const { slug } = Astro.params;
+const { postData } = Astro.props;
+const seo = getSeoForPath(`/whitepapers/${slug}`);
+
+const pageProps = { data: { whitepapers: postData } };
+---
+<BaseLayout seo={seo} path={`/whitepapers/${slug}`}>
+  <WhitepaperPost client:only="react" {...pageProps} />
+</BaseLayout>

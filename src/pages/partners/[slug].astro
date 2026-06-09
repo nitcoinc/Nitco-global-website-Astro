@@ -1,0 +1,55 @@
+---
+import matter from 'gray-matter';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PartnerPageIsland from '../../islands/PartnerPage.jsx';
+import { PARTNER_CATEGORIES, getPartnerCategory } from '../../lib/partnersData.js';
+import { CASE_STUDY_ENRICHMENT } from '../../lib/resourcesData.js';
+import { getSeoForPath } from '../../lib/fetchSeoData.js';
+
+export async function getStaticPaths() {
+  const allPostFiles = import.meta.glob('../../../content/allPosts/*.mdx', { as: 'raw', eager: true });
+
+  const allCaseStudies = Object.entries(allPostFiles)
+    .map(([, raw]) => {
+      try {
+        const { data } = matter(raw);
+        if (data.pageType !== 'case-studies') return null;
+        const slug = data.slug || '';
+        const enrichment = CASE_STUDY_ENRICHMENT[slug] || {};
+        return {
+          title: data.title || '',
+          image: data.image || null,
+          date: data.date ? String(data.date) : null,
+          slug,
+          topics: enrichment.topics || [],
+          description: enrichment.description || '',
+        };
+      } catch { return null; }
+    })
+    .filter((p) => p && p.title && p.slug);
+
+  return PARTNER_CATEGORIES.map((category) => {
+    const relatedTopics = category.relatedTopics || [];
+    const caseStudies = allCaseStudies
+      .filter((cs) => cs.topics.some((t) => relatedTopics.includes(t)))
+      .sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+
+    return {
+      params: { slug: category.slug },
+      props: { category, caseStudies },
+    };
+  });
+}
+
+const { slug } = Astro.params;
+const { category, caseStudies } = Astro.props;
+const seo = getSeoForPath(`/partners/${slug}`);
+---
+<BaseLayout
+  title={`${category.title} | NITCO Inc.`}
+  description={category.intro}
+  seo={seo}
+  path={`/partners/${slug}`}
+>
+  <PartnerPageIsland client:visible category={category} caseStudies={caseStudies} />
+</BaseLayout>

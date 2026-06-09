@@ -1,0 +1,57 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Blocks from '../../islands/Blocks.jsx';
+import { sanityClient } from '../../lib/sanity.js';
+import { getSeoForPath } from '../../lib/fetchSeoData.js';
+
+const ALL_INSIGHTS_QUERY = `*[_type == "page" && pageType == "insights"]{ slug }`;
+
+const PAGE_QUERY = `*[_type == "page" && slug.current == $slug][0]{
+  _id,
+  slug,
+  pageType,
+  blocks[]{
+    _type,
+    label,
+    buttonList,
+    tagline_R_V, text_R_V, video_R_V, url_R_V,
+    tagline_L_V, text_L_V, video_L_V,
+    mainheading, lastupdated, body
+  }
+}`;
+
+const POSTS_QUERY = `*[_type == "post"] | order(publishedAt desc) {
+  "slug": slug.current, postType, title, image, publishedAt, postedBy, duration,
+  description, blogcategory, blogindustry, blogdepartment
+}`;
+
+const WHITEPAPERS_QUERY = `*[_type == "whitepaper"] | order(_createdAt desc) {
+  "slug": slug.current, title, image, pdfFileUrl, description
+}`;
+
+export async function getStaticPaths() {
+  const _ALL_INSIGHTS_QUERY = `*[_type == "page" && pageType == "insights"]{ slug }`;
+  const pages = await sanityClient.fetch(_ALL_INSIGHTS_QUERY);
+  return pages.map((p) => ({
+    params: { page: p.slug.current },
+  }));
+}
+
+const { page: pageSlug } = Astro.params;
+
+const [page, posts, whitepapers] = await Promise.all([
+  sanityClient.fetch(PAGE_QUERY, { slug: pageSlug }),
+  sanityClient.fetch(POSTS_QUERY),
+  sanityClient.fetch(WHITEPAPERS_QUERY),
+]);
+
+if (!page) {
+  return Astro.redirect('/404');
+}
+
+const seo = getSeoForPath(`/insights/${pageSlug}`);
+---
+
+<BaseLayout title="Nitco Inc. | Insights" seo={seo} path={`/insights/${pageSlug}`}>
+  <Blocks client:load page={page} posts={posts} whitepapers={whitepapers} />
+</BaseLayout>

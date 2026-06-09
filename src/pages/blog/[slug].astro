@@ -1,0 +1,60 @@
+---
+import matter from 'gray-matter';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AllPost from '../../islands/AllPost.jsx';
+import { getSeoForPath } from '../../lib/fetchSeoData.js';
+
+export async function getStaticPaths() {
+  const files = import.meta.glob('../../../content/allPosts/blog__*.mdx', { as: 'raw', eager: true });
+  return Object.entries(files).map(([filePath, raw]) => {
+    const fileName = filePath.split('/').pop();
+    const slug = fileName.replace(/^blog__/, '').replace(/\.mdx$/, '');
+    const { data, content } = matter(raw);
+    const latestSlugs = Object.entries(files)
+      .filter(([fp]) => fp !== filePath)
+      .map(([, r]) => {
+        try {
+          const { data: d } = matter(r);
+          return {
+            slug: d.slug || fp.split('/').pop().replace(/^blog__/, '').replace(/\.mdx$/, ''),
+            pageType: d.pageType || 'blog',
+            title: d.title || '',
+            image: d.image || null,
+            date: d.date ? String(d.date) : null,
+          };
+        } catch { return null; }
+      })
+      .filter(Boolean)
+      .sort((a, b) => (b.date || '').localeCompare(a.date || ''))
+      .slice(0, 5);
+
+    return {
+      params: { slug },
+      props: {
+        postData: {
+          slug: data.slug || slug,
+          pageType: data.pageType || 'blog',
+          pagetype: data.pagetype || 'Blog',
+          title: data.title || '',
+          image: data.image || null,
+          date: data.date ? String(data.date) : null,
+          body: content.trim(),
+        },
+        latestPosts: latestSlugs,
+      },
+    };
+  });
+}
+
+const { slug } = Astro.params;
+const { postData, latestPosts } = Astro.props;
+const seo = getSeoForPath(`/blog/${slug}`);
+
+const pageProps = {
+  data: { allPosts: postData },
+  sorteddata: latestPosts,
+};
+---
+<BaseLayout seo={seo} path={`/blog/${slug}`}>
+  <AllPost client:load {...pageProps} />
+</BaseLayout>

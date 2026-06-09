@@ -1,0 +1,79 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Resources from '../islands/Resources.jsx';
+import { getSeoForPath } from '../lib/fetchSeoData.js';
+import matter from 'gray-matter';
+
+// Replicate getStaticProps: load all posts + whitepapers from content/
+const postFiles = import.meta.glob('../../content/allPosts/*.mdx', { as: 'raw', eager: true });
+const whitepaperFiles = import.meta.glob('../../content/whitepaperspost/*.mdx', { as: 'raw', eager: true });
+
+function parseMdxFiles(files) {
+  return Object.entries(files).map(([filePath, raw]) => {
+    const { data } = matter(raw);
+    const filename = filePath.split('/').pop();
+    return { ...data, _filename: filename };
+  });
+}
+
+const allPosts = parseMdxFiles(postFiles);
+const wpPosts  = parseMdxFiles(whitepaperFiles);
+
+/* ── Blogs ── */
+const blogs = allPosts
+  .filter((p) => p.pageType === 'blog')
+  .map((p) => ({
+    title: p.title || '',
+    image: p.image || null,
+    date:  p.date  ? String(p.date) : null,
+    slug:  p.slug  || p._filename.replace(/^blog__/, '').replace(/\.mdx?$/, ''),
+  }))
+  .filter((b) => b.title && b.slug)
+  .sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+
+/* ── Case Studies ── */
+const caseStudies = allPosts
+  .filter((p) => p.pageType === 'case-studies')
+  .map((p) => ({
+    title: p.title || '',
+    image: p.image || null,
+    date:  p.date  ? String(p.date) : null,
+    slug:  p.slug  || p._filename.replace(/^case-studies__/, '').replace(/\.mdx?$/, ''),
+  }))
+  .filter((cs) => cs.title && cs.slug)
+  .sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+
+/* ── Webinars ── */
+const webinars = allPosts
+  .filter((p) => p.pageType === 'webinar')
+  .map((p) => ({
+    title: p.title || '',
+    image: p.image || null,
+    date:  p.date  ? String(p.date) : null,
+    slug:  p.slug  || p._filename.replace(/^webinar__/, '').replace(/\.mdx?$/, ''),
+  }))
+  .filter((w) => w.title && w.slug)
+  .sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+
+/* ── Whitepapers ── */
+const whitepapers = wpPosts
+  .filter((p) => p.pageType === 'whitepapers')
+  .map((p) => ({
+    title:      p.title      || '',
+    image:      p.image      || null,
+    slug:       p.slug       || p._filename.replace(/^whitepapers__/, '').replace(/\.mdx?$/, ''),
+    pdfFileUrl: p.pdfFileUrl || null,
+  }))
+  .filter((wp) => wp.title && wp.slug);
+
+const seo = getSeoForPath('/resources');
+---
+<BaseLayout seo={seo} path="/resources">
+  <Resources
+    blogs={blogs}
+    caseStudies={caseStudies}
+    webinars={webinars}
+    whitepapers={whitepapers}
+    client:load
+  />
+</BaseLayout>

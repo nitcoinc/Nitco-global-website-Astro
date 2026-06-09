@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SolutionPageIsland from '../../islands/SolutionPage.jsx';
+import { ALL_SOLUTIONS, getSolutionBySlug } from '../../lib/solutionsData.js';
+import { getSeoForPath } from '../../lib/fetchSeoData.js';
+
+export function getStaticPaths() {
+  return ALL_SOLUTIONS.map((s) => ({
+    params: { page: s.slug },
+    props: { solution: s },
+  }));
+}
+
+const { page: pageSlug } = Astro.params;
+const { solution } = Astro.props;
+
+if (!solution) {
+  return Astro.redirect('/404');
+}
+
+const seo = getSeoForPath(`/solutions/${pageSlug}`);
+---
+
+<BaseLayout
+  title={`${solution.title} | NITCO Inc.`}
+  description={solution.subtitle}
+  seo={seo}
+  path={`/solutions/${pageSlug}`}
+>
+  <SolutionPageIsland client:load solution={solution} />
+</BaseLayout>

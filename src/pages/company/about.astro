@@ -1,0 +1,9 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AboutUs from '../../islands/AboutUs.jsx';
+import { getSeoForPath } from '../../lib/fetchSeoData.js';
+const seo = getSeoForPath('/company/about');
+---
+<BaseLayout seo={seo} path="/company/about">
+  <AboutUs client:visible />
+</BaseLayout>

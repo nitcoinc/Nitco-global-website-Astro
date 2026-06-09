@@ -1,0 +1,10 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactForm from '../islands/ContactForm.jsx';
+import { getSeoForPath } from '../lib/fetchSeoData.js';
+
+const seo = getSeoForPath('/contact');
+---
+<BaseLayout seo={seo} path="/contact">
+  <ContactForm client:only="react" />
+</BaseLayout>

@@ -1,0 +1,219 @@
+---
+import '../styles/global.css';
+import AOSInit from '../islands/AOSInit.jsx';
+import Navbar from '../islands/Navbar.jsx';
+import GoTop from '../islands/GoTop.jsx';
+import Footer from '../components/Footer.astro';
+import FooterDesignMobile from '../components/FooterDesignMobile.astro';
+import SeoHead from '../components/SeoHead.astro';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  ogType?: string;
+  ogImage?: string;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  /** SEO object from getSeoForPath — overrides individual title/description/etc props when provided */
+  seo?: Record<string, unknown>;
+  /** Current route path, e.g. "/" or "/contact" — used to build canonical URL in SeoHead */
+  path?: string;
+}
+
+const {
+  title,
+  description,
+  canonical,
+  ogType = 'website',
+  ogImage,
+  jsonLd,
+  seo,
+  path = '/',
+} = Astro.props;
+
+const GTM_ID = import.meta.env.PUBLIC_GTM_ID || '';
+const IUBENDA_SITE_ID = Number(import.meta.env.PUBLIC_IUBENDA_SITE_ID) || 0;
+const IUBENDA_COOKIE_POLICY_ID = Number(import.meta.env.PUBLIC_IUBENDA_COOKIE_POLICY_ID) || 0;
+const LEADSY_PID = import.meta.env.PUBLIC_LEADSY_PID || '';
+const RB2B_KEY = import.meta.env.PUBLIC_RB2B_KEY || '';
+const SCRIPTINTEL_TAG_URL = import.meta.env.PUBLIC_SCRIPTINTEL_TAG_URL || '';
+
+const defaultTitle = 'NITCO Inc.';
+const defaultDescription =
+  'NITCO delivers AI, Automation, Data, and Integration solutions engineered to transform and scale enterprise operations.';
+const defaultCanonical = 'https://nitcoinc.com';
+const defaultOgImage = 'https://nitcoinc.com/images/og-default.jpg';
+
+const resolvedTitle = seo?.title || title || defaultTitle;
+const resolvedDescription = description || defaultDescription;
+const resolvedCanonical = canonical || defaultCanonical;
+const resolvedOgImage = ogImage || defaultOgImage;
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>{resolvedTitle}</title>
+  <meta name="description" content={resolvedDescription} />
+  <link rel="canonical" href={resolvedCanonical} />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content={ogType} />
+  <meta property="og:site_name" content="NITCO Inc." />
+  <meta property="og:title" content={resolvedTitle} />
+  <meta property="og:description" content={resolvedDescription} />
+  <meta property="og:url" content={resolvedCanonical} />
+  <meta property="og:image" content={resolvedOgImage} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={resolvedTitle} />
+  <meta name="twitter:description" content={resolvedDescription} />
+  <meta name="twitter:image" content={resolvedOgImage} />
+
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.svg" />
+
+  <!-- JSON-LD structured data -->
+  {jsonLd && (
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  )}
+
+  <!-- Google Tag Manager -->
+  {GTM_ID && (
+    <script define:vars={{ GTM_ID }} is:inline>
+      (function(w,d,s,l,i){
+        w[l]=w[l]||[];
+        w[l].push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
+        var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),
+            dl=l!='dataLayer'?'&l='+l:'';
+        j.async=true;
+        j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+        f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer',GTM_ID);
+    </script>
+  )}
+
+  <!-- SeoHead: per-page SEO tags injected via seo prop (from getSeoForPath) -->
+  {seo && <SeoHead seo={seo} path={path} />}
+
+  <!-- SEO slot (per-page additional head tags) -->
+  <slot name="head" />
+</head>
+<body>
+  <!-- GTM noscript -->
+  {GTM_ID && (
+    <noscript>
+      <iframe
+        src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"
+      ></iframe>
+    </noscript>
+  )}
+
+  <!-- Navbar -->
+  <Navbar client:load />
+
+  <!-- AOS animations -->
+  <AOSInit client:load />
+
+  <!-- Page content -->
+  <slot />
+
+  <!-- Footer -->
+  <Footer />
+  <FooterDesignMobile />
+
+  <!-- Iubenda Cookie Consent -->
+  <script define:vars={{ IUBENDA_SITE_ID, IUBENDA_COOKIE_POLICY_ID }} is:inline>
+    var _iub = _iub || [];
+    _iub.csConfiguration = {
+      enableCcpa: true,
+      tcfPurposes: {
+        "2": "consent_only",
+        "3": "consent_only",
+        "4": "consent_only",
+        "5": "consent_only",
+        "6": "consent_only",
+        "7": "consent_only",
+        "8": "consent_only",
+        "9": "consent_only",
+        "10": "consent_only"
+      },
+      isTCFConsentGlobal: false,
+      consentOnContinuedBrowsing: false,
+      perPurposeConsent: true,
+      enableCMP: true,
+      googleAdditionalConsentMode: true,
+      ccpaAcknowledgeOnDisplay: false,
+      whitelabel: false,
+      lang: "en",
+      siteId: IUBENDA_SITE_ID,
+      cookiePolicyId: IUBENDA_COOKIE_POLICY_ID,
+      floatingPreferencesButtonDisplay: "bottom-left",
+      banner: {
+        acceptButtonDisplay: true,
+        customizeButtonDisplay: true,
+        rejectButtonDisplay: true,
+        position: "bottom"
+      }
+    };
+  </script>
+  <script is:inline defer src="https://cdn.iubenda.com/cs/tcf/stub-v2.js"></script>
+  <script is:inline defer src="https://cdn.iubenda.com/cs/tcf/safe-tcf-v2.js"></script>
+  <script is:inline defer src="https://cdn.iubenda.com/cs/ccpa/stub.js"></script>
+  <script is:inline async src="https://cdn.iubenda.com/cs/iubenda_cs.js"></script>
+
+  <!-- Leadsy: inject tag with data-pid/data-version then load external script -->
+  {LEADSY_PID && (
+    <script define:vars={{ LEADSY_PID }} is:inline>
+      (function() {
+        var s = document.createElement('script');
+        s.src = 'https://r2.leadsy.ai/tag.js';
+        s.defer = true;
+        s.setAttribute('data-pid', LEADSY_PID);
+        s.setAttribute('data-version', '062024');
+        document.head.appendChild(s);
+      })();
+    </script>
+  )}
+
+  <!-- RB2B -->
+  {RB2B_KEY && (
+    <script define:vars={{ RB2B_KEY }} is:inline defer>
+      !function(key){
+        if(window.reb2b) return;
+        window.reb2b = {loaded: true};
+        var s = document.createElement("script");
+        s.async = true;
+        s.src = "https://ddwl4m2hdecbv.cloudfront.net/b/" + key + "/" + key + ".js.gz";
+        document.getElementsByTagName("script")[0].parentNode.insertBefore(
+          s, document.getElementsByTagName("script")[0]
+        );
+      }(RB2B_KEY);
+    </script>
+  )}
+
+  <!-- ScriptIntel -->
+  {SCRIPTINTEL_TAG_URL && (
+    <script define:vars={{ SCRIPTINTEL_TAG_URL }} is:inline defer>
+      (function() {
+        var s = document.createElement("script");
+        s.src = SCRIPTINTEL_TAG_URL;
+        s.async = true;
+        s.charset = "utf-8";
+        document.head.appendChild(s);
+      })();
+    </script>
+  )}
+
+  <!-- Scroll to top -->
+  <GoTop client:visible />
+</body>
+</html>

@@ -1,0 +1,43 @@
+---
+/**
+ * SeoHead — renders all SEO <head> tags for a given route.
+ * Accepts a `seo` object (from getSeoForPath) and the current `path`.
+ * All fields are optional; sensible fallbacks applied in BaseLayout.
+ */
+const { seo = {}, path = '/' } = Astro.props;
+const {
+  title,
+  description,
+  keywords,
+  ogTitle,
+  ogDescription,
+  ogImage,
+  ogType = 'website',
+  twitterCard,
+  twitterTitle,
+  twitterDescription,
+  twitterImage,
+  canonicalUrl,
+  noIndex,
+  jsonLd,
+} = seo;
+const site = 'https://nitcoinc.com';
+const canonical = canonicalUrl || `${site}${path}`;
+---
+{description && <meta name="description" content={description} />}
+{keywords && <meta name="keywords" content={keywords} />}
+{noIndex && <meta name="robots" content="noindex, nofollow" />}
+<link rel="canonical" href={canonical} />
+<!-- Open Graph -->
+<meta property="og:type" content={ogType} />
+{(ogTitle || title) && <meta property="og:title" content={ogTitle || title} />}
+{(ogDescription || description) && <meta property="og:description" content={ogDescription || description} />}
+{ogImage && <meta property="og:image" content={ogImage} />}
+<meta property="og:url" content={canonical} />
+<!-- Twitter Card -->
+<meta name="twitter:card" content={twitterCard || 'summary_large_image'} />
+{(twitterTitle || title) && <meta name="twitter:title" content={twitterTitle || title} />}
+{(twitterDescription || description) && <meta name="twitter:description" content={twitterDescription || description} />}
+{twitterImage && <meta name="twitter:image" content={twitterImage} />}
+<!-- JSON-LD structured data -->
+{jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}

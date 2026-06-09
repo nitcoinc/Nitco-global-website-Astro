@@ -1,0 +1,53 @@
+.formContainer {
+  min-height: 100px;
+}
+
+.thankYou {
+  text-align: center;
+  padding: 2rem 0 1rem;
+}
+
+.thankYouIcon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #5C5AE0, #3d3ca0);
+  color: #fff;
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+}
+
+.thankYouTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 0.4rem;
+}
+
+.thankYouText {
+  font-size: 0.9rem;
+  color: #8899b4;
+  margin: 0 0 1.5rem;
+}
+
+.downloadBtn {
+  display: inline-block;
+  padding: 0.7rem 2rem;
+  background: linear-gradient(135deg, #5C5AE0 0%, #3d3ca0 100%);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: 0.04em;
+  transition: opacity 0.2s, transform 0.15s;
+}
+
+.downloadBtn:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}

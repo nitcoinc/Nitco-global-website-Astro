@@ -1,0 +1,343 @@
+/* ── Page wrapper ── */
+.listingWrap {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 3rem 6vw 5rem;
+}
+
+.listingHeader {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: flex-start;
+  margin-bottom: 2.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.listingHeaderLeft { flex: 1 1 320px; }
+
+.listingHeaderLeft h1 {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.listingHeaderRight {
+  flex: 1 1 260px;
+  max-width: 380px;
+}
+
+.listingHeaderRight p {
+  color: #8899b4;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* ── Container ── */
+.caseStudyContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+  align-items: flex-start;
+}
+
+/* ── Sidebar ── */
+.sidebar {
+  flex: 0 0 240px;
+  max-width: 240px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* ── Filter widgets ── */
+.widget {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 10px;
+  padding: 1.1rem 1.1rem 1.3rem;
+}
+
+.widgetTitle {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #8899b4;
+  margin: 0 0 0.85rem;
+}
+
+.widgetContent {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.filterButton {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  padding: 5px 11px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  color: #c8d0de;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.filterButton:hover {
+  background: rgba(92, 90, 224, 0.25);
+  border-color: #5C5AE0;
+  color: #fff;
+}
+
+.toggleButton {
+  background: none;
+  border: none;
+  color: #53eafd;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  padding: 0;
+}
+
+.toggleButton:hover { text-decoration: underline; }
+
+/* ── Selected filters ── */
+.selectedFilters {
+  background: rgba(92, 90, 224, 0.08);
+  border: 1px solid rgba(92, 90, 224, 0.2);
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.selectedFilters h3 {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #53eafd;
+  margin: 0 0 0.6rem;
+}
+
+.filterGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.75rem;
+}
+
+.clearButton {
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #c8d0de;
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.clearButton:hover {
+  border-color: #53eafd;
+  color: #53eafd;
+}
+
+/* ── Main content ── */
+.mainContent {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* ── Grid ── */
+.caseStudyGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .caseStudyGrid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ── Featured item ── */
+.featuredItem {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  grid-column: 1 / -1;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 1.25rem;
+  transition: border-color 0.2s;
+}
+
+.featuredItem:hover { border-color: rgba(83, 234, 253, 0.25); }
+
+.featuredImage { flex: 1 1 320px; }
+
+.featuredImage img {
+  width: 100%;
+  border-radius: 10px;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+}
+
+.featuredContent {
+  flex: 1 1 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* ── Regular card ── */
+.card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.card:hover {
+  border-color: rgba(83, 234, 253, 0.25);
+  background: rgba(83, 234, 253, 0.03);
+}
+
+.cardImg {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+  display: block;
+}
+
+.card > a:not(:first-child),
+.card > div { padding: 0.75rem 1rem; }
+
+/* ── Shared text ── */
+.itemTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  margin: 0.5rem 0 0;
+  line-height: 1.35;
+  text-decoration: none;
+}
+
+.itemTitle:hover { color: #53eafd; }
+
+a .itemTitle,
+a:hover .itemTitle { color: inherit; }
+
+.description {
+  color: #8899b4;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  margin: 0.5rem 0 0;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 0.5rem;
+}
+
+.tag {
+  background: rgba(92, 90, 224, 0.15);
+  border: 1px solid rgba(92, 90, 224, 0.3);
+  border-radius: 99px;
+  padding: 3px 10px;
+  font-size: 0.75rem;
+  color: #a0a8d8;
+  font-weight: 500;
+}
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: #566070;
+  margin-top: 0.65rem;
+}
+
+/* ── No results ── */
+.noResults {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 12px;
+  padding: 3rem 2rem;
+  color: #8899b4;
+}
+
+/* ── Pagination ── */
+.paginationArea {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.pagination {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 0.35rem;
+}
+
+.pageItem { display: inline-block; }
+
+.pageLink {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  color: #c8d0de;
+  font-size: 0.88rem;
+  font-weight: 500;
+  border-radius: 6px;
+  padding: 7px 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.pageLink:hover {
+  background: rgba(92, 90, 224, 0.25);
+  border-color: #5C5AE0;
+  color: #fff;
+}
+
+.active .pageLink {
+  background: #5C5AE0;
+  border-color: #5C5AE0;
+  color: #fff;
+}
+
+.disabled .pageLink {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+/* ── Responsive ── */
+@media (max-width: 992px) {
+  .caseStudyContainer { flex-direction: column; }
+  .sidebar { flex: none; max-width: 100%; width: 100%; }
+  .featuredItem { flex-direction: column; }
+  .caseStudyGrid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 540px) {
+  .listingWrap { padding: 2rem 1.25rem 4rem; }
+  .listingHeader { flex-direction: column; }
+}

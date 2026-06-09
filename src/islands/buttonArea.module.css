@@ -1,0 +1,37 @@
+.insightButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 1.25rem;
+}
+
+.filterbtn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 0.85rem;
+  color: #c8d0de;
+  cursor: pointer;
+  padding: 7px 14px;
+  line-height: 1;
+  transition: all 0.2s;
+}
+
+.filterbtn:hover {
+  background: rgba(92, 90, 224, 0.2);
+  border-color: #5C5AE0;
+  color: #fff;
+}
+
+.active {
+  background: #5C5AE0;
+  border-color: #5C5AE0;
+  color: #fff;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .insightButtons { justify-content: center; }
+  .filterbtn { font-size: 0.82rem; }
+}

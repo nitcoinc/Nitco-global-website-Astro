@@ -1,0 +1,196 @@
+/* ── Page ── */
+.page {
+  background: #080715;
+  min-height: 100vh;
+  color: #e2e8f0;
+}
+
+/* ── Hero ── */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 480px;
+  overflow: hidden;
+}
+
+.heroImg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(8, 7, 21, 0.3) 0%,
+    rgba(8, 7, 21, 0.7) 55%,
+    rgba(8, 7, 21, 0.96) 100%
+  );
+}
+
+.heroContent {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0 6vw 3rem;
+  max-width: 860px;
+}
+
+.badge {
+  display: inline-block;
+  background: rgba(83, 234, 253, 0.12);
+  border: 1px solid rgba(83, 234, 253, 0.4);
+  color: #53eafd;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.85rem;
+  border-radius: 999px;
+  margin-bottom: 0.9rem;
+}
+
+.heroTitle {
+  margin: 0;
+  font-size: clamp(1.5rem, 3.5vw, 2.4rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: #fff;
+}
+
+/* ── Body layout ── */
+.bodyWrap {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 3.5rem 6vw 5rem;
+}
+
+.cols {
+  display: flex;
+  align-items: flex-start;
+  gap: 3rem;
+}
+
+/* ── Article / Prose ── */
+.article {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.prose {
+  color: #c8d0de;
+  font-size: 1.0625rem;
+  line-height: 1.8;
+}
+
+.prose h1, .prose h2, .prose h3, .prose h4 {
+  color: #fff;
+  margin-top: 2rem;
+  margin-bottom: 0.6rem;
+  font-weight: 700;
+}
+
+.prose h2 { font-size: 1.4rem; }
+.prose h3 { font-size: 1.15rem; }
+
+.prose p { margin-bottom: 1.2rem; }
+
+.prose a { color: #53eafd; text-decoration: underline; }
+
+.prose strong { color: #fff; }
+
+.prose ul, .prose ol { padding-left: 1.4rem; margin-bottom: 1.2rem; }
+
+.prose li { margin-bottom: 0.4rem; }
+
+.prose blockquote {
+  border-left: 3px solid #5C5AE0;
+  margin: 1.5rem 0;
+  padding: 0.75rem 1.25rem;
+  background: rgba(92, 90, 224, 0.08);
+  border-radius: 0 8px 8px 0;
+  color: #a0b0cc;
+  font-style: italic;
+}
+
+/* ── Sidebar (HubSpot form) ── */
+.sidebar {
+  width: 360px;
+  flex-shrink: 0;
+}
+
+.formCard {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  padding: 1.75rem;
+}
+
+.formHeading {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 0.35rem;
+}
+
+.formSubheading {
+  font-size: 0.85rem;
+  color: #8899b4;
+  margin: 0 0 1.5rem;
+  line-height: 1.5;
+}
+
+/* Thank-you state */
+.thankYou {
+  text-align: center;
+  padding: 1.5rem 0;
+}
+
+.thankYou h2 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.thankYou p {
+  color: #8899b4;
+  font-size: 0.9rem;
+  margin-bottom: 1.25rem;
+}
+
+.downloadBtn {
+  display: inline-block;
+  padding: 0.65rem 2rem;
+  background: linear-gradient(135deg, #5C5AE0 0%, #3d3ca0 100%);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: 0.04em;
+  transition: opacity 0.2s;
+}
+
+.downloadBtn:hover { opacity: 0.88; }
+
+/* ── Responsive ── */
+@media (max-width: 860px) {
+  .hero { height: 320px; }
+  .cols { flex-direction: column; }
+  .sidebar { width: 100%; }
+}
+
+@media (max-width: 540px) {
+  .hero { height: 240px; }
+  .heroContent { padding: 0 1.25rem 2rem; }
+  .bodyWrap { padding: 2rem 1.25rem 4rem; }
+}

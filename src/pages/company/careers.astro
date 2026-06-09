@@ -1,0 +1,9 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CareersPage from '../../islands/CareersPage.jsx';
+import { getSeoForPath } from '../../lib/fetchSeoData.js';
+const seo = getSeoForPath('/company/careers');
+---
+<BaseLayout seo={seo} path="/company/careers">
+  <CareersPage client:visible />
+</BaseLayout>

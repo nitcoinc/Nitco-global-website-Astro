@@ -1,0 +1,109 @@
+.Main {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 1.75rem;
+  border-radius: 14px;
+  color: #fff;
+}
+
+.Main h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 0.35rem;
+  letter-spacing: 0.02em;
+}
+
+.Main p {
+  font-size: 0.82rem;
+  color: #8899b4;
+  margin: 0 0 1.25rem;
+}
+
+.labels {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8899b4;
+  margin-top: 1rem;
+  margin-bottom: 0.35rem;
+}
+
+.inputfield {
+  width: 100%;
+  height: 40px;
+  padding: 0 0.85rem;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 0.9rem;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.2s;
+}
+
+.inputfield::placeholder { color: rgba(255,255,255,0.3); }
+
+.inputfield:focus {
+  border-color: #53eafd;
+  background: rgba(83, 234, 253, 0.06);
+}
+
+.courses {
+  font-size: 0.82rem;
+  color: #c8d0de;
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+.interestList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.interestItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.interestItem input[type="checkbox"] {
+  margin-top: 2px;
+  accent-color: #5C5AE0;
+  flex-shrink: 0;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  margin: 1.25rem 0;
+}
+
+.btn {
+  width: 100%;
+  margin-top: 1.5rem;
+  padding: 0.65rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, #5C5AE0 0%, #3d3ca0 100%);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  letter-spacing: 0.03em;
+  transition: opacity 0.2s, transform 0.15s;
+}
+
+.btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.btn:active { transform: translateY(0); }

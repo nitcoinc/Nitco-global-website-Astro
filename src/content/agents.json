@@ -1,0 +1,52 @@
+[
+  {
+    "icon": "shieldCheck",
+    "category": "Decision-Ready Data",
+    "title": "Data Quality Monitoring",
+    "slug": "dqa",
+    "description": "An agent for governed data quality scoring, trends, and root-cause insights.",
+    "trackingKey": "dqa",
+    "appUrl": "https://dqa-agent.nitcoinc.com/",
+    "videoUrl": "https://player.vimeo.com/video/1157300947?autoplay=1&muted=1"
+  },
+  {
+    "icon": "messageSquare",
+    "category": "Decision-Ready Data",
+    "title": "Ask Your Data",
+    "slug": "ask-your-data",
+    "description": "Natural language data exploration -- SQL generation, visualizations, query logic.",
+    "trackingKey": "ayd",
+    "appUrl": "https://ayd-agent.nitcoinc.com/",
+    "videoUrl": "https://player.vimeo.com/video/1172175850?autoplay=1&muted=1"
+  },
+  {
+    "icon": "fileText",
+    "category": "Working Capital & Spend Integrity",
+    "title": "Intelligent Document Mapping Agent",
+    "slug": "document-mapping",
+    "description": "Extracts, maps, and standardizes data from documents to streamline workflows.",
+    "trackingKey": "dma",
+    "appUrl": "https://dma-ops.nitcoinc.ai/",
+    "videoUrl": "https://player.vimeo.com/video/1180817877?h=5ce79c97a0&autoplay=1&muted=1"
+  },
+  {
+    "icon": "dollarSign",
+    "category": "Working Capital & Spend Integrity",
+    "title": "Revenue Leakage Agent",
+    "slug": "rla",
+    "description": "An intelligent agent that detects, analyzes, and resolves revenue leakage across billing, contracts, and transactions to protect enterprise margins.",
+    "trackingKey": "rla",
+    "appUrl": "https://rla-ap.ai.nitcoinc.com/",
+    "videoUrl": ""
+  },
+  {
+    "icon": "database",
+    "category": "Code Intelligence",
+    "title": "Repository Analysis Agent",
+    "slug": "rsa",
+    "description": "An intelligent agent that analyzes code repositories to surface insights, identify patterns, assess quality, and accelerate engineering decision-making at scale.",
+    "trackingKey": "rsa",
+    "appUrl": "https://rsa-agent.nitcoinc.com/",
+    "videoUrl": ""
+  }
+]
