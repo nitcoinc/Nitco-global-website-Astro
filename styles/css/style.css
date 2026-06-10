@@ -2660,16 +2660,14 @@ Public SectorInfo CSS
   padding-top: 2px;
 }
 
-.single-works {
-  &h6.webinarH6 {
-    min-width: 100%;
-    min-height: 100%;
-  }
+h6.single-works.webinarH6 {
+  min-width: 100%;
+  min-height: 100%;
+}
 
-  &h6 {
-    min-width: 100%;
-    min-height: 100%;
-  }
+h6.single-works {
+  min-width: 100%;
+  min-height: 100%;
 }
 
 .markdown-container {
