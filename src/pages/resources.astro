@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Resources from '../islands/Resources.jsx';
 import { getSeoForPath } from '../lib/fetchSeoData.js';
-import matter from 'gray-matter';
+import matter from '../lib/matter.js';
 
 // Replicate getStaticProps: load all posts + whitepapers from content/
 const postFiles = import.meta.glob('../../content/allPosts/*.mdx', { as: 'raw', eager: true });
