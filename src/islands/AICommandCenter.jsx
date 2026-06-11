@@ -179,7 +179,9 @@ export default function AICommandCenter({ agents = [] }) {
                     {[
                       { icon: "shieldCheck", name: "Data Quality Monitoring", state: "Running" },
                       { icon: "messageSquare", name: "Ask Your Data", state: "Running" },
-                      { icon: "fileText", name: "Document Mapping", state: "Queued" },
+                      { icon: "fileText", name: "Document Mapping", state: "Running" },
+                      { icon: "dollarSign", name: "Revenue Leakage Agent", state: "Running" },
+                      { icon: "database", name: "Repository Analysis Agent", state: "Running" },
                     ].map(({ icon, name, state }) => (
                       <div key={name} className={styles.agentRow}>
                         <div className={styles.agentRowLeft}>
