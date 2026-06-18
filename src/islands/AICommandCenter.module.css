@@ -162,6 +162,9 @@
   align-items: center;
   justify-content: center;
 }
+@media (min-width: 1024px) {
+  .heroVisual { min-height: 600px; }
+}
 .heroGlow {
   position: absolute;
   inset: 0;
@@ -265,8 +268,8 @@
 
 .chipTopRight {
   position: absolute;
-  top: 16px; right: 8px;
-  z-index: 2;
+  top: -72px; right: -16px;
+  z-index: 5;
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   background: rgba(8, 9, 30, 0.75);
@@ -276,18 +279,14 @@
 }
 .chipBottomLeft {
   position: absolute;
-  bottom: 16px; left: 8px;
-  z-index: 2;
+  bottom: -72px; left: -16px;
+  z-index: 5;
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   background: rgba(8, 9, 30, 0.75);
   backdrop-filter: blur(12px);
   padding: 12px 16px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-}
-@media (min-width: 768px) {
-  .chipTopRight { top: 24px; right: 8px; }
-  .chipBottomLeft { bottom: 24px; left: 8px; }
 }
 .chipHeader { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
 .chipLabel {

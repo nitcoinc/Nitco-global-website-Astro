@@ -211,26 +211,26 @@ export default function AICommandCenter({ agents = [] }) {
                       </div>
                     ))}
                   </div>
-                </div>
 
-                {/* Top-right chip: Guardrails */}
-                <div className={styles.chipTopRight}>
-                  <div className={styles.chipHeader}>
-                    <div style={{ color: "#53eafd" }}><Icon name="shieldCheck" size={13}/></div>
-                    <p className={styles.chipLabel}>Guardrails</p>
+                  {/* Top-right chip: Guardrails (straddles card corner) */}
+                  <div className={styles.chipTopRight}>
+                    <div className={styles.chipHeader}>
+                      <div style={{ color: "#53eafd" }}><Icon name="shieldCheck" size={13}/></div>
+                      <p className={styles.chipLabel}>Guardrails</p>
+                    </div>
+                    <div className={styles.chipBar}>
+                      <div className={styles.chipBarFill} style={{ width: "94%" }}/>
+                    </div>
                   </div>
-                  <div className={styles.chipBar}>
-                    <div className={styles.chipBarFill} style={{ width: "94%" }}/>
-                  </div>
-                </div>
 
-                {/* Bottom-left chip: Execution */}
-                <div className={styles.chipBottomLeft}>
-                  <div className={styles.chipRow}>
-                    <div style={{ color: "#fde68a" }}><Icon name="activity" size={13}/></div>
-                    <div>
-                      <p className={styles.chipLabel}>Execution</p>
-                      <p className={styles.chipValue}>Real-time visibility</p>
+                  {/* Bottom-left chip: Execution (straddles card corner) */}
+                  <div className={styles.chipBottomLeft}>
+                    <div className={styles.chipRow}>
+                      <div style={{ color: "#fde68a" }}><Icon name="activity" size={13}/></div>
+                      <div>
+                        <p className={styles.chipLabel}>Execution</p>
+                        <p className={styles.chipValue}>Real-time visibility</p>
+                      </div>
                     </div>
                   </div>
                 </div>
