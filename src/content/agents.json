@@ -37,7 +37,7 @@
     "description": "An intelligent agent that detects, analyzes, and resolves revenue leakage across billing, contracts, and transactions to protect enterprise margins.",
     "trackingKey": "rla",
     "appUrl": "https://rla-ap.ai.nitcoinc.com/",
-    "videoUrl": ""
+    "videoUrl": "https://player.vimeo.com/video/1204592337?h=e21d979a14&autoplay=1&muted=1"
   },
   {
     "icon": "database",
@@ -47,6 +47,6 @@
     "description": "An intelligent agent that analyzes code repositories to surface insights, identify patterns, assess quality, and accelerate engineering decision-making at scale.",
     "trackingKey": "rsa",
     "appUrl": "https://rsa-agent.nitcoinc.com/",
-    "videoUrl": ""
+    "videoUrl": "https://player.vimeo.com/video/1200178119?h=795b42cc8a&autoplay=1&muted=1"
   }
 ]

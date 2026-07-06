@@ -77,6 +77,16 @@ export const SOLUTION_AREAS = [
   "AI Risk, Cost & Governance",
 ];
 
+export const EXCLUSIVE_REPORTS = [
+  {
+    title: "Bridging the Operational Gap with Intelligent Integration",
+    description: "New research from MIT Technology Review Insights on why some organizations operationalize AI successfully — and what others can learn.",
+    slug: "bridging-operational-gap",
+    partner: "Celigo × NITCO",
+    badge: "MIT Technology Review Insights",
+  },
+];
+
 const vimeoThumb = (id) => `https://vumbnail.com/${id}.jpg`;
 
 export const EXPLAINER_VIDEOS = [

@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ExclusiveReportPage from '../../islands/ExclusiveReportPage.jsx';
+import { EXCLUSIVE_REPORTS } from '../../lib/resourcesData.js';
+import { getSeoForPath } from '../../lib/fetchSeoData.js';
+
+export function getStaticPaths() {
+  return EXCLUSIVE_REPORTS.map((report) => ({
+    params: { slug: report.slug },
+    props: { report },
+  }));
+}
+
+const { slug } = Astro.params;
+const { report } = Astro.props;
+const seo = getSeoForPath(`/exclusive-reports/${slug}`);
+---
+<BaseLayout
+  title={`${report.title} | NITCO Inc.`}
+  description={report.description}
+  seo={seo}
+  path={`/exclusive-reports/${slug}`}
+>
+  <ExclusiveReportPage client:load />
+</BaseLayout>

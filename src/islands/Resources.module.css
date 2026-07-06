@@ -423,6 +423,33 @@
   font-size: 15px;
 }
 
+/* ===== REPORT CARD (Exclusive Reports) ===== */
+.cardReportWrap {
+  background: linear-gradient(135deg, #1a1850 0%, #0e0e30 50%, #101028 100%);
+  min-height: 160px;
+  position: relative;
+  overflow: hidden;
+}
+.cardReportBg {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px 22px;
+  gap: 4px;
+}
+.cardReportPartner {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: rgba(83, 234, 253, 0.5);
+  text-transform: uppercase;
+  position: absolute;
+  bottom: 14px;
+  left: 22px;
+}
+
 /* ===== CARD AS BUTTON (video cards) ===== */
 .cardButton {
   background: none;

@@ -5,6 +5,7 @@ import {
   TOPICS,
   SOLUTION_AREAS,
   EXPLAINER_VIDEOS,
+  EXCLUSIVE_REPORTS,
 } from "../lib/resourcesData";
 import { urlFor } from '../lib/sanityImage.js';
 
@@ -37,8 +38,9 @@ const CONTENT_TYPES = [
   { key: "Case Studies",     label: "Case Studies" },
   { key: "Blogs",            label: "Blogs" },
   { key: "White Papers",     label: "White Papers" },
-  { key: "Explainer Videos", label: "Explainer Videos" },
-  { key: "Webinars",         label: "Webinars" },
+  { key: "Explainer Videos",  label: "Explainer Videos" },
+  { key: "Exclusive Reports", label: "Exclusive Reports" },
+  { key: "Webinars",          label: "Webinars" },
 ];
 
 /* ── format date (locale-independent to avoid SSR/client hydration mismatch) ── */
@@ -53,10 +55,10 @@ function formatDate(dateStr) {
 }
 
 /* ── Card ── */
-function Card({ title, description, image, date, duration, badge, topics, href, external, isVideo, onPlay }) {
+function Card({ title, description, image, date, duration, badge, topics, href, external, isVideo, isReport, onPlay }) {
   const inner = (
     <>
-      <div className={styles.cardImageWrap}>
+      <div className={`${styles.cardImageWrap} ${isReport ? styles.cardReportWrap : ""}`}>
         {image && (
           <img
             src={urlFor(image, { width: 600 }).width(600).url ? urlFor(image).width(600).url() : (typeof image === 'string' ? image : '')}
@@ -66,6 +68,16 @@ function Card({ title, description, image, date, duration, badge, topics, href, 
             className={styles.cardImg}
             onError={(e) => { e.currentTarget.style.display = "none"; }}
           />
+        )}
+        {isReport && (
+          <div className={styles.cardReportBg} aria-hidden="true">
+            <svg width="120" height="80" viewBox="0 0 120 80" fill="none" aria-hidden="true">
+              <text x="0" y="38" fontFamily="Georgia, serif" fontSize="28" fontWeight="700" fill="rgba(255,255,255,0.12)">MIT</text>
+              <text x="0" y="62" fontFamily="Georgia, serif" fontSize="13" fill="rgba(255,255,255,0.08)">Technology Review</text>
+              <text x="0" y="76" fontFamily="Georgia, serif" fontSize="13" fill="rgba(255,255,255,0.08)">Insights</text>
+            </svg>
+            <span className={styles.cardReportPartner}>celigo × NITCO</span>
+          </div>
         )}
         <div className={styles.cardImgOverlay} aria-hidden="true" />
         <div className={styles.cardBadgeWrap}>
@@ -171,9 +183,10 @@ export default function Resources({ blogs, caseStudies, webinars, whitepapers })
       case "Case Studies":     return filteredCaseStudies;
       case "Blogs":            return blogs || [];
       case "White Papers":     return whitepapers || [];
-      case "Explainer Videos": return EXPLAINER_VIDEOS;
-      case "Webinars":         return webinars || [];
-      default:                 return [];
+      case "Explainer Videos":  return EXPLAINER_VIDEOS;
+      case "Exclusive Reports": return EXCLUSIVE_REPORTS;
+      case "Webinars":          return webinars || [];
+      default:                  return [];
     }
   }, [activeTab, filteredCaseStudies, blogs, whitepapers, webinars]);
 
@@ -183,9 +196,10 @@ export default function Resources({ blogs, caseStudies, webinars, whitepapers })
       case "Case Studies":     return enrichedCaseStudies.length;
       case "Blogs":            return (blogs || []).length;
       case "White Papers":     return (whitepapers || []).length;
-      case "Explainer Videos": return EXPLAINER_VIDEOS.length;
-      case "Webinars":         return (webinars || []).length;
-      default:                 return 0;
+      case "Explainer Videos":  return EXPLAINER_VIDEOS.length;
+      case "Exclusive Reports": return EXCLUSIVE_REPORTS.length;
+      case "Webinars":          return (webinars || []).length;
+      default:                  return 0;
     }
   };
 
@@ -237,6 +251,17 @@ export default function Resources({ blogs, caseStudies, webinars, whitepapers })
             badge="Explainer Video"
             isVideo
             onPlay={() => setVideoModal(item.slug)}
+          />
+        );
+      case "Exclusive Reports":
+        return (
+          <Card
+            key={item.slug + idx}
+            title={item.title}
+            description={item.description}
+            badge={item.badge}
+            href={`/exclusive-reports/${item.slug}`}
+            isReport
           />
         );
       case "Webinars":
