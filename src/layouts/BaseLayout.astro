@@ -31,12 +31,13 @@ const {
   path = '/',
 } = Astro.props;
 
-const GTM_ID = import.meta.env.PUBLIC_GTM_ID || '';
-const IUBENDA_SITE_ID = Number(import.meta.env.PUBLIC_IUBENDA_SITE_ID) || 0;
-const IUBENDA_COOKIE_POLICY_ID = Number(import.meta.env.PUBLIC_IUBENDA_COOKIE_POLICY_ID) || 0;
-const LEADSY_PID = import.meta.env.PUBLIC_LEADSY_PID || '';
-const RB2B_KEY = import.meta.env.PUBLIC_RB2B_KEY || '';
-const SCRIPTINTEL_TAG_URL = import.meta.env.PUBLIC_SCRIPTINTEL_TAG_URL || '';
+const GTM_ID = 'GTM-K6CXJBJN';
+const IUBENDA_SITE_ID = 2053600;
+const IUBENDA_COOKIE_POLICY_ID = 12542728;
+const LEADSY_PID = '1dyBPBDbcXYcBnDGy';
+const RB2B_KEY = '4O7Z0HEQE9NX';
+const SCRIPTINTEL_TAG_URL = 'https://api-gateway.scriptintel.io/service/visitorintel/visitorTag/221764/script.js?apiKey=MjIxNzY0NDMyOWE4NDUtZDMxYy00MjEwLThkYzEtYTM5NzNlNTFjYjVj';
+const KORE_API_KEY = '724abd38ef7541939c8c13ea8efa4f1ac884140988204488bae0f4fc2e82a1bbstf3';
 
 const defaultTitle = 'NITCO Inc.';
 const defaultDescription =
@@ -80,6 +81,26 @@ const resolvedOgImage = ogImage || defaultOgImage;
   <!-- JSON-LD structured data -->
   {jsonLd && (
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  )}
+
+  <!-- Google Consent Mode v2 — defaults denied BEFORE GTM loads -->
+  {GTM_ID && (
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        ad_storage: 'denied',
+        analytics_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        functionality_storage: 'denied',
+        personalization_storage: 'denied',
+        security_storage: 'granted',
+        wait_for_update: 2000
+      });
+      gtag('set', 'ads_data_redaction', true);
+      gtag('set', 'url_passthrough', true);
+    </script>
   )}
 
   <!-- Google Tag Manager -->
@@ -211,6 +232,28 @@ const resolvedOgImage = ogImage || defaultOgImage;
         document.head.appendChild(s);
       })();
     </script>
+  )}
+
+  <!-- kore.ai Chatbot -->
+  {KORE_API_KEY && (
+    <>
+      <script
+        is:inline
+        defer
+        src="https://cdn.jsdelivr.net/npm/kore-web-sdk@11.19.1/dist/umd/kore-web-sdk-umd-chat.min.js"
+      ></script>
+      <script define:vars={{ KORE_API_KEY }} is:inline>
+        window.addEventListener("load", function () {
+          if (window.KoreChatSDK) {
+            KoreChatSDK.chatConfig.botOptions.API_KEY_CONFIG.KEY = KORE_API_KEY;
+            KoreChatSDK.chatConfig.widgetOptions = {
+              position: "bottom-right"
+            };
+            new KoreChatSDK.chatWindow().show(KoreChatSDK.chatConfig);
+          }
+        });
+      </script>
+    </>
   )}
 
   <!-- Scroll to top -->
