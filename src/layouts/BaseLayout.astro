@@ -239,19 +239,26 @@ const resolvedOgImage = ogImage || defaultOgImage;
     <>
       <script
         is:inline
-        defer
         src="https://cdn.jsdelivr.net/npm/kore-web-sdk@11.19.1/dist/umd/kore-web-sdk-umd-chat.min.js"
       ></script>
       <script define:vars={{ KORE_API_KEY }} is:inline>
-        window.addEventListener("load", function () {
-          if (window.KoreChatSDK) {
-            KoreChatSDK.chatConfig.botOptions.API_KEY_CONFIG.KEY = KORE_API_KEY;
-            KoreChatSDK.chatConfig.widgetOptions = {
-              position: "bottom-right"
-            };
-            new KoreChatSDK.chatWindow().show(KoreChatSDK.chatConfig);
+        (function () {
+          var tries = 0;
+          function initKoreChat() {
+            if (window.__koreChatInitialized) return;
+            if (window.KoreChatSDK) {
+              window.__koreChatInitialized = true;
+              KoreChatSDK.chatConfig.botOptions.API_KEY_CONFIG.KEY = KORE_API_KEY;
+              KoreChatSDK.chatConfig.widgetOptions = {
+                position: "bottom-right"
+              };
+              new KoreChatSDK.chatWindow().show(KoreChatSDK.chatConfig);
+              return;
+            }
+            if (tries++ < 100) setTimeout(initKoreChat, 100);
           }
-        });
+          initKoreChat();
+        })();
       </script>
     </>
   )}
