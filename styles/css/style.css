@@ -582,7 +582,8 @@ Navbar CSS
   border-color: #2a2070 !important;
 }
 
-.startp-nav nav .others-option .btn .btn-light:hover::after .startp-nav nav .others-option .btn.btn-light:hover::before {
+.startp-nav nav .others-option .btn.btn-light:hover::after,
+.startp-nav nav .others-option .btn.btn-light:hover::before {
   background: #2a2070 !important;
   color: #fff;
 }
