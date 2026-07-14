@@ -88,7 +88,7 @@ const seo = await fetchSeoData('contact');
 - `astro/src/islands/ContactForm.jsx` — direct port of `components/Contact/ContactForm.js`. No Next.js-specific imports used in source; no changes needed beyond CSS module path.
 - `astro/src/islands/contactForm.module.css` — copied verbatim from `components/Contact/contactForm.module.css`.
 - `astro/src/pages/contact.astro` — uses `BaseLayout` + `getSeoForPath('/contact')` + `<ContactForm client:only="react" />`.
-- `react-google-recaptcha` v2 widget confirmed active (sitekey `6LfHFtYrAAAAAGQaYMpcr962Jg-GYf3sHLgFNyT3`, dark theme). Package already in astro deps.
+- `react-google-recaptcha` v2 widget confirmed active (sitekey `6LfR30stAAAAAAXwzj-yQ5C3H_eC1AL-Qbo4QWQK`, dark theme). Package already in astro deps.
 - HubSpot direct fetch to `api.hsforms.com` — no server proxy needed.
 - Build: exit 0. Only pre-existing CSS nesting warnings in unrelated global styles.
 
