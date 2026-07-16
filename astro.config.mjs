@@ -11,7 +11,7 @@ const fsShim = fileURLToPath(new URL('./src/lib/fs-shim.js', import.meta.url));
 
 export default defineConfig({
   output: 'static',
-  site: 'https://nitcoinc.com',
+  site: 'https://nitcoinc.ai',
   integrations: [
     react(),
     sitemap(),
