@@ -53,6 +53,24 @@ const resolvedOgImage = ogImage || defaultOgImage;
 <!doctype html>
 <html lang="en">
 <head>
+  <!-- RB2B: must run first, before Iubenda/any CMP initializes — RB2B's consent
+       check only recognizes CookieYes and defers indefinitely if another CMP's
+       cookies are already present when it runs. -->
+  {RB2B_KEY && (
+    <script define:vars={{ RB2B_KEY }} is:inline>
+      !function(key){
+        if(window.reb2b) return;
+        window.reb2b = {loaded: true};
+        var s = document.createElement("script");
+        s.async = true;
+        s.src = "https://ddwl4m2hdecbv.cloudfront.net/b/" + key + "/" + key + ".js.gz";
+        document.getElementsByTagName("script")[0].parentNode.insertBefore(
+          s, document.getElementsByTagName("script")[0]
+        );
+      }(RB2B_KEY);
+    </script>
+  )}
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>{resolvedTitle}</title>
@@ -202,22 +220,6 @@ const resolvedOgImage = ogImage || defaultOgImage;
         s.setAttribute('data-version', '062024');
         document.head.appendChild(s);
       })();
-    </script>
-  )}
-
-  <!-- RB2B -->
-  {RB2B_KEY && (
-    <script define:vars={{ RB2B_KEY }} is:inline defer>
-      !function(key){
-        if(window.reb2b) return;
-        window.reb2b = {loaded: true};
-        var s = document.createElement("script");
-        s.async = true;
-        s.src = "https://ddwl4m2hdecbv.cloudfront.net/b/" + key + "/" + key + ".js.gz";
-        document.getElementsByTagName("script")[0].parentNode.insertBefore(
-          s, document.getElementsByTagName("script")[0]
-        );
-      }(RB2B_KEY);
     </script>
   )}
 
