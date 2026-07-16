@@ -11,6 +11,6 @@ export function getStaticPaths() {
 const { slug } = Astro.params;
 const seo = getSeoForPath('/ai-agent-command-center');
 ---
-<BaseLayout seo={seo} path="/ai-agent-command-center">
+<BaseLayout seo={seo} path={`/ai-agent-command-center/${slug}`}>
   <AICommandCenter agents={agents} initialSlug={slug} client:load />
 </BaseLayout>

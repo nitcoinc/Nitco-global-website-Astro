@@ -1,13 +1,6 @@
-# *
 User-agent: *
 Allow: /
-
-# *
-User-agent: *
 Disallow: /api/
-
-# Host
-Host: https://nitcoinc.ai
 
 # Sitemaps
 Sitemap: https://nitcoinc.ai/sitemap.xml

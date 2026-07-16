@@ -821,7 +821,7 @@ const CookiePolicy = ({ data }) => {
         <div className="row">
           <div className="col-sm-12">
             <div className="markdown-container-fullpage">
-              <h1 style={{ paddingTop: "30px" }}>{mainheading}</h1>
+              <h2 style={{ paddingTop: "30px" }}>{mainheading}</h2>
               <h3>{subheading}</h3>
               <ReactMarkdown>{body}</ReactMarkdown>
             </div>

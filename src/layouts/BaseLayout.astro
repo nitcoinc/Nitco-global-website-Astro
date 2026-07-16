@@ -42,12 +42,10 @@ const KORE_API_KEY = '724abd38ef7541939c8c13ea8efa4f1ac884140988204488bae0f4fc2e
 const defaultTitle = 'NITCO Inc.';
 const defaultDescription =
   'NITCO delivers AI, Automation, Data, and Integration solutions engineered to transform and scale enterprise operations.';
-const defaultCanonical = 'https://nitcoinc.ai';
 const defaultOgImage = 'https://nitcoinc.ai/images/og-default.jpg';
 
 const resolvedTitle = seo?.title || title || defaultTitle;
 const resolvedDescription = description || defaultDescription;
-const resolvedCanonical = canonical || defaultCanonical;
 const resolvedOgImage = ogImage || defaultOgImage;
 ---
 <!doctype html>
@@ -74,24 +72,9 @@ const resolvedOgImage = ogImage || defaultOgImage;
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>{resolvedTitle}</title>
-  <meta name="description" content={resolvedDescription} />
-  <link rel="canonical" href={resolvedCanonical} />
-
-  <!-- Open Graph -->
-  <meta property="og:type" content={ogType} />
   <meta property="og:site_name" content="NITCO Inc." />
-  <meta property="og:title" content={resolvedTitle} />
-  <meta property="og:description" content={resolvedDescription} />
-  <meta property="og:url" content={resolvedCanonical} />
-  <meta property="og:image" content={resolvedOgImage} />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content={resolvedTitle} />
-  <meta name="twitter:description" content={resolvedDescription} />
-  <meta name="twitter:image" content={resolvedOgImage} />
 
   <!-- Favicon -->
   <link rel="icon" href="/favicon.svg" />
@@ -137,8 +120,17 @@ const resolvedOgImage = ogImage || defaultOgImage;
     </script>
   )}
 
-  <!-- SeoHead: per-page SEO tags injected via seo prop (from getSeoForPath) -->
-  {seo && <SeoHead seo={seo} path={path} />}
+  <!-- SeoHead: sole source of description/canonical/OG/Twitter/JSON-LD tags.
+       `seo` (from getSeoForPath) supplies per-page overrides; fallback* props
+       carry BaseLayout's already-resolved defaults for pages with no match. -->
+  <SeoHead
+    seo={seo}
+    path={path}
+    fallbackTitle={resolvedTitle}
+    fallbackDescription={resolvedDescription}
+    fallbackOgImage={resolvedOgImage}
+    fallbackOgType={ogType}
+  />
 
   <!-- SEO slot (per-page additional head tags) -->
   <slot name="head" />

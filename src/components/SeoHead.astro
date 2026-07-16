@@ -1,10 +1,19 @@
 ---
 /**
- * SeoHead — renders all SEO <head> tags for a given route.
- * Accepts a `seo` object (from getSeoForPath) and the current `path`.
- * All fields are optional; sensible fallbacks applied in BaseLayout.
+ * SeoHead — sole source of description/canonical/OG/Twitter/JSON-LD tags for
+ * every page. Accepts an optional `seo` object (from getSeoForPath) for
+ * per-page overrides, plus resolved fallback values BaseLayout has already
+ * merged from props/defaults, so a page renders sane tags even when `seo`
+ * has no matching entry (getSeoForPath returns `{}` in that case).
  */
-const { seo = {}, path = '/' } = Astro.props;
+const {
+  seo = {},
+  path = '/',
+  fallbackTitle,
+  fallbackDescription,
+  fallbackOgImage,
+  fallbackOgType = 'website',
+} = Astro.props;
 const {
   title,
   description,
@@ -12,32 +21,44 @@ const {
   ogTitle,
   ogDescription,
   ogImage,
-  ogType = 'website',
+  ogType,
   twitterCard,
   twitterTitle,
   twitterDescription,
   twitterImage,
-  canonicalUrl,
+  canonical: seoCanonical,
   noIndex,
   jsonLd,
 } = seo;
+
 const site = 'https://nitcoinc.ai';
-const canonical = canonicalUrl || `${site}${path}`;
+const resolvedDescription = description || fallbackDescription;
+// seo.canonical (per-page JSON) takes priority; falling back to the current
+// route's own URL (not fallbackCanonical, which is just the bare domain) so
+// every page still gets a page-specific canonical when seo has no entry.
+const canonical = seoCanonical || `${site}${path === '/' ? '' : path}`;
+const resolvedOgTitle = ogTitle || title || fallbackTitle;
+const resolvedOgDescription = ogDescription || resolvedDescription;
+const resolvedOgImage = ogImage || fallbackOgImage;
+const resolvedOgType = ogType || fallbackOgType;
+const resolvedTwitterTitle = twitterTitle || title || fallbackTitle;
+const resolvedTwitterDescription = twitterDescription || resolvedDescription;
+const resolvedTwitterImage = twitterImage || resolvedOgImage;
 ---
-{description && <meta name="description" content={description} />}
+{resolvedDescription && <meta name="description" content={resolvedDescription} />}
 {keywords && <meta name="keywords" content={keywords} />}
 {noIndex && <meta name="robots" content="noindex, nofollow" />}
 <link rel="canonical" href={canonical} />
 <!-- Open Graph -->
-<meta property="og:type" content={ogType} />
-{(ogTitle || title) && <meta property="og:title" content={ogTitle || title} />}
-{(ogDescription || description) && <meta property="og:description" content={ogDescription || description} />}
-{ogImage && <meta property="og:image" content={ogImage} />}
+<meta property="og:type" content={resolvedOgType} />
+{resolvedOgTitle && <meta property="og:title" content={resolvedOgTitle} />}
+{resolvedOgDescription && <meta property="og:description" content={resolvedOgDescription} />}
+{resolvedOgImage && <meta property="og:image" content={resolvedOgImage} />}
 <meta property="og:url" content={canonical} />
 <!-- Twitter Card -->
 <meta name="twitter:card" content={twitterCard || 'summary_large_image'} />
-{(twitterTitle || title) && <meta name="twitter:title" content={twitterTitle || title} />}
-{(twitterDescription || description) && <meta name="twitter:description" content={twitterDescription || description} />}
-{twitterImage && <meta name="twitter:image" content={twitterImage} />}
+{resolvedTwitterTitle && <meta name="twitter:title" content={resolvedTwitterTitle} />}
+{resolvedTwitterDescription && <meta name="twitter:description" content={resolvedTwitterDescription} />}
+{resolvedTwitterImage && <meta name="twitter:image" content={resolvedTwitterImage} />}
 <!-- JSON-LD structured data -->
 {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
