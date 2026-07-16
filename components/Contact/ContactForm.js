@@ -239,7 +239,7 @@ export default function ContactForm() {
 
                 <div className={styles.captcha}>
                   <ReCAPTCHA
-                    sitekey="6Lew4yoqAAAAALwuAWLLde2vNnO6TVqLcD15sbYP"
+                    sitekey="6LeOGVctAAAAAPcWLXswr99PCEVIcB7TLHHRv959"
                     onChange={(val) => setCaptchaValue(val)}
                     theme="dark"
                   />
