@@ -1,0 +1,16 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AICommandCenter from '../../islands/AICommandCenter.jsx';
+import { getSeoForPath } from '../../lib/fetchSeoData.js';
+import agents from '../../content/agents.json';
+
+export function getStaticPaths() {
+  return agents.map((agent) => ({ params: { slug: agent.slug } }));
+}
+
+const { slug } = Astro.params;
+const seo = getSeoForPath('/ai-agent-command-center');
+---
+<BaseLayout seo={seo} path="/ai-agent-command-center">
+  <AICommandCenter agents={agents} initialSlug={slug} client:load />
+</BaseLayout>

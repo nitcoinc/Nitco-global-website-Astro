@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./AICommandCenter.module.css";
 
 /* ── Inline SVG icons ── */
@@ -72,8 +72,14 @@ function LiveDot() {
  * AI Agent Command Center interactive island.
  * Handles modal open/close for agent app and video embeds.
  */
-export default function AICommandCenter({ agents = [] }) {
+export default function AICommandCenter({ agents = [], initialSlug = null }) {
   const [openAgentUrl, setOpenAgentUrl] = useState(null);
+
+  useEffect(() => {
+    if (!initialSlug) return;
+    const agent = agents.find((a) => a.slug === initialSlug);
+    if (agent) setOpenAgentUrl(agent.appUrl);
+  }, [initialSlug, agents]);
 
   const handleContact = () => {
     window.location.href = "/contact";
