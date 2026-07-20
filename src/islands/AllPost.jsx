@@ -73,7 +73,7 @@ export default function AllPost({ data: pageData, sorteddata: blogdata }) {
         <div className={styles.cols} ref={containerRef}>
           <article className={styles.article}>
             <div className={styles.prose}>
-              <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
+              <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={{ h1: 'h2' }}>
                 {body}
               </ReactMarkdown>
             </div>
@@ -87,7 +87,7 @@ export default function AllPost({ data: pageData, sorteddata: blogdata }) {
                   {blogdata.slice(0, 4).map((p, i) => {
                     const postImgSrc = p.image ? urlFor(p.image).width(400).url() : null;
                     return (
-                      <a key={i} href={`/${p.pageType}/${p.slug}`} className={styles.recentCard}>
+                      <a key={i} href={`/${p.pageType}/${p.slug}/`} className={styles.recentCard}>
                         {postImgSrc && (
                           <img
                             src={postImgSrc}

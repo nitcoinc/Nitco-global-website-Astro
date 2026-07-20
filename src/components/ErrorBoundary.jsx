@@ -15,7 +15,7 @@ export default class ErrorBoundary extends React.Component {
       return (
         <div style={{ padding: 40, textAlign: 'center' }}>
           <h1>Something went wrong</h1>
-          <p>Please refresh or <a href="/contact">contact support</a>.</p>
+          <p>Please refresh or <a href="/contact/">contact support</a>.</p>
         </div>
       )
     }

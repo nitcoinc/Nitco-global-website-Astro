@@ -65,7 +65,7 @@ export default function ExclusiveReportPage() {
         <div className={styles.heroGrid} aria-hidden="true" />
 
         <div className={styles.container}>
-          <a href="/resources" className={styles.backLink}>
+          <a href="/resources/" className={styles.backLink}>
             <Icon name="arrowLeft" size={14} /> Back to Resources
           </a>
 

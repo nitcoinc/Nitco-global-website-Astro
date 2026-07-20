@@ -217,7 +217,7 @@ export default function Resources({ blogs, caseStudies, webinars, whitepapers })
             duration={item.duration}
             badge="Case Study"
             topics={item.topics}
-            href={`/case-studies/${item.slug}`}
+            href={`/case-studies/${item.slug}/`}
           />
         );
       case "Blogs":
@@ -228,7 +228,7 @@ export default function Resources({ blogs, caseStudies, webinars, whitepapers })
             image={item.image}
             date={formatDate(item.date)}
             badge="Blog"
-            href={`/blog/${item.slug}`}
+            href={`/blog/${item.slug}/`}
           />
         );
       case "White Papers":
@@ -238,7 +238,7 @@ export default function Resources({ blogs, caseStudies, webinars, whitepapers })
             title={item.title}
             image={item.image}
             badge="White Paper"
-            href={`/whitepapers/${item.slug}`}
+            href={`/whitepapers/${item.slug}/`}
           />
         );
       case "Explainer Videos":
@@ -260,7 +260,7 @@ export default function Resources({ blogs, caseStudies, webinars, whitepapers })
             title={item.title}
             description={item.description}
             badge={item.badge}
-            href={`/exclusive-reports/${item.slug}`}
+            href={`/exclusive-reports/${item.slug}/`}
             isReport
           />
         );
@@ -272,7 +272,7 @@ export default function Resources({ blogs, caseStudies, webinars, whitepapers })
             image={item.image}
             date={formatDate(item.date)}
             badge="Webinar"
-            href={`/webinar/${item.slug}`}
+            href={`/webinar/${item.slug}/`}
           />
         );
       default:

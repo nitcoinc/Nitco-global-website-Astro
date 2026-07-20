@@ -199,7 +199,7 @@ const BlogPage = ({ posts = [] }) => {
                   return (
                     <div key={itemKey} className={styles.featuredItem}>
                       <div className={styles.featuredImage}>
-                        <a href={`/blog/${slug}`}>
+                        <a href={`/blog/${slug}/`}>
                           <img src={urlFor(image).width(400).url()} alt={title} loading="lazy" />
                         </a>
                       </div>
@@ -207,7 +207,7 @@ const BlogPage = ({ posts = [] }) => {
                         <div className={styles.tags}>
                           {tags.map((tag, idx) => <span key={idx} className={styles.tag}>{tag}</span>)}
                         </div>
-                        <a href={`/blog/${slug}`}>
+                        <a href={`/blog/${slug}/`}>
                           <h3 className={styles.itemTitle}>{truncateText(title, 80)}</h3>
                         </a>
                         <p className={styles.description}>{truncateText(description, 200)}</p>
@@ -222,14 +222,14 @@ const BlogPage = ({ posts = [] }) => {
 
                 return (
                   <div key={itemKey} className={styles.card}>
-                    <a href={`/blog/${slug}`}>
+                    <a href={`/blog/${slug}/`}>
                       <img src={urlFor(image).width(400).url()} alt={title} loading="lazy" className={styles.cardImg} />
                     </a>
                     <div style={{ padding: "0.75rem 1rem 1rem" }}>
                       <div className={styles.tags}>
                         {tags.map((tag, idx) => <span key={idx} className={styles.tag}>{tag}</span>)}
                       </div>
-                      <a href={`/blog/${slug}`}>
+                      <a href={`/blog/${slug}/`}>
                         <h6 className={styles.itemTitle}>{truncateText(title, 80)}</h6>
                       </a>
                       <p className={styles.description}>{truncateText(description, 150)}</p>
@@ -383,13 +383,13 @@ const CaseStudies = ({ posts = [] }) => {
                   return (
                     <div key={itemKey} className={styles.featuredItem}>
                       <div className={styles.featuredImage}>
-                        <a href={`/case-studies/${slug}`}>
+                        <a href={`/case-studies/${slug}/`}>
                           <img src={urlFor(image).width(400).url()} alt={title} loading="lazy" />
                         </a>
                       </div>
                       <div className={styles.featuredContent}>
                         <div className={styles.tags}>{tags.map((tag, idx) => <span key={idx} className={styles.tag}>{tag}</span>)}</div>
-                        <a href={`/case-studies/${slug}`}><h3 className={styles.itemTitle}>{truncateText(title, 80)}</h3></a>
+                        <a href={`/case-studies/${slug}/`}><h3 className={styles.itemTitle}>{truncateText(title, 80)}</h3></a>
                         <p className={styles.description}>{truncateText(description, 200)}</p>
                         <div className={styles.meta}>{duration && <span>{duration}</span>}{dateDisplay && <span>{dateDisplay}</span>}</div>
                       </div>
@@ -399,12 +399,12 @@ const CaseStudies = ({ posts = [] }) => {
 
                 return (
                   <div key={itemKey} className={styles.card}>
-                    <a href={`/case-studies/${slug}`}>
+                    <a href={`/case-studies/${slug}/`}>
                       <img src={urlFor(image).width(400).url()} alt={title} loading="lazy" className={styles.cardImg} />
                     </a>
                     <div style={{ padding: "0.75rem 1rem 1rem" }}>
                       <div className={styles.tags}>{tags.map((tag, idx) => <span key={idx} className={styles.tag}>{tag}</span>)}</div>
-                      <a href={`/case-studies/${slug}`}><h6 className={styles.itemTitle}>{truncateText(title, 80)}</h6></a>
+                      <a href={`/case-studies/${slug}/`}><h6 className={styles.itemTitle}>{truncateText(title, 80)}</h6></a>
                       <p className={styles.description}>{truncateText(description, 150)}</p>
                       <div className={styles.meta}>{duration && <span>{duration}</span>}{dateDisplay && <span>{dateDisplay}</span>}</div>
                     </div>
@@ -460,12 +460,12 @@ const WhitePapers = ({ whitepapers = [] }) => {
                   return (
                     <div key={itemKey} className={styles.featuredItem}>
                       <div className={styles.featuredImage}>
-                        <a href={`/whitepapers/${slug}`}>
+                        <a href={`/whitepapers/${slug}/`}>
                           <img src={urlFor(image).width(400).url()} alt={title} loading="lazy" />
                         </a>
                       </div>
                       <div className={styles.featuredContent}>
-                        <a href={`/whitepapers/${slug}`}><h3 className={styles.itemTitle}>{truncateText(title, 80)}</h3></a>
+                        <a href={`/whitepapers/${slug}/`}><h3 className={styles.itemTitle}>{truncateText(title, 80)}</h3></a>
                         <p className={styles.description}>{truncateText(description, 200)}</p>
                       </div>
                     </div>
@@ -474,11 +474,11 @@ const WhitePapers = ({ whitepapers = [] }) => {
 
                 return (
                   <div key={itemKey} className={styles.card}>
-                    <a href={`/whitepapers/${slug}`}>
+                    <a href={`/whitepapers/${slug}/`}>
                       <img src={urlFor(image).width(400).url()} alt={title} loading="lazy" className={styles.cardImg} />
                     </a>
                     <div style={{ padding: "0.75rem 1rem 1rem" }}>
-                      <a href={`/whitepapers/${slug}`}><h6 className={styles.itemTitle}>{truncateText(title, 80)}</h6></a>
+                      <a href={`/whitepapers/${slug}/`}><h6 className={styles.itemTitle}>{truncateText(title, 80)}</h6></a>
                       <p className={styles.description}>{truncateText(description, 150)}</p>
                     </div>
                   </div>
@@ -581,13 +581,13 @@ const WebinarsPage = ({ posts = [] }) => {
                   return (
                     <div key={itemKey} className={styles.featuredItem}>
                       <div className={styles.featuredImage}>
-                        <a href={`/webinar/${slug}`}>
+                        <a href={`/webinar/${slug}/`}>
                           <img src={urlFor(image).width(400).url()} alt={title} loading="lazy" />
                         </a>
                       </div>
                       <div className={styles.featuredContent}>
                         <div className={styles.tags}>{blogcategory && <span className={styles.tag}>{blogcategory}</span>}</div>
-                        <a href={`/webinar/${slug}`}><h3 className={styles.itemTitle}>{truncateText(title, 80)}</h3></a>
+                        <a href={`/webinar/${slug}/`}><h3 className={styles.itemTitle}>{truncateText(title, 80)}</h3></a>
                         <p className={styles.description}>{truncateText(description, 200)}</p>
                         <div className={styles.meta}>{duration && <span>{duration}</span>}{dateDisplay && <span>{dateDisplay}</span>}</div>
                       </div>
@@ -597,12 +597,12 @@ const WebinarsPage = ({ posts = [] }) => {
 
                 return (
                   <div key={itemKey} className={styles.card}>
-                    <a href={`/webinar/${slug}`}>
+                    <a href={`/webinar/${slug}/`}>
                       <img src={urlFor(image).width(400).url()} alt={title} loading="lazy" className={styles.cardImg} />
                     </a>
                     <div style={{ padding: "0.75rem 1rem 1rem" }}>
                       <div className={styles.tags}>{blogcategory && <span className={styles.tag}>{blogcategory}</span>}</div>
-                      <a href={`/webinar/${slug}`}><h6 className={styles.itemTitle}>{truncateText(title, 80)}</h6></a>
+                      <a href={`/webinar/${slug}/`}><h6 className={styles.itemTitle}>{truncateText(title, 80)}</h6></a>
                       <p className={styles.description}>{truncateText(description, 150)}</p>
                       <div className={styles.meta}>{duration && <span>{duration}</span>}{dateDisplay && <span>{dateDisplay}</span>}</div>
                     </div>
@@ -801,7 +801,7 @@ const PrivacyPolicy = ({ data }) => {
             <div className="markdown-container-fullpage">
               <h1>{mainheading}</h1>
               <p>Last Updated: {lastupdated}</p>
-              <ReactMarkdown>{body}</ReactMarkdown>
+              <ReactMarkdown components={{ h1: 'h2' }}>{body}</ReactMarkdown>
             </div>
           </div>
         </div>
@@ -823,7 +823,7 @@ const CookiePolicy = ({ data }) => {
             <div className="markdown-container-fullpage">
               <h2 style={{ paddingTop: "30px" }}>{mainheading}</h2>
               <h3>{subheading}</h3>
-              <ReactMarkdown>{body}</ReactMarkdown>
+              <ReactMarkdown components={{ h1: 'h2' }}>{body}</ReactMarkdown>
             </div>
           </div>
         </div>

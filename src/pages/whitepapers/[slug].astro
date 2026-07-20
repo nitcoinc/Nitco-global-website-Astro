@@ -3,6 +3,8 @@ import matter from '../../lib/matter.js';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import WhitepaperPost from '../../islands/WhitepaperPost.jsx';
 import { getSeoForPath } from '../../lib/fetchSeoData.js';
+import { urlFor } from '../../lib/sanityImage.js';
+import styles from '../../islands/whitepaperpost.module.css';
 
 export async function getStaticPaths() {
   const files = import.meta.glob('../../../content/whitepaperspost/whitepapers__*.mdx', { query: '?raw', import: 'default', eager: true });
@@ -33,7 +35,27 @@ const { postData } = Astro.props;
 const seo = getSeoForPath(`/whitepapers/${slug}`);
 
 const pageProps = { data: { whitepapers: postData } };
+const heroImgSrc = postData.image ? urlFor(postData.image).width(1200).url() : null;
 ---
 <BaseLayout seo={seo} path={`/whitepapers/${slug}`}>
+  <!-- Hero rendered statically (not inside the client:only island) so the
+       page has a real H1 in the initial HTML, before React hydrates. -->
+  <div class={styles.hero}>
+    {heroImgSrc && (
+      <img
+        src={heroImgSrc}
+        alt={postData.title || 'Whitepaper'}
+        width="1200"
+        height="630"
+        class={styles.heroImg}
+        loading="eager"
+      />
+    )}
+    <div class={styles.heroOverlay} />
+    <div class={styles.heroContent}>
+      <span class={styles.badge}>{postData.pagetype || 'White Paper'}</span>
+      {postData.title && <h1 class={styles.heroTitle}>{postData.title}</h1>}
+    </div>
+  </div>
   <WhitepaperPost client:only="react" {...pageProps} />
 </BaseLayout>

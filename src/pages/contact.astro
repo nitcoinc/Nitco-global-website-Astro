@@ -1,10 +1,26 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ContactForm from '../islands/ContactForm.jsx';
+import styles from '../islands/contactForm.module.css';
 import { getSeoForPath } from '../lib/fetchSeoData.js';
 
 const seo = getSeoForPath('/contact');
 ---
 <BaseLayout seo={seo} path="/contact">
+  <!-- Hero rendered statically (not inside the client:only island) so the
+       page has a real H1 in the initial HTML, before React hydrates. -->
+  <section class={styles.hero}>
+    <div class={styles.heroGlow} aria-hidden="true" />
+    <div class={styles.heroGrid} aria-hidden="true" />
+    <div class={styles.container}>
+      <div class={styles.heroInner}>
+        <span class={styles.heroEyebrow}>Contact Us</span>
+        <h1 class={styles.heroTitle}>Let&apos;s Build Something Together</h1>
+        <p class={styles.heroSub}>
+          Got an idea we can help with? Want to join our team? Here&apos;s how to reach us.
+        </p>
+      </div>
+    </div>
+  </section>
   <ContactForm client:only="react" />
 </BaseLayout>

@@ -507,7 +507,7 @@ const AboutUs = () => {
               Tell us where execution is breaking down. We&apos;ll come back
               with a clear, practical view of what&apos;s possible.
             </p>
-            <a href="/contact" className={styles.ctaBtn}>
+            <a href="/contact/" className={styles.ctaBtn}>
               Get In Touch <Icon name="arrowRight" size={16} />
             </a>
           </div>

@@ -147,7 +147,7 @@ function HeroVisual({ category }) {
 
 function CaseStudyCard({ cs }) {
   return (
-    <a href={`/case-studies/${cs.slug}`} style={{ textDecoration: "none", display: "block" }}>
+    <a href={`/case-studies/${cs.slug}/`} style={{ textDecoration: "none", display: "block" }}>
       <div style={{
         background: "#0e0c1e",
         border: "1px solid rgba(255,255,255,0.08)",
@@ -234,10 +234,10 @@ export default function PartnerPage({ category, caseStudies = [] }) {
               <h1 className={styles.heroTitle}>{category.title}</h1>
               <p className={styles.heroIntro}>{category.intro}</p>
               <div className={styles.heroCtas}>
-                <a href="/contact" className={styles.ctaPrimary}>
+                <a href="/contact/" className={styles.ctaPrimary}>
                   Talk to an Expert <Icon name="arrowRight" size={15}/>
                 </a>
-                <a href="/resources" className={styles.ctaOutline}>
+                <a href="/resources/" className={styles.ctaOutline}>
                   View Resources
                 </a>
               </div>
@@ -315,7 +315,7 @@ export default function PartnerPage({ category, caseStudies = [] }) {
                   <h2 className={styles.sectionTitle} style={{ margin: "8px 0 8px" }}>Outcomes we've delivered</h2>
                   <p className={styles.sectionSub} style={{ margin: 0 }}>Real-world results from programs aligned to this category.</p>
                 </div>
-                <a href="/resources" style={{
+                <a href="/resources/" style={{
                   display: "inline-flex",
                   alignItems: "center",
                   gap: "6px",
@@ -353,7 +353,7 @@ export default function PartnerPage({ category, caseStudies = [] }) {
           <h2 className={styles.sectionTitle}>Other partner ecosystems</h2>
           <div className={styles.exploreGrid}>
             {others.map((cat) => (
-              <a key={cat.slug} href={`/partners/${cat.slug}`} className={styles.exploreCard}>
+              <a key={cat.slug} href={`/partners/${cat.slug}/`} className={styles.exploreCard}>
                 <div className={styles.exploreCardIcon}>
                   <Icon name={cat.icon} size={18}/>
                 </div>
@@ -384,7 +384,7 @@ export default function PartnerPage({ category, caseStudies = [] }) {
                 </h3>
               </div>
               <div className={styles.ctaBannerActions}>
-                <a href="/contact" className={styles.ctaPrimary}>
+                <a href="/contact/" className={styles.ctaPrimary}>
                   Get In Touch <Icon name="arrowRight" size={15}/>
                 </a>
               </div>

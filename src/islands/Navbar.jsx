@@ -28,25 +28,25 @@ const Icon = ({ name, size = 16 }) => {
 
 /* ── Data ── */
 const SOLUTIONS = [
-  { icon: "wallet",   title: "Working Capital & Spend Integrity",    desc: "Improve billing accuracy, payment execution, and working capital performance", href: "/solutions/working-capital-spend-integrity" },
-  { icon: "workflow", title: "Workflow Automation",                   desc: "Eliminate manual effort and streamline exception-heavy processes",               href: "/solutions/workflow-automation" },
-  { icon: "chart",    title: "Decision-Ready Data",                   desc: "Turn fragmented data into trusted insight for faster decisions",                  href: "/solutions/decision-ready-data" },
-  { icon: "book",     title: "Employee Knowledge & Productivity",      desc: "Instant, context-aware answers across systems and documents",                    href: "/solutions/employee-knowledge-productivity" },
-  { icon: "headset",  title: "Customer Support Optimization",         desc: "Reduce support cost and improve resolution times",                               href: "/solutions/customer-support-optimization" },
-  { icon: "rocket",   title: "AI Solution Delivery",                  desc: "Turn AI ideas into production-ready workflow solutions",                          href: "/solutions/ai-solution-delivery" },
-  { icon: "shield",   title: "AI Risk, Cost & Governance",            desc: "Ensure AI is secure, controlled, cost-effective, and scalable",                  href: "/solutions/ai-risk-cost-governance" },
+  { icon: "wallet",   title: "Working Capital & Spend Integrity",    desc: "Improve billing accuracy, payment execution, and working capital performance", href: "/solutions/working-capital-spend-integrity/" },
+  { icon: "workflow", title: "Workflow Automation",                   desc: "Eliminate manual effort and streamline exception-heavy processes",               href: "/solutions/workflow-automation/" },
+  { icon: "chart",    title: "Decision-Ready Data",                   desc: "Turn fragmented data into trusted insight for faster decisions",                  href: "/solutions/decision-ready-data/" },
+  { icon: "book",     title: "Employee Knowledge & Productivity",      desc: "Instant, context-aware answers across systems and documents",                    href: "/solutions/employee-knowledge-productivity/" },
+  { icon: "headset",  title: "Customer Support Optimization",         desc: "Reduce support cost and improve resolution times",                               href: "/solutions/customer-support-optimization/" },
+  { icon: "rocket",   title: "AI Solution Delivery",                  desc: "Turn AI ideas into production-ready workflow solutions",                          href: "/solutions/ai-solution-delivery/" },
+  { icon: "shield",   title: "AI Risk, Cost & Governance",            desc: "Ensure AI is secure, controlled, cost-effective, and scalable",                  href: "/solutions/ai-risk-cost-governance/" },
 ];
 
 const PARTNERS = [
-  { icon: "cloud",    title: "Cloud & AI Platforms",                  desc: "Hyperscaler partnerships powering our AI and data foundations",                  href: "/partners/cloud-ai-platforms" },
-  { icon: "network",  title: "Integration & Automation Platforms",    desc: "iPaaS and enterprise integration partners for connected workflows",              href: "/partners/integration-automation-platforms" },
-  { icon: "bot",      title: "Intelligent Automation & RPA",          desc: "Best-in-class RPA and intelligent automation alliances for scale",               href: "/partners/intelligent-automation-rpa" },
-  { icon: "messages", title: "Conversational AI",                     desc: "Conversational AI platform partners for assistants and agents",                  href: "/partners/conversational-ai" },
+  { icon: "cloud",    title: "Cloud & AI Platforms",                  desc: "Hyperscaler partnerships powering our AI and data foundations",                  href: "/partners/cloud-ai-platforms/" },
+  { icon: "network",  title: "Integration & Automation Platforms",    desc: "iPaaS and enterprise integration partners for connected workflows",              href: "/partners/integration-automation-platforms/" },
+  { icon: "bot",      title: "Intelligent Automation & RPA",          desc: "Best-in-class RPA and intelligent automation alliances for scale",               href: "/partners/intelligent-automation-rpa/" },
+  { icon: "messages", title: "Conversational AI",                     desc: "Conversational AI platform partners for assistants and agents",                  href: "/partners/conversational-ai/" },
 ];
 
 const COMPANY = [
-  { icon: "building",  title: "About Us", desc: "Who we are and how we work",  href: "/company/about" },
-  { icon: "briefcase", title: "Careers",  desc: "Join our team",               href: "/company/careers" },
+  { icon: "building",  title: "About Us", desc: "Who we are and how we work",  href: "/company/about/" },
+  { icon: "briefcase", title: "Careers",  desc: "Join our team",               href: "/company/careers/" },
 ];
 
 /* ── Mega menu panel ── */
@@ -116,7 +116,7 @@ const Navbar = () => {
 
             {/* AI Agent Command Center — direct link */}
             <li className={styles.navItem} role="none" onMouseEnter={() => setOpenMenu(null)}>
-              <a href="/ai-agent-command-center" className={styles.navLink} role="menuitem">
+              <a href="/ai-agent-command-center/" className={styles.navLink} role="menuitem">
                 AI Agent Command Center
               </a>
             </li>
@@ -132,7 +132,7 @@ const Navbar = () => {
               </button>
               <MegaPanel
                 open={openMenu === "Solutions"} items={SOLUTIONS} cols={3}
-                intro={{ kicker: "Solutions", title: "AI-led outcomes across the operations spectrum.", body: "Pick a domain and see how we move from analysis to working solutions.", ctaText: "Explore all solutions", ctaHref: "/solutions/working-capital-spend-integrity" }}
+                intro={{ kicker: "Solutions", title: "AI-led outcomes across the operations spectrum.", body: "Pick a domain and see how we move from analysis to working solutions.", ctaText: "Explore all solutions", ctaHref: "/solutions/working-capital-spend-integrity/" }}
               />
             </li>
 
@@ -147,13 +147,13 @@ const Navbar = () => {
               </button>
               <MegaPanel
                 open={openMenu === "Partners"} items={PARTNERS} cols={2}
-                intro={{ kicker: "Partners", title: "Best-in-class platforms behind every engagement.", body: "We partner across cloud, integration, automation, and conversational AI.", ctaText: "Meet our partners", ctaHref: "/partners/cloud-ai-platforms" }}
+                intro={{ kicker: "Partners", title: "Best-in-class platforms behind every engagement.", body: "We partner across cloud, integration, automation, and conversational AI.", ctaText: "Meet our partners", ctaHref: "/partners/cloud-ai-platforms/" }}
               />
             </li>
 
             {/* Resources */}
             <li className={styles.navItem} role="none" onMouseEnter={() => setOpenMenu(null)}>
-              <a href="/resources" className={styles.navLink} role="menuitem">
+              <a href="/resources/" className={styles.navLink} role="menuitem">
                 Resources
               </a>
             </li>
@@ -169,12 +169,12 @@ const Navbar = () => {
               </button>
               <MegaPanel
                 open={openMenu === "Company"} items={COMPANY} cols="compact"
-                intro={{ kicker: "Company", title: "Built for measurable, working solutions.", body: "Who we are, how we work, and how to join the team.", ctaText: "Read our story", ctaHref: "/company/about" }}
+                intro={{ kicker: "Company", title: "Built for measurable, working solutions.", body: "Who we are, how we work, and how to join the team.", ctaText: "Read our story", ctaHref: "/company/about/" }}
               />
             </li>
           </ul>
 
-          <a href="/contact" className={styles.contactBtn}>
+          <a href="/contact/" className={styles.contactBtn}>
             Contact Us <Icon name="arrowRight" size={14} />
           </a>
         </div>
@@ -196,7 +196,7 @@ const Navbar = () => {
 
         {/* AI Agent Command Center */}
         <div className={styles.mobileNavItem}>
-          <a href="/ai-agent-command-center" className={styles.mobileNavLink} onClick={closeMobile}>
+          <a href="/ai-agent-command-center/" className={styles.mobileNavLink} onClick={closeMobile}>
             AI Agent Command Center
           </a>
         </div>
@@ -236,12 +236,12 @@ const Navbar = () => {
 
         {/* Resources */}
         <div className={styles.mobileNavItem}>
-          <a href="/resources" className={styles.mobileNavLink} onClick={closeMobile}>
+          <a href="/resources/" className={styles.mobileNavLink} onClick={closeMobile}>
             Resources
           </a>
         </div>
 
-        <a href="/contact" className={styles.mobileContactBtn} onClick={closeMobile}>
+        <a href="/contact/" className={styles.mobileContactBtn} onClick={closeMobile}>
           Contact Us <Icon name="arrowRight" size={16} />
         </a>
       </nav>

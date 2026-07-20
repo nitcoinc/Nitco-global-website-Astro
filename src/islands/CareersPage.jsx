@@ -115,7 +115,7 @@ export default function CareersPage() {
                 >
                   See all Dice job postings <Icon name="externalLink" size={15}/>
                 </a>
-                <a href="/contact" className={styles.ctaSecondary}>
+                <a href="/contact/" className={styles.ctaSecondary}>
                   Send us a note <Icon name="arrowRight" size={15}/>
                 </a>
               </div>
@@ -301,7 +301,7 @@ export default function CareersPage() {
               >
                 View Dice job postings <Icon name="externalLink" size={15}/>
               </a>
-              <a href="/contact" className={styles.ctaSecondary}>
+              <a href="/contact/" className={styles.ctaSecondary}>
                 Get in touch <Icon name="arrowRight" size={15}/>
               </a>
             </div>

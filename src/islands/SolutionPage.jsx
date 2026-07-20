@@ -395,7 +395,7 @@ export default function SolutionPage({ solution }) {
           <h2 className={styles.sectionTitle}>Explore other solutions.</h2>
           <div className={styles.exploreGrid}>
             {others.map((s) => (
-              <a key={s.slug} href={`/solutions/${s.slug}`} className={styles.exploreCard}>
+              <a key={s.slug} href={`/solutions/${s.slug}/`} className={styles.exploreCard}>
                 <div className={styles.exploreCardTopLine} aria-hidden="true" />
                 <div className={styles.exploreCardIconBox}>
                   <Icon name={s.icon} size={18} />

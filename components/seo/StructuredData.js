@@ -8,8 +8,8 @@ export function OrganizationSchema() {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'NITCO Inc.',
-    url: 'https://nitcoinc.com',
-    logo: 'https://nitcoinc.com/images/logo-nitco.png',
+    url: 'https://nitcoinc.ai',
+    logo: 'https://nitcoinc.ai/images/logo-nitco.png',
     sameAs: [
       'https://www.linkedin.com/company/nitco-inc',
     ],
@@ -25,7 +25,7 @@ export function WebSiteSchema() {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: 'NITCO Inc.',
-    url: 'https://nitcoinc.com',
+    url: 'https://nitcoinc.ai',
   };
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />;
 }
@@ -51,7 +51,7 @@ export function BlogPostingSchema({ title, description, image, datePublished, au
     publisher: {
       '@type': 'Organization',
       name: 'NITCO Inc.',
-      logo: { '@type': 'ImageObject', url: 'https://nitcoinc.com/images/logo-nitco.png' },
+      logo: { '@type': 'ImageObject', url: 'https://nitcoinc.ai/images/logo-nitco.png' },
     },
   };
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />;

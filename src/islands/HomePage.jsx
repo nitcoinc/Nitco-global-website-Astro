@@ -126,13 +126,13 @@ const pillars = [
 ];
 
 const programs = [
-  { Icon: WalletIcon,      title: "Working Capital & Spend Integrity",  description: "Improve billing accuracy, payment execution, and working capital performance.", to: "/solutions/working-capital-spend-integrity" },
-  { Icon: WorkflowIcon,    title: "Workflow Automation",                 description: "Eliminate manual effort and streamline exception-heavy processes.",             to: "/solutions/workflow-automation" },
-  { Icon: BarChartIcon,    title: "Decision-Ready Data",                 description: "Turn fragmented data into trusted insight for faster decisions.",               to: "/solutions/decision-ready-data" },
-  { Icon: BookOpenIcon,    title: "Employee Knowledge & Productivity",   description: "Instant, context-aware answers across systems and documents.",                  to: "/solutions/employee-knowledge-productivity" },
-  { Icon: HeadsetIcon,     title: "Customer Support Optimization",       description: "Reduce support cost and improve resolution times.",                             to: "/solutions/customer-support-optimization" },
-  { Icon: RocketIcon,      title: "AI Solution Delivery",                description: "Turn AI ideas into production-ready workflow solutions.",                       to: "/solutions/ai-solution-delivery" },
-  { Icon: ShieldCheckIcon, title: "AI Risk, Cost & Governance",          description: "Ensure AI is secure, controlled, cost-effective, and scalable.",               to: "/solutions/ai-risk-cost-governance" },
+  { Icon: WalletIcon,      title: "Working Capital & Spend Integrity",  description: "Improve billing accuracy, payment execution, and working capital performance.", to: "/solutions/working-capital-spend-integrity/" },
+  { Icon: WorkflowIcon,    title: "Workflow Automation",                 description: "Eliminate manual effort and streamline exception-heavy processes.",             to: "/solutions/workflow-automation/" },
+  { Icon: BarChartIcon,    title: "Decision-Ready Data",                 description: "Turn fragmented data into trusted insight for faster decisions.",               to: "/solutions/decision-ready-data/" },
+  { Icon: BookOpenIcon,    title: "Employee Knowledge & Productivity",   description: "Instant, context-aware answers across systems and documents.",                  to: "/solutions/employee-knowledge-productivity/" },
+  { Icon: HeadsetIcon,     title: "Customer Support Optimization",       description: "Reduce support cost and improve resolution times.",                             to: "/solutions/customer-support-optimization/" },
+  { Icon: RocketIcon,      title: "AI Solution Delivery",                description: "Turn AI ideas into production-ready workflow solutions.",                       to: "/solutions/ai-solution-delivery/" },
+  { Icon: ShieldCheckIcon, title: "AI Risk, Cost & Governance",          description: "Ensure AI is secure, controlled, cost-effective, and scalable.",               to: "/solutions/ai-risk-cost-governance/" },
 ];
 
 const stats = [
@@ -286,7 +286,7 @@ export default function NewHome() {
                 <button className={styles.ctaOutline} onClick={() => scrollToId("what-we-do")}>
                   See How It Works <ArrowRight />
                 </button>
-                <a href="/contact" className={styles.ctaCyan}>
+                <a href="/contact/" className={styles.ctaCyan}>
                   Talk to an Expert <ArrowRight />
                 </a>
               </div>
@@ -493,7 +493,7 @@ export default function NewHome() {
               ))}
             </div>
             <p className={styles.engagementTagline}>You don&apos;t need a massive transformation to get started.</p>
-            <a href="/contact" className={styles.engagementCta}>Get in Touch</a>
+            <a href="/contact/" className={styles.engagementCta}>Get in Touch</a>
           </div>
         </div>
       </section>

@@ -1,13 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HomePageIsland from '../islands/HomePage.jsx';
-import LazyChatbot from '../islands/LazyChatbot.jsx';
 import { getSeoForPath } from '../lib/fetchSeoData.js';
 
 const seo = getSeoForPath('/');
 ---
 
 <BaseLayout title="NITCO Inc." seo={seo} path="/">
-  <LazyChatbot client:idle />
   <HomePageIsland client:load />
 </BaseLayout>

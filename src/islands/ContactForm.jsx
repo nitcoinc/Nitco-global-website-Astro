@@ -111,23 +111,6 @@ export default function ContactForm() {
   return (
     <div className={styles.page}>
 
-      {/* ── HERO ── */}
-      <section className={styles.hero}>
-        <div className={styles.heroGlow}  aria-hidden="true"/>
-        <div className={styles.heroGrid}  aria-hidden="true"/>
-        <div className={styles.container}>
-          <div className={styles.heroInner}>
-            <span className={styles.heroEyebrow}>Contact Us</span>
-            <h1 className={styles.heroTitle}>
-              Let&apos;s Build Something Together
-            </h1>
-            <p className={styles.heroSub}>
-              Got an idea we can help with? Want to join our team? Here&apos;s how to reach us.
-            </p>
-          </div>
-        </div>
-      </section>
-
       {/* ── MAIN ── */}
       <section className={styles.main}>
         <div className={styles.container}>
