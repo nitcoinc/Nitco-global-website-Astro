@@ -5,6 +5,6 @@ import { getSeoForPath } from '../../lib/fetchSeoData.js';
 
 const seo = getSeoForPath('/assessment/revenue-leakage');
 ---
-<BaseLayout seo={seo} path="/assessment/revenue-leakage" hideNavbar hideFooter>
+<BaseLayout seo={seo} path="/assessment/revenue-leakage" hideNavbar hideFooter hideChatbot>
   <RevenueLeakageAssessment client:load />
 </BaseLayout>

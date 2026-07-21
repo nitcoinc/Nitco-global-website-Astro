@@ -22,6 +22,8 @@ export interface Props {
   hideNavbar?: boolean;
   /** Set true for standalone landing pages that ship their own footer */
   hideFooter?: boolean;
+  /** Set true to omit the kore.ai chatbot widget on this page */
+  hideChatbot?: boolean;
 }
 
 const {
@@ -35,6 +37,7 @@ const {
   path = '/',
   hideNavbar = false,
   hideFooter = false,
+  hideChatbot = false,
 } = Astro.props;
 
 const GTM_ID = 'GTM-K6CXJBJN';
@@ -236,7 +239,7 @@ const resolvedOgImage = ogImage || defaultOgImage;
 
   <!-- kore.ai Chatbot: loaded lazily on first interaction/idle — the SDK bundle
        is ~2.75MB, too large to load eagerly on every page. -->
-  <LazyChatbot client:idle />
+  {!hideChatbot && <LazyChatbot client:idle />}
 
   <!-- Scroll to top -->
   <GoTop client:visible />
