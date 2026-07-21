@@ -18,6 +18,10 @@ export interface Props {
   seo?: Record<string, unknown>;
   /** Current route path, e.g. "/" or "/contact" — used to build canonical URL in SeoHead */
   path?: string;
+  /** Set true for standalone landing pages that ship their own header */
+  hideNavbar?: boolean;
+  /** Set true for standalone landing pages that ship their own footer */
+  hideFooter?: boolean;
 }
 
 const {
@@ -29,6 +33,8 @@ const {
   jsonLd,
   seo,
   path = '/',
+  hideNavbar = false,
+  hideFooter = false,
 } = Astro.props;
 
 const GTM_ID = 'GTM-K6CXJBJN';
@@ -148,14 +154,18 @@ const resolvedOgImage = ogImage || defaultOgImage;
   )}
 
   <!-- Navbar -->
-  <Navbar client:load />
+  {!hideNavbar && <Navbar client:load />}
 
   <!-- Page content -->
   <slot />
 
   <!-- Footer -->
-  <Footer />
-  <FooterDesignMobile />
+  {!hideFooter && (
+    <>
+      <Footer />
+      <FooterDesignMobile />
+    </>
+  )}
 
   <!-- Iubenda Cookie Consent -->
   <script define:vars={{ IUBENDA_SITE_ID, IUBENDA_COOKIE_POLICY_ID }} is:inline>

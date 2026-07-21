@@ -1,0 +1,10 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import RevenueLeakageAssessment from '../../islands/RevenueLeakageAssessment.jsx';
+import { getSeoForPath } from '../../lib/fetchSeoData.js';
+
+const seo = getSeoForPath('/assessment/revenue-leakage');
+---
+<BaseLayout seo={seo} path="/assessment/revenue-leakage" hideNavbar hideFooter>
+  <RevenueLeakageAssessment client:load />
+</BaseLayout>
