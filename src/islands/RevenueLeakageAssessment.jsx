@@ -32,6 +32,8 @@ function Icon({ name, size = 20, className }) {
     alertCircle: <><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></>,
     chevronDown: <polyline points="6 9 12 15 18 9"/>,
     loader: <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>,
+    sun: <><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></>,
+    moon: <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>,
   };
   return <svg {...props}>{paths[name] || <circle cx="12" cy="12" r="9"/>}</svg>;
 }
@@ -106,7 +108,7 @@ function FaqItem({ q, a, isOpen, onToggle }) {
   );
 }
 
-function LeadCaptureForm() {
+function LeadCaptureForm({ theme }) {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -288,7 +290,7 @@ function LeadCaptureForm() {
             <ReCAPTCHA
               sitekey="6LeOGVctAAAAAPcWLXswr99PCEVIcB7TLHHRv959"
               onChange={(val) => setCaptchaValue(val)}
-              theme="light"
+              theme={theme === "dark" ? "dark" : "light"}
             />
           </div>
         )}
@@ -307,25 +309,83 @@ function LeadCaptureForm() {
   );
 }
 
+const THEME_STORAGE_KEY = "revenue-leakage-theme";
+
+const THEME_VARS = {
+  light: {
+    "--rla-bg": "hsl(244, 51%, 98%)",
+    "--rla-fg": "hsl(244, 51%, 6%)",
+    "--rla-muted": "hsl(244, 10%, 40%)",
+    "--rla-border": "hsl(244, 20%, 90%)",
+    "--rla-border-strong": "hsl(244, 20%, 86%)",
+    "--rla-card": "#fff",
+    "--rla-input-bg": "hsl(244, 51%, 98%)",
+    "--rla-focus-bg": "#fff",
+    "--rla-chip-bg": "rgba(0, 0, 0, 0.02)",
+    "--rla-shadow": "rgba(20, 20, 60, 0.04)",
+    "--rla-shadow-strong": "rgba(20, 20, 60, 0.1)",
+  },
+  dark: {
+    "--rla-bg": "hsl(236, 56%, 6%)",
+    "--rla-fg": "#fff",
+    "--rla-muted": "hsl(236, 20%, 65%)",
+    "--rla-border": "hsl(236, 30%, 16%)",
+    "--rla-border-strong": "hsl(236, 30%, 20%)",
+    "--rla-card": "hsl(236, 40%, 10%)",
+    "--rla-input-bg": "hsl(236, 30%, 20%)",
+    "--rla-focus-bg": "hsl(236, 40%, 13%)",
+    "--rla-chip-bg": "rgba(255, 255, 255, 0.04)",
+    "--rla-shadow": "rgba(0, 0, 0, 0.3)",
+    "--rla-shadow-strong": "rgba(0, 0, 0, 0.45)",
+  },
+};
+
 export default function RevenueLeakageAssessment() {
   const [openFaq, setOpenFaq] = useState(0);
+  const [theme, setTheme] = useState("light");
+
+  useEffect(() => {
+    const stored = window.localStorage.getItem(THEME_STORAGE_KEY);
+    if (stored === "dark" || stored === "light") setTheme(stored);
+  }, []);
+
+  const toggleTheme = () => {
+    setTheme((prev) => {
+      const next = prev === "dark" ? "light" : "dark";
+      window.localStorage.setItem(THEME_STORAGE_KEY, next);
+      return next;
+    });
+  };
 
   const scrollToForm = (e) => {
     e.preventDefault();
     document.getElementById("lead-form")?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
+  const logoSrc = theme === "dark" ? "/images/nitco-images/LogoWhite.svg" : "/images/nitco-images/Logo.svg";
+
   return (
-    <div className={styles.page}>
+    <div className={styles.page} data-theme={theme} style={THEME_VARS[theme]}>
       {/* ══ HEADER ══ */}
       <header className={styles.header}>
         <div className={styles.headerInner}>
           <a href="/" className={styles.logo}>
-            <img src="/images/nitco-images/Logo.svg" alt="NITCO Inc." width={180} height={48} />
+            <img src={logoSrc} alt="NITCO Inc." width={180} height={48} />
           </a>
-          <a href="#lead-form" className={styles.headerCta} onClick={scrollToForm}>
-            Request Assessment
-          </a>
+          <div className={styles.headerActions}>
+            <button
+              type="button"
+              className={styles.themeToggle}
+              onClick={toggleTheme}
+              aria-label={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}
+              title={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}
+            >
+              <Icon name={theme === "dark" ? "sun" : "moon"} size={18} />
+            </button>
+            <a href="#lead-form" className={styles.headerCta} onClick={scrollToForm}>
+              Request Assessment
+            </a>
+          </div>
         </div>
       </header>
 
@@ -446,7 +506,7 @@ export default function RevenueLeakageAssessment() {
 
             {/* RIGHT COLUMN: Sticky Form */}
             <div className={styles.formWrap}>
-              <LeadCaptureForm />
+              <LeadCaptureForm theme={theme} />
             </div>
           </div>
         </div>
@@ -456,7 +516,7 @@ export default function RevenueLeakageAssessment() {
       <footer className={styles.footer}>
         <div className={styles.footerInner}>
           <a href="/" className={styles.footerLogo}>
-            <img src="/images/nitco-images/Logo.svg" alt="NITCO Inc." width={160} height={42} />
+            <img src={logoSrc} alt="NITCO Inc." width={160} height={42} />
           </a>
           <p className={styles.footerCopy}>&copy; {new Date().getFullYear()} NITCO Inc. All rights reserved.</p>
         </div>
