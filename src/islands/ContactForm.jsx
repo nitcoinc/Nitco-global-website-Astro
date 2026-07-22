@@ -235,6 +235,7 @@ export default function ContactForm() {
             </div>
 
             {/* ── SIDE ── */}
+            
             <div className={styles.side}>
               <div className={styles.sideHeader}>
                 <span className={styles.sideEyebrow}>Our Offices</span>
