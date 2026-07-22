@@ -2702,6 +2702,26 @@ h6.single-works {
 
 .markdown-container-fullpage {
   text-align: justify;
+  color: #ffffff;
+}
+
+.markdown-container-fullpage h1,
+.markdown-container-fullpage h2,
+.markdown-container-fullpage h3,
+.markdown-container-fullpage h4,
+.markdown-container-fullpage h5,
+.markdown-container-fullpage h6 {
+  color: #ffffff;
+}
+
+.markdown-container-fullpage p,
+.markdown-container-fullpage li,
+.markdown-container-fullpage a {
+  color: #ffffff;
+}
+
+.markdown-container-fullpage a:hover {
+  color: #53eafd;
 }
 
 /* button styles */

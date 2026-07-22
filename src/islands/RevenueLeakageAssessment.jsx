@@ -79,10 +79,9 @@ const FAQS = [
   { q: "What systems do you work with?", a: "SAP, Oracle, Microsoft Dynamics, NetSuite, Salesforce, Workday, ServiceNow, and other enterprise platforms." },
 ];
 
-/* TODO: replace with the real HubSpot portal ID and form GUID for this campaign */
-const HUBSPOT_PORTAL_ID = "PORTAL_ID";
-const HUBSPOT_FORM_GUID = "FORM_GUID";
-const HUBSPOT_URL = `https://api.hsforms.com/submissions/v3/integration/submit/${HUBSPOT_PORTAL_ID}/${HUBSPOT_FORM_GUID}`;
+const HUBSPOT_PORTAL_ID = "8158070";
+const HUBSPOT_FORM_ID = "8483f076-dd19-4677-be03-0ee51194fbcc";
+const HUBSPOT_URL = `https://api.hsforms.com/submissions/v3/integration/submit/${HUBSPOT_PORTAL_ID}/${HUBSPOT_FORM_ID}`;
 
 function ImpactCard({ icon, title, description }) {
   return (

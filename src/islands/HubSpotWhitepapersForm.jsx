@@ -5,31 +5,48 @@ export default function HubSpotWhitepapersForm({ formId, downloadLink }) {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   useEffect(() => {
+    // postMessage listener — most reliable, fires after HubSpot records the submission
+    const handleMessage = (event) => {
+      if (
+        event.data?.type === "hsFormCallback" &&
+        event.data?.eventName === "onFormSubmitted"
+      ) {
+        setIsSubmitted(true);
+        const container = document.getElementById("hubspotFormContainer");
+        if (container) container.innerHTML = "";
+      }
+    };
+    window.addEventListener("message", handleMessage);
+
     const script = document.createElement("script");
     script.src = "https://js.hsforms.net/forms/v2.js";
     script.async = true;
     document.body.appendChild(script);
 
     script.addEventListener("load", () => {
-      if (window.hbspt && !isSubmitted) {
+      if (window.hbspt) {
         window.hbspt.forms.create({
           region: "na1",
           portalId: "8158070",
           formId: formId,
           target: "#hubspotFormContainer",
-          onFormSubmit: () => {
+          // onFormSubmitted fires after HubSpot records the submission
+          onFormSubmitted: () => {
             setTimeout(() => {
               setIsSubmitted(true);
               const container = document.getElementById("hubspotFormContainer");
               if (container) container.innerHTML = "";
-            }, 1200);
+            }, 500);
           },
         });
       }
     });
 
-    return () => { script.remove(); };
-  }, [formId, isSubmitted]);
+    return () => {
+      script.remove();
+      window.removeEventListener("message", handleMessage);
+    };
+  }, [formId]); // ← formId only, NOT isSubmitted
 
   const handleDownload = async () => {
     try {
@@ -49,15 +66,21 @@ export default function HubSpotWhitepapersForm({ formId, downloadLink }) {
     }
   };
 
-  if (isSubmitted && downloadLink) {
+  if (isSubmitted) {
     return (
       <div className={styles.thankYou}>
         <div className={styles.thankYouIcon}>✓</div>
         <h2 className={styles.thankYouTitle}>Thank You!</h2>
-        <p className={styles.thankYouText}>Your whitepaper is ready to download.</p>
-        <button onClick={handleDownload} className={styles.downloadBtn}>
-          Download Now
-        </button>
+        <p className={styles.thankYouText}>
+          {downloadLink
+            ? "Your whitepaper is ready to download."
+            : "We’ll send the whitepaper to your email shortly."}
+        </p>
+        {downloadLink && (
+          <button onClick={handleDownload} className={styles.downloadBtn}>
+            Download Now
+          </button>
+        )}
       </div>
     );
   }

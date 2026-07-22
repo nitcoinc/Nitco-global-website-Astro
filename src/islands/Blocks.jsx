@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
+import { PortableText } from "@portabletext/react";
 import { urlFor } from "../lib/sanityImage.js";
 import styles from "./resorcesGlobal.module.css";
 import btnStyles from "./buttonArea.module.css";
@@ -788,6 +789,19 @@ const VideosbuttonsListArea = ({ data }) => {
   );
 };
 
+// ── Policy body renderer ─────────────────────────────────────────────────────
+// `body` on policyBlock/cookieBlock is Sanity Portable Text (rich text blocks),
+// not a markdown string — ReactMarkdown can't render it (renders blank).
+// h1 remapped to h2 so body content never duplicates the block's own page-level heading.
+const policyPortableTextComponents = {
+  block: {
+    h1: ({ children }) => <h2>{children}</h2>,
+  },
+  marks: {
+    link: ({ children, value }) => <a href={value?.href}>{children}</a>,
+  },
+};
+
 // ── PrivacyPolicy ─────────────────────────────────────────────────────────────
 
 const PrivacyPolicy = ({ data }) => {
@@ -801,7 +815,7 @@ const PrivacyPolicy = ({ data }) => {
             <div className="markdown-container-fullpage">
               <h1>{mainheading}</h1>
               <p>Last Updated: {lastupdated}</p>
-              <ReactMarkdown components={{ h1: 'h2' }}>{body}</ReactMarkdown>
+              <PortableText value={body} components={policyPortableTextComponents} />
             </div>
           </div>
         </div>
@@ -823,7 +837,7 @@ const CookiePolicy = ({ data }) => {
             <div className="markdown-container-fullpage">
               <h2 style={{ paddingTop: "30px" }}>{mainheading}</h2>
               <h3>{subheading}</h3>
-              <ReactMarkdown components={{ h1: 'h2' }}>{body}</ReactMarkdown>
+              <PortableText value={body} components={policyPortableTextComponents} />
             </div>
           </div>
         </div>
