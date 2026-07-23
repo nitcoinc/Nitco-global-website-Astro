@@ -256,29 +256,85 @@
   margin: 0;
 }
 
-/* ══ VIDEO CARD ══ */
-.videoCard {
-  border-radius: 20px;
-  border: 1px solid var(--rla-border);
-  background: var(--rla-card);
-  padding: 16px;
-  box-shadow: 0 1px 2px var(--rla-shadow);
-  margin-top: 32px;
+/* ══ WATCH VIDEO BUTTON (hero) ══ */
+.watchVideoBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 48px;
+  padding: 0 28px;
+  margin-top: 24px;
+  border-radius: 10px;
+  background: #2e2d78;
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  transition: transform 0.2s, background 0.2s;
 }
-.videoWrapper {
+.watchVideoBtn:hover { background: rgba(46, 45, 120, 0.9); transform: translateY(-1px); }
+
+/* ══ VIDEO MODAL ══ */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100000;
+}
+.videoModalContent {
+  height: min(97vh, 900px);
+  aspect-ratio: 16 / 9;
+  background: #000;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+@media (max-width: 768px) {
+  .videoModalContent { width: 95vw; height: auto; aspect-ratio: 16 / 9; }
+}
+.iframeWrapper {
   position: relative;
   width: 100%;
-  padding-top: 56.25%; /* 16:9 */
-  border-radius: 12px;
-  overflow: hidden;
-  background: #000;
+  flex: 1;
+  z-index: 1;
 }
 .videoIframe {
-  position: absolute;
-  inset: 0;
   width: 100%;
   height: 100%;
-  border: 0;
+  border: none;
+}
+.closeModal {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 9999999;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.96);
+  color: #000;
+  font-size: 20px;
+  line-height: 1;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+.closeModal::before {
+  content: "";
+  position: absolute;
+  inset: -12px;
 }
 
 /* ══ DELIVERABLES CARD ══ */
