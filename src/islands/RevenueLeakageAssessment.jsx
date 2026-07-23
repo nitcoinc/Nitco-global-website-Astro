@@ -83,6 +83,9 @@ const HUBSPOT_PORTAL_ID = "8158070";
 const HUBSPOT_FORM_ID = "8483f076-dd19-4677-be03-0ee51194fbcc";
 const HUBSPOT_URL = `https://api.hsforms.com/submissions/v3/integration/submit/${HUBSPOT_PORTAL_ID}/${HUBSPOT_FORM_ID}`;
 
+// Same video configured for the Revenue Leakage Agent in the AI Command Center (src/content/agents.json)
+const RLA_VIDEO_URL = "https://player.vimeo.com/video/1204592337?h=e21d979a14";
+
 function ImpactCard({ icon, title, description }) {
   return (
     <div className={styles.impactCard}>
@@ -91,6 +94,21 @@ function ImpactCard({ icon, title, description }) {
       <p className={styles.impactDescription}>{description}</p>
     </div>
   );
+}
+
+function VideoEmbed({ url, title }) {
+  const [playing, setPlaying] = useState(false);
+
+ return (
+  <div className={styles.videoWrapper}>
+    <iframe
+      src={url}
+      className={styles.videoIframe}
+      allow="autoplay; fullscreen"
+      title={title}
+    />
+  </div>
+);
 }
 
 function FaqItem({ q, a, isOpen, onToggle }) {
@@ -431,6 +449,11 @@ export default function RevenueLeakageAssessment() {
                     <ImpactCard key={card.title} {...card} />
                   ))}
                 </div>
+              </div>
+
+              {/* Video */}
+              <div className={styles.videoCard}>
+                <VideoEmbed url={RLA_VIDEO_URL} title="Revenue Leakage Agent" />
               </div>
 
               {/* Deliverables */}
