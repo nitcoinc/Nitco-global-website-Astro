@@ -28,6 +28,7 @@ function Icon({ name, size = 20, className }) {
     layoutDashboard: <><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></>,
     target: <><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></>,
     checkCircle: <><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></>,
+    playCircle: <><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></>,
     arrowRight: <><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></>,
     alertCircle: <><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></>,
     chevronDown: <polyline points="6 9 12 15 18 9"/>,
@@ -84,7 +85,7 @@ const HUBSPOT_FORM_ID = "8483f076-dd19-4677-be03-0ee51194fbcc";
 const HUBSPOT_URL = `https://api.hsforms.com/submissions/v3/integration/submit/${HUBSPOT_PORTAL_ID}/${HUBSPOT_FORM_ID}`;
 
 // Same video configured for the Revenue Leakage Agent in the AI Command Center (src/content/agents.json)
-const RLA_VIDEO_URL = "https://player.vimeo.com/video/1204592337?h=e21d979a14";
+const RLA_VIDEO_URL = "https://player.vimeo.com/video/1204592337?h=e21d979a14&autoplay=1&muted=1";
 
 function ImpactCard({ icon, title, description }) {
   return (
@@ -94,21 +95,6 @@ function ImpactCard({ icon, title, description }) {
       <p className={styles.impactDescription}>{description}</p>
     </div>
   );
-}
-
-function VideoEmbed({ url, title }) {
-  const [playing, setPlaying] = useState(false);
-
- return (
-  <div className={styles.videoWrapper}>
-    <iframe
-      src={url}
-      className={styles.videoIframe}
-      allow="autoplay; fullscreen"
-      title={title}
-    />
-  </div>
-);
 }
 
 function FaqItem({ q, a, isOpen, onToggle }) {
@@ -360,6 +346,7 @@ const THEME_VARS = {
 export default function RevenueLeakageAssessment() {
   const [openFaq, setOpenFaq] = useState(0);
   const [theme, setTheme] = useState("light");
+  const [videoOpen, setVideoOpen] = useState(false);
 
   useEffect(() => {
     const stored = window.localStorage.getItem(THEME_STORAGE_KEY);
@@ -423,6 +410,13 @@ export default function RevenueLeakageAssessment() {
               AI-powered assessment that uncovers billing errors, pricing discrepancies, contract leakage,
               duplicate payments, revenue recognition gaps, and process inefficiencies across your enterprise.
             </p>
+            <button
+              type="button"
+              className={styles.watchVideoBtn}
+              onClick={() => setVideoOpen(true)}
+            >
+              <Icon name="playCircle" size={18} /> Watch Video
+            </button>
           </div>
         </div>
       </section>
@@ -449,11 +443,6 @@ export default function RevenueLeakageAssessment() {
                     <ImpactCard key={card.title} {...card} />
                   ))}
                 </div>
-              </div>
-
-              {/* Video */}
-              <div className={styles.videoCard}>
-                <VideoEmbed url={RLA_VIDEO_URL} title="Revenue Leakage Agent" />
               </div>
 
               {/* Deliverables */}
@@ -543,6 +532,28 @@ export default function RevenueLeakageAssessment() {
           <p className={styles.footerCopy}>&copy; {new Date().getFullYear()} NITCO Inc. All rights reserved.</p>
         </div>
       </footer>
+
+      {videoOpen && (
+        <div className={styles.modalOverlay} onClick={() => setVideoOpen(false)}>
+          <div className={styles.videoModalContent} onClick={(e) => e.stopPropagation()}>
+            <button
+              type="button"
+              className={styles.closeModal}
+              onClick={() => setVideoOpen(false)}
+            >
+              ✕
+            </button>
+            <div className={styles.iframeWrapper}>
+              <iframe
+                src={RLA_VIDEO_URL}
+                className={styles.videoIframe}
+                allow="autoplay; fullscreen"
+                title="Revenue Leakage Agent"
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
